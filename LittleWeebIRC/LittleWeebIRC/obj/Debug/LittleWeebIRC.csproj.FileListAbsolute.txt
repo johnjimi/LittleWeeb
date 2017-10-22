@@ -21,10 +21,9 @@ C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\b
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\Microsoft.WindowsAPICodePack.Sensors.dll
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
-C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\SimpleIRCLib.dll
-C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\SimpleIRCLib.pdb
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\obj\Debug\LittleWeebIRC.csprojResolveAssemblyReference.cache
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\obj\Debug\LittleWeebIRC.exe
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\obj\Debug\LittleWeebIRC.pdb
+C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebIRC\LittleWeebIRC\bin\Debug\SimpleWebSockets.dll

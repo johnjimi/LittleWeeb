@@ -1,19 +1,18 @@
-﻿using SimpleIRCLib;
-using SimpleWebSocketServer;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
-using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.RegularExpressions;
+using SimpleIRCLib;
+using SimpleWebSocketServer;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace LittleWeebIRC
 {
@@ -28,20 +27,13 @@ namespace LittleWeebIRC
         public static string currentDownloadLocation = "";
         public static bool closeBackend = false;
         public static bool joinedChannel = false;
-        public static string settingsLocation = "";
 
         static void Main(string[] args)
         {
 
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-            // Combine the base folder with your specific folder....
-            settingsLocation = Path.Combine(folder, "LittleWeeb");
-
-            if (!Directory.Exists(settingsLocation))
-            {
-                Directory.CreateDirectory(settingsLocation);
-            }
+            
 
             currentDownloadLocation = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -77,6 +69,25 @@ namespace LittleWeebIRC
             Thread dlListChecker = new Thread(new ThreadStart(downloaderLogic));
             dlListChecker.Start();
 
+            //logging to tha file yo
+            FileStream ostrm;
+            StreamWriter writer;
+            TextWriter oldOut = Console.Out;
+            try
+            {
+                DateTime now = DateTime.Now;
+                string date = GetValidFileName(now.ToString("s"));
+                ostrm = new FileStream("awesomelogofc_" + date + ".txt", FileMode.OpenOrCreate, FileAccess.Write);
+                writer = new StreamWriter(ostrm);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Cannot open Redirect.txt for writing");
+                Console.WriteLine(e.Message);
+                return;
+            }
+            Console.SetOut(writer);
+
             while (!closeBackend)  //irc output and such are handled in different threads
             {
                 Thread.Sleep(10);
@@ -95,6 +106,7 @@ namespace LittleWeebIRC
             }
             catch { }
 
+            Console.SetOut(oldOut);
             Environment.Exit(0);
         }
 
@@ -189,6 +201,7 @@ namespace LittleWeebIRC
                 {
                     try
                     {
+                        Console.WriteLine("I guess I should Delete stuff");
                         irc.stopXDCCDownload();
                     }
                     catch
@@ -211,6 +224,7 @@ namespace LittleWeebIRC
 
                     try
                     {
+                        Console.WriteLine("YOU MORON... no actually, THIS SHOULD ONLY HAPPEN... well.. when you actually want to delete stuff x)");
                         File.Delete(currentDownloadLocation + "\\" + fileName); 
                     } catch (IOException e)
                     {
@@ -225,16 +239,24 @@ namespace LittleWeebIRC
             }
             if (msg.Contains("OpenFileDialog"))
             {
-                Console.WriteLine("OPENING FILE D DIALOG");
-                Thread openfdwithoutblocking = new Thread(new ThreadStart(delegate
+                try
                 {
+                    Console.WriteLine("OPENING FILE D DIALOG");
+                    Thread openfdwithoutblocking = new Thread(new ThreadStart(delegate
+                    {
 
-                    Thread openfd = new Thread(new ThreadStart(setDlDir));
-                    openfd.TrySetApartmentState(ApartmentState.STA);
-                    openfd.Start();
-                    openfd.Join();
-                }));
-                openfdwithoutblocking.Start();
+                        Thread openfd = new Thread(new ThreadStart(setDlDir));
+                        openfd.TrySetApartmentState(ApartmentState.STA);
+                        openfd.Start();
+                        openfd.Join();
+                    }));
+                    openfdwithoutblocking.Start();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DEBUG: " + e.ToString());
+                }
+               
             }
             if (msg.Contains("PlayFile"))
             {
@@ -277,21 +299,27 @@ namespace LittleWeebIRC
         public static void setDlDir()
         {
             Console.WriteLine("TRYING TO OPEN FD");
-
-            using(var fbd = new CommonOpenFileDialog())
+            try
             {
-                fbd.InitialDirectory = "C:\\Users";
-                fbd.IsFolderPicker = true;
-
-                if (fbd.ShowDialog() == CommonFileDialogResult.Ok && !string.IsNullOrWhiteSpace(fbd.FileName))
+                using (var fbd = new CommonOpenFileDialog())
                 {
-                    currentDownloadLocation = fbd.FileName;
-                    irc.setCustomDownloadDir(currentDownloadLocation);
-                    server.SendGlobalMessage("CurrentDir^" + currentDownloadLocation);
-                    saveSettings();
-                }
+                    fbd.InitialDirectory = "C:\\Users";
+                    fbd.IsFolderPicker = true;
 
+                    if (fbd.ShowDialog() == CommonFileDialogResult.Ok && !string.IsNullOrWhiteSpace(fbd.FileName))
+                    {
+                        currentDownloadLocation = fbd.FileName;
+                        irc.setCustomDownloadDir(currentDownloadLocation);
+                        server.SendGlobalMessage("CurrentDir^" + currentDownloadLocation);
+                        saveSettings();
+                    }
+
+                }
+            } catch(Exception e)
+            {
+                Console.WriteLine("DEBUG: " + e.ToString());
             }
+           
         }
 
         public static void downloaderLogic()
@@ -414,33 +442,56 @@ namespace LittleWeebIRC
 
         public static void saveSettings()
         {
-            Settings setting = new Settings();
-            setting.downloaddir = currentDownloadLocation;
-            IFormatter formatter = new BinaryFormatter();
-            string settingsFile = Path.Combine(settingsLocation, "LittleWeebSettings.bin");
-            Stream stream = new FileStream(settingsFile, FileMode.Create, FileAccess.Write, FileShare.None);
-            formatter.Serialize(stream, setting);
-            stream.Close();
+            try
+            {
+                Settings setting = new Settings();
+                setting.downloaddir = currentDownloadLocation;
+                IFormatter formatter = new BinaryFormatter();
+                string settingsFile = "LittleWeebSettings.bin";
+                Stream stream = new FileStream(settingsFile, FileMode.Create, FileAccess.Write, FileShare.None);
+                formatter.Serialize(stream, setting);
+                stream.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("DEBUG: " + e.ToString());
+            }
+            
         }
 
         public static void loadSettings()
         {
-            IFormatter formatter = new BinaryFormatter();
-
-            string settingsFile = Path.Combine(settingsLocation, "LittleWeebSettings.bin");
-            if (!File.Exists(settingsFile))
+            try
             {
-                File.Create(settingsFile);
-            } else
-            {
+                IFormatter formatter = new BinaryFormatter();
 
-                Stream stream = new FileStream(settingsFile, FileMode.Open, FileAccess.Read, FileShare.Read);
-                Settings setting = (Settings)formatter.Deserialize(stream);
-                stream.Close();
-                currentDownloadLocation = setting.downloaddir;
+                string settingsFile = "LittleWeebSettings.bin";
+                if (!File.Exists(settingsFile))
+                {
+                    File.Create(settingsFile);
+                } else
+                {
+
+                    Stream stream = new FileStream(settingsFile, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    Settings setting = (Settings)formatter.Deserialize(stream);
+                    stream.Close();
+                    currentDownloadLocation = setting.downloaddir;
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("DEBUG: " + e.ToString());
+            }
+
         }
-        
+
+        private static string GetValidFileName(string fileName)
+        {
+            // remove any invalid character from the filename.
+            String ret = Regex.Replace(fileName.Trim(), "[^A-Za-z0-9_. ]+", "");
+            return ret.Replace(" ", String.Empty);
+        }
+
 
         private static Random random = new Random();
         public static string RandomString(int length)
@@ -462,6 +513,7 @@ namespace LittleWeebIRC
             }
             throw new Exception("Local IP Address Not Found!");
         }
+
 
 
     }
