@@ -1,0 +1,76 @@
+WSDEBUG-WEBSOCKETHANDLER: SENDING MESSAGE: HELLO LITTLE WEEB
+WSDEBUG-WEBSOCKETHANDLER: Awaiting connection...
+WSDEBUG-WEBSOCKETHANDLER: SENDING MESSAGE: IrcConnected-CurrentDir^F:\Torrent Downloads
+DEBUG-IRCHANDLER: CONNECTED TO IRC SERVER
+IRCDEBUG: Succeeded in connecting to the IRC server!
+DEBUG-IRCHANDLER: ERROR: Could not shut down IRC client: System.NullReferenceException: Object reference not set to an instance of an object.
+   at SimpleIRCLib.SimpleIRC.stopXDCCDownload() in C:\Users\Eldin-Desktop\Documents\GitHub\SimpleIRCLib\SimpleIRCLib\SimpleIRC.cs:line 198
+   at LittleWeeb.IrcHandler.startIrc() in C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\IrcHandler.cs:line 61
+irc.x2x.cc NOTICE * :*** Looking up your hostname...::irc.x2x.cc NOTICE * :*** Looking up your hostname...
+irc.x2x.cc NOTICE * :*** Found your hostname::irc.x2x.cc NOTICE * :*** Found your hostname
+CHROMEDEBUG: Im doing stuff here !
+IRCDEBUG - DEBUG-IRCHANDLER: RECEIVED PING WITH ID: 2076127096
+
+ING :2076127096:PING :2076127096
+irc.x2x.cc NOTICE iiorlx :*** Your host is masked (Rizon-AC4B78B2.cm-3-2a.dynamic.ziggo.nl):*** Your host is masked (Rizon-AC4B78B2.cm-3-2a.dynamic.ziggo.nl)
+irc.x2x.cc 001 iiorlx :Welcome to the Rizon Internet Relay Chat Network iiorlx:Welcome to the Rizon Internet Relay Chat Network iiorlx
+irc.x2x.cc 003 iiorlx :This server was created Sep 19 2017 at 19:10:00:This server was created Sep 19 2017 at 19:10:00
+irc.x2x.cc 004 iiorlx irc.x2x.cc plexus-4(hybrid-8.1.20) CDGNRSUWagilopqrswxyz BCIMNORSabcehiklmnopqstvz Iabehkloqv::irc.x2x.cc 004 iiorlx irc.x2x.cc plexus-4(hybrid-8.1.20) CDGNRSUWagilopqrswxyz BCIMNORSabcehiklmnopqstvz Iabehkloqv
+IRCDEBUG - DEBUG-IRCHANDLER: RECEIVED PING WITH ID: irc.x2x.cc 005 iiorlx CALLERID CASEMAPPING=rfc1459 DEAF=D KICKLEN=180 MODES=4 PREFIX=(qaohv)~&@%+ STATUSMSG=~&@%+ EXCEPTS=e INVEX=I NICKLEN=30 NETWORK=Rizon MAXLIST=beI
+
+irc.x2x.cc 251 iiorlx :There are 36 users and 16956 invisible on 17 servers:There are 36 users and 16956 invisible on 17 servers
+irc.x2x.cc 252 iiorlx 57 :IRC Operators online::irc.x2x.cc 252 iiorlx 57 :IRC Operators online
+irc.x2x.cc 253 iiorlx 1 :unknown connection(s)::irc.x2x.cc 253 iiorlx 1 :unknown connection(s)
+irc.x2x.cc 254 iiorlx 15149 :channels formed::irc.x2x.cc 254 iiorlx 15149 :channels formed
+irc.x2x.cc 255 iiorlx :I have 16992 clients and 17 servers:I have 16992 clients and 17 servers
+irc.x2x.cc 265 iiorlx :Current local users: 16992  Max: 19437:Current local users: 16992  Max: 19437
+irc.x2x.cc 266 iiorlx :Current global users: 16992  Max: 19437:Current global users: 16992  Max: 19437
+irc.x2x.cc 375 iiorlx :- irc.x2x.cc Message of the Day - :- irc.x2x.cc Message of the Day - 
+irc.x2x.cc 372 iiorlx :-          11oo                            :-          11oo                            
+irc.x2x.cc 372 iiorlx :- :- 
+irc.x2x.cc 372 iiorlx :- 88d888b. dP d888888b .d8888b. 88d888b. :- 88d888b. dP d888888b .d8888b. 88d888b. 
+irc.x2x.cc 372 iiorlx :- 88'  `88 88    .d8P' 88'  `88 88'  `88 :- 88'  `88 88    .d8P' 88'  `88 88'  `88 
+irc.x2x.cc 372 iiorlx :- 1188       88  .Y8P    88.  .88 88    88 :- 1188       88  .Y8P    88.  .88 88    88 
+irc.x2x.cc 372 iiorlx :- 11dP       dP d888888P `88888P' dP    dP:- 11dP       dP d888888P `88888P' dP    dP
+irc.x2x.cc 372 iiorlx :- :- 
+irc.x2x.cc 372 iiorlx :- Rizon Chat Network -- http://rizon.net:- Rizon Chat Network -- http://rizon.net
+irc.x2x.cc 372 iiorlx :- :- 
+irc.x2x.cc 372 iiorlx :- Listening on ports: 6660 - 6669, 7000. SSL: 6697, 9999:- Listening on ports: 6660 - 6669, 7000. SSL: 6697, 9999
+irc.x2x.cc 372 iiorlx :- :- 
+irc.x2x.cc 372 iiorlx :- Rules::- Rules:
+irc.x2x.cc 372 iiorlx :- o No spamming or flooding:- o No spamming or flooding
+irc.x2x.cc 372 iiorlx :- o No clones or malicious bots:- o No clones or malicious bots
+irc.x2x.cc 372 iiorlx :- o No takeovers:- o No takeovers
+irc.x2x.cc 372 iiorlx :- o No distribution of child pornography:- o No distribution of child pornography
+irc.x2x.cc 372 iiorlx :- o Rizon staff may disconnect clients for any or no reason:- o Rizon staff may disconnect clients for any or no reason
+irc.x2x.cc 372 iiorlx :- :- 
+irc.x2x.cc 372 iiorlx :- First steps::- First steps:
+irc.x2x.cc 372 iiorlx :- o To register your nick: /msg NickServ HELP:- o To register your nick: /msg NickServ HELP
+irc.x2x.cc 372 iiorlx :- o To register your channel: /msg ChanServ HELP:- o To register your channel: /msg ChanServ HELP
+irc.x2x.cc 372 iiorlx :- o To get a vHost: /msg HostServ HELP REQUEST:- o To get a vHost: /msg HostServ HELP REQUEST
+IRCDEBUG - DEBUG-IRCHANDLER: Downloader Stopped
+irc.x2x.cc 372 iiorlx :- o For other help with Rizon: /join #help:- o For other help with Rizon: /join #help
+WSDEBUG-WEBSOCKETHANDLER: SENDING MESSAGE: DOWNLOADUPDATE::0:0:ABORTED:NO DOWNLOAD:0
+irc.x2x.cc 372 iiorlx :- :- 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ STARTING QUITING PROCEDURE 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ WRITTEN QUIT 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ STOPPED RECEIVER: 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ STARTING QUITING PROCEDURE 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ WRITTEN QUIT 
+IRCDEBUG - DEBUG-IRCHANDLER: Error Connecting to IRC Server: 
+ System.IO.IOException: Unable to write data to the transport connection: An established connection was aborted by the software in your host machine. ---> System.Net.Sockets.SocketException: An established connection was aborted by the software in your host machine
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at System.IO.StreamWriter.Flush(Boolean flushStream, Boolean flushEncoder)
+   at System.IO.StreamWriter.Flush()
+   at SimpleIRCLib.IrcConnect.writeIrc(String input) in C:\Users\Eldin-Desktop\Documents\GitHub\SimpleIRCLib\SimpleIRCLib\IrcConnect.cs:line 384
+   at SimpleIRCLib.IrcConnect.Connect() in C:\Users\Eldin-Desktop\Documents\GitHub\SimpleIRCLib\SimpleIRCLib\IrcConnect.cs:line 84
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ CLOSED EVERY THING 
