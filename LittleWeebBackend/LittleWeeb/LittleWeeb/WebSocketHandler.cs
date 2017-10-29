@@ -4,45 +4,68 @@ using SimpleIRCLib;
 using System.IO;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using WebSocketSharp.Server;
+using WebSocketSharp;
 
 namespace LittleWeeb
 {
-    class WebSocketHandler
+    class WebSocketHandler : WebSocketBehavior
     {
-        private SimpleWebSockets websocketserver;
         private SimpleIRC irc;
-        private SharedData shared;
         private Form1 form;
-        public WebSocketHandler(SharedData shared, Form1 form) {
-            this.shared = shared;
-            this.form = form;
-            irc = shared.irc;
-            websocketserver = shared.websocketserver;
-            websocketserver.MessageReceived += new EventHandler<WebSocketEventArgs>(WsMessageReceived);
-            websocketserver.DebugMessage += new EventHandler<WebSocketEventArgs>(WsDebugReceived);
-            websocketserver.Start();
-            websocketserver.SendGlobalMessage("HELLO LITTLE WEEB");
+        private Thread checkMessagesToSend = null;
+
+        public WebSocketHandler() 
+        {
+            this.form = Form1.form;
+            irc = SharedData.irc;
+            Send("HELLO LITTLE WEEB");
+            checkMessagesToSend = new Thread(new ThreadStart(messagesToSend));
+            checkMessagesToSend.Start();
+        }
+        
+        private void messagesToSend()
+        {
+            while(SharedData.messageToSendWS != null)
+            {
+                Thread.Sleep(1000);
+                string messageToSend = "";
+                SharedData.messageToSendWS.TryTake(out messageToSend);
+                if(messageToSend != "")
+                {
+                    try
+                    {
+                        Send(messageToSend);
+                    } catch(Exception e)
+                    {
+                        Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: COULD NOT SEND DATA: " + messageToSend);
+                        Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: COULD NOT SEND DATA: " + e.ToString());
+                    }
+                }
+
+            }
+
         }
 
-        public void Shutdown()
+        protected override void OnClose(CloseEventArgs e)
         {
-            websocketserver.Stop();
+            checkMessagesToSend.Abort();
         }
 
-        private void WsMessageReceived(object sender, WebSocketEventArgs args)
+        protected override void OnMessage(MessageEventArgs e)
         {
-            string msg = args.Message;
+            string msg = e.Data;
             Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: " + msg);
             if (msg.Contains("AreWeJoined"))
             {
-                if (shared.joinedChannel)
+                if (SharedData.joinedChannel)
                 {
-                    websocketserver.SendGlobalMessage("IrcConnected");
+                   Send("IrcConnected");
                 }
             }
             if (msg.Contains("GetAlreadyDownloadedFiles"))
             {
-                string[] filePaths = Directory.GetFiles(shared.currentDownloadLocation);
+                string[] filePaths = Directory.GetFiles(SharedData.currentDownloadLocation);
                 string arrayToSend = "ALREADYDOWNLOADED";
                 int a = 0;
                 foreach (string filePath in filePaths)
@@ -56,7 +79,7 @@ namespace LittleWeeb
                     a++;
                 }
 
-                websocketserver.SendGlobalMessage(arrayToSend);
+               Send(arrayToSend);
 
             }
             if (msg.Contains("AddToDownloads"))
@@ -78,21 +101,21 @@ namespace LittleWeeb
                             d.dlId = dlId;
                             d.dlBot = dlBot;
                             d.dlPack = dlPack;
-                            shared.downloadList.Add(d);
+                            SharedData.downloadList.Add(d);
                             dlData added = new dlData();
-                            if( shared.downloadList.TryPeek(out added))
+                            if( SharedData.downloadList.TryPeek(out added))
                             {
                                 Debug.WriteLine("DEBUG-WEBSOCKETHANDLER:ADDED TO DOWLOADS: ID:" + added.dlId + " XDCC: /msg " + added.dlBot + " xdcc send #" + added.dlPack);
-                                Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: SIZE OF QUEU:" + shared.downloadList.Count);
+                                Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: SIZE OF QUEU:" + SharedData.downloadList.Count);
                             } else
                             {
                                 Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: I COULDN'T PEEK AFTER ADDING, SOMETHING MIGHT HAVE GONE WRONG :(");
-                                Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: SIZE OF QUEU:" + shared.downloadList.Count);
+                                Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: SIZE OF QUEU:" + SharedData.downloadList.Count);
                             }
                         }
-                        catch(Exception e)
+                        catch(Exception ex)
                         {
-                            Debug.WriteLine("DEBUG-WEBSOCKETHANDLER:ERROR: " + e.ToString());
+                            Debug.WriteLine("DEBUG-WEBSOCKETHANDLER:ERROR: " + ex.ToString());
                         }
 
                     }
@@ -109,14 +132,14 @@ namespace LittleWeeb
                     d.dlId = dlId;
                     d.dlBot = dlBot;
                     d.dlPack = dlPack;
-                    shared.downloadList.Add(d);
+                    SharedData.downloadList.Add(d);
                 }
             }
             if (msg.Contains("AbortDownload"))
             {
                 try
                 {
-                    shared.irc.stopXDCCDownload();
+                    SharedData.irc.stopXDCCDownload();
                 }
                 catch
                 {
@@ -127,12 +150,12 @@ namespace LittleWeeb
             {
                 string dlId = msg.Split(':')[1];
                 string fileName = msg.Split(':')[2];
-                if (shared.currentDownloadId == dlId)
+                if (SharedData.currentDownloadId == dlId)
                 {
                     try
                     {
                         Debug.WriteLine("I guess I should Delete stuff");
-                        shared.irc.stopXDCCDownload();
+                        SharedData.irc.stopXDCCDownload();
                     }
                     catch
                     {
@@ -144,22 +167,22 @@ namespace LittleWeeb
                     int index = 0;
 
                     int removedItems = 0;
-                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: QUEU LENGTH BEFORE REMOVING: " + shared.downloadList.Count);
-                    for (index = 0; index < shared.downloadList.Count; index++)
+                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: QUEU LENGTH BEFORE REMOVING: " + SharedData.downloadList.Count);
+                    for (index = 0; index < SharedData.downloadList.Count; index++)
                     {
                         dlData toadd = new dlData();
-                        if(shared.downloadList.TryTake(out toadd))
+                        if(SharedData.downloadList.TryTake(out toadd))
                         {
                             if(toadd.dlId != dlId)
                             {
-                                shared.downloadList.Add(toadd);
+                                SharedData.downloadList.Add(toadd);
                             } else
                             {
                                 removedItems++;
                             }
                         }
                     }
-                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: QUEU LENGTH AFTER REMOVING: " + shared.downloadList.Count);
+                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: QUEU LENGTH AFTER REMOVING: " + SharedData.downloadList.Count);
                     Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: REMOVED " + removedItems + " ITEMS! THIS SHOULD EQUAL TO 1");
                     if(removedItems == 1)
                     {
@@ -172,17 +195,17 @@ namespace LittleWeeb
                     try
                     {
                         Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: YOU MORON... no actually, THIS SHOULD ONLY HAPPEN... well.. when you actually want to delete stuff x)");
-                        File.Delete(shared.currentDownloadLocation + "\\" + fileName);
+                        File.Delete(SharedData.currentDownloadLocation + "\\" + fileName);
                     }
-                    catch (IOException e)
+                    catch (IOException ex)
                     {
-                        Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: ERROR:  We've got a problem :( -> " + e.ToString());
+                        Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: ERROR:  We've got a problem :( -> " + ex.ToString());
                     }
                 }
             }
             if (msg.Contains("OpenDirectory"))
             {
-                Process.Start(shared.currentDownloadLocation);
+                Process.Start(SharedData.currentDownloadLocation);
             }
             if (msg.Contains("OpenFileDialog"))
             {
@@ -191,9 +214,9 @@ namespace LittleWeeb
                     Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: opening file dialog.");
                     setDlDir();
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER:ERROR: " + e.ToString());
+                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER:ERROR: " + ex.ToString());
                 }
 
             }
@@ -201,7 +224,7 @@ namespace LittleWeeb
             {
                 string dlId = msg.Split(':')[1];
                 string fileName = msg.Split(':')[2].Trim();
-                string fileLocation = Path.Combine(shared.currentDownloadLocation, fileName);
+                string fileLocation = Path.Combine(SharedData.currentDownloadLocation, fileName);
                 try
                 {
                     Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: Trying to open file: " + fileLocation);
@@ -211,29 +234,23 @@ namespace LittleWeeb
                     }));
                     player.Start();
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER:ERROR: We've got another problem: " + e.ToString());
+                    Debug.WriteLine("DEBUG-WEBSOCKETHANDLER:ERROR: We've got another problem: " + ex.ToString());
                 }
             }
 
             if (msg.Contains("GetCurrentDir"))
             {
-                websocketserver.SendGlobalMessage("CurrentDir^" + shared.currentDownloadLocation);
+               Send("CurrentDir^" + SharedData.currentDownloadLocation);
             }
 
             
             if (msg.Contains("CLOSE"))
             {
                 Debug.WriteLine("DEBUG-WEBSOCKETHANDLER: CLOSING SHIT");
-                shared.closeBackend = true;
+                SharedData.closeBackend = true;
             }
-        }
-
-        private void WsDebugReceived(object sender, WebSocketEventArgs args)
-        {
-            string msg = args.Message;
-            Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: " + msg);
         }
 
         private void setDlDir()
@@ -251,10 +268,10 @@ namespace LittleWeeb
 
                         if (fbd.ShowDialog() == CommonFileDialogResult.Ok && !string.IsNullOrWhiteSpace(fbd.FileName))
                         {
-                            shared.currentDownloadLocation = fbd.FileName;
-                            shared.irc.setCustomDownloadDir(shared.currentDownloadLocation);
-                            websocketserver.SendGlobalMessage("CurrentDir^" + shared.currentDownloadLocation);
-                            shared.settings.saveSettings();
+                            SharedData.currentDownloadLocation = fbd.FileName;
+                            SharedData.irc.setCustomDownloadDir(SharedData.currentDownloadLocation);
+                           Send("CurrentDir^" + SharedData.currentDownloadLocation);
+                            SharedData.settings.saveSettings();
                         }
 
                     }

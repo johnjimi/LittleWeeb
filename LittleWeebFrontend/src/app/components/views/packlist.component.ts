@@ -554,7 +554,7 @@ export class PackList {
             var genid = this.utilityService.generateId(download.botId, download.number);
             var newObj = {id : genid, pack : download.number, bot: download.botId, filename: download.name, status : "Waiting", progress : "0", speed : "0"};
             //this should technically be done in the downloads.component, but due to weird issues with CefSharp it sometimes doesn't trigger the event :(
-            this.backEndService.sendMessage("AddToDownloads:" + genid + ":" + download.number + ":" + download.botId);
+            //this.backEndService.sendMessage("AddToDownloads:" + genid + ":" + download.number + ":" + download.botId);
             this.shareService.appendNewDownload(newObj);
         }
 

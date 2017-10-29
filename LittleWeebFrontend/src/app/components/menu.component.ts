@@ -37,7 +37,7 @@ export class MenuComponent {
         }
         this.menuItems.push(this.menuItemToAdd);
         this.menuItemToAdd = {
-            title: 'Packlist',
+            title: 'Choose Anime',
             icon: 'add to calendar',
             view : 'packlist'
         }
@@ -83,6 +83,25 @@ export class MenuComponent {
             }
             
         });
+
+        
+
+        this.shareServices.animetitlesub.subscribe((anime) => {
+            console.log("animetitle did execute in menu");
+                if(anime !== undefined){
+                    try{
+
+                        this.menuItems[2] =  {
+                            title: anime.title_english,
+                            icon: 'add to calendar',
+                            view : 'packlist'
+                        };
+                    } catch(e){
+
+                    }
+                }
+
+        }); 
     }
 
 }

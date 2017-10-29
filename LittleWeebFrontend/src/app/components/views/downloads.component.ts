@@ -5,6 +5,7 @@ import {ShareService} from '../../services/share.service'
 import {UtilityService} from '../../services/utility.service'
 import {BackEndService} from '../../services/backend.service'
 import {SemanticService} from '../../services/semanticui.service'
+
 import {Subject} from 'rxjs/Rx';
 import {Pipe} from '@angular/core';
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
@@ -93,7 +94,7 @@ export class Downloads {
      *it checks if there if there are new downloads to be appended to the list
      *it checks of currently downloading statistics need to be updated
      */
-    constructor(private shareService : ShareService, private backEndService : BackEndService, private semanticService:SemanticService){
+    constructor(private router:Router, private shareService : ShareService, private backEndService : BackEndService, private semanticService:SemanticService){
         console.log("init download page");
         this.downloads = [];
         this.alreadyDownloaded = [];
@@ -104,11 +105,9 @@ export class Downloads {
             console.log(JSON.stringify(latestadded));
             try{                
                 this.backEndService.sendMessage("AddToDownloads:" + latestadded.id + ":" + latestadded.pack + ":" + latestadded.bot);
-                this.backEndService.sendMessage("AddToDownloads:" + latestadded.id + ":" + latestadded.pack + ":" + latestadded.bot);
             } catch(e) {
                 console.log(e);
             }   
-            console.log(this.downloads);
         });        
 
         this.backEndService.websocketMessages.subscribe((message) => {
@@ -134,8 +133,10 @@ export class Downloads {
                         this.downloads[index].filesize = dataToUpdate.filesize;
                         if(message.indexOf("COMPLETED") > -1){
                             this.shareService.removeNewDownload(index);
-                            this.downloads.splice(index, 1); // it doesnt seem to happen in the event part :(
-                            this.backEndService.sendMessage("GetAlreadyDownloadedFiles");
+                            setTimeout(()=>{
+                                this.backEndService.sendMessage("GetAlreadyDownloadedFiles");
+                            }, 1000);
+                            
                         }
                         this.semanticService.updateProgress('#progress_' + dataToUpdate.id, dataToUpdate.progress);
                     } else {
@@ -165,7 +166,7 @@ export class Downloads {
                                 this.alreadyDownloaded[index].status = dataToUpdate.status;
                                 this.alreadyDownloaded[index].speed = dataToUpdate.speed;
                                 this.alreadyDownloaded[index].filename = dataToUpdate.filename;
-                                this.downloads[index].filesize = dataToUpdate.filesize;
+                                this.alreadyDownloaded[index].filesize = dataToUpdate.filesize;
 
                             } else {
                                 this.alreadyDownloaded.push(dataToUpdate);        

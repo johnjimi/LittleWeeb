@@ -9,10 +9,8 @@ namespace LittleWeeb
 {
     class SettingsHandler
     {
-        private SharedData shared;
-        public SettingsHandler(SharedData shared)
+        public SettingsHandler()
         {
-            this.shared = shared;
         }
 
         public void saveSettings()
@@ -20,7 +18,7 @@ namespace LittleWeeb
             try
             {
                 Settings setting = new Settings();
-                setting.downloaddir = shared.currentDownloadLocation;
+                setting.downloaddir = SharedData.currentDownloadLocation;
                 IFormatter formatter = new BinaryFormatter();
                 string settingsFile = "LittleWeebSettings.bin";
                 Stream stream = new FileStream(settingsFile, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -51,7 +49,7 @@ namespace LittleWeeb
                     Stream stream = new FileStream(settingsFile, FileMode.Open, FileAccess.Read, FileShare.Read);
                     Settings setting = (Settings)formatter.Deserialize(stream);
                     stream.Close();
-                    shared.currentDownloadLocation = setting.downloaddir;
+                    SharedData.currentDownloadLocation = setting.downloaddir;
                 }
             }
             catch (Exception e)

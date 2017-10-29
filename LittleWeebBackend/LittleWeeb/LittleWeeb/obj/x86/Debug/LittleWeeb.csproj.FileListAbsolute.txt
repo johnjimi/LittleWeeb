@@ -47,3 +47,5 @@ C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\x86\Debug\LittleWeeb.csproj.GenerateResource.Cache
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\x86\Debug\LittleWeeb.exe
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\x86\Debug\LittleWeeb.pdb
+C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\x86\Debug\websocket-sharp.dll
+C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\x86\Debug\websocket-sharp.xml

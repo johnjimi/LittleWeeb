@@ -21,8 +21,13 @@ import {VersionService} from './services/versioncheck.service'
   `,
 })
 export class AppComponent  { 
+
+  someFunctionToCall : Function;
   constructor(private shareService: ShareService, private versionService: VersionService){
      this.shareService.hideLoader();
+     this.someFunctionToCall = ()=>{
+       console.log("this works")
+     }
   }
 
   async ngOnInit(){

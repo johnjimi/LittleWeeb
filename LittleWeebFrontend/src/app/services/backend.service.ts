@@ -18,6 +18,7 @@ export class BackEndService {
     //initiates backend
     constructor(private http: Http, private shareService:ShareService){
         console.log("Initiated backend!");
+    
         this.tryConnecting();     
     }
 
@@ -54,19 +55,19 @@ export class BackEndService {
         }, 1000);
     }
 
+
     //sends a message to the backend
     sendMessage(message :string){
         try{
             console.log("SENDING OVER WEBSOCKETS: "  + message);
             this.websocket.send(message);
-            //to ensure message is delivered, backend can be a bit quircky to work with ;x, sometimes it doesnt receive a message until another one is send
-            setTimeout(()=>{
-                this.websocket.send("SEND BULLSHIT xD");
-            }, 100);
+          
         } catch(Ex){
             console.log("Cannot send message, websocket hasn't been opened yet: ");
             console.log(Ex);
         }
     }
-
+    
 }
+
+

@@ -6,7 +6,7 @@ import {BehaviorSubject} from 'rxjs/Rx';
 export class ShareService {
 
     public packlistsub : Subject<string> = new BehaviorSubject<string>(null);
-    public animetitlesub : Subject<string> = new BehaviorSubject<any>(null);
+    public animetitlesub : Subject<any> = new BehaviorSubject<any>(null);
     public newdownload : Subject<any> = new BehaviorSubject<any>(null);
     public downloadamount : Subject<number> = new BehaviorSubject<number>(null);
     public toastmessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
