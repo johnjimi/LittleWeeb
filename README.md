@@ -8,11 +8,11 @@ Be aware that this application is still in development and might still have some
 [YouTube - pre v0.1.0 version](https://www.youtube.com/watch?v=yJjL9wQEEEQ)
 
 # Screenshots
-[![Image of Yaktocat](https://i.imgur.com/2fAyiopl.png)](https://i.imgur.com/2fAyiop.png)
-[![Image of Yaktocat](https://i.imgur.com/PqwUK1hl.png)](https://i.imgur.com/PqwUK1h.png)
-[![Image of Yaktocat](https://i.imgur.com/Y8uJ3Ligl.png)](https://i.imgur.com/Y8uJ3Lig.png)
-[![Image of Yaktocat](https://i.imgur.com/t20A0J4l.png)](https://i.imgur.com/t20A0J4.png)
-[![Image of Yaktocat](https://i.imgur.com/zjX5Jlrl.png)](https://i.imgur.com/zjX5Jlr.png)
+[![Image of Yaktocat](https://i.imgur.com/2fAyiopl.png)](https://i.imgur.com/2fAyiop.png)]
+[![Image of Yaktocat](https://i.imgur.com/PqwUK1hl.png)](https://i.imgur.com/PqwUK1h.png)]
+[![Image of Yaktocat](https://i.imgur.com/Y8uJ3Ligl.png)](https://i.imgur.com/Y8uJ3Lig.png)]
+[![Image of Yaktocat](https://i.imgur.com/t20A0J4l.png)](https://i.imgur.com/t20A0J4.png)]
+[![Image of Yaktocat](https://i.imgur.com/zjX5Jlrl.png)](https://i.imgur.com/zjX5Jlr.png)]
 
 
 # New Features! V0.1.0 is OUT!
