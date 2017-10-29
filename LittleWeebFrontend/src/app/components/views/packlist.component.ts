@@ -195,9 +195,11 @@ export class PackList {
                     var json = await this.niblService.getSearchAnimeResultsSync(synonym);
                     if(json.length > 0){
                         for(let pack of json){
-                            if(this.utilityService.compareNames(synonym, this.utilityService.stripName(pack.name)) > 50){
+                            var stripped = this.utilityService.stripName(pack.name);
+                            if(this.utilityService.compareNames(synonym, stripped) > 90 && (synonym.length - stripped.length) < 10){
                                 var exists = false;
                                 var episodenumber = this.utilityService.getEpisodeNumber(pack.name);
+                                
                                 for(let temppack of animePacks){
                                     if(temppack.id == pack.id && temppack.botId == pack.botId && temppack.name == pack.name){
                                         exists = true;

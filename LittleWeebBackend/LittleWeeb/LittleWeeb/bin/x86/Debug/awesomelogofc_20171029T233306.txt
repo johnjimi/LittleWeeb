@@ -1,0 +1,358 @@
+IRCDEBUG-IRCHANDLER: STARTING CONNECTION TO IRC SERVER!
+DEBUG-IRCHANDLER: ERROR: Could not shut down IRC client: System.NullReferenceException: Object reference not set to an instance of an object.
+   at SimpleIRCLib.SimpleIRC.stopXDCCDownload() in C:\Users\Eldin-Desktop\Documents\GitHub\SimpleIRCLib\SimpleIRCLib\SimpleIRC.cs:line 198
+   at LittleWeeb.IrcHandler.startIrc() in C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\IrcHandler.cs:line 58
+irc.x2x.cc NOTICE * :*** Looking up your hostname...::irc.x2x.cc NOTICE * :*** Looking up your hostname...
+irc.x2x.cc NOTICE * :*** Found your hostname::irc.x2x.cc NOTICE * :*** Found your hostname
+CHROMEDEBUG: Im doing stuff here !
+IRCDEBUG - DEBUG-IRCHANDLER: RECEIVED PING WITH ID: 906699625
+
+ING :906699625:PING :906699625
+irc.x2x.cc NOTICE LittleWeeb_ygcpns :*** Your host is masked (Rizon-AC4B78B2.cm-3-2a.dynamic.ziggo.nl):*** Your host is masked (Rizon-AC4B78B2.cm-3-2a.dynamic.ziggo.nl)
+irc.x2x.cc 001 LittleWeeb_ygcpns :Welcome to the Rizon Internet Relay Chat Network LittleWeeb_ygcpns:Welcome to the Rizon Internet Relay Chat Network LittleWeeb_ygcpns
+irc.x2x.cc 003 LittleWeeb_ygcpns :This server was created Sep 19 2017 at 19:10:00:This server was created Sep 19 2017 at 19:10:00
+irc.x2x.cc 004 LittleWeeb_ygcpns irc.x2x.cc plexus-4(hybrid-8.1.20) CDGNRSUWagilopqrswxyz BCIMNORSabcehiklmnopqstvz Iabehkloqv::irc.x2x.cc 004 LittleWeeb_ygcpns irc.x2x.cc plexus-4(hybrid-8.1.20) CDGNRSUWagilopqrswxyz BCIMNORSabcehiklmnopqstvz Iabehkloqv
+IRCDEBUG - DEBUG-IRCHANDLER: RECEIVED PING WITH ID: irc.x2x.cc 005 LittleWeeb_ygcpns CALLERID CASEMAPPING=rfc1459 DEAF=D KICKLEN=180 MODES=4 PREFIX=(qaohv)~&@%+ STATUSMSG=~&@%+ EXCEPTS=e INVEX=I NICKLEN=30 NETWORK=Rizon MAXLIST=beI
+
+irc.x2x.cc 251 LittleWeeb_ygcpns :There are 36 users and 16609 invisible on 17 servers:There are 36 users and 16609 invisible on 17 servers
+irc.x2x.cc 252 LittleWeeb_ygcpns 57 :IRC Operators online::irc.x2x.cc 252 LittleWeeb_ygcpns 57 :IRC Operators online
+irc.x2x.cc 254 LittleWeeb_ygcpns 15247 :channels formed::irc.x2x.cc 254 LittleWeeb_ygcpns 15247 :channels formed
+irc.x2x.cc 255 LittleWeeb_ygcpns :I have 16645 clients and 17 servers:I have 16645 clients and 17 servers
+irc.x2x.cc 265 LittleWeeb_ygcpns :Current local users: 16645  Max: 19437:Current local users: 16645  Max: 19437
+irc.x2x.cc 266 LittleWeeb_ygcpns :Current global users: 16645  Max: 19437:Current global users: 16645  Max: 19437
+irc.x2x.cc 375 LittleWeeb_ygcpns :- irc.x2x.cc Message of the Day - :- irc.x2x.cc Message of the Day - 
+irc.x2x.cc 372 LittleWeeb_ygcpns :-          11oo                            :-          11oo                            
+irc.x2x.cc 372 LittleWeeb_ygcpns :- :- 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- 88d888b. dP d888888b .d8888b. 88d888b. :- 88d888b. dP d888888b .d8888b. 88d888b. 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- 88'  `88 88    .d8P' 88'  `88 88'  `88 :- 88'  `88 88    .d8P' 88'  `88 88'  `88 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- 1188       88  .Y8P    88.  .88 88    88 :- 1188       88  .Y8P    88.  .88 88    88 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- 11dP       dP d888888P `88888P' dP    dP:- 11dP       dP d888888P `88888P' dP    dP
+irc.x2x.cc 372 LittleWeeb_ygcpns :- :- 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- Rizon Chat Network -- http://rizon.net:- Rizon Chat Network -- http://rizon.net
+irc.x2x.cc 372 LittleWeeb_ygcpns :- :- 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- Listening on ports: 6660 - 6669, 7000. SSL: 6697, 9999:- Listening on ports: 6660 - 6669, 7000. SSL: 6697, 9999
+irc.x2x.cc 372 LittleWeeb_ygcpns :- :- 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- Rules::- Rules:
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o No spamming or flooding:- o No spamming or flooding
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o No clones or malicious bots:- o No clones or malicious bots
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o No takeovers:- o No takeovers
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o No distribution of child pornography:- o No distribution of child pornography
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o Rizon staff may disconnect clients for any or no reason:- o Rizon staff may disconnect clients for any or no reason
+irc.x2x.cc 372 LittleWeeb_ygcpns :- :- 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- First steps::- First steps:
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o To register your nick: /msg NickServ HELP:- o To register your nick: /msg NickServ HELP
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o To register your channel: /msg ChanServ HELP:- o To register your channel: /msg ChanServ HELP
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o To get a vHost: /msg HostServ HELP REQUEST:- o To get a vHost: /msg HostServ HELP REQUEST
+irc.x2x.cc 372 LittleWeeb_ygcpns :- o For other help with Rizon: /join #help:- o For other help with Rizon: /join #help
+irc.x2x.cc 372 LittleWeeb_ygcpns :- :- 
+irc.x2x.cc 372 LittleWeeb_ygcpns :- Usage of this network is a privilege, not a right. Rizon is a:- Usage of this network is a privilege, not a right. Rizon is a
+irc.x2x.cc 372 LittleWeeb_ygcpns :- transit provider, therefore no person or entity involved with:- transit provider, therefore no person or entity involved with
+irc.x2x.cc 372 LittleWeeb_ygcpns :- *.rizon.net or irc.x2x.cc takes any responsibility for:- *.rizon.net or irc.x2x.cc takes any responsibility for
+irc.x2x.cc 372 LittleWeeb_ygcpns :- users' actions. Absolutely no warranty is expressed or implied.:- users' actions. Absolutely no warranty is expressed or implied.
+irc.x2x.cc 376 LittleWeeb_ygcpns :End of /MOTD command.:End of /MOTD command.
+LittleWeeb_ygcpns:+ix
+Global:[Logon News - May 21 2011] First time on Rizon? Be sure to read the FAQ! http://s.rizon.net/FAQ
+Global:[Logon News - Dec 16 2013] Own a large/active channel or plan to get one going? Please read http://s.rizon.net/authline
+Global:[Random News - Mar 20 2009] Idle on Rizon a lot? Why not play our idlerpg game, you can check it out at #RizonIRPG for more information visit the website http://idlerpg.rizon.net -Rizon Staff
+LittleWeeb_ygcpns::LittleWeeb_ygcpns!~LittleWee@Rizon-AC4B78B2.cm-3-2a.dynamic.ziggo.nl JOIN :#NIBL
+irc.x2x.cc 332 LittleWeeb_ygcpns #NIBL :[4 XDCC Search: 3https://nibl.co.uk/bots.php 12] [10UP12] [4 Triggers: 3::irc.x2x.cc 332 LittleWeeb_ygcpns #NIBL :[4 XDCC Search: 3https://nibl.co.uk/bots.php 12] [10UP12] [4 Triggers: 3!help 7!search 3!s !request 12] [ 6Have a bot and want access? Contact Jenga! 12] [ 4Follow us @NIBLCO 12] 12[ 4Discord: 3https://discord.gg/bUESsAg 12] [ 3ლ(ಠ_ಠლ)4 Edition 12]
+irc.x2x.cc 333 LittleWeeb_ygcpns #NIBL Jenga::irc.x2x.cc 333 LittleWeeb_ygcpns #NIBL Jenga!~Jenga@come.to.butthead 1507429057
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :LittleWeeb_ygcpns +infested LittleWeeb_babkee neiswonger squark FumoffuFan gaosaur simplexity nullptr kdj|away Zel Crynsos m0nky Wasseranomalie allyoucanteat Fakia Freude_ [William]_ Kuli_The_Fake_Potato Wagahai Anvi^ Vorom|2 anon1234 durp Neill Ttarl|2 %Saika argon42 Kuromii|Mobile Bombentyp2000 SkyLlama_ Poryphonic avx db-db-efd acoff chatzilla sir-dan Eversor etaf Ogata kxs helmy +Bonkers325^_^ kado AAzerty C3rberus__ usuyami +Echo_C fgyyhel Malamodon__::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :LittleWeeb_ygcpns +infested LittleWeeb_babkee neiswonger squark FumoffuFan gaosaur simplexity nullptr kdj|away Zel Crynsos m0nky Wasseranomalie allyoucanteat Fakia Freude_ [William]_ Kuli_The_Fake_Potato Wagahai Anvi^ Vorom|2 anon1234 durp Neill Ttarl|2 %Saika argon42 Kuromii|Mobile Bombentyp2000 SkyLlama_ Poryphonic avx db-db-efd acoff chatzilla sir-dan Eversor etaf Ogata kxs helmy +Bonkers325^_^ kado AAzerty C3rberus__ usuyami +Echo_C fgyyhel Malamodon__
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Guest52482 Sojiro__ Graf_Zahl Croswerf321 Tarbul yothen ahoka Ra` Cirrus Poskdo r^2 wisedog Dragonmaster13 gettinget Rawgers Weathers Ryllharu KuroKaze thundrakkon Uripura Gachapen Dave_Lister supermidget Nythox +CatEatMouse TomFool Dvvarf Final cruelnoise Ralem trixisowned Garet-Jax RottonMilky Erhafsa sammololl Uhtred `shhac Loviath2 artworkx insso` Sylex khatag0rical @happytang Suji poompoom S3RG10 madpierrot thetic raye- Shinji-Ikari matja hible Dj4ll Saoen::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Guest52482 Sojiro__ Graf_Zahl Croswerf321 Tarbul yothen ahoka Ra` Cirrus Poskdo r^2 wisedog Dragonmaster13 gettinget Rawgers Weathers Ryllharu KuroKaze thundrakkon Uripura Gachapen Dave_Lister supermidget Nythox +CatEatMouse TomFool Dvvarf Final cruelnoise Ralem trixisowned Garet-Jax RottonMilky Erhafsa sammololl Uhtred `shhac Loviath2 artworkx insso` Sylex khatag0rical @happytang Suji poompoom S3RG10 madpierrot thetic raye- Shinji-Ikari matja hible Dj4ll Saoen
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :McDucks MemeServ Newser Miraxli Ankular Poocheeko nich kaply lawueki Gentatsu Frescante Sanjuro dfgdfg InviZz ThinK +Valar_Morghulis peru dontaht cyranal firehawk12 zcr BigGuy123 kato sXperfect fan macrossfan LSDelusions boandy Ihsataw auserenity TKW Phallus Alexandre1er matthew8188 Nameschonverbegen DarkSynopsis Rda_ ExeC Hiscadi Coal kli05 nazicommie Gigaflare someAzNdude n160 slamdunkfan25 metz riddhe ChanStat Kalis Nnavd @Fierce Leibowitz jango HuGoShimA::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :McDucks MemeServ Newser Miraxli Ankular Poocheeko nich kaply lawueki Gentatsu Frescante Sanjuro dfgdfg InviZz ThinK +Valar_Morghulis peru dontaht cyranal firehawk12 zcr BigGuy123 kato sXperfect fan macrossfan LSDelusions boandy Ihsataw auserenity TKW Phallus Alexandre1er matthew8188 Nameschonverbegen DarkSynopsis Rda_ ExeC Hiscadi Coal kli05 nazicommie Gigaflare someAzNdude n160 slamdunkfan25 metz riddhe ChanStat Kalis Nnavd @Fierce Leibowitz jango HuGoShimA
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :john-117 fdfdf AznVampGirl MamaTombstone pikle Lymus d4rkie paladin111 jayexx Not-Found MrDalton Boin TMD m3ntat +dark|slyde imhungry bufi sushimushi Proxus @dsd BowlOfNoodles enigmozz2 GrattyFd slomotion Cala zarhal ILoveKokonoeRinUrumiKurisuErza dutzzzzzz SkyPatrol ShadowHunter jabashque hagfish @FrPl^Shadow Nuclear lazy fasdas Groovtama_ xena Ostrava hooooohaaaaa reesu DED42 pr1n affinity mYst771 AgainK xdzz desolate-master yuki_tsukai HIGHonLIFE1012::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :john-117 fdfdf AznVampGirl MamaTombstone pikle Lymus d4rkie paladin111 jayexx Not-Found MrDalton Boin TMD m3ntat +dark|slyde imhungry bufi sushimushi Proxus @dsd BowlOfNoodles enigmozz2 GrattyFd slomotion Cala zarhal ILoveKokonoeRinUrumiKurisuErza dutzzzzzz SkyPatrol ShadowHunter jabashque hagfish @FrPl^Shadow Nuclear lazy fasdas Groovtama_ xena Ostrava hooooohaaaaa reesu DED42 pr1n affinity mYst771 AgainK xdzz desolate-master yuki_tsukai HIGHonLIFE1012
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :jagman1x3 minotaur @RepoBike EroGero newbie64 TongariX roflmao BenG Asandari Coobies Sckyka- bibop fusedpro Bluesfear ][v][aRyu-sama Eche Ishtar-AFK GachaPwn nuttynnyce Francisco_Nguema DarkSeeker TheTFK Gawain cokematic Hekate %Blitz|Haruna|IPv6 Centipede kiryuu Chibi-Ryu Albenkind40 BlazinTy kaiserin Shadow_Decoy +sengoku kyl zann0 StormicK OldStink JustMakeItUp Feyth Ilolo @Ishie lazymiko IFHTT Ilummini Fention Essord sei Gattix_ Desire metakirby5 tfo noobian::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :jagman1x3 minotaur @RepoBike EroGero newbie64 TongariX roflmao BenG Asandari Coobies Sckyka- bibop fusedpro Bluesfear ][v][aRyu-sama Eche Ishtar-AFK GachaPwn nuttynnyce Francisco_Nguema DarkSeeker TheTFK Gawain cokematic Hekate %Blitz|Haruna|IPv6 Centipede kiryuu Chibi-Ryu Albenkind40 BlazinTy kaiserin Shadow_Decoy +sengoku kyl zann0 StormicK OldStink JustMakeItUp Feyth Ilolo @Ishie lazymiko IFHTT Ilummini Fention Essord sei Gattix_ Desire metakirby5 tfo noobian
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Ladholyman Valdearg Otagan Cyco Headless_Kisaragi [RoXaS] Xenosia DarkEons candyonetoo @supaahiro hintiki keai xlx copperkid @AnimeNeko @Skr Der-ShadowFax Negi-Kun vovi__ Altomare otoshigami Truant RunAge @ISS|Low_Orbit Naeiwa Maltheistic Nyann jrm lougux grummi flarp Blaine @drBeSt St|ck_r Mancubus kayuinc Bobalotrock Xyntek_ Bambi73 tim @Nesco qwertzuiop nussbuster |alfi| Leo Anon2 noobody123 [saintpal] Kuga- dan88 hoarfrost Felix2 SabataGig thebombzen::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Ladholyman Valdearg Otagan Cyco Headless_Kisaragi [RoXaS] Xenosia DarkEons candyonetoo @supaahiro hintiki keai xlx copperkid @AnimeNeko @Skr Der-ShadowFax Negi-Kun vovi__ Altomare otoshigami Truant RunAge @ISS|Low_Orbit Naeiwa Maltheistic Nyann jrm lougux grummi flarp Blaine @drBeSt St|ck_r Mancubus kayuinc Bobalotrock Xyntek_ Bambi73 tim @Nesco qwertzuiop nussbuster |alfi| Leo Anon2 noobody123 [saintpal] Kuga- dan88 hoarfrost Felix2 SabataGig thebombzen
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :stephane Hoshino maxinator iWednesday Cromax Viper66 Igor-san Kandarihu Kit-Tsukasa [Data]Zima huio Velgor Sadinga Neosaber007 Thalbard Tenebris nekoAlex1 Tohru PetersPark karber_san flameboi aciona_ acww Solaufein_ Moody|Bot FireGhost Gonzo72 compona haroT3k eragon219 Yaeger|home eragon22 Valion skaara deivistik Itee_Janee_Ka Construct Alaura dragonnightfire BlackArrow Filipino vivwe wildting2 Titan underspace4 jagannath Nara|Care Hal9k Kalvzinc jstimm Tutturuu::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :stephane Hoshino maxinator iWednesday Cromax Viper66 Igor-san Kandarihu Kit-Tsukasa [Data]Zima huio Velgor Sadinga Neosaber007 Thalbard Tenebris nekoAlex1 Tohru PetersPark karber_san flameboi aciona_ acww Solaufein_ Moody|Bot FireGhost Gonzo72 compona haroT3k eragon219 Yaeger|home eragon22 Valion skaara deivistik Itee_Janee_Ka Construct Alaura dragonnightfire BlackArrow Filipino vivwe wildting2 Titan underspace4 jagannath Nara|Care Hal9k Kalvzinc jstimm Tutturuu
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Flat sebbu shit iulius peniscock commuteDucks Slade_ nooj lazyguy man00ver +Msb arcturon chiwirelessinc LordCanti Itchy &Kabsev @Moriya Cosmonaut marforikid Quasar Deufo haggismaestro jaenon Gigs winmac way2quik Maceart Dust2 Luffy4590 N0Lif3 Kinomoto-san King_Arthur Rapper- wiiaboo apetresc +DF| ano Gunner b0tnet clouded Malakith Koumakan_ justcausekev bigmcn Wildcard Lexino jxe Laura_Kinney DRAKO firehawk12-dell penguin|tired +KingkaponG SodaCan nesta kyoukaya::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Flat sebbu shit iulius peniscock commuteDucks Slade_ nooj lazyguy man00ver +Msb arcturon chiwirelessinc LordCanti Itchy &Kabsev @Moriya Cosmonaut marforikid Quasar Deufo haggismaestro jaenon Gigs winmac way2quik Maceart Dust2 Luffy4590 N0Lif3 Kinomoto-san King_Arthur Rapper- wiiaboo apetresc +DF| ano Gunner b0tnet clouded Malakith Koumakan_ justcausekev bigmcn Wildcard Lexino jxe Laura_Kinney DRAKO firehawk12-dell penguin|tired +KingkaponG SodaCan nesta kyoukaya
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :rocketreal Symphogi_ mujuro Synchrony Northwood SyncMasters @Arbiter MetroMan FatalFlaw Heisenburg Spoonz Pork greenwing HMint zior drkcrw EroKenshin Andrew_ Jino KoolKidsK ReaverB Catar Chonkey Dean_Kreger F_U @OmegaPhil fou-lu gl77bug DBZ Caudyr @Zenquibo RinK &[M]-V Pixi +NotokawaiiyoNoto FTLTravel Situ TR2-S Erda +ail30 Den +radii Acktivated Savatar reidenhart shiyu| danmp_ Inuhakuballdiacoshin Droid braway loremaster @Kaitou[Kid] raakaa @jhkplaya888 Marone::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :rocketreal Symphogi_ mujuro Synchrony Northwood SyncMasters @Arbiter MetroMan FatalFlaw Heisenburg Spoonz Pork greenwing HMint zior drkcrw EroKenshin Andrew_ Jino KoolKidsK ReaverB Catar Chonkey Dean_Kreger F_U @OmegaPhil fou-lu gl77bug DBZ Caudyr @Zenquibo RinK &[M]-V Pixi +NotokawaiiyoNoto FTLTravel Situ TR2-S Erda +ail30 Den +radii Acktivated Savatar reidenhart shiyu| danmp_ Inuhakuballdiacoshin Droid braway loremaster @Kaitou[Kid] raakaa @jhkplaya888 Marone
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :ArchDemon +Kurumster Psychorider jongu BBSplat Naomi @TwinShadow reg_NM727 Jdigital_ +ilikefood Depote Kira-Tenshi @Kaitou_Kid gblz [krovvy] Moebius_Strip zhent Vermin shirepirate Rizr yanger Jagobah +Delere CountZero @pendrachken %SaberLily hfghfgh +Anubis169 Skyward @L_FRoST GP Shakra max_ Yosaphina Akito renicer ail30|logger sm Heisen|school JLock [Sparda] Vaelen CVLTCMK0 helix Naprecks bluex xX_bLuE soujiroboi foolboost BigVinny AsukaLangleyfag @kaizoku Fynn::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :ArchDemon +Kurumster Psychorider jongu BBSplat Naomi @TwinShadow reg_NM727 Jdigital_ +ilikefood Depote Kira-Tenshi @Kaitou_Kid gblz [krovvy] Moebius_Strip zhent Vermin shirepirate Rizr yanger Jagobah +Delere CountZero @pendrachken %SaberLily hfghfgh +Anubis169 Skyward @L_FRoST GP Shakra max_ Yosaphina Akito renicer ail30|logger sm Heisen|school JLock [Sparda] Vaelen CVLTCMK0 helix Naprecks bluex xX_bLuE soujiroboi foolboost BigVinny AsukaLangleyfag @kaizoku Fynn
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Nycholas Dorrin231 KaKyo^KuN aaabbb playthisocarina schnerf stimmo Myrmece Yashamaru +Ustnap zkxs_h9k Eikonoklastes astridas lostit TFR +Sakura`Kinomoto stux|away Arczero &_Maru_ KansalovePrimula +Creec [N]emesis Raybrig23 Arrowmaster Vnny sinsio edurr WYWMssn Periodd fax Teaguera Robo210 wellivea1 Iona|I-401 +Deidryt Malekith chronomeister mindx123 shergal dot_ %EveTaku|Ririchiyo oM _Roshi_ Redbaron Yakusuru esqueue pegasus21 +BagelBot JJ9 %CR-AMSTERDAM|NEW::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Nycholas Dorrin231 KaKyo^KuN aaabbb playthisocarina schnerf stimmo Myrmece Yashamaru +Ustnap zkxs_h9k Eikonoklastes astridas lostit TFR +Sakura`Kinomoto stux|away Arczero &_Maru_ KansalovePrimula +Creec [N]emesis Raybrig23 Arrowmaster Vnny sinsio edurr WYWMssn Periodd fax Teaguera Robo210 wellivea1 Iona|I-401 +Deidryt Malekith chronomeister mindx123 shergal dot_ %EveTaku|Ririchiyo oM _Roshi_ Redbaron Yakusuru esqueue pegasus21 +BagelBot JJ9 %CR-AMSTERDAM|NEW
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :de_digibeet Joshua__ tleo9187492378919 CarbonBear PsychoPhreak Lamda Peasant ectic wariw runesu %tlacatlc6|XDCC %Zurako|Omega %Golo|Omega stux gogo azrail777 Frakir575 Kraziel fukubiki entropost TootooYouToo @Hariken lbatalha mrlolz Alchemical afhiz Deianeira EagleStorm @Quattro Nanne Karstographer frostline_ Moodkiller Karwasz Voldenet Moody` shibu DT Pomf________ Mineo archu Whitecat kayuinc|amd thedarkhaze punkfreak Xarda1 X20A-Freedom tripty Seifer |][|::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :de_digibeet Joshua__ tleo9187492378919 CarbonBear PsychoPhreak Lamda Peasant ectic wariw runesu %tlacatlc6|XDCC %Zurako|Omega %Golo|Omega stux gogo azrail777 Frakir575 Kraziel fukubiki entropost TootooYouToo @Hariken lbatalha mrlolz Alchemical afhiz Deianeira EagleStorm @Quattro Nanne Karstographer frostline_ Moodkiller Karwasz Voldenet Moody` shibu DT Pomf________ Mineo archu Whitecat kayuinc|amd thedarkhaze punkfreak Xarda1 X20A-Freedom tripty Seifer |][|
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :psychopomp @Chandalen Vash acoolsomebody tetrabyt %Doki|Nanoha Rand dsl Datum %Ultra-RepoAnime %ASource|Gerozaemon KungNord Fuersten Gatsbizzle Helm SpindalTop Daichi firehawk12-aqua kannazuki tupovs Servant_Archer &ooinuza Falco64 @kuccu emptybottle %Encore|Celica puppyee &dark_hero_magus swerve_vision_ Dagger timezlicer thear shinigamidono Duck-Senpai @Rika-chama masa-san %AnimeDispenser unic0rn sgc2c +IvailoStoianov DanDan Snacho %Blitz|Haruna %[ACX]Releases::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :psychopomp @Chandalen Vash acoolsomebody tetrabyt %Doki|Nanoha Rand dsl Datum %Ultra-RepoAnime %ASource|Gerozaemon KungNord Fuersten Gatsbizzle Helm SpindalTop Daichi firehawk12-aqua kannazuki tupovs Servant_Archer &ooinuza Falco64 @kuccu emptybottle %Encore|Celica puppyee &dark_hero_magus swerve_vision_ Dagger timezlicer thear shinigamidono Duck-Senpai @Rika-chama masa-san %AnimeDispenser unic0rn sgc2c +IvailoStoianov DanDan Snacho %Blitz|Haruna %[ACX]Releases
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%ARUTHA-BATCH|720p %Saizen|Arutha %ARUTHA-BATCH|480p %[UTW]Arutha %Arutha|Bleach %CR-ARUTHA|720p %NIBL|Arutha %Arutha Ennea snowmiser burank0wnz WGPBox Auks drayke %L-E|Yawara candybar %TBS|Shiina %Cona %CS|Kuma %Stinx|Rose %Da_Cider dan_ geust18739 JohnBeak yoshiro2 kempe Kenwood Ryouko Dacuz n00bzers quig C-Squish Thespis palvati justme reddi %ARUTHA-BATCH|1080p %Vivid|Arutha DefGi %[DBNL]Downloads %Downloads Zein-Siegfried Vaetrian|PC GGpX-Away %K-F|Arutha::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%ARUTHA-BATCH|720p %Saizen|Arutha %ARUTHA-BATCH|480p %[UTW]Arutha %Arutha|Bleach %CR-ARUTHA|720p %NIBL|Arutha %Arutha Ennea snowmiser burank0wnz WGPBox Auks drayke %L-E|Yawara candybar %TBS|Shiina %Cona %CS|Kuma %Stinx|Rose %Da_Cider dan_ geust18739 JohnBeak yoshiro2 kempe Kenwood Ryouko Dacuz n00bzers quig C-Squish Thespis palvati justme reddi %ARUTHA-BATCH|1080p %Vivid|Arutha DefGi %[DBNL]Downloads %Downloads Zein-Siegfried Vaetrian|PC GGpX-Away %K-F|Arutha
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%Arutha|DragonBall %Kaio-Ken %Arutha|Naruto %CR-HOLLAND|NEW %Arutha|One-Piece %CR-ARUTHA-IPv6|720p %Sally|Arutha %[DCTP]Arutha %[FFF]Arutha %CR-HOLLAND-IPv6|NEW %DHD|Arutha %Orphan|Arutha %Hatsu|Arutha %NIBL|Asian %DHD|AruthaV2 %NIBL|Hentai %HnG|Arutha %THORA|Arutha RZIII hreb +MaxwellsDemon OffsetX50 DerpTruck @Hybrid21 %XDCC|Hybrid %Kaitou|Aoko wt808 kirinfang ralnic kvieta +WZ1 anime_okami frOst1 %Doki|Homura kurai mallocks DarkerStorm rakhal Lob ReimuHakurei::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%Arutha|DragonBall %Kaio-Ken %Arutha|Naruto %CR-HOLLAND|NEW %Arutha|One-Piece %CR-ARUTHA-IPv6|720p %Sally|Arutha %[DCTP]Arutha %[FFF]Arutha %CR-HOLLAND-IPv6|NEW %DHD|Arutha %Orphan|Arutha %Hatsu|Arutha %NIBL|Asian %DHD|AruthaV2 %NIBL|Hentai %HnG|Arutha %THORA|Arutha RZIII hreb +MaxwellsDemon OffsetX50 DerpTruck @Hybrid21 %XDCC|Hybrid %Kaitou|Aoko wt808 kirinfang ralnic kvieta +WZ1 anime_okami frOst1 %Doki|Homura kurai mallocks DarkerStorm rakhal Lob ReimuHakurei
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%Kintoki skelu Ayuni_ Yaeger B_F_HOODRICH Aniki DragGon7601 cirque tyler @dns777 shiroi|yaiba clever %Kantai|Haruna|IPv6 %Kantai|Haruna Scant Unity Cloned_Searos @G_man Selene @n0kS Geela +MmmSoulz darkfur gregsnk Skith Mugiwara Kamrusepas akibakun Kloacy Dimtree tee-im-s merc7492 +tazmanian Yamaxanadu @Mamo-chan nicholas1 marmottin NuOne toekneekey LBJ %[XDCC]Botan hverst TopCat00 +euronymous Roromiya-chan %[CMS]Shinobu Leechie Mike3 %[IznjieBiznjie]XDCC-Omega::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%Kintoki skelu Ayuni_ Yaeger B_F_HOODRICH Aniki DragGon7601 cirque tyler @dns777 shiroi|yaiba clever %Kantai|Haruna|IPv6 %Kantai|Haruna Scant Unity Cloned_Searos @G_man Selene @n0kS Geela +MmmSoulz darkfur gregsnk Skith Mugiwara Kamrusepas akibakun Kloacy Dimtree tee-im-s merc7492 +tazmanian Yamaxanadu @Mamo-chan nicholas1 marmottin NuOne toekneekey LBJ %[XDCC]Botan hverst TopCat00 +euronymous Roromiya-chan %[CMS]Shinobu Leechie Mike3 %[IznjieBiznjie]XDCC-Omega
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Bentomule Wizord mwgamera @Nol888 m00nk3y %Blargh|Cats %Blargh|Flep %Blargh|Other bentou liverbugg @Days danccm MrTea Zeroaintdead @Eternal_Blizzard Haru_23 Kouta_Kun Reza AnimeWatcherNewbie Rilakkuma Oreki lolibutt Moetron verdantly Anihevol Baradium Boner Geno Keno Kurokin @Kuroiryuu Niaouli Naru Nouz desu Sukecchi Tiltshead Triskelion @Yogicat akabuddy bobclifford kinpatsu neurotic polkafloyd @Anonymous Enresshou Mariya @OblivionShadow waterloop RyuH::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Bentomule Wizord mwgamera @Nol888 m00nk3y %Blargh|Cats %Blargh|Flep %Blargh|Other bentou liverbugg @Days danccm MrTea Zeroaintdead @Eternal_Blizzard Haru_23 Kouta_Kun Reza AnimeWatcherNewbie Rilakkuma Oreki lolibutt Moetron verdantly Anihevol Baradium Boner Geno Keno Kurokin @Kuroiryuu Niaouli Naru Nouz desu Sukecchi Tiltshead Triskelion @Yogicat akabuddy bobclifford kinpatsu neurotic polkafloyd @Anonymous Enresshou Mariya @OblivionShadow waterloop RyuH
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :+SolarAquarion InGaAs MikeMurdock @yepperoni &snowfag andonuts %TomoyoSakagami &Sunako %Illum %[C-W]Archive %Cthuko|Furuichi wowbond_ Kira-X10A GDX %Ultra-RepoEcchi korol Loli-Aisha Koernia %WatashiBot Rucus @Nicolai anik %Hisoka %FujikoMine %Santemillion %Frostii|Tiger ChaoXide %[PreCure]AllStars Hamuko @Seravee nhjm449 hushman @Zir0h @Bagels @Westerschwelle Laze1 PuROmenasu_SaMa kokonoe @GeRi Michiko Scorp Boltzmann Cereth Dieder Haruhiro Kriszke Luna::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :+SolarAquarion InGaAs MikeMurdock @yepperoni &snowfag andonuts %TomoyoSakagami &Sunako %Illum %[C-W]Archive %Cthuko|Furuichi wowbond_ Kira-X10A GDX %Ultra-RepoEcchi korol Loli-Aisha Koernia %WatashiBot Rucus @Nicolai anik %Hisoka %FujikoMine %Santemillion %Frostii|Tiger ChaoXide %[PreCure]AllStars Hamuko @Seravee nhjm449 hushman @Zir0h @Bagels @Westerschwelle Laze1 PuROmenasu_SaMa kokonoe @GeRi Michiko Scorp Boltzmann Cereth Dieder Haruhiro Kriszke Luna
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%NHK|Satou @PharaohAnubis RoryMercury Shinonome Stratosphere SuperMich Tibsi _4get antemeridiem protospork reiri tomek Afinon aetx +Wonne Scion Orcus @mints ergoball vierzigzwo Cuan Underdose Hummer12007 Uriziel Shinobu rtz12 CoolDude4171 y1x convex +Amatsukaze-chan Kazumi @Tirak panym %CR-AMSTERDAM-IPv6|NEW %Gin|TV &Jenga +Katou Grilo @Nala_Alan %DDY|Rem Blistic GuntherDW Usavich @chakku @Fleppensteyn @sassycat Trellmor_ @Loke ElysiumStar|2 %Raigeki|Kaminari::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%NHK|Satou @PharaohAnubis RoryMercury Shinonome Stratosphere SuperMich Tibsi _4get antemeridiem protospork reiri tomek Afinon aetx +Wonne Scion Orcus @mints ergoball vierzigzwo Cuan Underdose Hummer12007 Uriziel Shinobu rtz12 CoolDude4171 y1x convex +Amatsukaze-chan Kazumi @Tirak panym %CR-AMSTERDAM-IPv6|NEW %Gin|TV &Jenga +Katou Grilo @Nala_Alan %DDY|Rem Blistic GuntherDW Usavich @chakku @Fleppensteyn @sassycat Trellmor_ @Loke ElysiumStar|2 %Raigeki|Kaminari
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :melonpan alphapizza TaiyoAWS @DevilsClown %DDY|Ram track @wiz @badbwg wooles zz_Nevik TheEternalAbyss %Encore|Felis ATRAN silverfire Friday Sona-Sama tami_ iZN Jelly @IceBear @dinoex Bodeta lhdlovebooh Wuzzel Koopz CuriousErnestBro r0b nattofriends den628 %Bakemono|Kuma %Janusz %Kami-chan %Gao %XDCC|Tenri +z3uS @Holo|server Toms Komma +Overmind %yuugiri &Koshka llyyr ricksr Jisagi DiNOVO SureShot %Vegeta %Blitz|Kira arboc Zero967 &Aoi-chan Creator kama::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :melonpan alphapizza TaiyoAWS @DevilsClown %DDY|Ram track @wiz @badbwg wooles zz_Nevik TheEternalAbyss %Encore|Felis ATRAN silverfire Friday Sona-Sama tami_ iZN Jelly @IceBear @dinoex Bodeta lhdlovebooh Wuzzel Koopz CuriousErnestBro r0b nattofriends den628 %Bakemono|Kuma %Janusz %Kami-chan %Gao %XDCC|Tenri +z3uS @Holo|server Toms Komma +Overmind %yuugiri &Koshka llyyr ricksr Jisagi DiNOVO SureShot %Vegeta %Blitz|Kira arboc Zero967 &Aoi-chan Creator kama
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Eustachy_Kapusta blase g4330 sputnik Double_Helix shi kquba Raif @Hiei- Koyomi Liminaly %[F-S]XDCC Cysioland VanillaButNotTheBot @Manabi ed equasion arsenelupin %NIBL|Abraham @Treize ruskie %KareRaisu ChillMeister jmic sai^_^ dude051 Kurisu-chan %Stardust|Kaoru %[Asenshi-NA]Iwai-chan %RawManga +Quotes &NIBL %Retrofit|Kazahana %E-D|Mashiro E-D|Himari E-D|Lily @nullx pwg unmei aykut Naku Etoh yokwe %[Tsundere]Misaki %NIBL|Asuka %[Migoto]Kobato %Paradise %Cerebrate::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :Eustachy_Kapusta blase g4330 sputnik Double_Helix shi kquba Raif @Hiei- Koyomi Liminaly %[F-S]XDCC Cysioland VanillaButNotTheBot @Manabi ed equasion arsenelupin %NIBL|Abraham @Treize ruskie %KareRaisu ChillMeister jmic sai^_^ dude051 Kurisu-chan %Stardust|Kaoru %[Asenshi-NA]Iwai-chan %RawManga +Quotes &NIBL %Retrofit|Kazahana %E-D|Mashiro E-D|Himari E-D|Lily @nullx pwg unmei aykut Naku Etoh yokwe %[Tsundere]Misaki %NIBL|Asuka %[Migoto]Kobato %Paradise %Cerebrate
+irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%CR-FRANCE|NEW %NIBL|Erza +Starwhite bbee zonk @Jikan +Internets %[Oyatsu]Sena q3k Tone sassinak &Yukikaze %Kona %XDCC|Elsie %NIBL|Yomiko %O-L|Releases %Ghost|Nappa meh` @Zumochi ScavvyKiD Majii Lyce Kaydin meh`` irssi-bot %[UTW]Ariel %Ruri|Nezumi %Kurama|Pikachu %Saizen|Mikasa %Kaitou|Asuna Amalia ved krillin p0rt %Cerebrate|v6 Regex %Ginpachi-Sensei +Sadaharu::irc.x2x.cc 353 LittleWeeb_ygcpns = #NIBL :%CR-FRANCE|NEW %NIBL|Erza +Starwhite bbee zonk @Jikan +Internets %[Oyatsu]Sena q3k Tone sassinak &Yukikaze %Kona %XDCC|Elsie %NIBL|Yomiko %O-L|Releases %Ghost|Nappa meh` @Zumochi ScavvyKiD Majii Lyce Kaydin meh`` irssi-bot %[UTW]Ariel %Ruri|Nezumi %Kurama|Pikachu %Saizen|Mikasa %Kaitou|Asuna Amalia ved krillin p0rt %Cerebrate|v6 Regex %Ginpachi-Sensei +Sadaharu
+irc.x2x.cc 366 LittleWeeb_ygcpns #NIBL :End of /NAMES list.::irc.x2x.cc 366 LittleWeeb_ygcpns #NIBL :End of /NAMES list.
+IRCDEBUG-IRCHANDLER: GOT USER LIST, CONNECTION SHOULD BE SUCCESFUL
+NIBL:[#NIBL] Welcome to 3,1#NIBL! Why not try out one of our scripts for mIRC or HexChat to filter out XDCC announces to their very own window, cleaning up the spam in the channel! ~ 7,1https://github.com/NIBLCO/niblscripts
+IRCDEBUG - DEBUG-IRCHANDLER: succesful connected to the irc server!
+CHROME-CONSOLE: Menu Succesfully Loaded!
+CHROME-CONSOLE: null
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: null
+CHROME-CONSOLE: animetitle did execute in menu
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 1, url: '/')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Angular is running in the development mode. Call enableProdMode() to enable the production mode.
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Nibl Service Initialiazed...
+CHROME-CONSOLE: Initiated backend!
+CHROME-CONSOLE: Waiting for connection to backend!
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 1, url: '/', urlAfterRedirects: '/currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: trying to connect and get an IP
+CHROME-CONSOLE: [object Object]
+HTTPDEBUG:HTTPDEBUG:Accepted client at: 127.0.0.1:6010
+HTTPDEBUG:HTTPDEBUG:GET /whatsyourip HTTP/1.1
+Host: localhost:6010
+Connection: keep-alive
+Accept: application/json, text/plain, */*
+Origin: http://localhost:4200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36
+Referer: http://localhost:4200/currentlyairing
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.8
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+HTTPDEBUG:HTTPDEBUG:FILE REQ: GUI/whatsyourip
+CHROME-CONSOLE: 192.168.178.26
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: succes,Connected!
+HTTPDEBUG:HTTPDEBUG:Accepted client at: 127.0.0.1:6010
+DEBUG-IRCHANDLER: NOT CONNECTED TO IRC SERVER
+ReesesPuffz::ReesesPuffz!~Reese@Rizon-324DFACC.3.c3-0.arm-ubr1.chi-arm.il.cable.rcncustomer.com JOIN :#NIBL
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 2, url: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 2, url: '/search', urlAfterRedirects: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Searching for: Haikyuu
+CHROME-CONSOLE: searching for: Haikyuu
+HTTPDEBUG:HTTPDEBUG:GET /?cors=https://download.toshocat.com/2.1/anime/search?q=haikyuu HTTP/1.1
+Host: localhost:6010
+Connection: keep-alive
+Accept: application/json, text/plain, */*
+Origin: http://localhost:4200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36
+Referer: http://localhost:4200/search
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.8
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+HTTPDEBUG:HTTPDEBUG:FILE REQ: GUI/?cors=https://download.toshocat.com/2.1/anime/search?q=haikyuu
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+CHROME-CONSOLE: HIDELOADER
+RamenSub::RamenSub!~ramensama@B649B3A8.ADEE433C.81603163.IP JOIN :#NIBL
+InviZz::InviZz!~Invizzz@BE5DF1E3.31121193.B7B276EB.IP QUIT :Read error: Connection reset by peer
+durp::durp!~durphurp@Rizon-B1AF3663.pools.vodafone-ip.de QUIT :Ping timeout: 240 seconds
+CHROME-CONSOLE: [WDS] App updated. Recompiling...
+CHROME-CONSOLE: [WDS] App updated. Recompiling...
+CHROME-CONSOLE: [WDS] App updated. Reloading...
+CHROMEDEBUG: Im doing stuff here !
+CHROME-CONSOLE: Menu Succesfully Loaded!
+CHROME-CONSOLE: null
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: null
+CHROME-CONSOLE: animetitle did execute in menu
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 1, url: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Angular is running in the development mode. Call enableProdMode() to enable the production mode.
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Nibl Service Initialiazed...
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 1, url: '/search', urlAfterRedirects: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: [object Object]
+kpo_ang::kpo_ang!~angweechy@544C8126.8D62D244.2FD20439.IP JOIN :#NIBL
+yothen::yothen!~HUZZAH@Rizon-3FE746E0.dyn.optonline.net QUIT :Read error: Connection reset by peer
+CHROME-CONSOLE: [WDS] App updated. Recompiling...
+CHROME-CONSOLE: [WDS] App updated. Recompiling...
+CHROME-CONSOLE: [WDS] App updated. Reloading...
+CHROMEDEBUG: Im doing stuff here !
+CHROME-CONSOLE: Menu Succesfully Loaded!
+CHROME-CONSOLE: null
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: null
+CHROME-CONSOLE: animetitle did execute in menu
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 1, url: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Angular is running in the development mode. Call enableProdMode() to enable the production mode.
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 1, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Nibl Service Initialiazed...
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 1, url: '/search', urlAfterRedirects: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 2, url: '/about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 2, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 2, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 2, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 2, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 2, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 2, url: '/about', urlAfterRedirects: '/about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+IRCDEBUG - DEBUG-IRCHANDLER: RECEIVED PING WITH ID: irc.x2x.cc
+
+ING :irc.x2x.cc:PING :irc.x2x.cc
+CHROME-CONSOLE: [WDS] App updated. Recompiling...
+CHROME-CONSOLE: [WDS] App updated. Recompiling...
+CHROME-CONSOLE: [WDS] App updated. Reloading...
+CHROMEDEBUG: Im doing stuff here !
+CHROME-CONSOLE: Menu Succesfully Loaded!
+CHROME-CONSOLE: null
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: null
+CHROME-CONSOLE: animetitle did execute in menu
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 1, url: '/about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Angular is running in the development mode. Call enableProdMode() to enable the production mode.
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 1, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 1, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 1, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 1, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 1, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 1, url: '/about', urlAfterRedirects: '/about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: [object Object]
+C3rberus::C3rberus!~C3rberus@DB7747CD.A5B4170D.CD8970E8.IP JOIN :#NIBL
+IRCDEBUG - DEBUG-IRCHANDLER: Downloader Stopped
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ STARTING QUITING PROCEDURE 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ WRITTEN QUIT 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ STOPPED RECEIVER: 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ STARTING QUITING PROCEDURE 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ WRITTEN QUIT 
+IRCDEBUG - DEBUG-IRCHANDLER: 
+ CLOSED EVERY THING 
