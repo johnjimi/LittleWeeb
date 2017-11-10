@@ -47,7 +47,7 @@ LittleWeeb uses a number of open source projects to work properly:
 * [websocket-sharp](http://sta.github.io/websocket-sharp/) - A nice websocket library for C#.
 * [Semantic UI](https://semantic-ui.com/)- A slick looking CSS Framework.
 * [jQuery] - unfortunately, semantic ui has a very limited angular implementation which didn't suit the needs for this application.
-* [NIBL API](http://api.nibl.co.uk:8080/swagger-ui.html) - Thanks to nibl.co.uk API and the developer from NIBL to provide me the information that I need!
+* [NIBL API](https://github.com/jenga201) - Thanks to nibl.co.uk API and the developer from NIBL to provide me the information that I need!
 * [Atarashii API](https://atarashii.toshocat.com/docs/) - Open available api to get anime information.
 
 
