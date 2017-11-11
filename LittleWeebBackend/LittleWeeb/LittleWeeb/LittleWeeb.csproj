@@ -72,6 +72,9 @@
     <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions">
       <HintPath>bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleIRCLib">
       <HintPath>..\..\..\..\GitHub\SimpleIRCLib\SimpleIRCLib\bin\Debug\SimpleIRCLib.dll</HintPath>
     </Reference>
@@ -99,6 +102,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IrcHandler.cs" />
+    <Compile Include="JsonAlreadyDownloaded.cs" />
+    <Compile Include="JsonDownloadUpdate.cs" />
+    <Compile Include="JsonIrcUpdate.cs" />
+    <Compile Include="JsonSettingsUpdate.cs" />
     <Compile Include="MyRequestHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,7 +113,7 @@
     <Compile Include="SettingsHandler.cs" />
     <Compile Include="SharedData.cs" />
     <Compile Include="SimpleWebServer.cs" />
-    <Compile Include="UsefullStuff.cs" />
+    <Compile Include="UtitlityMethods.cs" />
     <Compile Include="WebSocketHandler.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

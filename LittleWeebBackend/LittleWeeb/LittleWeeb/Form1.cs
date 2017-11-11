@@ -5,16 +5,15 @@ using CefSharp.WinForms;
 using System.IO;
 using System.Diagnostics;
 using SimpleIRCLib;
-using System.Collections.Concurrent;
-using WebSocketSharp;
 using WebSocketSharp.Server;
+using System.Collections.Generic;
 
 namespace LittleWeeb
 {
     public partial class Form1 : Form
     {
         public ChromiumWebBrowser chromeBrowser;
-        private UsefullStuff usefullstuff;
+        private UtitlityMethods usefullstuff;
         private WebSocketServer websocketserver;
         private SimpleIRC irc;
         private IrcHandler irchandler;
@@ -23,7 +22,7 @@ namespace LittleWeeb
         public static Form1 form;
         public Form1()
         {
-            usefullstuff = new UsefullStuff();
+            usefullstuff = new UtitlityMethods();
 
             form = this;
 
@@ -54,6 +53,7 @@ namespace LittleWeeb
 
         private void InitializeChromium()
         {
+            Cef.EnableHighDPISupport();
             CefSettings settings = new CefSettings();
             //initialize cef with the provided settings
             Cef.Initialize(settings);
@@ -155,10 +155,10 @@ namespace LittleWeeb
             SharedData.joinedChannel = false;
             SharedData.closeBackend = false;
             SharedData.currentlyDownloading = false;
-            SharedData.downloadList = new ConcurrentBag<dlData>();
+            SharedData.downloadList = new List<dlData>();
+            SharedData.messageToSendWS = new List<string>();
             SharedData.currentDownloadId = "";
             SharedData.currentDownloadLocation = Application.StartupPath;
-            SharedData.messageToSendWS = new ConcurrentBag<string>();
         }
 
         private void InitializeSettings()

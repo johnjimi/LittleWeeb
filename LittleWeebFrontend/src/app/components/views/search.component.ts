@@ -52,30 +52,57 @@ export class Search {
         this.showPacks = false;
         this.showError = false;
         this.searchquery = "nothing searched";
+
+       
+    }
+
+    //listens to search request  (subscribe holds the search query so if everything works alright everytime you go to this page you will see your latest search )
+    ngOnInit(){
+
+        if(this.shareService.getStoredSearchToView() != null){
+            this.searchquery = this.shareService.getLastSearched();
+            this.results = this.shareService.getStoredSearchToView();
+            this.showPacks = true;
+        }
+
+        
     }
 
     //searches the anime using the Atarashii/Mal api
-    async search(value:string){
-        this.shareService.showLoaderMessage("Searching for: " + value);
-        try{
+    async search(searchQuery:string){
 
-            this.showPacks = false;
-            console.log("searching for: " + value);
-            this.searchquery = value;
-            this.results =  await this.malService.searchAnime(value);
+        this.shareService.showLoaderMessage("Searching for: " + searchQuery);
+        console.log(searchQuery);
+        if(this.shareService.getLastSearched() != searchQuery){
+            try{
+            
+                this.showPacks = false;
+                console.log("searching for: " + searchQuery);
+                this.searchquery = searchQuery;
+                this.results =  await this.malService.searchAnime(searchQuery);
+                this.shareService.storeSearchToView(this.results);
+                console.log(this.results);
+                this.showPacks = true;
+            } catch(e){
+                this.showError = true;
+            }
+        } else {
+            this.results= this.shareService.getStoredSearchToView();
             console.log(this.results);
             this.showPacks = true;
-        } catch(e){
-            this.showError = true;
         }
-        this.shareService.hideLoader();
+        
+        this.shareService.storeSearchRequest(searchQuery);
+        this.shareService.hideLoader();    
     }
 
     //when an anime is found and you click on it, show the packlist component
-    showPackListFor(anime : any){
+    async showPackListFor(anime : any){
         console.log(anime);
-        var convert = {"title_english" : anime.title, "type" : anime.type};        
-        this.shareService.setAnimeTitle(convert);
+        var detailedAnimeInfo = await this.malService.getAnimeInfo(anime.id);
+        console.log(detailedAnimeInfo);
+        var convert = {"title_english" : detailedAnimeInfo.title, "synonyms" : detailedAnimeInfo.other_titles, "type" : anime.type};        
+        this.shareService.setAnimeTitle(detailedAnimeInfo);
         this.router.navigate(['packlist']);   
 
     }

@@ -145,8 +145,16 @@ namespace LittleWeeb
                             response.Append("Content-Length: " + buffer.Length + " \r\n");
                             response.Append("Content-Type: application/json\r\n\r\n");
                             byte[] header = Encoding.ASCII.GetBytes(response.ToString());
-                            strm.Write(header, 0, header.Length);
-                            strm.Write(buffer, 0, buffer.Length);
+                            try
+                            {
+
+                                strm.Write(header, 0, header.Length);
+                                strm.Write(buffer, 0, buffer.Length);
+                            } catch(Exception e)
+                            {
+
+                                Debug.WriteLine("HTTPDEBUG:" + "Failed to write data to stream: " + e.ToString());
+                            }
                             strm.Flush();
                             strm.Close();
                         }
@@ -201,7 +209,7 @@ namespace LittleWeeb
                                 catch (Exception e)
                                 {
                                     response.Append("HTTP/1.1 404 Not Found \r\n");
-                                    Debug.WriteLine("HTTPDEBUG:" + "HTTPDEBUG:" + "Failed to write file to stream: " + e.ToString());
+                                    Debug.WriteLine("HTTPDEBUG:" + "Failed to write file to stream: " + e.ToString());
                                     byte[] header = Encoding.ASCII.GetBytes(response.ToString());
                                     strm.Write(header, 0, header.Length);
                                     strm.Flush();

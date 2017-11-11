@@ -34,6 +34,11 @@ import {BackEndService} from './services/backend.service'
 import {SemanticService} from './services/semanticui.service'
 import {MalService} from './services/mal.service'
 import {VersionService} from './services/versioncheck.service'
+import {DownloadService} from './services/download.service'
+
+//import pipes
+import {SafePipe} from './pipes/safe.pipe'
+
 //view routes
 const appRoutes: Routes = [
   {
@@ -74,9 +79,9 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports:      [ BrowserModule,  RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, HttpModule, CommonModule, ToasterModule, BrowserAnimationsModule, NoopAnimationsModule],
-  declarations: [ AppComponent, MenuComponent, CurrentlyAiring, Search, Downloads, Settings, About, PackList, Toaster, Loader, Modal ],
+  declarations: [ AppComponent, MenuComponent, CurrentlyAiring, Search, Downloads, Settings, About, PackList, Toaster, Loader, Modal, SafePipe ],
   bootstrap:    [ AppComponent ],
-  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, MalService, VersionService]
+  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, MalService, VersionService, DownloadService]
 })
 export class AppModule { }
 

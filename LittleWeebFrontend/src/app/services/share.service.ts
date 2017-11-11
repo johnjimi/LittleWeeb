@@ -7,17 +7,62 @@ export class ShareService {
 
     public packlistsub : Subject<string> = new BehaviorSubject<string>(null);
     public animetitlesub : Subject<any> = new BehaviorSubject<any>(null);
-    public newdownload : Subject<any> = new BehaviorSubject<any>(null);
     public downloadamount : Subject<number> = new BehaviorSubject<number>(null);
     public toastmessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
     public loaderMessage : Subject<string> = new BehaviorSubject<string>(null);
     public modalMessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
-    public currentlyawaitingdownloads : any[];
+    public searchQuery : Subject<string> = new BehaviorSubject<string>(null);
     public botlist : Object;
+
+    private currentlyAiringToView : any;
+    private animeToView : any;
+    private episodesToView: any[];
+    private searchToView : any;
+    private lastSearch : string;
 
     //this service shares information between different components, be it services, views or extras.
     constructor(){
-        this.currentlyawaitingdownloads = [];
+        this.animeToView = null;
+        this.currentlyAiringToView = null;
+        this.searchToView = null;
+        this.episodesToView = null;
+        this.lastSearch = "";
+    }
+
+    storeCurrentlyAiring(tostore: any){
+        this.currentlyAiringToView = tostore;
+    }
+    storeAnimeToView(currentAnime: any, episodes:any[]){
+        this.animeToView = currentAnime;
+        this.episodesToView = episodes;
+    }
+    storeSearchToView(tostore: any){
+        this.searchToView = tostore;
+    }
+    storeSearchRequest(tostore: string){
+        this.lastSearch = tostore;
+        this.searchQuery.next(this.lastSearch);
+    }
+
+    getStoredCurrentlyAiring(){
+        return this.currentlyAiringToView;
+    }
+
+    getStoredAnimeToView(){
+        return this.animeToView;
+    }
+
+    getStoredEpisodesToView(){
+        return this.episodesToView;
+    }
+
+    getStoredSearchToView(){
+        console.log("get already stored");
+        return this.searchToView;
+    }
+
+    getLastSearched(){
+        return this.lastSearch;
     }
     
     //for views/packlist.component
@@ -54,30 +99,7 @@ export class ShareService {
     //for views/packlist.component
     clearPackList(){
         this.packlistsub.next();
-    }
-
-    //for views/download.component
-    appendNewDownload(json : any){
-        console.log("Appending newdownload : 52");
-        this.newdownload.next(json);
-        this.currentlyawaitingdownloads.push(json);
-        this.downloadamount.next(this.currentlyawaitingdownloads.length);
-    }
-
-    //for views/download.component
-    clearNewDownload(){
-        this.newdownload.next();        
-        this.currentlyawaitingdownloads = [];
-        this.downloadamount.next(this.currentlyawaitingdownloads.length);
-    }
-
-    //for views/download.component
-    removeNewDownload(index: number){
-        console.log("Removing newdownload at index " + index + " : 64");
-        this.currentlyawaitingdownloads.splice(index, 1);   
-        this.downloadamount.next(this.currentlyawaitingdownloads.length);        
-        this.newdownload.next();
-    }
+    }   
 
     //for menu.component
     updateAmountOfDownloads(num:number){

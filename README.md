@@ -4,25 +4,27 @@ LittleWeeb is a IRC XDCC Client Purely made for downloading anime. It features a
 
 Be aware that this application is still in development and might still have some issues!
 
-# Showcase
+# Showcase/Usage
+[YouTube - v0.2.0] (https://youtu.be/GbBz1ReDahU)
 [YouTube - pre v0.1.0 version](https://www.youtube.com/watch?v=yJjL9wQEEEQ)
 
 # Screenshots
-[![Image of Yaktocat](https://i.imgur.com/2fAyiopl.png)](https://i.imgur.com/2fAyiop.png)]
-[![Image of Yaktocat](https://i.imgur.com/PqwUK1hl.png)](https://i.imgur.com/PqwUK1h.png)]
-[![Image of Yaktocat](https://i.imgur.com/Y8uJ3Ligl.png)](https://i.imgur.com/Y8uJ3Lig.png)]
-[![Image of Yaktocat](https://i.imgur.com/t20A0J4l.png)](https://i.imgur.com/t20A0J4.png)]
-[![Image of Yaktocat](https://i.imgur.com/zjX5Jlrl.png)](https://i.imgur.com/zjX5Jlr.png)]
+[![New update](https://i.imgur.com/2fAyiopl.png)](https://i.imgur.com/2fAyiop.png)
+[![Currently Airing](https://i.imgur.com/H6dzjgll.png)](https://i.imgur.com/H6dzjgl.png)
+[![Episodes View/Packlist View/Anime View](https://i.imgur.com/WpJcwvXl.png)](https://i.imgur.com/WpJcwvX.png)
+[![Episodes View/Packlist View/Anime View - selecting episodes](https://i.imgur.com/eARK88Rl.png)](https://i.imgur.com/eARK88R.png)
+[![Download View](https://i.imgur.com/x7afYadl.png)](https://i.imgur.com/x7afYad.png)
 
+# New Features! V0.2.0 is OUT!
+- Going full JSON :)  (See wiki for backend api if you want to develop your own interface ;D)
+- Made episode ordering/searching better.
+- Used Atarashii's API for currently airing and anime information.
+- Made it more stable ;), mostly under the hood stuff. 
+ 
+**Be aware, since this is still WIP, issues can occur which didn't occur before, please notify me through the issues page!**
 
-# New Features! V0.1.0 is OUT!
-- Completely rewritten interface (from plain jQuery to much better maintainable Angular 2/4  Typescript)
-- Moved from a console in the background and a webbrowser serving the interface to CefSharp/WinForms, combining chromium and the console in one single app (no more need for seperate chrome installation!).
-- More or less managed the C# code.
-
-**Be aware, since this is a complete overhaul, issues can occur which didn't occur before, please notify me through the issues page!**
-
-**Actual new features**
+**Actual new features that you see!**
+V0.1.3
 - Listing with packs/files now only shows available bots which actually contain episodes!
 - Listing with packs/files now orders per episode!
 - Listing with packs/files can now suggest the best download by hitting the checkbox infront of the episode number!
@@ -36,6 +38,13 @@ Be aware that this application is still in development and might still have some
 - Added version control, when a new version releases, you get a message!
 - Probably more things which I am forgetting at the moment.
 - Somewhat finished about page, with license and terms of use etc.
+
+V0.2.0
+- Improved loading times
+- No loading again if you view currently airing after first load.
+- Fully detailed anime information
+- High dpi screens now supported
+
 
 
 ### Tech
@@ -70,6 +79,7 @@ This application is still in development, but I guess worthy to be thrown into t
  - Fix bugs with downloading. <- still there, some files might not download very well.
  - Clean up some code. <- well, atleast I made some progress
  - Add support for running the interface and application seperate (so you can run the application on a NAS 24/7 for example).
+ - Add back direct search on nibl.co.uk
  - Not being lazy and continue this project.
 
 License

@@ -1,0 +1,101 @@
+import {Injectable} from '@angular/core';
+import {Http, Headers} from '@angular/http';
+import {Observable, Subject, BehaviorSubject} from 'rxjs/Rx';
+import {BackEndService} from './backend.service';
+import {ShareService} from './share.service';
+import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
+import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/map';
+
+@Injectable()
+export class DownloadService {
+
+    
+    public downloadQue : any[];
+    public alreadyDownloaded : any[];
+    public updateDownloadList : Subject<any> = new BehaviorSubject<any>(null);
+    public updateAlreadyDownloadedList : Subject<any> = new BehaviorSubject<any>(null);
+
+    constructor(private backendService: BackEndService, private shareService:ShareService){
+        this.downloadQue = [];
+        this.alreadyDownloaded = [];
+        this.backendService.websocketMessages.subscribe((message) => {
+            if(message.type == "download_update"){
+                if(message.status.indexOf("FAILED") == -1 && message.filename.indexOf("NO DOWNLOAD") == -1){
+                    let obj = this.downloadQue.find(x => x.id == message.id);               
+                    let index = this.downloadQue.indexOf(obj);
+                    if(index != -1){
+                        this.downloadQue[index] = message;
+                        this.updateDownloadList.next(this.downloadQue); 
+                        this.shareService.updateAmountOfDownloads(this.downloadQue.length);  
+                    } else {
+                        
+                        this.downloadQue.push( message );
+                        this.updateDownloadList.next(this.downloadQue);   
+                        this.shareService.updateAmountOfDownloads(this.downloadQue.length);
+                    }
+                
+                }
+               
+                if(message.status == "COMPLETED"){
+                    let obj = this.downloadQue.find(x => x.filename == message.filename);               
+                    let index = this.downloadQue.indexOf(obj);
+                    this.downloadQue.splice(index, 1);
+                    this.updateDownloadList.next(this.downloadQue); 
+                    this.getAlreadyDownloaded();
+                    this.shareService.updateAmountOfDownloads(this.downloadQue.length);  
+                }
+
+                if(message.status == "ABORTED"){
+                    let obj = this.downloadQue.find(x => x.filename == message.filename);               
+                    let index = this.downloadQue.indexOf(obj);
+                    this.downloadQue.splice(index, 1);
+                    this.updateDownloadList.next(this.downloadQue); 
+                    this.getAlreadyDownloaded();  
+                    this.shareService.updateAmountOfDownloads(this.downloadQue.length);
+                }
+
+                
+
+            }
+
+            if(message.type == "already_downloaded"){
+                console.log(message);
+                this.alreadyDownloaded = [];
+                for(let file of message.alreadyDownloaded){
+                    this.alreadyDownloaded.push(file);
+                    console.log(file);
+                }
+                console.log(this.alreadyDownloaded);
+                this.updateAlreadyDownloadedList.next(this.alreadyDownloaded);
+            }
+        });
+    }
+
+    addDownload(download: any){
+        this.downloadQue.push(download);
+        this.backendService.sendMessage({"action": "add_download", "download" : download});
+        this.shareService.updateAmountOfDownloads(this.downloadQue.length);
+       
+    }
+
+    removeDownload(download: any){
+        this.backendService.sendMessage({"action" : "delete_download", "download" : download});
+        let obj = this.downloadQue.find(x => x.id == download.id);               
+        let index = this.downloadQue.indexOf(obj);
+        this.downloadQue.splice(index, 1);
+        this.shareService.updateAmountOfDownloads(this.downloadQue.length);
+        this.updateDownloadList.next(this.downloadQue);           
+        this.getAlreadyDownloaded();
+    }
+
+    getAlreadyDownloaded(){
+       this.backendService.sendMessage({"action" : "get_downloads"});
+    }
+
+    getDownloadList(){
+       this.updateDownloadList.next(this.downloadQue);
+    }
+
+   
+}

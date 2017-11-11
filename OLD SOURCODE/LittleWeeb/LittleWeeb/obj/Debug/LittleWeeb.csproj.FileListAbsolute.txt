@@ -1,9 +1,0 @@
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\bin\Debug\LittleWeeb.exe.config
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\bin\Debug\LittleWeeb.exe
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\bin\Debug\LittleWeeb.pdb
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.csprojResolveAssemblyReference.cache
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.Properties.Resources.resources
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.csproj.GenerateResource.Cache
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.exe
-c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.pdb
-C:\Users\Eldin-Desktop\Documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.Form1.resources

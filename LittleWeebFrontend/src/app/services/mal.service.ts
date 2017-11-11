@@ -21,4 +21,21 @@ export class MalService {
         console.log(response);
         return response.json();
     }
+
+    async getAnimeInfo(id : any){
+        const response = await this.http.get( encodeURI('http://localhost:6010?cors=https://download.toshocat.com/2.1/anime/' + id)).toPromise();
+        var unparsed = JSON.stringify(response);
+        var json = JSON.parse(unparsed.split('{"_body":"')[1].split('","status"')[0].replace(/\\"/g, "\"").replace(/\\\\/g, "\\"));
+        console.log(json);
+        return response.json();
+    }
+
+    async getCurrentlyAiring(){
+        const response = await this.http.get( encodeURI('http://localhost:6010?cors=https://atarashii.toshocat.com/2.1/anime/schedule')).toPromise();
+        var unparsed = JSON.stringify(response);
+        var json = JSON.parse(unparsed.split('{"_body":"')[1].split('","status"')[0].replace(/\\"/g, "\"").replace(/\\\\/g, "\\"));
+        //.split('{"_body":"')[1].split('","status"')[0]
+        console.log(json);
+        return json;
+    }
 }

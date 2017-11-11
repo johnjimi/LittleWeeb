@@ -8,10 +8,10 @@ import {VersionService} from './services/versioncheck.service'
   selector: 'my-app',
   template: `
   <div class="ui grid">
-      <div class="four wide column">
+      <div class="three wide column">
           <menutag></menutag>
       </div>
-      <div class="ten wide column">        
+      <div class="twelve wide column">        
         <router-outlet></router-outlet>
       </div>
   </div>

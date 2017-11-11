@@ -21,13 +21,13 @@ export class SemanticService {
         }, 1);
     }
 
-    openAccordion(index:string){
+    openAccordion(index:number){
         setTimeout(()=>{
             $('.ui.accordion').accordion('open', index);
         }, 1);
     }
 
-    closeAccordion(index:string){
+    closeAccordion(index:number){
         setTimeout(()=>{
             $('.ui.accordion').accordion('close', index);
         }, 1);
@@ -55,6 +55,18 @@ export class SemanticService {
 
     showModal(modal:string){
         $(modal).modal('show');
+    }
+
+    isModalOpen(modal:string){
+        if ($(modal + ".visible").length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    runFunctionOnClick(classToClick : string, functionToExecute : any ){
+        $( classToClick ).on('click', functionToExecute);
     }
 
 }

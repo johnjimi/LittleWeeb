@@ -49,3 +49,5 @@ C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\x86\Debug\LittleWeeb.pdb
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\x86\Debug\websocket-sharp.dll
 C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\x86\Debug\websocket-sharp.xml
+C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\x86\Debug\Newtonsoft.Json.dll
+C:\Users\Eldin-Desktop\Documents\GitHub\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\x86\Debug\Newtonsoft.Json.xml

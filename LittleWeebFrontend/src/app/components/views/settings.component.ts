@@ -43,23 +43,26 @@ export class Settings {
 
     //on init, request the current download directory from backend
     ngOnInit(){
-        this.backEndService.websocketConnected.subscribe(data => {            
-            this.backEndService.sendMessage("GetCurrentDir");
-        });
         this.backEndService.websocketMessages.subscribe((message) => {
             if(message !== null){
-                if(message.indexOf("CurrentDir") > -1){
-                    this.downloadlocation = message.split('^')[1];
+                if(message.type == "irc_data"){
+                    this.downloadlocation = message.downloadlocation;
                 }
             }
         });
-        this.backEndService.sendMessage("GetCurrentDir");
+        this.backEndService.sendMessage({"action" : "get_irc_data"});
+    }
+
+    ngOnDestroy(){
+        
+        //this.backEndService.websocketConnected.unsubscribe();
+        //this.backEndService.websocketMessages.unsubscribe();
     }
 
     //opens the file dailog to select a download directory
     openFileDialog(){
-        console.log("opening file dialog");
-        this.backEndService.sendMessage("OpenFileDialog");
+        console.log("opening file dialog");        
+        this.backEndService.sendMessage({"action" : "set_download_directory"});
     }
 
     // not implemented yet

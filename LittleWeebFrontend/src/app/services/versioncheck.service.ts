@@ -12,13 +12,12 @@ export class VersionService {
     private currentVersion : string;
 
     constructor(private http: Http, private shareService:ShareService){
-        this.currentVersion = "0.1.2"; //current version
+        this.currentVersion = "0.2.0"; //current version
     }
 
     //checks the version on the github with it's predined version, shows modal with message that there is a new version if versions differs.
     async getVersion(){
-        //actually using atarashii's MAL api, as it doesn't require authentication! see more here: https://atarashii.toshocat.com/docs/2.0/anime/
-        //using local proxy to allow CORS request to api without the use of the backend, THIS MAY CHANGE IN THE FUTURE, for now, this works I guess.
+     
         const response = await this.http.get('https://raw.githubusercontent.com/EldinZenderink/LittleWeeb/master/VERSION').toPromise();
         var version = JSON.stringify(response).indexOf(this.currentVersion);
         var newversion = JSON.stringify(response).split('"')[3].split('\\')[0];

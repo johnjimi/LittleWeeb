@@ -3,6 +3,7 @@ using SimpleIRCLib;
 using System.Threading;
 using System.Diagnostics;
 using WebSocketSharp.Server;
+using Newtonsoft.Json;
 
 namespace LittleWeeb
 {
@@ -10,7 +11,7 @@ namespace LittleWeeb
     {
         private SimpleIRC irc;
         private WebSocketServer websocketserver;
-        private UsefullStuff usefullstuff;
+        private UtitlityMethods usefullstuff;
 
         private Thread downloaderLogicThread = null;
         private Thread makeSureConnection = null;
@@ -21,9 +22,7 @@ namespace LittleWeeb
             websocketserver = SharedData.websocketserver;
             irc = SharedData.irc;
 
-            usefullstuff = new UsefullStuff();
-
-            SharedData.messageToSendWS.Add("IrcConnected-CurrentDir^" + SharedData.currentDownloadLocation);
+            usefullstuff = new UtitlityMethods();
 
             downloaderLogicThread = new Thread(new ThreadStart(downloaderLogic));
             downloaderLogicThread.Start();
@@ -67,7 +66,7 @@ namespace LittleWeeb
                 irc.setCustomDownloadDir(SharedData.currentDownloadLocation);
                 irc.startClient();
 
-                int x = 4;
+                int x = 2;
                 while (x > 0)
                 {
                     Thread.Sleep(1000);
@@ -76,10 +75,21 @@ namespace LittleWeeb
 
                 if (!SharedData.joinedChannel)
                 {
-                    Debug.WriteLine("IRCDEBUG-IRCHANDLER: DID NOT JOIN CHANNEL, RETRY!");                   
+                    Debug.WriteLine("IRCDEBUG-IRCHANDLER: DID NOT JOIN CHANNEL, RETRY!");
+                } else
+                {
+
+                    JsonIrcUpdate update = new JsonIrcUpdate();
+                    update.connected = true;
+                    update.downloadlocation = SharedData.currentDownloadLocation;
+                    update.server = irc.newIP + ":" + irc.newPort;
+                    update.user = irc.newUsername;
+                    update.channel = irc.newChannel;
+                    SharedData.AddToMessageList(JsonConvert.SerializeObject(update, Formatting.Indented));
+                    break;
                 }
                 i++;
-                if(i > 3)
+                if(i > 10)
                 {
                     Debug.WriteLine("IRCDEBUG-IRCHANDLER: I AM DONE TRYING TO CONNECT!");
                     break;
@@ -118,9 +128,18 @@ namespace LittleWeeb
             else if (status.ToString().Contains("FAILED") || status.ToString().Contains("COMPLETED") || status.ToString().Contains("ABORTED"))
             {
                 SharedData.currentlyDownloading = false;
+
             }
 
-            SharedData.messageToSendWS.Add("DOWNLOADUPDATE:" + SharedData.currentDownloadId + ":" + progress.ToString() + ":" + speedkbps.ToString() + ":" + status.ToString() + ":" + filename.ToString() + ":" + filesizeinmb.ToString());
+            JsonDownloadUpdate update = new JsonDownloadUpdate();
+            update.id = SharedData.currentDownloadId;
+            update.progress = progress.ToString();
+            update.speed = speedkbps.ToString();
+            update.status = status.ToString();
+            update.filename = filename.ToString();
+            update.filesize = filesizeinmb.ToString();
+
+            SharedData.AddToMessageList(JsonConvert.SerializeObject(update, Formatting.Indented));
         }
 
         private void userListReceivedCallback(string[] users) //see below for definition of each index in this array
@@ -133,46 +152,45 @@ namespace LittleWeeb
         {
             while (!SharedData.closeBackend)
             {
-                if (!SharedData.currentlyDownloading)
+                if (!SharedData.irc.checkIfDownload() && !SharedData.currentlyDownloading)
                 {
-                    if (SharedData.downloadList.Count > 0)
+                    Thread.Sleep(500);
+                    if (!SharedData.irc.didErrorHappen)
                     {
-                        Debug.WriteLine("DEBUG-IRCHANDLER: QUEU LENGTH BEFORE  TAKING: " + SharedData.downloadList.Count);
-                        dlData data;
-                        if(SharedData.downloadList.TryTake(out data))
-                        {
 
+                        //Debug.WriteLine("DEBUG-IRCHANDLER: QUEU LENGTH BEFORE  TAKING: " + SharedData.downloadList.Count);
+                        dlData data = SharedData.getAndRemoveFromDownloadList();
+                        if (data != null)
+                        {
                             SharedData.currentDownloadId = data.dlId;
                             bool succes = false;
                             try
                             {
 
-                                succes = true;
-                                irc.sendMessage("/msg " + data.dlBot + " xdcc send #" + data.dlPack);
-                                Thread.Sleep(1000);
+                                if (data.dlBot != "undefined" && data.dlPack != "undefined")
+                                {
+                                    irc.sendMessage("/msg " + data.dlBot + " xdcc send #" + data.dlPack);
+                                    succes = true;
+                                }
                             }
                             catch
                             {
-                                SharedData.currentlyDownloading = false;
                                 Debug.WriteLine("DEBUG-IRCHANDLER: ERROR:  NOT CONNECTED TO IRC, CAN'T DOWNLOAD FILE :(");
                             }
 
                             if (succes)
                             {
-                                SharedData.currentlyDownloading = true;
-                                SharedData.messageToSendWS.Add("DOWNLOADSTARTED");
+                                //SharedData.AddToMessageList("DOWNLOADSTARTED");
                                 Debug.WriteLine("DEBUG-IRCHANDLER: Started a download: " + "/msg " + data.dlBot + " xdcc send #" + data.dlPack);
                                 Console.WriteLine("Started a download: " + "/msg " + data.dlBot + " xdcc send #" + data.dlPack);
+                                SharedData.currentlyDownloading = true;
                             }
-                        } else
-                        {
-                            Debug.WriteLine("DEBUG-IRCHANDLER: SOMETHING WENT WRONG WHILE TAKING FROM DOWLOADQUE :(");
                         }
-                        Debug.WriteLine("DEBUG-IRCHANDLER: QUEU LENGTH AFTER TAKING: " + SharedData.downloadList.Count);
+                       // Debug.WriteLine("DEBUG-IRCHANDLER: QUEU LENGTH AFTER TAKING: " + SharedData.downloadList.Count);
                     }
                 }
-                Thread.Sleep(50);
             }
+            Thread.Sleep(1000);
         }
     }
 }

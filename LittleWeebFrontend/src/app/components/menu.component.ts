@@ -5,7 +5,9 @@ import {ShareService} from '../services/share.service'
 @Component({
     selector: 'menutag',
     template: `
-        <div class="ui grey secondary vertical pointing menu fixed" style="height: 100%">
+        <img src="http://orig13.deviantart.net/76a3/f/2013/232/d/9/shinobu_oshino_by_tobuei-d6ixzsk.png" style="position:fixed; top:10px; margin-left: 2%; width: 200px;" />
+        <div style="margin-top: 110px;"></div>
+        <div class="ui grey  vertical menu " style=" width: 200px; margin-left: 2%;  position:fixed;">
           <div class="ui horizontal divider">
             Little Weeb
           </div>
@@ -15,6 +17,7 @@ import {ShareService} from '../services/share.service'
             </a>
           </div>
         </div>
+        
     `,
 })
 export class MenuComponent {
@@ -88,18 +91,43 @@ export class MenuComponent {
 
         this.shareServices.animetitlesub.subscribe((anime) => {
             console.log("animetitle did execute in menu");
-                if(anime !== undefined){
-                    try{
+            if(anime !== undefined){
+                try{
 
-                        this.menuItems[2] =  {
-                            title: anime.title_english,
-                            icon: 'add to calendar',
-                            view : 'packlist'
-                        };
-                    } catch(e){
-
-                    }
+                    this.menuItems[2] =  {
+                        title: anime.title,
+                        icon: 'add to calendar',
+                        view : 'packlist'
+                    };
+                } catch(e){
+                    this.menuItems[2] =  {
+                        title: 'Choose Anime',
+                        icon: 'add to calendar',
+                        view : 'packlist'
+                    };
                 }
+            }
+
+        }); 
+
+        this.shareServices.searchQuery.subscribe((search) => {
+            console.log("animetitle did execute in menu");
+            if(search !== undefined && search != null){
+                try{
+
+                    this.menuItems[1] =  {
+                        title: "Current Search: " + search,
+                        icon: 'search',
+                        view : 'search'
+                    };
+                } catch(e){
+                    this.menuItems[1] =  {
+                        title: "Search",
+                        icon: 'search',
+                        view : 'search'
+                    };
+                }
+            }
 
         }); 
     }
