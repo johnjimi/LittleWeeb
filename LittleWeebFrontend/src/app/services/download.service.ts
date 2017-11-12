@@ -74,13 +74,13 @@ export class DownloadService {
 
     addDownload(download: any){
         this.downloadQue.push(download);
-        this.backendService.sendMessage({"action": "add_download", "download" : download});
+        this.backendService.sendMessage({"action": "add_download", "extra" : download});
         this.shareService.updateAmountOfDownloads(this.downloadQue.length);
        
     }
 
     removeDownload(download: any){
-        this.backendService.sendMessage({"action" : "delete_download", "download" : download});
+        this.backendService.sendMessage({"action" : "delete_download", "extra" : download});
         let obj = this.downloadQue.find(x => x.id == download.id);               
         let index = this.downloadQue.indexOf(obj);
         this.downloadQue.splice(index, 1);

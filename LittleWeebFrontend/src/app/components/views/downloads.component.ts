@@ -116,7 +116,7 @@ export class Downloads {
 
     //send request to open/play a certain file
     sendPlayRequest(download : any){
-        this.backEndService.sendMessage({"action" : "play_file", "file" : download});
+        this.backEndService.sendMessage({"action" : "play_file", "extra" : download});
     }
 
     //send request to open download location directory
