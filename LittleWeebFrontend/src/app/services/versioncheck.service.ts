@@ -12,7 +12,7 @@ export class VersionService {
     private currentVersion : string;
 
     constructor(private http: Http, private shareService:ShareService){
-        this.currentVersion = "0.2.0"; //current version
+        this.currentVersion = "v0.2.2"; //current version
     }
 
     //checks the version on the github with it's predined version, shows modal with message that there is a new version if versions differs.

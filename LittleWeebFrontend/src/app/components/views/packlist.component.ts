@@ -334,17 +334,24 @@ export class PackList {
                             break;
                         }
                         for(let synonym of synonyms){
-                            var words = synonym.split(' ');
-                            if(seasonFound){
-                                break;
-                            }
-                            for(let word of words){
-                                if(word.toLowerCase().indexOf(seasonIdentifier) != -1){
-                                    console.log("Anime " + anime.title + " is season " + seasonCounter + " because: '" + word + "' equals to '" + seasonIdentifier + "'");
-                                    seasonFound = true;
+                            try{
+                                var words = synonym.split(' ');
+                                if(seasonFound){
                                     break;
                                 }
+                                for(let word of words){
+                                    if(word.toLowerCase().indexOf(seasonIdentifier) != -1){
+                                        console.log("Anime " + anime.title + " is season " + seasonCounter + " because: '" + word + "' equals to '" + seasonIdentifier + "'");
+                                        seasonFound = true;
+                                        break;
+                                    }
+                                }
+                            }catch(E){
+                                console.log(E);
+                                seasonFound = false;
+                                break;
                             }
+                            
                         }
                     }                
                     seasonCounter++;
@@ -385,7 +392,9 @@ export class PackList {
                             }
                         }   
                         console.log(newsyn.trim());
-                        strippedSynonyms.push(this.utilityService.stripName(newsyn.trim()));
+                        if(newsyn.trim() != ""){                            
+                            strippedSynonyms.push(this.utilityService.stripName(newsyn.trim()));
+                        }
                     } catch (E){
                         
                     }
@@ -417,6 +426,7 @@ export class PackList {
             var addedFileIds = [];
 
             var tempListEpisodeList = [];
+            strippedSynonyms = strippedSynonyms.filter(Boolean).filter(function(val,ind) { return strippedSynonyms.indexOf(val) == ind; }); //filter empty and duplicates
             //getting packs from server
             try{
                 var strippedSynonymsIndex = 1;
