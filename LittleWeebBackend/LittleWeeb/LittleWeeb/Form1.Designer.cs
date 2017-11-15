@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Name = "Form1";
-            this.Text = "LittleWeeb v0.2.2 - The ultimate weebing tool!";
+            this.Text = "LittleWeeb v0.2.0 - The ultimate weebing tool!";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
