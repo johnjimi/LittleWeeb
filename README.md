@@ -4,6 +4,8 @@ LittleWeeb is a IRC XDCC Client Purely made for downloading anime. It features a
 
 Be aware that this application is still in development and might still have some issues!
 
+# Atarashii's API seems to be down, so the application is basically useless, I am currently working on changing api from atarashii to anilist, be patient, it will be fixed!
+
 # Showcase/Usage
 [YouTube - v0.2.0](https://youtu.be/GbBz1ReDahU)
 [YouTube - pre v0.1.0 version](https://www.youtube.com/watch?v=yJjL9wQEEEQ)
