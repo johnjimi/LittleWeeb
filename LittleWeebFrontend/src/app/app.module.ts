@@ -25,7 +25,7 @@ import { PackList } from './components/views/packlist.component';
 import { Toaster } from './components/extras/toaster.component';
 import { Loader} from './components/extras/loader.component';
 import { Modal} from './components/extras/modal.component';
-
+import { FileDialog } from './components/extras/filedialog.component';
 //services
 import {NiblService} from './services/nibl.service'
 import {ShareService} from './services/share.service'
@@ -35,9 +35,11 @@ import {SemanticService} from './services/semanticui.service'
 import {MalService} from './services/mal.service'
 import {VersionService} from './services/versioncheck.service'
 import {DownloadService} from './services/download.service'
+import {AniListService} from './services/anilist.service'
 
 //import pipes
 import {SafePipe} from './pipes/safe.pipe'
+import {KeysPipe} from './pipes/key.pipe'
 
 //view routes
 const appRoutes: Routes = [
@@ -79,9 +81,9 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports:      [ BrowserModule,  RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, HttpModule, CommonModule, ToasterModule, BrowserAnimationsModule, NoopAnimationsModule],
-  declarations: [ AppComponent, MenuComponent, CurrentlyAiring, Search, Downloads, Settings, About, PackList, Toaster, Loader, Modal, SafePipe ],
+  declarations: [ AppComponent, MenuComponent, CurrentlyAiring, Search, Downloads, Settings, About, PackList, Toaster, Loader, Modal, FileDialog, SafePipe, KeysPipe ],
   bootstrap:    [ AppComponent ],
-  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, MalService, VersionService, DownloadService]
+  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, MalService, VersionService, DownloadService, AniListService]
 })
 export class AppModule { }
 

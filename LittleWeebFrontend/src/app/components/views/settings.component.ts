@@ -62,7 +62,8 @@ export class Settings {
     //opens the file dailog to select a download directory
     openFileDialog(){
         console.log("opening file dialog");        
-        this.backEndService.sendMessage({"action" : "set_download_directory"});
+        //this.backEndService.sendMessage({"action" : "set_download_directory"});
+        this.shareService.showFileDialog();
     }
 
     // not implemented yet

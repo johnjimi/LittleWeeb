@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {NiblService} from '../../services/nibl.service'
 import {ShareService} from '../../services/share.service'
 import {UtilityService} from '../../services/utility.service'
-import {MalService} from '../../services/mal.service'
+import {AniListService} from '../../services/anilist.service'
 import {Subject} from 'rxjs/Rx';
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
@@ -12,32 +12,64 @@ import 'rxjs/add/operator/map';
 @Component({
     selector: 'search',
     template: `
-        <div class="row" style="width: 100%;">
+     <div class="ui grid">
+        <div class="row computer only" style="width: 100%;">
             <div class="ui horizontal divider">SEARCH</div>
             <div class="ui icon input"  style="width: 100%;">
-                <input #searchInput (keyup.enter)="search(searchInput.value)" class="prompt" type="text" placeholder="Search Anime">
+                <input #searchInput1 (keyup.enter)="search(searchInput1.value)" class="prompt" type="text" placeholder="Search Anime">
                 <i class="search icon"></i>
             </div>
         </div>
-        <div *ngIf="showPacks">        
+        <div *ngIf="showPacks" class=" row computer only">        
             <div class="ui horizontal divider"> Search results for {{searchquery}} </div>
             <div class="row">
                 <div class="ui items" id="searchResults" *ngFor="let anime of results">
                     <div (click)="showPackListFor(anime)" class="item" >
                         <div class="ui tiny image"> 
-                            <img src="{{anime.image_url}}" /> 
+                            <img src="{{anime.image_url_med}}" /> 
                         </div>
                         <div class="middle aligned content">
-                            <a class="header">{{anime.title}}</a>
+                            <a class="header">{{anime.title_english}}</a>
                         </div>
                     </div> 
                     <div class="ui divider" > </div>
                 </div>
             </div>
         </div>
-         <div *ngIf="showPacks">        
+        <div *ngIf="showError" class="row computer only">        
             <h3> Sorry, we couldn't find what you searched for :(. </h3>
         </div>
+
+        <div class="row mobile only" style="margin-left: 30%;" >
+            <div class="ui horizontal divider">SEARCH</div>
+            <div class="ui icon input"  style="width: 100%;">
+                <input #searchInput2 (keyup.enter)="search(searchInput2.value)" class="prompt" type="text" placeholder="Search Anime">
+                <i class="search icon"></i>
+            </div>
+        </div>
+        <div *ngIf="showPacks"  class="thirteen wide row mobile only " style="margin-left:20%;">
+            <div class="ui styled accordion"   style=" width: 100%; ">
+                <div class="content">
+                    <div class="ui items"  id="currentlyAiringAnimes"  >      
+                        <div (click)="showPackListFor(anime)" *ngFor="let anime of results" class="item">
+                            <div class="ui grid">
+                                <div class="column four wide">
+                                    <img src="{{anime.image_url_med}}" style="max-width: 100%;"    /> 
+                                </div>
+                                <div class="column ten wide middle aligned"> 
+                                    
+                                    <h3  style="text-align: center;">{{anime.title_english}}</h3>
+                                </div>
+                            </div>      
+                        </div>                       
+                    </div>
+                </div>   
+            </div>
+        </div>
+         <div *ngIf="showError" class="row thirteen wide mobile only" style="margin-left: 20%;" >        
+            <h3> Sorry, we couldn't find what you searched for :(. </h3>
+        </div>
+    </div>
     `,
 })
 export class Search {
@@ -48,7 +80,7 @@ export class Search {
     results : any;
 
     //setup search component
-    constructor(private niblService : NiblService, private shareService : ShareService, private malService : MalService, private router:Router){
+    constructor(private niblService : NiblService, private shareService : ShareService, private aniListService : AniListService, private router:Router){
         this.showPacks = false;
         this.showError = false;
         this.searchquery = "nothing searched";
@@ -79,7 +111,7 @@ export class Search {
                 this.showPacks = false;
                 console.log("searching for: " + searchQuery);
                 this.searchquery = searchQuery;
-                this.results =  await this.malService.searchAnime(searchQuery);
+                this.results =  await this.aniListService.searchAnime(searchQuery);
                 this.shareService.storeSearchToView(this.results);
                 console.log(this.results);
                 this.showPacks = true;
@@ -98,11 +130,9 @@ export class Search {
 
     //when an anime is found and you click on it, show the packlist component
     async showPackListFor(anime : any){
-        console.log(anime);
-        var detailedAnimeInfo = await this.malService.getAnimeInfo(anime.id);
-        console.log(detailedAnimeInfo);
-        var convert = {"title_english" : detailedAnimeInfo.title, "synonyms" : detailedAnimeInfo.other_titles, "type" : anime.type};        
-        this.shareService.setAnimeTitle(detailedAnimeInfo);
+       
+        console.log(anime);     
+        this.shareService.setAnimeTitle(anime);
         this.router.navigate(['packlist']);   
 
     }

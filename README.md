@@ -4,7 +4,7 @@ LittleWeeb is a IRC XDCC Client Purely made for downloading anime. It features a
 
 Be aware that this application is still in development and might still have some issues!
 
-# Atarashii's API seems to be down, so the application is basically useless, I am currently working on changing api from atarashii to anilist, be patient, it will be fixed!
+**Version 0.3.0 is hastly put together release due to atarashii's (public) api going down. Unfortunately I was in the middle of creating/changing the frontend to suit mobile usage and make it possible to run the back-end seperate. Normal usage should be fine, but those two things mentioned are still WIP and could possibly contain quit a few bugs/glitches since I didn't have the time to test them thoroughly.**
 
 # Showcase/Usage
 [YouTube - v0.2.0](https://youtu.be/GbBz1ReDahU)
@@ -17,57 +17,57 @@ Be aware that this application is still in development and might still have some
 [![Episodes View/Packlist View/Anime View - selecting episodes](https://i.imgur.com/eARK88Rl.png)](https://i.imgur.com/eARK88R.png)
 [![Download View](https://i.imgur.com/x7afYadl.png)](https://i.imgur.com/x7afYad.png)
 
-# New Features! V0.2.0 is OUT!
-- Going full JSON :)  (See wiki for backend api if you want to develop your own interface ;D)
-- Made episode ordering/searching better.
-- Used Atarashii's API for currently airing and anime information.
-- Made it more stable ;), mostly under the hood stuff. 
+# New (Functional) Features! V0.3.0 is OUT!
+- Custom build in directory browser (windows independed now).
+- Old menu is back (works better :) )
+- More responsive for mobile use. (still WIP)
+- Additional stand-alone server to be used on a 24/7 server (still WIP)
+- Possibly more things that I am currently forgetting at the moment ;)
  
 **Be aware, since this is still WIP, issues can occur which didn't occur before, please notify me through the issues page!**
 
-**Actual new features that you see!**
-V0.1.3
-- Listing with packs/files now only shows available bots which actually contain episodes!
-- Listing with packs/files now orders per episode!
-- Listing with packs/files can now suggest the best download by hitting the checkbox infront of the episode number!
-- Listing with packs/files can now select all episodes for the current anime at once and does the above for downloading.
-- Listing with packs/files now shows the file size per file
-- The menu now shows next to the Downloads button the amount of files being downloaded
-- The downloads page now shows all already downloaded files
-- The downloads page now shows file size per file
-- Search results now shows per anime, instead of per file. It also shows a nice cover/picture.
-- Removed unecesarry botlist and latest pack view.
-- Added version control, when a new version releases, you get a message!
-- Probably more things which I am forgetting at the moment.
-- Somewhat finished about page, with license and terms of use etc.
-
-V0.2.0
-- Improved loading times
-- No loading again if you view currently airing after first load.
-- Fully detailed anime information
-- High dpi screens now supported
-
+**More technical updates**
+- Added more options for the backend api (see Wiki).
+- Switched API from atarashii to anilist
+- Worked on making the backend more stable 
+- API: added connect and disconnect option, you can now specify which server, username and channels you want to join
+- API: added directory management options: for retreiving, selecting and creating directories.
+- Simplified logging system: now uses one text file.
+- Added seperate irc chat log
+- Did some work on parsing/searching packs from nibl using synonyms available through the api.
 
 
 ### Tech
-
 LittleWeeb uses a number of open source projects to work properly:
 
 **Interface:**
-* [CefSharp](https://cefsharp.github.io/) - A awesome chromium based integrated webbrowser.
-* [websocket-sharp](http://sta.github.io/websocket-sharp/) - A nice websocket library for C#.
 * [Semantic UI](https://semantic-ui.com/)- A slick looking CSS Framework.
 * [jQuery] - unfortunately, semantic ui has a very limited angular implementation which didn't suit the needs for this application.
 * [NIBL API](https://api.nibl.co.uk:8080/swagger-ui.html) - Thanks to nibl.co.uk API and the developer [Jenga201](https://github.com/jenga201) from NIBL to provide me the api and help that I need!
-* [Atarashii API](https://atarashii.toshocat.com/docs/) - Open available api to get anime information.
+* [Anilist API](http://anilist-api.readthedocs.io/en/latest/introduction.html) - To replace atarashii's api.
 
+**Backend:**
 
-### Installation & Usage
+* [CefSharp](https://cefsharp.github.io/) - A awesome chromium based integrated webbrowser.
+* [websocket-sharp](http://sta.github.io/websocket-sharp/) - A nice websocket library for C#.
 
-1. Go to the releases page of this repo, and download the zip file of the lastest version.
+### Installation & Local Usage
+
+1. Go to the releases page of this repo, and download the zip file of the lastest version for local use.
 2. Extract it to wherever you want. * 
 3. Run the application by running the LittleWeeb.exe executable.
 4. Download your anime :D.
+
+*(Do note, the initial download directory is set to the same location where the executable is located,which can be changed in the settings menu, if you put it in your Program Files folder, it might not work correctly if you leave the downlaod directory as is!)
+
+
+### Installation & Server Usage (Should work on every OS that supports MONO)
+
+1. Go to the releases page of this repo, and download the zip file of the lastest version for server use.
+2. Extract it to wherever you want. * 
+3. Run the application by running the LittleWeebServer.exe executable.
+4. Connect to your server with the mentioned ip:port address (which should be visible in console, if not, it is sort of like this: http://yourlocalnetworkip:6010)
+5. Download your anime :D.
 
 *(Do note, the initial download directory is set to the same location where the executable is located,which can be changed in the settings menu, if you put it in your Program Files folder, it might not work correctly if you leave the downlaod directory as is!)
 
@@ -80,7 +80,7 @@ This application is still in development, but I guess worthy to be thrown into t
 
  - Fix bugs with downloading. <- still there, some files might not download very well.
  - Clean up some code. <- well, atleast I made some progress
- - Add support for running the interface and application seperate (so you can run the application on a NAS 24/7 for example).
+ - Add support for running the interface and application seperate (so you can run the application on a NAS 24/7 for example) (It's WIP stage ATM).
  - Add back direct search on nibl.co.uk
  - Not being lazy and continue this project.
 

@@ -1,0 +1,10 @@
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\LittleWeebLibrary.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\LittleWeebLibrary.pdb
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\SimpleIRCLib.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\websocket-sharp.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\SimpleIRCLib.pdb
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\websocket-sharp.xml
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\LittleWeebLibrary.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\LittleWeebLibrary.pdb

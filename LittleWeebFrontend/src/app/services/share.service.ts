@@ -11,8 +11,10 @@ export class ShareService {
     public toastmessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
     public loaderMessage : Subject<string> = new BehaviorSubject<string>(null);
     public modalMessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
+    public showFileDialogEvent : Subject<Boolean> = new BehaviorSubject<Boolean>(null);
     public searchQuery : Subject<string> = new BehaviorSubject<string>(null);
     public botlist : Object;
+    public isLocal : boolean;
 
     private currentlyAiringToView : any;
     private animeToView : any;
@@ -27,6 +29,7 @@ export class ShareService {
         this.searchToView = null;
         this.episodesToView = null;
         this.lastSearch = "";
+        this.isLocal = true;
     }
 
     storeCurrentlyAiring(tostore: any){
@@ -137,6 +140,16 @@ export class ShareService {
     hideModal(){
         var combine = ["HIDE"];
         this.modalMessage.next(combine);
+    }
+
+    //for extras/filedailog.component
+    showFileDialog(){
+        this.showFileDialogEvent.next(true);
+    }
+
+    //for extras/filedailog.component
+    hideFileDialog(){
+        this.showFileDialogEvent.next(false);
     }
 
 }

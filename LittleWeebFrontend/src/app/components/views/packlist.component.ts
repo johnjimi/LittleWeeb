@@ -5,7 +5,7 @@ import {NiblService} from '../../services/nibl.service'
 import {UtilityService} from '../../services/utility.service'
 import {SemanticService} from '../../services/semanticui.service'
 import {BackEndService} from '../../services/backend.service'
-import {MalService} from '../../services/mal.service'
+import {AniListService} from '../../services/anilist.service'
 import {DownloadService} from '../../services/download.service'
 import {Subject} from 'rxjs/Rx';
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
@@ -14,176 +14,339 @@ import 'rxjs/add/operator/map';
 @Component({
     selector: 'packlist',
     template: `
-                <div class="ui horizontal divider" id="animeTitle">Pack List - {{title}}</div>
-                <div class="row" style="text-align: center;" *ngIf="showError">
-                        <h2> No episodes found, please go back and select a anime!</h2>
-                         <h3> If this messages shows when you try to view a second season, try looking at the first season!</h3>
-                         <br />
-                         Due to the way some releasers name their episodes, some episodes can't be categorized in two seperate seasons! 
-                         <br />
-                         For example: There has not been a sub group that releases Fate/Zero seperate as First Season and Second Season, so most likely the second seasons 
-                         <br />
-                         episodes are listed under the first season!
-                </div>
-                <div class="row" *ngIf="showList" >
-                    <div class="ui link cards">
-                        <div class="card"style="max-width: 25%;">
-                            <div class="image">
-                            <img [src]="this.animeInfo.image_url">
-                            </div>
-                            <div class="content">
-                            <div class="header">{{this.animeInfo.title}}</div>
-                            <div class="meta">
-                                <a>Genres</a>
-                            </div>
-                            <div class="description">
-                                <div *ngFor="let genre of this.animeInfo.genres">
-                                    {{genre}},
+            <div class="ui grid" style="min-width: 100%; margin-top: 1%;">
+                    <div class="sixteen wide row computer only" style="text-align: center;" *ngIf="showError">
+                        <h2> No episodes found, please go back and select a anime!</h2> 
+                    </div>
+                    <div class="sixteen wide row computer only" *ngIf="showList" >
+                        <div class="column four wide">
+                            <div class="ui link cards"  style="max-width: 100%;">
+                                <div class="card" style="max-width: 100%;">
+                                    <div class="image">
+                                    <img [src]="this.animeInfo.image_url_lge">
+                                    </div>
+                                    <div class="content">
+                                    <div class="header">{{this.animeInfo.title_english}}</div>
+                                    <div class="meta">
+                                        <a>Genres</a>
+                                    </div>
+                                    <div class="description">
+                                        <div *ngFor="let genre of this.animeInfo.genres">
+                                            {{genre}},
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="extra content">
+                                    <span class="right floated">
+                                    <i class="users icon"></i>
+                                        {{this.animeInfo.popularity}} Members 
+                                    </span>
+                                    <span>
+                                        <i class="star icon"></i>
+                                        Score {{this.animeInfo.mean_score}} 
+                                    </span>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="extra content">
-                            <span class="right floated">
-                            <i class="users icon"></i>
-                                {{this.animeInfo.members_count}} Members 
-                            </span>
-                            <span>
-                                <i class="star icon"></i>
-                                Score {{this.animeInfo.members_score}} 
-                            </span>
+                        </div>
+                        <div class="column twelve wide">
+                            <div class="ui link cards"  style="max-width: 100%; min-height: 100%;">
+                                <div class="card" style="min-width: 100%; min-height: 100%;">
+                                    <div class="image" style=" position:relative; min-width: 100%;  min-height:70%;">
+                                        <iframe  style="position: absolute; height: 100%; width: 100%;" [src]="'https://www.youtube.com/embed/'+ this.animeInfo.youtube_id  | safe" frameborder="0">
+                                        </iframe>
+                                    </div>
+                                    <div class="content" style="min-height: 700px; overflow-y:auto;">
+                                        <div class="header">Synopsis</div>
+                                        <div class="meta">
+                                            <span class="date"></span>
+                                        </div>
+                                        <div class="content" style="overflow-y: auto;">
+
+                                            <div class="description" [innerHtml]="this.animeInfo.description">
+                                            </div>
+                                        </div>
+                                        <div class="extra content">
+                                            <span class="right floated">
+                                                <i class="file video outline icon"></i>
+                                               Status: {{this.animeInfo.airing_status}}
+                                            </span>
+                                            <span>
+                                                <i class="television icon"></i>
+                                                Type: {{this.animeInfo.type}}
+                                            </span>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card" style="min-width: 70%;">
-                            <div class="image" style=" position:relative; min-width: 70%;  min-height:70%;">
-                            <iframe  style="position: absolute; height: 100%; width: 100%;" [src]="this.animeInfo.preview  | safe" frameborder="0">
-                            </iframe>
-                            </div>
-                            <div class="content">
-                            <div class="header">Synopsis</div>
-                            <div class="meta">
-                                <span class="date"></span>
-                            </div>
-                            <div class="description" style="max-height: 60px; overflow-y:scroll;" [innerHtml]="this.animeInfo.synopsis">
-                            </div>
-                            </div>
-                            <div class="extra content">
-                            <span class="right floated">
-                                <i class="file video outline icon"></i>
-                                Episodes: {{this.animeInfo.episodes}}
-                            </span>
-                            <span>
-                                <i class="television icon"></i>
-                                Type: {{this.animeInfo.type}}
-                            </span>
-                            </div>
-                        </div>
+                        <div class="divider ui"></div>
                     </div>
-                </div>
-                <div class="divider ui"></div>
-                <div class="row" *ngIf="showList">
-                    <div class="ui selection dropdown" style="width: 7%;">
-                        <input type="hidden" name="botanime"  style="width: 7%;">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">All Bots</div>
-                        <div class="menu botlist" style="min-width: 7%;" >  
-                            <div class="item" (click)="showBot('all')" >All Bots</div>
-                            <div class="item" *ngFor="let bot of botList"  (click)="showBot(bot)"  >{{bot}}</div>
+                    <div class="sixteen wide row computer only" *ngIf="showList">
+                        <div class="ui selection dropdown" style="width: 7%;">
+                            <input type="hidden" name="botanime"  style="width: 7%;">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">All Bots</div>
+                            <div class="menu botlist" style="min-width: 7%;" >  
+                                <div class="item" (click)="showBot('all')" >All Bots</div>
+                                <div class="item" *ngFor="let bot of botList"  (click)="showBot(bot)"  >{{bot}}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ui selection dropdown" style="width: 7%;"  >
-                        <input type="hidden" name="resolutionAnime"  style="width:7%;">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">All Resolutions</div>
-                        <div class="menu" style="min-width: 7%;">                
-                            <div class="item active" (click)="showResolution('all')">All Resolutions</div>
-                            <div class="item" (click)="showResolution('480')" >480p</div>
-                            <div class="item" (click)="showResolution('720')" >720p</div>
-                            <div class="item" (click)="showResolution('1080')" >1080p</div>
+                        <div class="ui selection dropdown" style="width: 7%;"  >
+                            <input type="hidden" name="resolutionAnime"  style="width:7%;">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">All Resolutions</div>
+                            <div class="menu" style="min-width: 7%;">                
+                                <div class="item active" (click)="showResolution('all')">All Resolutions</div>
+                                <div class="item" (click)="showResolution('480')" >480p</div>
+                                <div class="item" (click)="showResolution('720')" >720p</div>
+                                <div class="item" (click)="showResolution('1080')" >1080p</div>
+                            </div>
                         </div>
+                        <button class="ui inverted blue button" (click)="showAll()"> Show all </button>
+                        <button class="ui inverted blue button" (click)="closeAll()"> Close all</button>
+                        <button class="ui inverted blue button" (click)="batchAll()"> Download Full Anime (Experimental!)</button>
+                        <div class="divider ui"></div>
                     </div>
-                    <button class="ui inverted blue button" (click)="showAll()"> Show all </button>
-                    <button class="ui inverted blue button" (click)="closeAll()"> Close all</button>
-                    <button class="ui inverted blue button" (click)="batchAll()"> Download Full Anime (Experimental!)</button>
-                </div>
-                <div class="divider ui"></div>
-                <div class="row">                    
-                    <div class="ui styled accordion episodeList" id="packs" style=" width: 100%; ">
-                        <div *ngFor="let episodes of episodeList.slice().reverse() ; let i=index; let last = last;"  >
-                            <div class="title" id="{{(episodeList.length - i - 1)}}" *ngIf="episodes !== undefined">
+                    <div class="sixteen wide row computer only">                    
+                        <div class="ui styled accordion episodeList" id="packs" style=" width: 100%; ">
+                            <div *ngFor="let episodes of episodeList.slice().reverse() ; let i=index; let last = last;"  >
+                                <div class="title" id="{{(episodeList.length - i - 1)}}" *ngIf="episodes !== undefined">
+                                    <i class="dropdown icon"></i>
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" class="' + i + '"  (click)="selectBestEpisode(i)" /> 
+                                        <label>Episode {{(episodeList.length - i - 1)}}</label>
+                                    </div>
+                                </div>
+                                <div class="content" *ngIf="episodes !== undefined">
+                                    
+
+                                    <table class="ui very basic table" style="width: 100%; background-color: white;">
+                                        <thead>
+                                            <tr>
+                                            <th style="width: 20%;">Batch Select</th>
+                                            <th style="width: 20%;">Download</th>
+                                            <th style="width: 20%;">Bot</th>
+                                            <th style="width: 20%;">Filename</th>
+                                            <th style="width: 20%;">FileSize</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listWithFiles">
+                                            <tr *ngFor="let episode of episodes; let b=index">
+                                                <ng-container *ngIf="episode.name.indexOf(resolution) > -1 || showAllResolutions">
+                                                    <ng-container *ngIf="episode.botId.indexOf(botname) > -1 || showAllBots"> 
+                                                        <td>
+                                                            <div class="ui checkbox">
+                                                            <input type="checkbox" class="' + b + ' "  (click)="aCheckBoxChecked(episode)" /> 
+                                                            <label>Select</label>
+                                                            </div>
+                                                        </td>
+                                                        <td> 
+                                                            <button class="ui green inverted button" (click)="appendToDownloadsDirectly(episode)"> Download </button>
+                                                        </td>
+                                                        <td>{{episode.botId}}</td>
+                                                        <td>{{episode.name}}</td>
+                                                        <td>{{episode.size}}</td>                  
+                                                    </ng-container>
+                                                </ng-container>
+                                            </tr>                 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>  
+                        </div>                          
+                        <div class="ui divider"> </div>   
+                        <div class="ui styled accordion" id="packs" style=" width: 100%; " *ngIf="movieList.length > 0" >
+                            <div class="title" id="movie">
                                 <i class="dropdown icon"></i>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" class="' + i + '"  (click)="selectBestEpisode(i)" /> 
-                                    <label>Episode {{(episodeList.length - i - 1)}}</label>
+                                    <input type="checkbox" class="movie"  (click)="selectBestMovie()" />
+                                    <label>Movie, OVA's, ONA's, etc...</label>
                                 </div>
                             </div>
-                            <div class="content" *ngIf="episodes !== undefined">
-                                 
-
-                                 <table class="ui very basic table" style="width: 100%; background-color: white;">
-                                    <thead>
-                                        <tr>
-                                        <th style="width: 20%;">Batch Select</th>
-                                        <th style="width: 20%;">Download</th>
-                                        <th style="width: 20%;">Bot</th>
-                                        <th style="width: 20%;">Filename</th>
-                                        <th style="width: 20%;">FileSize</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="listWithFiles">
-                                        <tr *ngFor="let episode of episodes; let b=index">
-                                            <ng-container *ngIf="episode.name.indexOf(resolution) > -1 || showAllResolutions">
-                                                <ng-container *ngIf="episode.botId.indexOf(botname) > -1 || showAllBots"> 
-                                                    <td>
-                                                        <input type="checkbox" class="' + b + ' "  (click)="aCheckBoxChecked(episode)" /> 
-                                                    </td>
-                                                    <td> 
-                                                        <button class="ui green inverted button" (click)="appendToDownloadsDirectly(episode)"> Download </button>
-                                                    </td>
-                                                    <td>{{episode.botId}}</td>
-                                                    <td>{{episode.name}}</td>
-                                                    <td>{{episode.size}}</td>                  
-                                                </ng-container>
+                            <div class="content">
+                                <div class="ui styled accordion movieList" id="moviepacks" style=" width: 100%; ">
+                                    <div *ngFor="let movie of movieList; let b=index" >
+                                        <ng-container *ngIf="movie.name.indexOf(resolution) > -1 || showAllResolutions">
+                                            <ng-container *ngIf="movie.botId.indexOf(botname) > -1 || showAllBots"> 
+                                                <div class="title" >
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="ui checkbox">
+                                                        <input type="checkbox" class="' + b + '"  (click)="aCheckBoxChecked(movie)" />
+                                                        <label>{{movie.botId}} | {{movie.name}} | {{movie.size}}b</label>
+                                                    </div>
+                                                </div>                                           
                                             </ng-container>
-                                        </tr>                 
-                                    </tbody>
-                                </table>
-                            </div>
-                            {{last ? stopLoading(i) : ''}}
-                        </div>  
-                    </div>                          
-                    <div class="ui divider"> </div>   
-                     <div class="ui styled accordion" id="packs" style=" width: 100%; " *ngIf="movieList.length > 0" >
-                        <div class="title" id="movie">
-                            <i class="dropdown icon"></i>
-                            <div class="ui checkbox">
-                                <input type="checkbox" class="movie"  (click)="selectBestMovie()" />
-                                <label>Movie, OVA's, ONA's, etc...</label>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <div class="ui styled accordion movieList" id="moviepacks" style=" width: 100%; ">
-                                <div *ngFor="let movie of movieList; let b=index" >
-                                    <ng-container *ngIf="movie.name.indexOf(resolution) > -1 || showAllResolutions">
-                                        <ng-container *ngIf="movie.botId.indexOf(botname) > -1 || showAllBots"> 
-                                            <div class="title" >
-                                                <i class="dropdown icon"></i>
-                                                <div class="ui checkbox">
-                                                    <input type="checkbox" class="' + b + '"  (click)="aCheckBoxChecked(movie)" />
-                                                    <label>{{movie.botId}} | {{movie.name}} | {{movie.size}}b</label>
-                                                </div>
-                                            </div>                                           
                                         </ng-container>
-                                    </ng-container>
-                                </div>    
-                            </div>  
+                                    </div>    
+                                </div>  
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="sixteen wide row computer only"  style=" width: 100%; position: fixed; bottom:0; background-color: white;" *ngIf="packsSelected" >
+                                
+                    <button class="ui inverted blue button" style=" width: 100%; margin: 0 auto; " (click)="appendToDownloads()"> Start Batch Download of {{selectedItems.length}} downloads</button>
+                        
+                    </div>
+            </div>
+            <div class="ui grid">
+                 
+                <div  class="thirteen wide row tablet mobile only " style="margin-left:30%; margin-top: 10%;">
+                    <div class="row" style="text-align: center;" *ngIf="showError">
+                            <h2> No episodes found, please go back and select a anime!</h2>
+                            <h3> If this messages shows when you try to view a second season, try looking at the first season!</h3>
+                            <br />
+                            Due to the way some releasers name their episodes, some episodes can't be categorized in two seperate seasons! 
+                            <br />
+                            For example: There has not been a sub group that releases Fate/Zero seperate as First Season and Second Season, so most likely the second seasons 
+                            <br />
+                            episodes are listed under the first season!
+                    </div>
+                    <div class="row" *ngIf="showList" style="min-width: 100%;" >
+                        <div class="ui link cards" style="min-width: 100%;">                           
+                            <div class="card" style="min-width: 100%; min-height: 400px;" >
+                                <div class="image" style=" position:relative; min-width: 100%;  min-height:30%;">
+                                <iframe  style="position: absolute; height: 100%; width: 100%;" [src]="'https://www.youtube.com/embed/' + this.animeInfo.youtube_id  | safe" frameborder="0">
+                                </iframe>
+                                </div>
+                                <div class="content"  style="min-height: 150px; overflow-y:auto;">
+                                    <div class="header">{{this.animeInfo.title_english}}</div>
+                                    <div class="meta">
+                                        <a>Information</a>
+                                    </div>
+                                    <div class="description" >
+                                        <span *ngFor="let genre of this.animeInfo.genres">
+                                            {{genre}},
+                                        </span>
+                                        <div [innerHtml]="this.animeInfo.description" style="min-height: 80px; ">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                <span class="right floated">
+                                    <i class="file video outline icon"></i>
+                                   Status: {{this.animeInfo.airing_status}}
+                                </span>
+                                <span>
+                                    <i class="television icon"></i>
+                                    Type: {{this.animeInfo.type}}
+                                </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>       
-                </div>
-                <div class="eleven wide column"  style=" width: 100%; position: fixed; bottom:0; background-color: white;" *ngIf="packsSelected" >
-                             
-                   <button class="ui inverted blue button" style=" width: 100%; " (click)="appendToDownloads()"> Start Batch Download of {{selectedItems.length}} downloads</button>
+                    </div>
+                    <div class="divider ui"></div>
+                    <div class="row" *ngIf="showList">
+                        <div class="ui selection dropdown" style="width: 7%; margin-left: 6%;">
+                            <input type="hidden" name="botanime"  style="width: 7%;">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">All Bots</div>
+                            <div class="menu botlist" style="min-width: 7%;" >  
+                                <div class="item" (click)="showBot('all')" >All Bots</div>
+                                <div class="item" *ngFor="let bot of botList"  (click)="showBot(bot)"  >{{bot}}</div>
+                            </div>
+                        </div>
+                        <div class="ui selection dropdown" style="width: 7%;"  >
+                            <input type="hidden" name="resolutionAnime"  style="width:7%;">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">All Resolutions</div>
+                            <div class="menu" style="min-width: 7%;">                
+                                <div class="item active" (click)="showResolution('all')">All Resolutions</div>
+                                <div class="item" (click)="showResolution('480')" >480p</div>
+                                <div class="item" (click)="showResolution('720')" >720p</div>
+                                <div class="item" (click)="showResolution('1080')" >1080p</div>
+                            </div>
+                        </div>
+                        <button class="ui inverted blue button" style="width: 100%; margin-top: 2px;" (click)="showAll()"> Show all </button>
+                        <button class="ui inverted blue button" style="width: 100%; margin-top: 2px;" (click)="closeAll()"> Close all</button>
+                        <button class="ui inverted blue button" style="width: 100%; margin-top: 2px;" (click)="batchAll()"> Download Full Anime (Experimental!)</button>
+                        <div class="divider ui "></div>
+                    </div>
                     
+                    <div class="row" style="width:100%;">                    
+                        <div class="ui styled accordion episodeList" id="packs" style=" width: 100%; ">
+                            <div *ngFor="let episodes of episodeList.slice().reverse() ; let i=index; let last = last;"  >
+                                <div class="title" id="{{(episodeList.length - i - 1)}}" *ngIf="episodes !== undefined">
+                                    <i class="dropdown icon"></i>
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" class="' + i + '"  (click)="selectBestEpisode(i)" /> 
+                                        <label>Episode {{(episodeList.length - i - 1)}}</label>
+                                    </div>
+                                </div>
+                                <div class="content" *ngIf="episodes !== undefined">
+                                    
+
+                                    <table class="ui unstackable table" style=" border-collapse: separate; border-spacing: 5px 0;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 30%;"> Filename </th>
+                                                <th >Batch Select</th>
+                                                <th >Download</th>
+                                                <th>Bot</th>
+                                                <th >FileSize</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listWithFiles">
+                                            <tr *ngFor="let episode of episodes; let b=index">
+                                                <ng-container *ngIf="episode.name.indexOf(resolution) > -1 || showAllResolutions">
+                                                    <ng-container *ngIf="episode.botId.indexOf(botname) > -1 || showAllBots"> 
+                                                        <td >{{episode.name}}</td>
+                                                        <td> 
+                                                            <div class="ui checkbox">
+                                                                <input type="checkbox" class="' + b + ' "  (click)="aCheckBoxChecked(episode)" />                                                                 
+                                                                <label>Select</label>
+                                                            </div>
+                                                        </td>
+                                                        <td> 
+                                                            <button class="ui green inverted button" (click)="appendToDownloadsDirectly(episode)"> Download </button>
+                                                        </td>
+                                                        <td>{{episode.botId}}</td>
+                                                        
+                                                        <td>{{episode.size}}</td>                  
+                                                    </ng-container>
+                                                </ng-container>
+                                            </tr>                 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>  
+                        </div>                          
+                        <div class="ui divider"> </div>   
+                        <div class="ui styled accordion" id="packs" style=" width: 100%; " *ngIf="movieList.length > 0" >
+                            <div class="title" id="movie">
+                                <i class="dropdown icon"></i>
+                                <div class="ui checkbox">
+                                    <input type="checkbox" class="movie"  (click)="selectBestMovie()" />
+                                    <label>Movie, OVA's, ONA's, etc...</label>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="ui styled accordion movieList" id="moviepacks" style=" width: 100%; ">
+                                    <div *ngFor="let movie of movieList; let b=index" >
+                                        <ng-container *ngIf="movie.name.indexOf(resolution) > -1 || showAllResolutions">
+                                            <ng-container *ngIf="movie.botId.indexOf(botname) > -1 || showAllBots"> 
+                                                <div class="title" >
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="ui checkbox">
+                                                        <input type="checkbox" class="' + b + '"  (click)="aCheckBoxChecked(movie)" />
+                                                        <label>{{movie.botId}} | {{movie.name}} | {{movie.size}}b</label>
+                                                    </div>
+                                                </div>                                           
+                                            </ng-container>
+                                        </ng-container>
+                                    </div>    
+                                </div>  
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="row" style="width:100%; position: fixed; bottom:0; background-color: white;" *ngIf="packsSelected" >
+                                
+                        <button class="ui inverted blue button" style=" min-width: 60%; margin: 0 auto;" (click)="appendToDownloads()"> Start Batch Download of {{selectedItems.length}} downloads</button>
+                        
+                    </div>
                 </div>
+            </div>
 `
 })
 export class PackList {
@@ -212,7 +375,7 @@ export class PackList {
 
     //this component shows a list with packs, it handles batch selecting, best episode/movie selecting, bot and resolution filtering as well as finding anime episodes that are named a bit differently
 
-    constructor(private router: Router, private downloadService : DownloadService, private malService: MalService, private shareService: ShareService, private niblService:NiblService, private utilityService: UtilityService, private semanticui : SemanticService, private backEndService: BackEndService){
+    constructor(private router: Router, private downloadService : DownloadService, private aniListService: AniListService, private shareService: ShareService, private niblService:NiblService, private utilityService: UtilityService, private semanticui : SemanticService, private backEndService: BackEndService){
         console.log("initianted packlist");
         this.botname = "all";
         this.showAllBots = true;
@@ -233,12 +396,12 @@ export class PackList {
                 console.log("got mah anime");
                 console.log(anime);
                 if(anime !== null){
-                    this.shareService.showLoaderMessage("Loading anime: " + anime.title );                    
+                    this.shareService.showLoaderMessage("Loading anime: " + anime.title_english );                    
                     this.showPackListFor(anime);
                 } else {
                     this.title = "No episodes found!";
                     this.showError = true;
-                    this.stopLoading(0);
+                    this.shareService.hideLoader();
                 }
         }); 
     }
@@ -255,7 +418,7 @@ export class PackList {
                     this.animeInfo = this.shareService.getStoredAnimeToView();
                     this.episodeList = this.shareService.getStoredEpisodesToView();
                 } else {                
-                    this.animeInfo = await this.malService.getAnimeInfo(anime.id.toString());
+                    this.animeInfo = await this.aniListService.getAnimeInfo(anime.id.toString());
                     anime = this.animeInfo;
                     shouldParse = true;
                 }
@@ -270,8 +433,10 @@ export class PackList {
             this.showError = false;
             this.showList = true; 
             
+             this.shareService.hideLoader();
         } else if(anime != null) {
-            this.animeInfo = await this.malService.getAnimeInfo(anime.id.toString());
+            this.animeInfo = await this.aniListService.getAnimeInfo(anime.id.toString());
+            console.log(this.animeInfo);
             anime = this.animeInfo;
             shouldParse = true;
             this.showError = false;
@@ -279,32 +444,23 @@ export class PackList {
             shouldParse = false;
             this.showError = true;
             this.showList = false; 
+             this.shareService.hideLoader();
         }
         if(shouldParse){
             
-            this.shareService.showLoaderMessage("Loading anime: " + anime.title ); 
+            this.shareService.showLoaderMessage("Loading anime: " + anime.title_english ); 
             this.episodeList= new Array();
             this.movieList = new Array();
             anime = this.animeInfo;
-            console.log("Running packlist parser for: " + anime.title);
+            console.log("Running packlist parser for: " + anime.title_english);
             //synonym list 
 
             
-            var synonyms = [anime.title];
-            //find every english synonym about anime:
-            for(let othertitles in anime.other_titles.english){
-
-                var englishTitle = anime.other_titles.english[othertitles];
-                
-                this.shareService.showLoaderMessage("Retreiving synonym: " + englishTitle );
-                synonyms.push(englishTitle);
-            }
+            var synonyms = [anime.title_english, anime.title_japanese, anime.title_romaji];
+           
             //find every other synonym about anime:
-            for(let othertitles in anime.other_titles.synonyms){
-                var synonymsTitle = anime.other_titles.synonyms[othertitles];
-                
-                this.shareService.showLoaderMessage("Retreiving synonym: " + synonymsTitle );
-                synonyms.push(synonymsTitle);
+            for(let othertitles of anime.synonyms){                
+                synonyms.push(othertitles);
             }
 
             //create stripped synonyms array
@@ -392,17 +548,25 @@ export class PackList {
 
                 }
                 console.log("prequel: " + anime.prequels[0].anime_id);
-                episodeCountPreviousSeason = await this.malService.getAnimeInfo(anime.prequels[0].anime_id);
+                episodeCountPreviousSeason = await this.aniListService.getAnimeInfo(anime.prequels[0].anime_id);
             }
 
+            for(let synonym of synonyms){
+                if(synonym.indexOf(":") > -1 || synonym.indexOf("-")){
+                    strippedSynonyms.push(this.utilityService.stripName(synonym.split(':')[0]));
+                    strippedSynonyms.push(this.utilityService.stripName(synonym.split('-')[0]));
+                }
+            }
+
+           
+            strippedSynonyms = strippedSynonyms.filter(function(val,ind) { return strippedSynonyms.indexOf(val) == ind; }).filter(function(n){ return n != undefined }).filter(function(element){return element.length > 3}); ;
             
             this.shareService.showLoaderMessage("Generated " + strippedSynonyms.length + " search queries. ");
 
-            console.log(strippedSynonyms);
+         //   console.log(strippedSynonyms);
             //getting all bots available, in the next for loops used to compare to the found files, so that only the bots which contain the files are shown.
             var bots = await this.niblService.getBotListSync();
 
-            
             //makes it easier on the loop for getting the bot (Doesn't have to roll through the botlist over and over for each file)
             var botsWithId = {};
 
@@ -411,7 +575,6 @@ export class PackList {
                 botsWithId[bot.id] = bot.name;
             }
 
-            this.stopLoading(0);
             this.shareService.showLoaderMessage("Retreived " + bots.length + " amount of bots. ");
 
             var addedFileIds = [];
@@ -422,13 +585,30 @@ export class PackList {
                 var strippedSynonymsIndex = 1;
                 for(let synonym of strippedSynonyms){  
                     
-                    this.stopLoading(0);
                     this.shareService.showLoaderMessage("Search query " + strippedSynonymsIndex + " of " + strippedSynonyms.length + " executing.");                                                                                                     //go trough each synonym.
                     var filesFound = await this.niblService.getSearchAnimeResultsSync(synonym);                                                
                     if(filesFound.length > 0){                                                                                                              //make sure there are actual files to parse (not null)
-                        for(let file of filesFound){                                                                                                        //go through each file
-                            if(this.utilityService.compareNames(this.utilityService.stripName(file.name), synonym) >=30){                                                                  //compare filename with synonym
-                                                                            //season is either first season or a combined season.
+                        for(let file of filesFound){  
+                            
+                            var filenameToCompare = "";
+                            var synonymToCompare = "";
+                            var wordsInSynonym = synonym.split(' ');
+                            var wordsInFileName = this.utilityService.stripName(file.name).split(' ');
+
+                            if(wordsInSynonym.length > 3){
+                                synonymToCompare = wordsInSynonym.splice(0, 3).join(' ');
+                            } else {
+                                synonymToCompare = synonym;
+                            }
+
+                            if(wordsInFileName.length > 3){
+                                filenameToCompare = wordsInFileName.splice(0,3).join(' ');
+                            } else {
+                                filenameToCompare = this.utilityService.stripName(file.name).toString();
+                            }
+                            
+                            if(this.utilityService.compareNames(filenameToCompare, synonymToCompare) > 25){                                                                  //compare filename with synonym
+                                console.log("filename: " + filenameToCompare + " compared to syonym: " + synonymToCompare + " == " +this.utilityService.compareNames(filenameToCompare, synonymToCompare) )          ;                                   //season is either first season or a combined season.
                                 var botname = botsWithId[file.botId];                                                                           //get name of bot where file is stored
                             
                                 if(botname === undefined){
@@ -467,7 +647,6 @@ export class PackList {
                 }
 
 
-                this.stopLoading(0);
                 this.shareService.showLoaderMessage("Parsing and ordering the files. ");     
                 if( tempListEpisodeList.length != 0){
 
@@ -578,33 +757,24 @@ export class PackList {
                     this.semanticui.enableAccordion();
                     this.semanticui.enableDropDown();
                     this.showList = true; 
-                    
-                    this.stopLoading(0);
-                    
-                    this.stopLoading(0);
+                       this.shareService.hideLoader();
                     
                 } else {
                     this.showError = true;
-                    
-                    this.stopLoading(0);
+                       this.shareService.hideLoader();
                 }
         
             } catch (e){
                 this.semanticui.enableAccordion();
                 this.semanticui.enableDropDown();
                 this.showError = true;
+                   this.shareService.hideLoader();
                 
-                    this.stopLoading(0);
             }
             
-            this.stopLoading(0);
             
         }
-        this.stopLoading(0);
-    }
-
-    stopLoading(stop:any){
-        this.shareService.hideLoader();
+     
     }
 
     //show all episodes

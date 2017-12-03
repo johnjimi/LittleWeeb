@@ -5,19 +5,20 @@ import {ShareService} from '../services/share.service'
 @Component({
     selector: 'menutag',
     template: `
-        <img src="http://orig13.deviantart.net/76a3/f/2013/232/d/9/shinobu_oshino_by_tobuei-d6ixzsk.png" style="position:fixed; top:10px; margin-left: 2%; width: 200px;" />
-        <div style="margin-top: 110px;"></div>
-        <div class="ui grey  vertical menu " style=" width: 200px; margin-left: 2%;  position:fixed;">
-          <div class="ui horizontal divider">
-            Little Weeb
-          </div>
-          <div *ngFor="let menuItem of menuItems">
-            <a class="item" routerLink="{{menuItem.view}}" routerLinkActive="active">
-                <i class="{{menuItem.icon}} icon "></i> {{menuItem.title}}
-            </a>
-          </div>
+
+    <div style="width: 200px; height: 100%; position: relative: overflow-y: hidden;">    
+        <div class="ui grey secondary vertical pointing menu" style=" width: 218px; height: 100%; position: fixed; overflow-y: auto; ">
+            <img src="http://orig13.deviantart.net/76a3/f/2013/232/d/9/shinobu_oshino_by_tobuei-d6ixzsk.png" style=" width: 200px;" />
+            <div class="ui horizontal divider">
+                Little Weeb
+            </div>
+            <div *ngFor="let menuItem of menuItems">
+                <a class="item" routerLink="{{menuItem.view}}" routerLinkActive="active">
+                    <i class="{{menuItem.icon}} icon "></i> {{menuItem.title}}
+                </a>
+            </div>
         </div>
-        
+    </div>  
     `,
 })
 export class MenuComponent {
@@ -95,7 +96,7 @@ export class MenuComponent {
                 try{
 
                     this.menuItems[2] =  {
-                        title: anime.title,
+                        title: anime.title_english,
                         icon: 'add to calendar',
                         view : 'packlist'
                     };

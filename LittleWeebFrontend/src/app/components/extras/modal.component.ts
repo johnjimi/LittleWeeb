@@ -3,13 +3,12 @@ import {ShareService} from '../../services/share.service'
 import {SemanticService} from '../../services/semanticui.service'
 @Component({
     selector: 'modal',
-    template: `<div class="ui basic modal">
+    template: `<div class="ui basic modal message">
                     <div class="ui icon header">
                         <i class="{{messageIcon}} icon" ></i>
                         {{messageTitle}}
                     </div>
-                    <div class="content" style="text-align: center;">
-                        <p>{{messageBody}}</p>
+                    <div class="content" style="text-align: center;" [innerHtml]="messageBody">
                     </div>
                     <div class="actions" [innerHtml]="actions">
                     </div>
@@ -23,7 +22,7 @@ export class Modal {
     actions : string;
     //shows a modal screen with a message and possible actions 
     constructor(private shareService:ShareService, private semanticService:SemanticService){
-        this.semanticService.hideModal('.ui.basic.modal');
+        this.semanticService.hideModal('.ui.basic.modal.message');
         this.shareService.modalMessage.subscribe(message=>{
             
                     
@@ -36,9 +35,9 @@ export class Modal {
                      this.messageBody= message[1];
                      this.messageIcon = message[2];
                      this.actions = message[3];
-                     this.semanticService.showModal('.ui.basic.modal');
+                     this.semanticService.showModal('.ui.basic.modal.message');
                 } else {
-                     this.semanticService.hideModal('.ui.basic.modal');
+                     this.semanticService.hideModal('.ui.basic.modal.message');
                 }
             } 
         });
