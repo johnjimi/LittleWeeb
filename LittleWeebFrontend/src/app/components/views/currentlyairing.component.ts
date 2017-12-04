@@ -105,7 +105,6 @@ export class CurrentlyAiring {
             if(this.shareService.getStoredCurrentlyAiring() == null){
                     
                 data = await this.aniListService.getCurrentlyAiring();
-                console.log(data);
                 this.shareService.storeCurrentlyAiring(data);
 
                 
@@ -115,9 +114,7 @@ export class CurrentlyAiring {
             }
             if(data != false){
                 var dayArray = new Array(7);
-                console.log(this.today);
                 for(let anime of data){
-                    console.log(anime);
                     try{
                         var convertToDate = Date.parse(anime.airing.time);
                         var d = new Date(convertToDate);
@@ -130,11 +127,9 @@ export class CurrentlyAiring {
                         }
                         
                     } catch (e){
-                        console.log("Anime is not airing : " + anime.title_english);
                     }
                    
                 }
-                console.log(dayArray);
                 this.airingAnime = dayArray;
                 
                 this.semanticui.enableAccordion();       
@@ -143,7 +138,6 @@ export class CurrentlyAiring {
                 
                 var d = new Date();
                 var today = d.getDay();
-                console.log(today);
                 this.semanticui.openAccordion(today);
                 clearInterval(tempInterval);
                

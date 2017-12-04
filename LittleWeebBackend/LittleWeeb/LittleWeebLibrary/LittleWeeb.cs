@@ -16,10 +16,11 @@ namespace LittleWeebLibrary
         private IrcHandler irchandler;
         private SettingsHandler settings;
         private SimpleWebServer httpserver;
+        public static bool isLocal{ get; set; }
 
-        public LittleWeebInit()
+        public LittleWeebInit(bool local)
         {
-
+            isLocal = local;
             //initialize debugging
             InitializeDebugging();
             //initialize sharing between classes

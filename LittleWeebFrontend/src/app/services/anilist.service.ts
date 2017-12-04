@@ -33,7 +33,6 @@ export class AniListService {
             var expires = res.json().expires_in;
             this.timeAccessGranted =  new Date().getTime() / 1000;
             this.timeAccessExpires = this.timeAccessGranted + expires;
-            console.log(this.accessToken);
 
         });
     }
@@ -46,7 +45,7 @@ export class AniListService {
             if(this.timeAccessExpires > currenttime){
                 
                 const response = await this.http.get( encodeURI('https://anilist.co/api/anime/search/' + search.trim().toLowerCase() + '?access_token=' + this.accessToken)).toPromise();
-                console.log(response);
+             
                 return response.json();
 
             } else {
@@ -66,7 +65,7 @@ export class AniListService {
                 const response = await this.http.get( encodeURI('https://anilist.co/api/anime/' + id + '?access_token=' + this.accessToken)).toPromise();
                 var unparsed = JSON.stringify(response);
                 var json = JSON.parse(unparsed.split('{"_body":"')[1].split('","status"')[0].replace(/\\"/g, "\"").replace(/\\\\/g, "\\"));
-                console.log(json);
+             
                 return response.json();
             } else {
                 this.requestToken();
@@ -85,8 +84,7 @@ export class AniListService {
                 const response = await this.http.get( encodeURI('https://anilist.co/api/browse/anime?status=Currently Airing&full_page=true&airing_data=true&genres_exclude=Hentai&access_token=' + this.accessToken)).toPromise();
                 var unparsed = JSON.stringify(response);
                 var json = JSON.parse(unparsed.split('{"_body":"')[1].split('","status"')[0].replace(/\\"/g, "\"").replace(/\\\\/g, "\\"));
-                //.split('{"_body":"')[1].split('","status"')[0]
-                console.log(json);
+          
                 return json;
             } else {
                 this.requestToken();

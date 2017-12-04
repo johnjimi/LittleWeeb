@@ -38,7 +38,7 @@ namespace LittleWeebServer
                     Console.WriteLine("Thanks for using LittleWeeb, if issues occur, please notify the developer here:");
                     Console.WriteLine("https://github.com/EldinZenderink/LittleWeeb/issues");
 
-                    LittleWeebInit init = new LittleWeebInit();
+                    LittleWeebInit init = new LittleWeebInit(false);
 
                     Console.WriteLine("Press a key to exit!");
                     Console.ReadLine();

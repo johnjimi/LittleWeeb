@@ -1,0 +1,2 @@
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebFrontend\obj\Debug\LittleWeebFrontEnd.njsprojResolveAssemblyReference.cache
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebFrontend\bin\Microsoft.NodejsTools.WebRole.dll

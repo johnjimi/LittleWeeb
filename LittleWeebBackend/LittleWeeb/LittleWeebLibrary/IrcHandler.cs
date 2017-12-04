@@ -15,13 +15,14 @@ namespace LittleWeebLibrary
         private WebSocketServer websocketserver;
         private UtitlityMethods usefullstuff;
         private bool shouldStopClient = false;
+        private bool isLocal;
         public bool isBussyConnecting = false;
 
         private Thread downloaderLogicThread = null;
         public IrcHandler()
         {
-            
 
+            isLocal = LittleWeebInit.isLocal;
             websocketserver = SharedData.websocketserver;
             irc = SharedData.irc;
 
@@ -52,14 +53,8 @@ namespace LittleWeebLibrary
                 update.channel = "";
             }
 
-            if (SharedData.operatingSystem == "Windows")
-            {
-                update.local = true;
-            }
-            else
-            {
-                update.local = false;
-            }
+
+            update.local = isLocal;
             SharedData.AddToMessageList(JsonConvert.SerializeObject(update, Formatting.Indented));
         }
 
@@ -145,14 +140,7 @@ namespace LittleWeebLibrary
                     update.server = irc.newIP + ":" + irc.newPort;
                     update.user = irc.newUsername;
                     update.channel = irc.newChannel;
-                    if (SharedData.operatingSystem == "Windows")
-                    {
-                        update.local = true;
-                    }
-                    else
-                    {
-                        update.local = false;
-                    }
+                    update.local = isLocal;
                     SharedData.AddToMessageList(JsonConvert.SerializeObject(update, Formatting.Indented));
                     break;
                 }
@@ -173,10 +161,7 @@ namespace LittleWeebLibrary
 
         private void chatOutputCallback(string user, string message)
         {
-            if (!File.Exists(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ircchatlog.txt")))
-            {
-                File.Create(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ircchatlog.txt"));
-            }
+        
 
             using (StreamWriter sw = File.AppendText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ircchatlog.txt")))
             {
@@ -217,6 +202,8 @@ namespace LittleWeebLibrary
 
 
             SharedData.AddToMessageList(JsonConvert.SerializeObject(update, Formatting.Indented));
+
+            Debug.WriteLine("DEBUG-IRCHANDLER: Download upsate: " + JsonConvert.SerializeObject(update, Formatting.Indented));
         }
 
         private void userListReceivedCallback(string[] users) //see below for definition of each index in this array

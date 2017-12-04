@@ -18,9 +18,11 @@ namespace LittleWeebLibrary
         private Thread checkMessagesToSend = null;
         private UtitlityMethods utilityMethods = null;
         private Thread makeSureConnection = null;
+        private bool isLocal;
 
         public WebSocketHandler() 
         {
+            isLocal = LittleWeebInit.isLocal;
             irc = SharedData.irc;
             utilityMethods = new UtitlityMethods();
             SharedData.AddToMessageList("HELLO LITTLE WEEB");
@@ -59,15 +61,22 @@ namespace LittleWeebLibrary
 
         protected override void OnClose(CloseEventArgs e)
         {
-            Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: CLIENT DISCONNECTED!");
-            try
+            if (!isLocal)
             {
-                SharedData.websocketserver.Stop();
-                SharedData.websocketserver.Start();
+                Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: CLIENT DISCONNECTED!");
+                try
+                {
+                    Thread.Sleep(1000);
+                    SharedData.websocketserver.Stop();
+                    Thread.Sleep(1000);
+                    SharedData.websocketserver.Start();
 
-            } catch(Exception ex)
-            {
-                Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: WUPS, PROBABLY HAPPENS WHEN CLOSING LITTLEWEEB: " + ex.ToString());
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("WSDEBUG-WEBSOCKETHANDLER: WUPS, PROBABLY HAPPENS WHEN CLOSING LITTLEWEEB: " + ex.ToString());
+                }
+
             }
         }
 
@@ -91,14 +100,7 @@ namespace LittleWeebLibrary
                 update.channel = "";
             }
 
-            if (SharedData.operatingSystem == "Windows")
-            {
-                update.local = true;
-            }
-            else
-            {
-                update.local = false;
-            }
+            update.local = isLocal;
             SharedData.AddToMessageList(JsonConvert.SerializeObject(update, Formatting.Indented));
         }
 
@@ -242,14 +244,9 @@ namespace LittleWeebLibrary
                     update.user = "";
                     update.channel = "";
                 }
-                    
-                if(SharedData.operatingSystem == "Windows")
-                {
-                    update.local = true;
-                } else
-                {
-                    update.local = false;
-                }
+
+
+                update.local = isLocal;
 
                 SharedData.AddToMessageList(JsonConvert.SerializeObject(update, Formatting.Indented));
             }

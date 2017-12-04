@@ -7,3 +7,21 @@ c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWe
 c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.exe
 c:\users\eldin-desktop\documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.pdb
 C:\Users\Eldin-Desktop\Documents\visual studio 2017\Projects\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.Form1.resources
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\LittleWeeb.exe.config
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\LittleWeeb.exe
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\LittleWeeb.pdb
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\FluentFTP.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\LittleWeebLibrary.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\websocket-sharp.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\FluentFTP.xml
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\LittleWeebLibrary.pdb
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\websocket-sharp.xml
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.Form1.resources
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.Properties.Resources.resources
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.csproj.GenerateResource.Cache
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.exe
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\obj\Debug\LittleWeeb.pdb
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\SimpleIRCLib.dll
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug\SimpleIRCLib.pdb
