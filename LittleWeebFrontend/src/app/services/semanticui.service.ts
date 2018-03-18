@@ -69,4 +69,10 @@ export class SemanticService {
         $( classToClick ).on('click', functionToExecute);
     }
 
+    activatePopUp(element : string){
+       $(element).popup({
+            on: 'hover'
+        });
+    }
+
 }

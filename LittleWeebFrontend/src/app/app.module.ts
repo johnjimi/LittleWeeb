@@ -4,14 +4,11 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {ToasterModule, ToasterService} from 'angular2-toaster';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 //main components
 import { AppComponent }  from './app.component';
 
-//body components
-import { MenuComponent } from './components/menu.component';
 
 //view components
 import { CurrentlyAiring } from './components/views/currentlyairing.component';
@@ -20,6 +17,7 @@ import { Downloads } from './components/views/downloads.component';
 import { Settings } from './components/views/settings.component';
 import { About } from './components/views/about.component';
 import { PackList } from './components/views/packlist.component';
+import { Favorites } from './components/views/favorites.component';
 
 //extra components
 import { Toaster } from './components/extras/toaster.component';
@@ -36,6 +34,7 @@ import {MalService} from './services/mal.service'
 import {VersionService} from './services/versioncheck.service'
 import {DownloadService} from './services/download.service'
 import {AniListService} from './services/anilist.service'
+import {KitsuService} from './services/kitsu.service'
 
 //import pipes
 import {SafePipe} from './pipes/safe.pipe'
@@ -47,11 +46,16 @@ const appRoutes: Routes = [
     path: 'currentlyairing',
     component: CurrentlyAiring,
     data: { title: 'Currently Airing' }
-  },
+  }, 
   {
     path: 'search',
     component: Search,
     data: { title: 'Search' }
+  },
+  {
+    path: 'favorites',
+    component: Favorites,
+    data: { title: 'Favorites' }
   },
   {
     path: 'downloads',
@@ -80,10 +84,10 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports:      [ BrowserModule,  RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, HttpModule, CommonModule, ToasterModule, BrowserAnimationsModule, NoopAnimationsModule],
-  declarations: [ AppComponent, MenuComponent, CurrentlyAiring, Search, Downloads, Settings, About, PackList, Toaster, Loader, Modal, FileDialog, SafePipe, KeysPipe ],
+  imports:      [  BrowserModule,  RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, HttpModule, CommonModule, BrowserAnimationsModule, NoopAnimationsModule],
+  declarations: [ AppComponent, CurrentlyAiring, Search, Favorites, Downloads, Settings, About, PackList,  Loader, Modal, FileDialog, Toaster, SafePipe, KeysPipe ],
   bootstrap:    [ AppComponent ],
-  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, MalService, VersionService, DownloadService, AniListService]
+  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, MalService, VersionService, DownloadService, AniListService, KitsuService]
 })
 export class AppModule { }
 

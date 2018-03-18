@@ -1,0 +1,4 @@
+LilleWeebie.MainActivity, LilleWeebie;md564b1d206bed4377639769c28946fed12.MainActivity
+LilleWeebie.MainActivity, LilleWeebie, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md564b1d206bed4377639769c28946fed12.MainActivity
+LilleWeebie.MainActivity;md564b1d206bed4377639769c28946fed12.MainActivity
+lilleweebie.MainActivity;md564b1d206bed4377639769c28946fed12.MainActivity

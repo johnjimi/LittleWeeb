@@ -3,13 +3,8 @@ import {ShareService} from '../../services/share.service'
 import {SemanticService} from '../../services/semanticui.service'
 @Component({
     selector: 'loader',
-    template: `
-                <div class="ui dimmer" [ngClass]="{active: showLoader}" style="height: 100%; width: 100%;" [ngStyle]="{'z-index': zindex}">
-                    <div class="ui massive text loader">{{message}}</div>
-                </div>
-                <p></p>
-                <p></p>
-                <p></p>`,
+    templateUrl: './html/loader.component.html',
+    styleUrls: ['./css/loader.component.css']
 })
 
 //these should be shown in the main component/parent component (in this case thats app.component.ts)
@@ -26,21 +21,26 @@ export class Loader {
                
                 if(message != "HIDELOADER"){
                      //showloader with message
-                     this.message = message;
-                     this.showLoader = true;
-                     this.zindex = 100;
-                     semanticService.showObject('.element');
+                     this.openLoader(message);
                 } else {
-                     this.showLoader = false;
-                     semanticService.hideObject('.element');
-                     this.zindex = -100;
+                     this.closeLoader();
                 }
             } else {
-                this.message =  "Loading";
-                this.showLoader = true;
-                this.zindex = 100;
-                semanticService.showObject('.element');
+               this.openLoader("Loading");
             }
         });
+    }
+
+    closeLoader(){
+        this.showLoader = false;
+        this.semanticService.hideObject('.element');
+        this.zindex = -100;
+    }
+
+    openLoader(message: string){
+        this.message =  message;
+        this.showLoader = true;
+        this.zindex = 100;
+        this.semanticService.showObject('.element');
     }
 }

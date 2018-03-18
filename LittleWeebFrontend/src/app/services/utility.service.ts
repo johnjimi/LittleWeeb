@@ -46,60 +46,88 @@ export class UtilityService {
     }
 
     stripName(input : String){
+
         try{
-            if(input.indexOf('.') > -1){
-                input = input.split('.')[0];
-            }
-        } catch(e){
+            input = input.toLocaleLowerCase();
+        } catch (e){
 
         }
         
         try{
-            while(input.indexOf('[') > -1){ 
-            if (input.indexOf('[') > -1)
-            {
-                if (input.indexOf(']') > -1)
+            while(input.indexOf('(') > -1){
+                if (input.indexOf('(') > -1)
                 {
-                    input = input.split('[')[0] + input.split(']')[1];
-                } else {
-                    input = input.split('[')[0] + input.split('[')[1]; 
+                    if (input.indexOf(')') > -1)
+                    {
+                        input = input.split('(')[0] + input.split(')')[1];
+                    } else {
+                        input = input.split('(')[0] + input.split('(')[1];
+                    }
                 }
             }
+        } catch (e){}
+        try{
+            while(input.indexOf('[') > -1){ 
+                if (input.indexOf('[') > -1)
+                {
+                    if (input.indexOf(']') > -1)
+                    {
+                        input = input.split('[')[0] + input.split(']')[1];
+                    } else {
+                        input = input.split('[')[0] + input.split('[')[1]; 
+                    }
+                }
+            }
+        } catch(e){
+
+        }
+       
+        try{
+            if(input.indexOf(".mkv") > -1){
+                input = input.split('.mkv')[0];
+            }
+            if(input.indexOf(".avi") > -1){
+                input = input.split('.avi')[0];
+            }
+            if(input.indexOf(".mp4") > -1){
+                input = input.split('.mp4')[0];
             }
         } catch(e){
 
         }
         try{
-            while(input.indexOf('(') > -1){
-            if (input.indexOf('(') > -1)
-            {
-                if (input.indexOf(')') > -1)
-                {
-                    input = input.split('(')[0] + input.split(')')[1];
-                } else {
-                    input = input.split('(')[0] + input.split('(')[1];
-                }
+            if(input.indexOf("_") > -1){
+                input = input.replace('_', ' ');
             }
-            }
-        } catch (e){}
-       
+        } catch(e){
+
+        }
+
         try{
-            if (input.indexOf("E0") > -1)
+            if(input.indexOf(".") > -1){
+                input = input.replace('.', ' ');
+            }
+        } catch(e){
+
+        }
+      
+        try{
+            if (input.indexOf("e0") > -1)
             {
                 try
                 {
 
-                    input = input.split("E0")[0] + input.split("E0")[1].substring(2);
+                    input = input.split("e0")[0] + input.split("e0")[1].substring(2);
                 } catch(e)
                 {
                     try
                     {
 
-                        input = input.split("E0")[0] + input.split("E0")[1].substring(1);
+                        input = input.split("e0")[0] + input.split("e0")[1].substring(1);
                     }
                     catch(e)
                     {
-                        input = input.split("E0")[0] + input.split("E0")[1];
+                        input = input.split("e0")[0] + input.split("e0")[1];
                     }
                 }
             }
@@ -144,15 +172,33 @@ export class UtilityService {
             }
         } catch (e){}
         try{
-            if (input.indexOf("3D") > -1)
+            if (input.indexOf("848x48") > -1)
             {
-                input = input.split("3D")[0] + input.split("3D")[1];
+                input = input.split("848x48")[0] + input.split("848x48")[1];
             }
         } catch (e){}
         try{
-            if (input.indexOf("BD") > -1)
+            if (input.indexOf("8bit") > -1)
             {
-                input = input.split("BD")[0] + input.split("BD")[1];
+                input = input.split("8bit")[0] + input.split("8bit")[1];
+            }
+        } catch (e){}
+        try{
+            if (input.indexOf("3d") > -1)
+            {
+                input = input.split("3d")[0] + input.split("3d")[1];
+            }
+        } catch (e){}
+        try{
+            if (input.indexOf("bd") > -1)
+            {
+                input = input.split("bd")[0] + input.split("bd")[1];
+            }
+        } catch (e){}
+         try{
+            if (input.indexOf("dvd") > -1)
+            {
+                input = input.split("dvd")[0] + input.split("dvd")[1];
             }
         } catch (e){}
         try{
@@ -336,5 +382,123 @@ export class UtilityService {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
 
         return text;
+    }
+
+    stripFreeNumbers(str1: any){
+        var splitted = str1.split(' ');
+        var newstr = "";
+        for(var x = 0; x < splitted.length; x++){
+            if(isNaN(splitted[x])){
+                newstr = newstr + ' ' + splitted[x];
+            }
+        }
+        return newstr.trim();
+    }
+
+    numberToWords(num : number){
+        let ONE_TO_NINETEEN = [
+            "one", "two", "three", "four", "five",
+            "six", "seven", "eight", "nine", "ten",
+            "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+            "sixteen", "seventeen", "eighteen", "nineteen"
+        ];
+
+        let TENS = [
+            "ten", "twenty", "thirty", "forty", "fifty",
+            "sixty", "seventy", "eighty", "ninety"
+        ];
+
+        let toreturn= "";
+        if(num > 19){
+            toreturn += TENS[(num / 10) - 1];            
+            toreturn += ONE_TO_NINETEEN[(num - ((num / 10) * 10) - 1)];
+        } else {
+            toreturn = ONE_TO_NINETEEN[num - 1];
+        }
+
+
+        return toreturn;
+
+    }
+
+     numberToWordsWithOrdinal(num : number){
+        let ONE_TO_NINETEEN = [
+            "first", "second", "thrird", "fourth", "fifth",
+            "sixth", "seventh", "eighth", "ninth", "tenth",
+            "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth",
+            "sixteenth", "seventeenth", "eighteenth", "nineteenth"
+        ];
+
+        let TENSROUNDED = [
+            "tenth", "twentieth", "thirtieth", "fortieth", "fiftieth",
+            "sixtieth", "seventieth", "eightieth", "ninetieth"
+        ];
+
+        let TENS = [
+            "ten", "twenty", "thirty", "forty", "fifty",
+            "sixty", "seventy", "eighty", "ninety"
+        ];
+
+        let toreturn= "";
+        if(num > 19){
+
+            if(num - (num / 10) == 0){
+                toreturn = TENSROUNDED[(num / 10) - 1]; 
+            } else {                
+                toreturn += TENS[(num / 10) - 1];            
+                toreturn += ONE_TO_NINETEEN[(num - ((num / 10) * 10) - 1)];
+            }
+        } else {
+            toreturn = ONE_TO_NINETEEN[num - 1];
+        }
+
+
+        return toreturn;
+
+    }
+
+    numberToRoman(num : number){
+        let ONE_TO_NINETEEN = [
+        "i", "ii", "iii", "iv", "v",
+        "vi", "vii", "viii", "ix", "x",
+        "xi", "xii", "xiii", "xiv", "xv",
+        "xvi", "xvii", "xviii", "xix"
+        ];
+
+        let TENS = [
+        "x", "xx", "xxx", "xl", "l",
+        "lx", "lxx", "lxxx", "xc"
+        ];
+
+        let toreturn= "";
+        if(num > 19){
+            toreturn += TENS[(num / 10) - 1];            
+            toreturn += ONE_TO_NINETEEN[(num - ((num / 10) * 10)) - 1];
+        } else {
+            toreturn = ONE_TO_NINETEEN[num - 1];
+        }
+
+
+        return toreturn;
+
+    }
+
+     numberToOrdinal(num : number){
+         
+        let rd = [3, 23];
+        let nd = [2, 22];
+        let st = [1, 21, 31, 41, 51, 61, 71, 81, 91];
+
+
+        if(rd.indexOf(num) > -1){
+            return "rd";
+        } else if(nd.indexOf(num) > -1){
+            return "nd";
+        }else if(st.indexOf(num) > -1){
+            return "st";
+        } else {
+            return "th";
+        }
+
     }
 }

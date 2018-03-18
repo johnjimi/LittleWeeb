@@ -3,16 +3,8 @@ import {ShareService} from '../../services/share.service'
 import {SemanticService} from '../../services/semanticui.service'
 @Component({
     selector: 'modal',
-    template: `<div class="ui basic modal message">
-                    <div class="ui icon header">
-                        <i class="{{messageIcon}} icon" ></i>
-                        {{messageTitle}}
-                    </div>
-                    <div class="content" style="text-align: center;" [innerHtml]="messageBody">
-                    </div>
-                    <div class="actions" [innerHtml]="actions">
-                    </div>
-                </div>`,
+    templateUrl: './html/modal.component.html',
+    styleUrls: ['./css/modal.component.css']
 })
 //these should be shown in the main component/parent component (in this case thats app.component.ts)
 export class Modal {

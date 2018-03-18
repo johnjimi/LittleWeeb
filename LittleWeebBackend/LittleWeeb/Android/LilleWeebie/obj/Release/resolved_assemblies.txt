@@ -1,0 +1,17 @@
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\LilleWeebie.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\Java.Interop.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\Mono.Android.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\mscorlib.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\SunIRCLibrary.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\System.Core.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\System.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\System.Xml.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\System.Xml.Linq.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\System.Runtime.Serialization.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\websocket-sharp.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\SimpleIRCLib.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\Newtonsoft.Json.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\System.Data.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\System.Numerics.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\Mono.Security.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\Microsoft.CSharp.dll

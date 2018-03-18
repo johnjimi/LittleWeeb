@@ -8,3 +8,4 @@ C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\Lit
 C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\websocket-sharp.xml
 C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\LittleWeebLibrary.dll
 C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\LittleWeebLibrary.pdb
+C:\Users\Eldin-Desktop\Documents\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\LittleWeebLibrary.csprojResolveAssemblyReference.cache

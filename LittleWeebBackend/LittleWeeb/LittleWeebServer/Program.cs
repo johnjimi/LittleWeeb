@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using LittleWeebLibrary;
+using SunIRCLibrary;
 using System.Reflection;
 using System.IO;
 
@@ -38,7 +38,7 @@ namespace LittleWeebServer
                     Console.WriteLine("Thanks for using LittleWeeb, if issues occur, please notify the developer here:");
                     Console.WriteLine("https://github.com/EldinZenderink/LittleWeeb/issues");
 
-                    LittleWeebInit init = new LittleWeebInit(false);
+                    SunIRCInit init = new SunIRCInit(false);
 
                     Console.WriteLine("Press a key to exit!");
                     Console.ReadLine();

@@ -1,0 +1,64 @@
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\LilleWeebie.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\LilleWeebie.pdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\LilleWeebie.LilleWeebie.apk
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\LilleWeebie.LilleWeebie-Signed.apk
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\SunIRCLibrary.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\websocket-sharp.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\SimpleIRCLib.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\Newtonsoft.Json.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\SunIRCLibrary.pdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\SunIRCLibrary.dll.mdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\SimpleIRCLib.pdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\LilleWeebie.csproj.CoreCompileInputs.cache
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\LilleWeebie.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\LilleWeebie.pdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\bin\LilleWeebie.LilleWeebie.apk
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\res\layout\main.xml
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\res\values\strings.xml
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\res\drawable\icon.png
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\R.cs.flag
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\uploadflags.txt
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\LilleWeebie.csprojResolveAssemblyReference.cache
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\LilleWeebie.dll.mdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\SimpleIRCLib.dll.mdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\LilleWeebie.dll.mdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\SimpleIRCLib.dll.mdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Release\android\assets\SunIRCLibrary.dll.mdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Release\LilleWeebie.dll
+bin\Release\Mono.Android.pdb
+bin\Release\mscorlib.pdb
+bin\Release\System.Core.pdb
+bin\Release\System.pdb
+bin\Release\System.Web.Services.pdb
+bin\Release\System.Xml.pdb
+bin\Release\System.Xml.Linq.pdb
+bin\Release\System.Net.Http.pdb
+bin\Release\System.Runtime.Serialization.pdb
+bin\Release\System.ServiceModel.Internals.pdb
+bin\Release\System.Data.pdb
+bin\Release\System.Numerics.pdb
+bin\Release\System.Transactions.pdb
+bin\Release\Mono.Data.Tds.pdb
+bin\Release\Mono.Security.pdb
+bin\Release\Microsoft.CSharp.pdb
+bin\Release\System.ComponentModel.Composition.pdb
+obj\Release\linksrc\LilleWeebie.dll.mdb
+obj\Release\linksrc\SunIRCLibrary.dll.mdb
+obj\Release\linksrc\SimpleIRCLib.dll.mdb
+obj\Release\linksrc\Mono.Android.pdb
+obj\Release\linksrc\mscorlib.pdb
+obj\Release\linksrc\System.Core.pdb
+obj\Release\linksrc\System.pdb
+obj\Release\linksrc\System.Web.Services.pdb
+obj\Release\linksrc\System.Xml.pdb
+obj\Release\linksrc\System.Xml.Linq.pdb
+obj\Release\linksrc\System.Net.Http.pdb
+obj\Release\linksrc\System.Runtime.Serialization.pdb
+obj\Release\linksrc\System.ServiceModel.Internals.pdb
+obj\Release\linksrc\System.Data.pdb
+obj\Release\linksrc\System.Numerics.pdb
+obj\Release\linksrc\System.Transactions.pdb
+obj\Release\linksrc\Mono.Data.Tds.pdb
+obj\Release\linksrc\Mono.Security.pdb
+obj\Release\linksrc\Microsoft.CSharp.pdb
+obj\Release\linksrc\System.ComponentModel.Composition.pdb

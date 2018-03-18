@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import {Subject} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/Rx';
 import {ShareService} from './share.service'
+import {UtilityService} from './utility.service'
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
@@ -22,7 +23,7 @@ export class NiblService {
     packsForBot : Object;
     observable : any;
     //service to get and request information from the nibl.co.uk api!
-    constructor(private http: Http,private shareService: ShareService){
+    constructor(private http: Http,private shareService: ShareService, private utilityService:UtilityService){
         console.log("Nibl Service Initialiazed...");
         this.date = new Date();
         this.month = this.date.getMonth();
@@ -97,6 +98,30 @@ export class NiblService {
     async getBotNameSync(id : number){
         const response = await this.http.get('https://api.nibl.co.uk:8080/nibl/bots/' + id).toPromise();
         return response.json().content.name;
+    }
+
+    getLatestEpisodes(id: number){
+        this.observable = this.http.get('https://api.nibl.co.uk:8080/nibl/packs/' + id).map(res => {
+            this.observable = null;
+            var eplist = res.json();
+            var listWithEpisodeNames = [];
+            for(let ep of eplist.content){
+                if(ep.name.indexOf('720') >= 0){
+                    var strp1 = this.utilityService.stripName(ep.name);
+                    var strp2 = this.utilityService.stripFreeNumbers(strp1);
+                    listWithEpisodeNames.push(strp2);
+                }
+            }
+            var reverse = listWithEpisodeNames.reverse();
+            var withoutDuplicates = reverse.filter(function(item, index) {
+                if (reverse.indexOf(item) == index)
+                    return item;
+            });
+            console.log(reverse);
+            return reverse;
+        }).share();
+        return this.observable;
+
     }
 
 

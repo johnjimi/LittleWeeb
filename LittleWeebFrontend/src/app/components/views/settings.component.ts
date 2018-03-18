@@ -13,50 +13,98 @@ import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'settings',
-    template: `<div class="ui horizontal divider"> SETTINGS </div>
-            <div class="ui form">
-              <div class="field">
-                <label>Custom Server - Where this UI is connected to. (NOT WORKIN (WIP))</label>
-                <input style="width: 90%;" id="customServer" type="text" name="customServer" placeholder="Default: Local - Example: x.x.x.x"> 
-                <button style="width: 8%;" class="ui primary button" (click)="setCustomServer()">Set</button>
-              </div>
-              <div class="field">
-                <label>Download Location</label>
-                <input style="width: 90%;" id="downloadLocation" type="text" name="downloadLocation" placeholder="{{downloadlocation}}"> 
-                <button style="width: 8%;" class="ui primary button" (click)="openFileDialog()">Select</button>
-              </div>
-              <div class="field">
-                <label>Custom Channel(s) - Seperate with ',' (NOT WORKIN (WIP))</label>
-                <input style="width: 90%;" id="customServer" type="text" name="customChannels" placeholder="Default: horriblesubs,nibl,news"> 
-                <button style="width: 8%;" class="ui primary button" (click)="setChannels()">Set</button>
-              </div>
-            </div>`,
+    templateUrl: './html/settings.component.html',
+    styleUrls: ['./css/settings.component.css']
 })
 export class Settings {
 
     downloadlocation : string;
+    strictnessValue : number = 25;
+
+    address: string = "irc.rizon.net";
+    channels: string = "#nibl,#horriblesubs,#news";
+    username : string = "";
+    connectionStatus : string = "Disconnected.";
+
+    customDirPerAnimeCheckBox : boolean = false;
 
     //setup the settings component
     constructor(private backEndService: BackEndService, private shareService: ShareService){
-        this.downloadlocation = "Directory";
+        this.downloadlocation = "Waiting for back-end";
+        this.strictnessValue = this.shareService.searchStrictness;
     }
 
     //on init, request the current download directory from backend
     ngOnInit(){
+        
+        let baseDownloadDirBe = this.shareService.getDataLocal("baseDownloadDir");
+
         this.backEndService.websocketMessages.subscribe((message) => {
             if(message !== null){
                 if(message.type == "irc_data"){
+                    if(!baseDownloadDirBe){
+                        this.shareService.storeDataLocal("baseDownloadDir", message.downloadlocation);
+                    } 
+                    
                     this.downloadlocation = message.downloadlocation;
+
+                    if(message.connected){
+                        this.connectionStatus = "Connected.";
+                    } else {
+                        this.connectionStatus = "Disconnected.";
+                    }
                 }
             }
         });
         this.backEndService.sendMessage({"action" : "get_irc_data"});
+        let currentConnectionSettingsString= this.shareService.getDataLocal("custom_irc_connection");
+        if(currentConnectionSettingsString != false){
+
+            let currentConnectionSettings = JSON.parse(currentConnectionSettingsString);
+            this.address = currentConnectionSettings.address;
+            this.channels = currentConnectionSettings.channels;
+            this.username = currentConnectionSettings.username;
+        }
+
+        let customDirPerAnime = this.shareService.getDataLocal("CustomDirectoryPerAnime");
+        if(!customDirPerAnime){
+            this.shareService.storeDataLocal("CustomDirectoryPerAnime", "enabled");
+        } else {
+            if(customDirPerAnime == "enabled"){
+                this.customDirPerAnimeCheckBox = true;
+            } else {
+                this.customDirPerAnimeCheckBox = false;
+            }
+        }
+        
+     
+
+
     }
 
     ngOnDestroy(){
         
         //this.backEndService.websocketConnected.unsubscribe();
         //this.backEndService.websocketMessages.unsubscribe();
+    }
+
+    toggleCustomDirectoryPerAnime(){
+        let customDirPerAnime = this.shareService.getDataLocal("CustomDirectoryPerAnime");
+        console.log("custom dir check clicked");
+        console.log(customDirPerAnime);
+        if(!customDirPerAnime){
+            this.shareService.storeDataLocal("CustomDirectoryPerAnime", "enabled");
+        } else {
+            if(customDirPerAnime == "enabled"){
+                this.customDirPerAnimeCheckBox = false;
+                this.shareService.storeDataLocal("CustomDirectoryPerAnime", "disabled");
+                console.log("disabled custom dir");
+            } else {
+                this.customDirPerAnimeCheckBox = true;
+                this.shareService.storeDataLocal("CustomDirectoryPerAnime", "enabled");
+                console.log("enabled custom dir");
+            }
+        }
     }
 
     //opens the file dailog to select a download directory
@@ -67,13 +115,35 @@ export class Settings {
     }
 
     // not implemented yet
-    setCustomServer(){
-        console.log("to be implemented");
-    }    
-    
-    // not implemented yet
-    setChannels(){
-        console.log("to be implemented");
+    setCustomConnection(){
+        let newConnection = {address : this.address, channels: this.channels, username: this.username};
+        this.shareService.storeDataLocal("custom_irc_connection", JSON.stringify(newConnection));
+        this.connectToIrcServer();
     }
+
+    connectToIrcServer(){
+        this.backEndService.sendMessage({"action" : "connect_irc", "extra" : {address : this.address, channels: this.channels, username: this.username}});
+    }
+
+    disconnectIrcServer(){
+        this.backEndService.sendMessage({"action" : "disconnect_irc"});
+    }
+
+    setSliderValue(value :number){
+        console.log("Strictness: " + value);
+        this.shareService.searchStrictness = value;
+        this.strictnessValue = value;
+    }
+
+    setDefaultConnection(){
+        let newConnection = {address : "irc.rizon.net", channels: "#nibl, #horriblesubs, #news", username: ""};
+        this.address = newConnection.address;
+        this.channels = newConnection.channels;
+        this.username = newConnection.username;
+        this.shareService.storeDataLocal("custom_irc_connection", JSON.stringify(newConnection));
+        this.connectToIrcServer();
+    }
+
+
     
 }

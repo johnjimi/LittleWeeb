@@ -32,14 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LittleWeebLibrary">
-      <HintPath>..\LittleWeebLibrary\bin\Debug\LittleWeebLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleIRCLib">
-      <HintPath>..\..\..\..\..\GitHub\SimpleIRCLib\SimpleIRCLib\bin\Debug\SimpleIRCLib.dll</HintPath>
+    <Reference Include="SimpleIRCLib, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Debug\SimpleIRCLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SunIRCLibrary">
+      <HintPath>..\..\..\..\SunIRC Library\SunIRCLibrary\bin\Debug\SunIRCLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,9 +51,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="websocket-sharp">
-      <HintPath>..\packages\WebSocketSharp.1.0.3-rc11\lib\websocket-sharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

@@ -59,28 +59,38 @@ export class DownloadService {
 
             }
 
-            if(message.type == "already_downloaded"){
+            if(message.type == "downloaded_directories"){
                 console.log(message);
-                this.alreadyDownloaded = [];
-                for(let file of message.alreadyDownloaded){
-                    this.alreadyDownloaded.push(file);
-                    console.log(file);
-                }
-                console.log(this.alreadyDownloaded);
-                this.updateAlreadyDownloadedList.next(this.alreadyDownloaded);
+                this.updateAlreadyDownloadedList.next(message);
             }
         });
     }
 
     addDownload(download: any){
         this.downloadQue.push(download);
-        this.backendService.sendMessage({"action": "add_download", "extra" : download});
+
+        let customDirPerAnime = this.shareService.getDataLocal("CustomDirectoryPerAnime");
+        console.log("custom dir check clicked");
+        console.log(customDirPerAnime);
+        if(!customDirPerAnime){
+            this.shareService.storeDataLocal("CustomDirectoryPerAnime", "enabled");
+        } else {
+            if(customDirPerAnime == "enabled"){
+                
+                this.backendService.sendMessage({"action": "add_download", "extra" : download});
+            } else {
+
+                download.dir = "NoSeperateDirectories";                
+                this.backendService.sendMessage({"action": "add_download", "extra" : download});
+            }
+        }
+
         this.shareService.updateAmountOfDownloads(this.downloadQue.length);
        
     }
 
     removeDownload(download: any){
-        this.backendService.sendMessage({"action" : "delete_download", "extra" : download});
+        this.backendService.sendMessage({"action" : "delete_file", "extra" : download});
         let obj = this.downloadQue.find(x => x.id == download.id);               
         let index = this.downloadQue.indexOf(obj);
         this.downloadQue.splice(index, 1);

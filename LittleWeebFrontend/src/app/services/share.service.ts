@@ -7,7 +7,9 @@ export class ShareService {
 
     public packlistsub : Subject<string> = new BehaviorSubject<string>(null);
     public animetitlesub : Subject<any> = new BehaviorSubject<any>(null);
+    public updatetitle : Subject<string> = new BehaviorSubject<string>(null);
     public downloadamount : Subject<number> = new BehaviorSubject<number>(null);
+    public favoriteamount : Subject<number> = new BehaviorSubject<number>(null);
     public toastmessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
     public loaderMessage : Subject<string> = new BehaviorSubject<string>(null);
     public modalMessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
@@ -15,12 +17,19 @@ export class ShareService {
     public searchQuery : Subject<string> = new BehaviorSubject<string>(null);
     public botlist : Object;
     public isLocal : boolean;
+    public searchStrictness : number = 25;
+    public baseDownloadDirectory :string;
+
+    public defaultResolution : string = '720p';
 
     private currentlyAiringToView : any;
     private animeToView : any;
     private episodesToView: any[];
+    private moviesToView : any[];
     private searchToView : any;
     private lastSearch : string;
+    private favoritecount : number = 0;
+    
 
     //this service shares information between different components, be it services, views or extras.
     constructor(){
@@ -32,16 +41,21 @@ export class ShareService {
         this.isLocal = true;
     }
 
+
     storeCurrentlyAiring(tostore: any){
         this.currentlyAiringToView = tostore;
     }
-    storeAnimeToView(currentAnime: any, episodes:any[]){
+
+    storeAnimeToView(currentAnime: any, episodes:any[], movies:any[]){
         this.animeToView = currentAnime;
         this.episodesToView = episodes;
+        this.moviesToView = movies;
     }
+
     storeSearchToView(tostore: any){
         this.searchToView = tostore;
     }
+    
     storeSearchRequest(tostore: string){
         this.lastSearch = tostore;
         this.searchQuery.next(this.lastSearch);
@@ -57,6 +71,10 @@ export class ShareService {
 
     getStoredEpisodesToView(){
         return this.episodesToView;
+    }
+
+    getStoredMoviesToView(){
+        return this.moviesToView;
     }
 
     getStoredSearchToView(){
@@ -150,6 +168,71 @@ export class ShareService {
     //for extras/filedailog.component
     hideFileDialog(){
         this.showFileDialogEvent.next(false);
+    }
+
+    addFavoriteAnime(fullanime: any){
+        let getCurrentFavorites = this.getDataLocal("favorites");
+        if(!getCurrentFavorites){
+            let newFavoritesObject = {"favorites" : [fullanime]};
+            this.storeDataLocal("favorites", JSON.stringify(newFavoritesObject));
+            this.favoritecount++;
+            this.favoriteamount.next(this.favoritecount);
+        } else {
+            let currentFavorites = JSON.parse(getCurrentFavorites);
+            let found = false;
+            for(let currentfavorite of currentFavorites.favorites){
+                if(currentfavorite.id == fullanime.id){
+                    found = true;
+                    break;
+                }
+            }
+            if(!found){
+                currentFavorites.favorites.push(fullanime);
+                this.storeDataLocal("favorites", JSON.stringify(currentFavorites));
+            }
+            this.favoritecount = currentFavorites.favorites.length;
+            this.favoriteamount.next(this.favoritecount);
+        }
+    }
+
+    getFavoritAnimeCount(){
+        let getCurrentFavorites = this.getDataLocal("favorites");
+        if(getCurrentFavorites){
+             let currentFavorites = JSON.parse(getCurrentFavorites);
+             this.favoritecount = currentFavorites.favorites.length;
+             this.favoriteamount.next(this.favoritecount);
+        }
+    }
+
+    removeFavoriteAnime(id : string){
+        let getCurrentFavorites = this.getDataLocal("favorites");
+        if(getCurrentFavorites){
+            let currentFavorites = JSON.parse(getCurrentFavorites);
+
+            let index = 0;
+            for(let currentFavorite of currentFavorites.favorites){
+                if(currentFavorite.id == id){
+                    break;
+                }
+                index++;
+            }
+
+            currentFavorites.favorites.splice(index, 1);
+
+            this.storeDataLocal("favorites", JSON.stringify(currentFavorites));
+            
+            this.favoritecount = currentFavorites.favorites.length;
+            this.favoriteamount.next(this.favoritecount);
+        }    
+    }
+
+    //LocalStorage Stuff
+    storeDataLocal(key:string, data:string){
+        return localStorage.setItem(key, data) || false;
+    }
+
+    getDataLocal(key : string){
+        return localStorage.getItem(key) || false;
     }
 
 }

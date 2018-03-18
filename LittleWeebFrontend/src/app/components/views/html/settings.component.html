@@ -1,0 +1,54 @@
+<div class="ui basic segment ">
+    <div class="ui horizontal divider"> STATUS </div>
+      
+    <h5>IRC Connection Status: </h5> {{connectionStatus}}
+
+    <div class="ui horizontal divider"> SETTINGS </div>
+    <div class="ui form">
+        
+        <div class="field margin-top-1">
+            <label>Download Location</label>
+            <input  class="text-input-setting" id="downloadLocation" type="text" name="downloadLocation" placeholder="{{downloadlocation}}"> 
+        </div>
+        <div class="field margin-top-1">
+            <label>Actions:</label>
+            <button class="ui primary button" (click)="openFileDialog()">Select</button>
+            <hr />
+             <div class="ui checkbox" (click)="toggleCustomDirectoryPerAnime()">
+                <input type="checkbox"  [checked]="customDirPerAnimeCheckBox" /> 
+                <label> Custom Directory Per Anime </label>
+            </div>
+        </div>
+
+        
+        <div class="ui divider"> </div>  
+        <div class="field margin-top-1">
+            <label>Custom IRC Server - Where the IRC server is connected to</label>
+            <input  class="text-input-setting" id="customServer" type="text" name="customServer" (ngModel)="address" [value]="address"> 
+        </div>
+        <div class="field margin-top-1">
+            <label>Custom Channel(s) - Seperate with ','.</label>
+            <input class="text-input-setting" id="customChannels" type="text" name="customChannels" (ngModel)="channels" [value]="channels"> 
+        </div>
+        <div class="field margin-top-1">
+            <label>Custom Username - Username to use to connect to a IRC server.</label>
+            <input class="text-input-setting" id="customUsername" type="text" name="customUsername" (ngModel)="username" [value]="username" > 
+        </div>
+            
+        <div class="field margin-top-1">
+            <label>Actions:</label>
+            <button class="ui primary button" (click)="setCustomConnection()">Save & Connect</button>
+            <button class="ui primary button" (click)="connectToIrcServer()">Connnect</button>
+            <button class="ui primary button" (click)=" disconnectIrcServer()">Disconnect</button>
+            <button class="ui primary button" (click)=" setDefaultConnection()">Default</button>
+        </div>
+        <div class="ui divider"> </div>  
+        <div class="field margin-top-2">
+            <label>Set strictness for searching anime files.(Lower means less strict with filenames, can include not related file names if < 25%)</label>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" [value]="strictnessValue" class="slider" id="stricntess" #ref (change)="setSliderValue(ref.value)">
+                <p>Value: {{strictnessValue}}%</p>
+            </div>
+        </div>
+    </div>
+</div>

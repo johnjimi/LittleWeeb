@@ -1,0 +1,31 @@
+<div class="ui basic segment ">
+    <div class="row computer only min-width-100" >
+        <div class="ui horizontal divider">SEARCH</div>
+        <div class="ui icon input min-width-100" >
+            <input #searchInput1 (keyup.enter)="search(searchInput1.value)" class="prompt" type="text" placeholder="Search Anime">
+            <i class="search icon"></i>
+        </div>
+    </div>
+    <div *ngIf="showPacks" class=" row computer only">        
+       <div class="ui basic segment ">
+            <div class="ui horizontal divider"> Search results for {{searchquery}} </div>
+            <div class="ui divider"> </div>
+            <div class="ui link cards " >
+                                
+                <div class="card tooltip card-custom-width-ssml-currentlyairing" *ngFor="let anime of results.data" (click)="showPackListFor(anime)" (mouseenter)="setPopUpContent(anime.attributes.titles.en_jp)"   >
+                    <span class="tooltiptext">{{fulltitle}}</span>
+                    <div class="image" >
+                        <img src="{{anime.attributes.posterImage.small}}" class="cover-size-ssml" /> 
+                    </div>
+                    <div class="content card-content-height-lrg">
+                        <div class="card-content-text">{{anime.attributes.titles.en_jp}}</div>
+                    </div>       
+                </div>        
+            </div>
+        </div>
+        
+    </div>
+    <div *ngIf="showError" class="row computer only">        
+        <h3> Sorry, we couldn't find what you searched for :(. </h3>
+    </div>  
+</div>

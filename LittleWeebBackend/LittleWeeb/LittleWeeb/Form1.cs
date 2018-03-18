@@ -4,21 +4,21 @@ using CefSharp;
 using CefSharp.WinForms;
 using System.IO;
 using System.Diagnostics;
-using LittleWeebLibrary;
+using SunIRCLibrary;
 
 namespace LittleWeeb
 {
     public partial class Form1 : Form
     {
         private readonly ChromiumWebBrowser chromeBrowser;
-        public LittleWeebInit littleWeeb;
+        public SunIRCInit littleWeeb;
         public Form1()
         {
 
 
             InitializeComponent();
             //at the initialization , start chromium
-
+           
             //initialize index html
             String index = string.Format(@"GUI/index.html", Application.StartupPath);
             if (!File.Exists(index))
@@ -64,7 +64,7 @@ namespace LittleWeeb
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            this.littleWeeb = new LittleWeebInit(true);
+            this.littleWeeb = new SunIRCInit(false);
 
         }
 
