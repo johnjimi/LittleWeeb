@@ -171,6 +171,10 @@
     max-width: 100% !important;
 }
 
+.height-100{
+    height: 100% !important;
+}
+
 .max-height-100{
     max-height: 100% !important;
 }
@@ -231,7 +235,7 @@
 }
 
 .overflow-x-hidden{
-    overflow-y: hidden!important;
+    overflow-x: hidden!important;
 }
 
 .overflow-y-scrollable{
@@ -239,7 +243,7 @@
 }
 
 .overflow-x-scrollable{
-    overflow-y: scroll!important;
+    overflow-x: scroll!important;
 }
 
 /* global positioning */
@@ -250,6 +254,10 @@
 
 .position-fixed{
     position: fixed !important;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
 }
 
 .bottom-0{
@@ -285,27 +293,27 @@
     width: 90% !important;
 }
 
-/* packlist.component */
-.card-content-desktop-packlist{
+/* animeinfo.component */
+.card-content-desktop-animeinfo{
     min-height: 700px !important; 
     overflow-y:auto !important;
 }
 
-.card-content-mobile-packlist{
+.card-content-mobile-animeinfo{
     min-height: 150px !important; 
     overflow-y:auto !important;
 }
 
-.description-mobile-packlist{
+.description-mobile-animeinfo{
     min-height: 80px !important;
 }
 
-.dropdown-mobile-spacing-packlist{
+.dropdown-mobile-spacing-animeinfo{
     width: 7% !important;
     margin-left: 6% !important;
 }
 
-.stackable-table-mobile-packlist{
+.stackable-table-mobile-animeinfo{
     border-collapse: separate !important; 
     border-spacing: 5px 0 !important;
 }
@@ -537,6 +545,12 @@
     position: fixed !important;
 }
 
+
+.stuck-to-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+ }
 
 /* Some stuff to hide stuff on mobile and large screens n' stuff */
 @media screen and (min-height: 480px) and (orientation:landscape) {

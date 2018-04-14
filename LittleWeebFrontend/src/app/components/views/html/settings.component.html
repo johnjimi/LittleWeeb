@@ -10,16 +10,6 @@
             <label>Download Location</label>
             <input  class="text-input-setting" id="downloadLocation" type="text" name="downloadLocation" placeholder="{{downloadlocation}}"> 
         </div>
-        <div class="field margin-top-1">
-            <label>Actions:</label>
-            <button class="ui primary button" (click)="openFileDialog()">Select</button>
-            <hr />
-             <div class="ui checkbox" (click)="toggleCustomDirectoryPerAnime()">
-                <input type="checkbox"  [checked]="customDirPerAnimeCheckBox" /> 
-                <label> Custom Directory Per Anime </label>
-            </div>
-        </div>
-
         
         <div class="ui divider"> </div>  
         <div class="field margin-top-1">
@@ -43,12 +33,22 @@
             <button class="ui primary button" (click)=" setDefaultConnection()">Default</button>
         </div>
         <div class="ui divider"> </div>  
-        <div class="field margin-top-2">
-            <label>Set strictness for searching anime files.(Lower means less strict with filenames, can include not related file names if < 25%)</label>
-            <div class="slidecontainer">
-                <input type="range" min="1" max="100" [value]="strictnessValue" class="slider" id="stricntess" #ref (change)="setSliderValue(ref.value)">
-                <p>Value: {{strictnessValue}}%</p>
+        <div class="field margin-top-1">
+            <label>LocalStorage:</label>
+            <div class="ui selection dropdown" >
+                <input type="hidden" name="localstorageSelector" class="fixed-width-150">
+                <i class="dropdown icon"></i>
+                <div class="default text">Select LocalStorage Type:</div>
+                <div class="menu botlist min-width-7"  >  
+                    <div class="item" *ngFor="let key of localStorageKeys"  (click)="showKey(key)"  >{{key}}</div>
+                </div>
             </div>
+            <button class="ui primary button" (click)="resetStorage()">Reset Selected</button>
         </div>
+        <div class="field">
+            <label>Local Storage Value:</label>
+            <textarea>{{localStorageData}}</textarea>
+        </div>
+      
     </div>
 </div>

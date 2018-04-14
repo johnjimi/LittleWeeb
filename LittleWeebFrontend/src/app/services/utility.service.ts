@@ -1,4 +1,11 @@
 import {Injectable} from '@angular/core';
+/**
+ * (SERVICE) UtilityService
+ * Service that has multiple methods that aren't directly related to a specific Component
+ * 
+ * @export
+ * @class UtilityService
+ */
 @Injectable()
 export class UtilityService {
     
@@ -7,6 +14,14 @@ export class UtilityService {
         
     }
 
+    /**
+     * Compares two strings
+     * 
+     * @param {String} str1 (string 1 to compare)
+     * @param {String} str2 (string 2 gets compared to string 1)
+     * @returns {number} (Returns percentage as number that tells how equal the two strings are)
+     * @memberof UtilityService
+     */
     compareNames(str1:String, str2:String){
         try{
             str1 = this.stripName(str1.replace(/\s/g, ''));
@@ -45,6 +60,18 @@ export class UtilityService {
         
     }
 
+    /**
+     * Strips a string from all it's special characters, makes it lower case and remove certain characters and content between those characters, such as:
+     * (*)
+     * [*]
+     * Removes file extension.
+     * Removes episode information (S*E*, s*e*)
+     * Removes resolution (1080,720,480,848)
+     * Removes media format (BD, DVD, 3D, 8bit)
+     * @param {String} input (string to parse)
+     * @returns {String} (parsed string)
+     * @memberof UtilityService
+     */
     stripName(input : String){
 
         try{
@@ -374,6 +401,14 @@ export class UtilityService {
         return input.toLowerCase();;
     }
 
+    /**
+     * Generates unique id using two strings together as a possible values
+     * 
+     * @param {string} str1 (string to use)
+     * @param {string} str2 (string to use)
+     * @returns {string} (generated id)
+     * @memberof UtilityService
+     */
     generateId(str1 : string, str2 : string){
         var text = "";
         var possible = this.stripName(str1 + str2);
@@ -384,6 +419,13 @@ export class UtilityService {
         return text;
     }
 
+    /**
+     * Remove any numbers surround by (blank) space within a string.
+     * 
+     * @param {*} str1 (string to remove free numbers from)
+     * @returns {string} (string without free numbers)
+     * @memberof UtilityService
+     */
     stripFreeNumbers(str1: any){
         var splitted = str1.split(' ');
         var newstr = "";
@@ -395,6 +437,13 @@ export class UtilityService {
         return newstr.trim();
     }
 
+    /**
+     * Converts a number to a word as string
+     * 
+     * @param {number} num (number to convert)
+     * @returns {string} (string with number as word)
+     * @memberof UtilityService
+     */
     numberToWords(num : number){
         let ONE_TO_NINETEEN = [
             "one", "two", "three", "four", "five",
@@ -421,7 +470,14 @@ export class UtilityService {
 
     }
 
-     numberToWordsWithOrdinal(num : number){
+    /**
+     * Converts a number to a word with ordinal as string 
+     * 
+     * @param {number} num (number to convert)
+     * @returns {string} (string with number as word with ordinal)
+     * @memberof UtilityService
+     */
+    numberToWordsWithOrdinal(num : number){
         let ONE_TO_NINETEEN = [
             "first", "second", "thrird", "fourth", "fifth",
             "sixth", "seventh", "eighth", "ninth", "tenth",
@@ -457,6 +513,13 @@ export class UtilityService {
 
     }
 
+    /**
+     * Converts a number to a roman word as string 
+     * 
+     * @param {number} num (number to convert)
+     * @returns {string} (string with number as roman word)
+     * @memberof UtilityService
+     */
     numberToRoman(num : number){
         let ONE_TO_NINETEEN = [
         "i", "ii", "iii", "iv", "v",
@@ -483,7 +546,14 @@ export class UtilityService {
 
     }
 
-     numberToOrdinal(num : number){
+    /**
+     * Converts number to a string with only the ordinal
+     * 
+     * @param {number} num (number to convert)
+     * @returns {string} (string with only ordinal of number)
+     * @memberof UtilityService
+     */
+    numberToOrdinal(num : number){
          
         let rd = [3, 23];
         let nd = [2, 22];

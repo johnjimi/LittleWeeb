@@ -26,7 +26,8 @@ F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\D
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SunIRCLibrary.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.csproj.CoreCompileInputs.cache
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.exe.config
-F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.csprojResolveAssemblyReference.cache
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.dll
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.xml
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.csproj.CopyComplete
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.csprojResolveAssemblyReference.cache

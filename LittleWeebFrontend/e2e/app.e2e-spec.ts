@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('little-weeb-angular App', () => {
+describe('little-weeb-front-end App', () => {
   let page: AppPage;
 
   beforeEach(() => {

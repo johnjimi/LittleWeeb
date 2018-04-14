@@ -1,5 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * (PIPE) keys 
+ * Allows for reading keys of json object using ngFor within a html template
+ * 
+ * @export
+ * @class KeysPipe
+ * @implements {PipeTransform}
+ */
 @Pipe({name: 'keys'})
 export class KeysPipe implements PipeTransform
 {

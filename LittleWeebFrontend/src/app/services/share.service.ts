@@ -2,11 +2,17 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/Rx';
 
+/**
+ * (SERVICE) ShareService
+ * This service is meant to be used for sharing information between components and services.
+ * 
+ * @export
+ * @class ShareService
+ */
 @Injectable()
 export class ShareService {
 
-    public packlistsub : Subject<string> = new BehaviorSubject<string>(null);
-    public animetitlesub : Subject<any> = new BehaviorSubject<any>(null);
+    public animetoshow : Subject<any> = new BehaviorSubject<any>(null);
     public updatetitle : Subject<string> = new BehaviorSubject<string>(null);
     public downloadamount : Subject<number> = new BehaviorSubject<number>(null);
     public favoriteamount : Subject<number> = new BehaviorSubject<number>(null);
@@ -15,224 +21,150 @@ export class ShareService {
     public modalMessage : Subject<string[]> = new BehaviorSubject<string[]>(null);
     public showFileDialogEvent : Subject<Boolean> = new BehaviorSubject<Boolean>(null);
     public searchQuery : Subject<string> = new BehaviorSubject<string>(null);
-    public botlist : Object;
     public isLocal : boolean;
-    public searchStrictness : number = 25;
     public baseDownloadDirectory :string;
 
     public defaultResolution : string = '720p';
 
-    private currentlyAiringToView : any;
-    private animeToView : any;
-    private episodesToView: any[];
-    private moviesToView : any[];
-    private searchToView : any;
-    private lastSearch : string;
+  
     private favoritecount : number = 0;
     
 
-    //this service shares information between different components, be it services, views or extras.
+    /**
+     * Creates an instance of ShareService.
+     * @memberof ShareService
+     */
     constructor(){
-        this.animeToView = null;
-        this.currentlyAiringToView = null;
-        this.searchToView = null;
-        this.episodesToView = null;
-        this.lastSearch = "";
         this.isLocal = true;
-    }
-
-
-    storeCurrentlyAiring(tostore: any){
-        this.currentlyAiringToView = tostore;
-    }
-
-    storeAnimeToView(currentAnime: any, episodes:any[], movies:any[]){
-        this.animeToView = currentAnime;
-        this.episodesToView = episodes;
-        this.moviesToView = movies;
-    }
-
-    storeSearchToView(tostore: any){
-        this.searchToView = tostore;
-    }
-    
-    storeSearchRequest(tostore: string){
-        this.lastSearch = tostore;
-        this.searchQuery.next(this.lastSearch);
-    }
-
-    getStoredCurrentlyAiring(){
-        return this.currentlyAiringToView;
-    }
-
-    getStoredAnimeToView(){
-        return this.animeToView;
-    }
-
-    getStoredEpisodesToView(){
-        return this.episodesToView;
-    }
-
-    getStoredMoviesToView(){
-        return this.moviesToView;
-    }
-
-    getStoredSearchToView(){
-        console.log("get already stored");
-        return this.searchToView;
-    }
-
-    getLastSearched(){
-        return this.lastSearch;
-    }
-    
-    //for views/packlist.component
-    getBotList(){
-        return this.botlist;
-    }
-
-    //for views/packlist.component
-    setBotList(newbotlist : Object){
-        this.botlist = newbotlist;
-    }
-
-    //for views/packlist.component
-    clearBotList(){
-        this.botlist = null;
-    }
-
-    //for views/packlist.component
-    setAnimeTitle(anime: any){
-        this.animetitlesub.next(anime);
-    }
-
-    //for views/packlist.component
-    clearAnimeTitle(){
-        this.animetitlesub.next();
-    }
-
-    //for views/packlist.component
-    setPackList(json : any){
-        var jsoncombined = JSON.stringify(json);
-        this.packlistsub.next(JSON.stringify(jsoncombined));
-    }
-    
-    //for views/packlist.component
-    clearPackList(){
-        this.packlistsub.next();
     }   
 
-    //for menu.component
+    /**
+     * Updates the amount of downloads value shown in the sidebar (located in app.component.ts).
+     * 
+     * @param {number} num 
+     * @memberof ShareService
+     */
     updateAmountOfDownloads(num:number){
         this.downloadamount.next(num);
     }    
    
-    //for extras/toaster.component
+    /**
+     * Shows a toaster messsage using (toaster.component.ts)
+     * 
+     * @param {string} type (message type (error or success for example))
+     * @param {string} msg (message to show)
+     * @memberof ShareService
+     */
     showMessage(type: string, msg:string){
         var tobeshown = [type, msg];
         this.toastmessage.next(tobeshown);
     }
 
-    //for extras/loader.component
+    /**
+     * Shows a loader with a message using(loader.component.ts)
+     * 
+     * @param {string} message (message to show)
+     * @memberof ShareService
+     */
     showLoaderMessage(message: string){
         this.loaderMessage.next(message);
     }
 
-    //for extras/loader.component
+    /**
+     * Shows a loader without a message using(loader.component.ts)
+     * 
+     * @memberof ShareService
+     */
     showLoader(){
         this.loaderMessage.next("Loading");
     }
 
-    //for extras/loader.component
+    /**
+     * Hides loader using (loader.component.ts)
+     * 
+     * @memberof ShareService
+     */
     hideLoader(){
         this.loaderMessage.next("HIDELOADER");
     }
 
-    //for extras/modal.component
+    /**
+     * Shows a modal using (modal.component.ts)
+     * 
+     * @param {string} title (Title of modal)
+     * @param {string} message (Message to show)
+     * @param {string} icon (Icon to show)
+     * @param {string} actions (Actions (can be html styled))
+     * @memberof ShareService
+     */
     showModal(title:string,message:string,icon:string,actions:string){
         var combine = [title,message,icon,actions];
         this.modalMessage.next(combine);
     }
 
-    //for extras/modal.component
+    /**
+     * Hides modal using (modal.component.ts)
+     * 
+     * @memberof ShareService
+     */
     hideModal(){
         var combine = ["HIDE"];
         this.modalMessage.next(combine);
     }
 
-    //for extras/filedailog.component
+    /**
+     * Shows file dialog using (filedialog.component.ts)
+     * 
+     * @memberof ShareService
+     */
     showFileDialog(){
         this.showFileDialogEvent.next(true);
     }
 
-    //for extras/filedailog.component
+    /**
+     * Hides file dialog using (filedialog.component.ts)
+     * 
+     * @memberof ShareService
+     */
     hideFileDialog(){
         this.showFileDialogEvent.next(false);
     }
 
-    addFavoriteAnime(fullanime: any){
-        let getCurrentFavorites = this.getDataLocal("favorites");
-        if(!getCurrentFavorites){
-            let newFavoritesObject = {"favorites" : [fullanime]};
-            this.storeDataLocal("favorites", JSON.stringify(newFavoritesObject));
-            this.favoritecount++;
-            this.favoriteamount.next(this.favoritecount);
-        } else {
-            let currentFavorites = JSON.parse(getCurrentFavorites);
-            let found = false;
-            for(let currentfavorite of currentFavorites.favorites){
-                if(currentfavorite.id == fullanime.id){
-                    found = true;
-                    break;
-                }
-            }
-            if(!found){
-                currentFavorites.favorites.push(fullanime);
-                this.storeDataLocal("favorites", JSON.stringify(currentFavorites));
-            }
-            this.favoritecount = currentFavorites.favorites.length;
-            this.favoriteamount.next(this.favoritecount);
-        }
-    }
-
+    /**
+     * Get amount of favorites (shown in sidebar located at app.component.ts)
+     * 
+     * @memberof ShareService
+     */
     getFavoritAnimeCount(){
         let getCurrentFavorites = this.getDataLocal("favorites");
         if(getCurrentFavorites){
              let currentFavorites = JSON.parse(getCurrentFavorites);
-             this.favoritecount = currentFavorites.favorites.length;
              this.favoriteamount.next(this.favoritecount);
         }
-    }
+    }  
 
-    removeFavoriteAnime(id : string){
-        let getCurrentFavorites = this.getDataLocal("favorites");
-        if(getCurrentFavorites){
-            let currentFavorites = JSON.parse(getCurrentFavorites);
-
-            let index = 0;
-            for(let currentFavorite of currentFavorites.favorites){
-                if(currentFavorite.id == id){
-                    break;
-                }
-                index++;
-            }
-
-            currentFavorites.favorites.splice(index, 1);
-
-            this.storeDataLocal("favorites", JSON.stringify(currentFavorites));
-            
-            this.favoritecount = currentFavorites.favorites.length;
-            this.favoriteamount.next(this.favoritecount);
-        }    
-    }
-
-    //LocalStorage Stuff
+    /**
+    * Stores information within localstorage
+    * 
+    * @param {string} key (identifier key)
+    * @param {string} data (data to store)
+    * @returns {boolean} (false if item could not be set)
+    * @memberof ShareService
+    */
     storeDataLocal(key:string, data:string){
         return localStorage.setItem(key, data) || false;
     }
 
+    /**
+     * Returns inforamtion from localstorage
+     * 
+     * @param {string} key (identifier key of information to retreive)
+     * @returns {string | boolean:false} (returns boolean if it could not retreive information/returns string with information if it succeeds)
+     * @memberof ShareService
+     */
     getDataLocal(key : string){
         return localStorage.getItem(key) || false;
     }
+    
 
 }

@@ -6,25 +6,42 @@ import {ShareService} from './share.service';
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
-
+/**
+ * (SERVICE) DownloadService
+ *  Service for handling downloads, communicates with backend.
+ * 
+ * @export
+ * @class DownloadService
+ */
 @Injectable()
 export class DownloadService {
 
-    
+    public alreadyDownloaded : any;
     public downloadQue : any[];
-    public alreadyDownloaded : any[];
     public updateDownloadList : Subject<any> = new BehaviorSubject<any>(null);
     public updateAlreadyDownloadedList : Subject<any> = new BehaviorSubject<any>(null);
 
+    private enableDebugging : boolean = true;
+    
+    /**
+     * Creates an instance of DownloadService.
+     * @param {BackEndService} backendService (for communicating with the backend)
+     * @param {ShareService} shareService (for sharing information with other components & services)
+     * @memberof DownloadService
+     */
     constructor(private backendService: BackEndService, private shareService:ShareService){
         this.downloadQue = [];
-        this.alreadyDownloaded = [];
+        this.alreadyDownloaded = {};
         this.backendService.websocketMessages.subscribe((message) => {
             if(message.type == "download_update"){
                 if(message.status.indexOf("FAILED") == -1 && message.filename.indexOf("NO DOWNLOAD") == -1){
                     let obj = this.downloadQue.find(x => x.id == message.id);               
                     let index = this.downloadQue.indexOf(obj);
                     if(index != -1){
+
+                        if(this.downloadQue[index].filename != message.filename){
+                            this.getAlreadyDownloaded();
+                        }
                         this.downloadQue[index] = message;
                         this.updateDownloadList.next(this.downloadQue); 
                         this.shareService.updateAmountOfDownloads(this.downloadQue.length);  
@@ -38,7 +55,7 @@ export class DownloadService {
                 }
                
                 if(message.status == "COMPLETED"){
-                    let obj = this.downloadQue.find(x => x.filename == message.filename);               
+                    let obj = this.downloadQue.find(x => x.id == message.id);               
                     let index = this.downloadQue.indexOf(obj);
                     this.downloadQue.splice(index, 1);
                     this.updateDownloadList.next(this.downloadQue); 
@@ -47,7 +64,7 @@ export class DownloadService {
                 }
 
                 if(message.status == "ABORTED"){
-                    let obj = this.downloadQue.find(x => x.filename == message.filename);               
+                    let obj = this.downloadQue.find(x => x.id == message.id);               
                     let index = this.downloadQue.indexOf(obj);
                     this.downloadQue.splice(index, 1);
                     this.updateDownloadList.next(this.downloadQue); 
@@ -60,18 +77,25 @@ export class DownloadService {
             }
 
             if(message.type == "downloaded_directories"){
-                console.log(message);
+                this.consoleWrite(message);
                 this.updateAlreadyDownloadedList.next(message);
+                this.alreadyDownloaded = message;
             }
         });
     }
 
+    /**
+     * Adds download to the download queue on the backend.  
+     * 
+     * @param {*} download (gets a json object as parameter with download information)
+     * @memberof DownloadService
+     */
     addDownload(download: any){
         this.downloadQue.push(download);
 
         let customDirPerAnime = this.shareService.getDataLocal("CustomDirectoryPerAnime");
-        console.log("custom dir check clicked");
-        console.log(customDirPerAnime);
+        this.consoleWrite("custom dir check clicked");
+        this.consoleWrite(customDirPerAnime);
         if(!customDirPerAnime){
             this.shareService.storeDataLocal("CustomDirectoryPerAnime", "enabled");
         } else {
@@ -89,6 +113,12 @@ export class DownloadService {
        
     }
 
+    /**
+     * Sends a remove download from queue request to the backend and removes it from the local download list
+     * 
+     * @param {*} download (gets a json object as parameter with download information)
+     * @memberof DownloadService
+     */
     removeDownload(download: any){
         this.backendService.sendMessage({"action" : "delete_file", "extra" : download});
         let obj = this.downloadQue.find(x => x.id == download.id);               
@@ -99,12 +129,34 @@ export class DownloadService {
         this.getAlreadyDownloaded();
     }
 
+    /**
+     * Requests all downloaded files from the backend
+     * 
+     * @memberof DownloadService
+     */
     getAlreadyDownloaded(){
        this.backendService.sendMessage({"action" : "get_downloads"});
     }
 
+    /**
+     * Sends a update to a observable used to track the downloadqueue
+     * 
+     * @memberof DownloadService
+     */
     getDownloadList(){
        this.updateDownloadList.next(this.downloadQue);
+    }
+
+    /**
+     * Custom console.log function so that it can be enabled/disabled if there is no need for debugging
+     * 
+     * @param {*} log (gets any type of variable and shows it if enableDebug is true) 
+     * @memberof DownloadService
+     */
+    async consoleWrite(log: any){
+        if(this.enableDebugging){
+            console.log(log);
+        }
     }
 
    

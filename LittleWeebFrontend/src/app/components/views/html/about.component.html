@@ -4,7 +4,7 @@
 	</div>
 	<div class="row">
 		<p><strong>What is LittleWeeb?</strong></p>
-		<p>LittleWeeb is (supposed) to be a simplistic application with automates downloading using XDCC.</p>
+		<p>The goal of LittleWeeb is to give users the best of both worlds: High quality anime & streaming without advertisments and other crap.</p>
 		<p><strong>What is XDCC?</strong></p>
 		<p>XDCC is a file sharing protocol build upon the DCC protocol running over IRC (Internet Relay Chat). It basically allows files to be shared using a central server acting as a bot on a chat channel, you can message the bot with an indicator for which file you want to download.</p>
 		<p>XDCC used to be popular in the day where IRC was used often to chat with each other, up till 2005. Then other chat services such as MSN and Skype took over. WIthout the file sharing part. But fortunately, the anime scene kept using XDCC, and due to the limited users, there is plenty of bandwith available! (Depending on the bot you choose to download from).</p>
@@ -26,18 +26,21 @@
 		<p>LittleWeeb uses the API&#39;s from the following sources:</p>
 		<ul>
 			<li><a href="https://nibl.co.uk/"> NIBL - A XDCC indexer site for Anime</a></li>
-			<li><a href="https://atarashii.toshocat.com/docs/"> Atarashii - A anime information site.</a></li>
+			<li><a href="https://github.com/jenga201/niblapi">NIBL API - By Jenga201 - Github</a></li>
+			<li><a href="https://kitsu.io"> Kitsu.io - A anime information site.</a></li>
+			<li><a href="https://kitsu.docs.apiary.io/"> Kitsu API Docs</a></li>
 		</ul>
 		<p><strong>Is LittleWeeb open source?</strong></p>
 		<p>Yup, ofcourse it is! Best way to be trusted is by opensourcing right? It&#39;s licensed using the MIT license, so technically speaking, you can do whatever you want with it!</p>
 		<p>Here you can find the source code AND the latest versions: https://github.com/EldinZenderink/LittleWeeb</p>
 		<p><strong>How does LittleWeeb work?</strong></p>
 		<p>LittleWeeb automatically connects you to a irc server (irc.rizon.net) and channel(s): #nibl,#horriblesubs,#littleweeb</p>
-		<p>It generates a username for you, so you don&#39;t have to do these little steps anymore. It gets the latest released episodes from NIBL and when you search for an anime, it uses the atarashii api (basically a MyAnimeList api, but done better). It then retreives every episode for each bot. You can specify a bot and a resolution. If you select the file and press Append to downloads, it starts downloading.&nbsp;</p>
-		<p>The back-end runs on your PC as well. That&#39;s the console window that shows when you launch the application. This application handles the connection with IRC and the downloading part. Everything else is done through the interface you are looking at right now. The interface launches in Chrome through the backend.&nbsp;</p>
-		<p>The interface is written in Angular 2/4 using TypeScript (it&#39;s awesome :D) and semanticui as css framework.</p>
-		<p>The backend is written in C#, using a few home made Libraries for WebSockets(connection between the interface and backend) and the IRC part.</p>
-		<p>All this can be found on github!</p>
+		<p>It generates a username for you, so you don&#39;t have to do these little steps anymore. It gets the latest released episodes from NIBL in combination with the API from Kitsu and when you search for an anime, it uses the api from Kitsu (basically a MyAnimeList api, but done better). 
+		<p>When you click on a cover of a anime, it will load all the information using the api from Kitsu. It then tries to find every episode for that Anime using the API from Nibl. You will get a list with episodes, where you can choose if you want to use the advanced mode or easy mode. The easy simply automates everything. It will select the best source and by default (if it's available) 720p episode. You can however specify a different resolution. The advanced mode allows you to manually select a source and file to your liking. With both modes you can either hit Download or Play. When you click on Play, it will automatically start the download and launch your default media player with your selected episode. If you hit Download, it will start downloading the episode. If the download has started, you can still choose to play the episode along with other actions: abort & open file location. Every anime get's it's own directory.  </p>	
+		<p>LittleWeeb has multiple version that you can use: A server for using on your NAS (or other non-windows operating systems), a stand-alone Windows Application and a Android App.</p>
+		<p>The interface is written in Angular 5 using TypeScript (it&#39;s awesome :D) and semanticui as css framework.</p>
+		<p>The backend is written in C#.</p>
+		<p>All this can be found on <a href="https://github.com/EldinZenderink/LittleWeeb">github!</a></p>
 		<p><strong>Copyright Notice</strong></p>
 		<p><span class="custom-text1-about">Copyrights and trademarks for the anime, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.</span></p>
 		<p><strong>Terms of Use</strong></p>

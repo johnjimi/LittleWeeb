@@ -1,18 +1,31 @@
 import {Component} from '@angular/core';
 import {ShareService} from '../../services/share.service'
 import {SemanticService} from '../../services/semanticui.service'
+
+/**
+ * (EXTRA) Modal Component,
+ * Allows to show modal's on any given view.
+ * 
+ * @export
+ * @class Modal
+ */
 @Component({
     selector: 'modal',
     templateUrl: './html/modal.component.html',
     styleUrls: ['./css/modal.component.css']
 })
-//these should be shown in the main component/parent component (in this case thats app.component.ts)
 export class Modal {
     messageTitle : string;
     messageBody : string;
     messageIcon : string;
     actions : string;
-    //shows a modal screen with a message and possible actions 
+
+    /**
+     * Creates an instance of Modal.
+     * @param {ShareService} shareService (used for receiving information from other Components & Services) 
+     * @param {SemanticService} semanticService (used to control SemanticUI CSS Framework through jquery)
+     * @memberof Modal
+     */
     constructor(private shareService:ShareService, private semanticService:SemanticService){
         this.semanticService.hideModal('.ui.basic.modal.message');
         this.shareService.modalMessage.subscribe(message=>{

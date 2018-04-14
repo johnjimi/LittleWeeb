@@ -8,108 +8,111 @@ import {UtilityService} from './utility.service'
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
+import { forkJoin } from "rxjs/observable/forkJoin";
 
+/**
+ * (SERVICE) NiblService
+ * NiblService allows for communicating with http://nibl.co.uk API.
+ * @export
+ * @class NiblService
+ */
 @Injectable()
 export class NiblService {
 
-    month : number;
-    year : number; 
-    date : Date;
-    season: string;
-    currentlyAiring : Object;
-    searchResult : Object;
-    botList : Object;
-    latestPacks : Object;
-    packsForBot : Object;
-    observable : any;
-    //service to get and request information from the nibl.co.uk api!
+    private month : number;
+    private year : number; 
+    private date : Date;
+    private season: string;
+    private currentlyAiring : Object;
+    private searchResult : Object;
+    private botList : Object;
+    private latestPacks : Object;
+    private packsForBot : Object;
+    private enableDebugging : boolean = true;
+    private observable : any;
+
+    /**
+     * Creates an instance of NiblService.
+     * @param {Http} http (used for http requests)
+     * @param {ShareService} shareService (used to send and receive information to/from other Components & Services)
+     * @param {UtilityService} utilityService  (contains methods not specific to any Component)
+     * @memberof NiblService
+     */
     constructor(private http: Http,private shareService: ShareService, private utilityService:UtilityService){
-        console.log("Nibl Service Initialiazed...");
+        this.consoleWrite("Nibl Service Initialiazed...");
         this.date = new Date();
         this.month = this.date.getMonth();
         this.year = this.date.getFullYear();
     }
 
-    //functions WITHOUT sync in the name are old and should be replaced, but a bunch of components still uses them
+    /**
+     * Sends multiple search requests
+     * 
+     * @param {string[]} queries (search queries)
+     * @returns 
+     * @memberof NiblService
+     */
+    getSearchAnimeResultsMulti(queries : string[]){
 
-    //gets all currently airing anime, parsed by nibl.co.uk api itself (on request :D)
-    getCurrentlyAiringAnime(){
-        var seasons = [ "Winter", "Winter", "Spring", "Spring", "Spring", "Summer", "Summer", "Summer", "Fall", "Fall", "Fall", "Winter"];
-        var currentSeason = seasons[this.month + 1];
-        this.observable = this.http.get('https://api.nibl.co.uk:8080/anilist/series/season?year=' + this.year + '&season=' + currentSeason).map(res => {
-            this.observable = null;
-            this.currentlyAiring = res.json();
-            return this.currentlyAiring;
+        let observable=Observable.create(observer => {
+          
+             let getRequests = [];
 
-        }).share();
-        return this.observable;
-    }
-
-    //searches anime in the nibl.co.uk database (only files, no other information, mal.service handles the information for x anime)
-    getSearchAnimeResults(query : String){
-        this.observable = this.http.get( 'https://api.nibl.co.uk:8080/nibl/search/?query=' + query + '&episodeNumber=-1').map(res => {
-            this.observable = null;
-            this.searchResult = res.json().content;
-            return this.searchResult;
-        }).share();
-        return this.observable;
-    }
-
-    //get available bots
-    getBotList(){
-        return this.http.get( 'https://api.nibl.co.uk:8080/nibl/bots').map(res => {
-            this.observable = null;
-            this.botList = res.json().content;
-            return this.botList;
+            for(let query of queries){
+                getRequests.push( this.http.get( 'https://api.nibl.co.uk:8080/nibl/search/?query=' + query + '&episodeNumber=-1').map((res)=> res.json()));
+            }
+            forkJoin(getRequests).subscribe((next : any) =>{
+                let objlist = [];
+                for(let obj of next){
+                    let content = obj.content;
+                    for(let file of content){
+                        if(objlist.indexOf(file) == -1){
+                            objlist.push(file);
+                        }
+                    }
+                }
+                
+                observer.next(objlist);
+                observer.complete();
+            });
+           
         });
-    }
-
-    //get name of bot
-    getBotName(id : number){
-        this.observable = this.http.get('https://api.nibl.co.uk:8080/nibl/bots/' + id).map(res => {
-            this.observable = null;
-            return res.json().content.name;
-        }).share();
-        return this.observable;
-    }
-
-    //gets all currently airing anime, parsed by nibl.co.uk api itself (on request :D)
-    async getCurrentlyAiringAnimeSync(){
-        var seasons = [ "Winter", "Winter", "Spring", "Spring", "Spring", "Summer", "Summer", "Summer", "Fall", "Fall", "Fall", "Winter"];
-        var currentSeason = seasons[this.month + 1];
-        const response = await this.http.get('https://api.nibl.co.uk:8080/anilist/series/season?year=' + this.year + '&season=' + currentSeason).toPromise();
-
-        return response.json();
-
-    }
-    //searches anime in the nibl.co.uk database (only files, no other information, mal.service handles the information for x anime)
-    async getSearchAnimeResultsSync(query : String){
-        const response = await this.http.get( 'https://api.nibl.co.uk:8080/nibl/search/?query=' + query + '&episodeNumber=-1').toPromise();
-        return response.json().content;
+        return observable;
     }
     
-    //get available bots
+    /**
+     * Gets a list with all the bots
+     * 
+     * @returns {object} (Contains results as json object)
+     * @memberof NiblService
+     */
     async getBotListSync(){
         const response = await this.http.get( 'https://api.nibl.co.uk:8080/nibl/bots').toPromise();
         return response.json().content;
     }
-    
-    //get name of bot
-    async getBotNameSync(id : number){
-        const response = await this.http.get('https://api.nibl.co.uk:8080/nibl/bots/' + id).toPromise();
-        return response.json().content.name;
-    }
 
+    /**
+     * Get latest episodes added to a bot of the past week
+     * 
+     * @param {number} id (bot id)
+     * @returns {string []} (episode names)
+     * @memberof NiblService
+     */
     getLatestEpisodes(id: number){
-        this.observable = this.http.get('https://api.nibl.co.uk:8080/nibl/packs/' + id).map(res => {
+        this.observable = this.http.get('https://api.nibl.co.uk:8080/nibl/search/' + id + '?query=720').map(res => {
             this.observable = null;
             var eplist = res.json();
             var listWithEpisodeNames = [];
+            let aWeekAgoDate = new Date();
+            aWeekAgoDate.setDate(aWeekAgoDate.getDate()-8);
+            
             for(let ep of eplist.content){
-                if(ep.name.indexOf('720') >= 0){
-                    var strp1 = this.utilityService.stripName(ep.name);
-                    var strp2 = this.utilityService.stripFreeNumbers(strp1);
-                    listWithEpisodeNames.push(strp2);
+
+                let date = ep.lastModified.split('-');
+                let lastModified = new Date(date[0], date[1] - 1, date[2].split(' ')[0]); 
+                if( (lastModified.getTime() > aWeekAgoDate.getTime()))
+                {                    
+                    listWithEpisodeNames.push(ep.name);
                 }
             }
             var reverse = listWithEpisodeNames.reverse();
@@ -117,13 +120,22 @@ export class NiblService {
                 if (reverse.indexOf(item) == index)
                     return item;
             });
-            console.log(reverse);
             return reverse;
         }).share();
         return this.observable;
 
     }
 
-
+     /**
+     * Custom console.log function so that it can be enabled/disabled if there is no need for debugging
+     * 
+     * @param {*} log (gets any type of variable and shows it if enableDebug is true) 
+     * @memberof NiblService
+     */
+    async consoleWrite(log: any){
+        if(this.enableDebugging){
+            console.log(log);
+        }
+    }
 
 }

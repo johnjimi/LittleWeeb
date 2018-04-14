@@ -1,18 +1,30 @@
 import {Component} from '@angular/core';
 import {ShareService} from '../../services/share.service'
 import {SemanticService} from '../../services/semanticui.service'
+
+/**
+ * (EXTRA) Loader Component
+ * 
+ * 
+ * @export
+ * @class Loader
+ */
 @Component({
     selector: 'loader',
     templateUrl: './html/loader.component.html',
     styleUrls: ['./css/loader.component.css']
 })
-
-//these should be shown in the main component/parent component (in this case thats app.component.ts)
 export class Loader {
     message : string;
     showLoader : boolean;
     zindex : number;
-    //shows a loading screen with or without a message
+    
+    /**
+     * Creates an instance of Loader.
+     * @param {ShareService} shareService (used for receiving information from other Components & Services)
+     * @param {SemanticService} semanticService (used for controlling SemanticUI CSS Framework through jQuery)
+     * @memberof Loader
+     */
     constructor(private shareService:ShareService, private semanticService:SemanticService){
         this.showLoader = false;
         this.shareService.loaderMessage.subscribe(message=>{    
@@ -31,12 +43,23 @@ export class Loader {
         });
     }
 
+    /**
+     * Closes loader.
+     * 
+     * @memberof Loader
+     */
     closeLoader(){
         this.showLoader = false;
         this.semanticService.hideObject('.element');
         this.zindex = -100;
     }
 
+    /**
+     * Opens a loader.
+     * 
+     * @param {string} message (If set, it will show a message during loading.)
+     * @memberof Loader
+     */
     openLoader(message: string){
         this.message =  message;
         this.showLoader = true;

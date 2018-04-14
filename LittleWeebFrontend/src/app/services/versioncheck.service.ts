@@ -6,16 +6,26 @@ import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
 
+/**
+ * (SERVICE) VersionCheck
+ * Service for checking the local version and the version from the github repo: https://github.com/EldinZenderink/LittleWeeb
+ * @export
+ * @class VersionService
+ */
 @Injectable()
 export class VersionService {
 
-    private currentVersion : string;
-
+    public currentVersion : string;
+    /**
+     * Creates an instance of VersionService.
+     * @param {Http} http (used for http requests)
+     * @param {ShareService} shareService (used for sending and receiving information to and from other Components & Services)
+     * @memberof VersionService
+     */
     constructor(private http: Http, private shareService:ShareService){
-        this.currentVersion = "v0.3.1"; //current version
+        this.currentVersion = "0.4.0"; //current version
     }
 
-    //checks the version on the github with it's predined version, shows modal with message that there is a new version if versions differs.
     async getVersion(){
      
         const response = await this.http.get('https://raw.githubusercontent.com/EldinZenderink/LittleWeeb/master/VERSION').toPromise();
@@ -23,7 +33,7 @@ export class VersionService {
         var newversion = JSON.stringify(response).split('"')[3].split('\\')[0];
         if(version == -1){
             this.shareService.showModal("There is a new version available!", "Your current version is v" + this.currentVersion + 
-                                        ", but version " + newversion + " has been released as of now!", 
+                                        ", but version " + newversion + " has arrived!", 
                                         "feed", 
                                         `<div class="ui red basic cancel inverted button">
                                         <i class="remove icon"></i>
@@ -33,9 +43,7 @@ export class VersionService {
                                         <i class="checkmark icon"></i>
                                         Go to Github.
                                         </a>`);
-            console.log("new version");
         }
-        console.log(response);
 
     }
 }

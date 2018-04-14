@@ -11,6 +11,13 @@ import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
 
+/**
+ * (VIEW) Show download view,
+ * Component for showing downloads and to send requests to manipulate download to the backend.
+ * 
+ * @export
+ * @class Downloads
+ */
 @Component({
     selector: 'downloads',
     templateUrl: './html/downloads.component.html',
@@ -19,12 +26,17 @@ import 'rxjs/add/operator/map';
 
 
 export class Downloads {
-    downloads : any[];
-    alreadyDownloaded : any[];
+    downloads : any;
+    alreadyDownloaded : any;
     isLocal : boolean;
-    /*shows the currently downloading and already downloaded files    
-     *it checks if there if there are new downloads to be appended to the list
-     *it checks of currently downloading statistics need to be updated
+    /**
+     * Creates an instance of Downloads.
+     * @param {Router} router (used for rerouting to other places if necesary)
+     * @param {DownloadService} downloadService (used to get download updates)
+     * @param {ShareService} shareService (used to share information between components)
+     * @param {BackEndService} backEndService (used to communicate with the backend)
+     * @param {SemanticService} semanticService (used to manipulate semanticui css framework (through jquery))
+     * @memberof Downloads 
      */
     constructor(private router:Router, private downloadService:DownloadService, private shareService : ShareService, private backEndService : BackEndService, private semanticService:SemanticService){
         console.log("init download page");
@@ -52,43 +64,74 @@ export class Downloads {
         
     }
 
-    //on init, it gets the currently downloaded files from the backend
+    /**
+     * Loads downloads & gets already downloaded
+     * 
+     * @memberof Downloads
+     */
     ngOnInit(){
         this.downloadService.getDownloadList();
         this.downloadService.getAlreadyDownloaded();
     }
 
-    //send request to open/play a certain file
+    /**
+     * 
+     * Sends a play request to the backend
+     * @param {*} download (gets a json object as parameter with download information)
+     * @memberof Downloads
+     */
     sendPlayRequest(download : any){
+        console.log("play: ");
+        console.log(download);
         if(this.isLocal){
-            this.backEndService.sendMessage({"action" : "open_file", "extra" : download});
-        }
-        
+            setTimeout(() => {this.backEndService.sendMessage({"action" : "open_file", "extra" : download});}, 1000);
+        }        
     }
 
-    //send request to open download location directory
+    /**
+     * Sends open file location to the backend
+     * 
+     * @param {*} download (gets a json object as parameter with download information)
+     * @memberof Downloads
+     */
     sendOpenLocationRequest(download : any){
         if(this.isLocal){            
             this.backEndService.sendMessage({"action" : "open_download_directory"});
         }  
     }
 
-    //send request to stop the current download
+    /**
+     * Sends abort request to the backend
+     * 
+     * @param {*} download (gets a json object as parameter with download information)
+     * @memberof Downloads
+     */
     sendAbortRequest(download : any){
        this.backEndService.sendMessage({"action" : "abort_download"});
     }
 
-    //send request to delete a file
+    /**
+     * Sends a delete request to the backend
+     * 
+     * @param {*} download (gets a json object as parameter with download information)
+     * @memberof Downloads
+     */
     sendDeleteRequest(download : any){
        this.downloadService.removeDownload(download);
     }
 
+    /**
+     * Sends a download request to local machine via http
+     * 
+     * @param {*} download (gets a json object as parameter with download information)
+     * @memberof Downloads
+     */
     getUrl(download : any){
         var ip =  window.location.hostname;
         this.shareService.showModal("Here is your url!", 
                                     `You can either copy the following url, or hit download to download the file in question. <br \>
                                      <div >
-                                        <p><h3>http://` + ip + `:6010?sendFile=` + download.filename + `</h3></p>
+                                        <p><h3>http://` + ip + `:6010?sendFile=` + download.downloadDirectory + `/`+ download.filename + `</h3></p>
                                     </div>
                                     `, 
                                     "linkify", 
@@ -96,7 +139,7 @@ export class Downloads {
                                         <i class="remove icon"></i>
                                         Cancel
                                      </div>
-                                     <a target="_blank" href="http://` + ip + `:6010?sendFile=` + download.filename + `" class="ui green ok inverted button">
+                                     <a target="_blank" href="http://` + ip + `:6010?sendFile=` + + download.downloadDirectory + `/`+ download.filename + `" class="ui green ok inverted button">
                                         <i class="checkmark icon"></i>
                                         Download
                                      </a>

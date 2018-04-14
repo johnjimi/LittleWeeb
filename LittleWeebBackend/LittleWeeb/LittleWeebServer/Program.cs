@@ -11,7 +11,8 @@ namespace LittleWeebServer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to littleweeb's server!");
+            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            Console.WriteLine("Welcome to littleweeb's server - v" + version.ToString() + " !");
             Console.WriteLine("=================================");
 
             String index = string.Format(@"GUI/index.html", Assembly.GetEntryAssembly().CodeBase);

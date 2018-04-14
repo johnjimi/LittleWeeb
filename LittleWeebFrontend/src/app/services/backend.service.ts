@@ -1,5 +1,4 @@
 ﻿import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {Subject} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/Rx';
@@ -8,6 +7,14 @@ import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
 
+/**
+ * (SERVICE) BackEndService
+ * Used for communicating with LittleWeebs backend using Websockets
+ * 
+ * 
+ * @export
+ * @class BackEndService
+ */
 @Injectable()
 export class BackEndService {
 
@@ -16,22 +23,31 @@ export class BackEndService {
     public osVersion : string = "";
     public connectingState : string = "";
     public address : string;
+    public connected : boolean;
+
     private websocket : any;
     private interval: any;
     private messageQue: string[];
     private receivedConfirmed: boolean;
-    public connected : boolean;
-    //initiates backend
-    constructor(private http: Http, private shareService:ShareService){
-        console.log("Initiated backend!");
+    private enableDebugging : boolean = true;
+
+    /**
+     * Creates an instance of BackEndService.
+     * Requests base download dir and gets default irc settings from localstorage (if there is something stored there)
+     * Send connect to irc server request to back-end
+     * @param {ShareService} shareService (used for sending and receiving information to/from other Components & Services)
+     * @memberof BackEndService
+     */
+    constructor(private shareService:ShareService){
+        this.consoleWrite("Initiated backend!");
         this.receivedConfirmed = false;
         this.messageQue = [];
         this.connected = false;
         let baseDownloadDirBe = this.shareService.getDataLocal("baseDownloadDir");
         this.websocketMessages.subscribe((messageRec) => {
              if(messageRec !== null){
-                console.log("Message received:");
-                console.log(messageRec);
+                this.consoleWrite("Message received:");
+                this.consoleWrite(messageRec);
                 if(messageRec.type == "irc_data"){
                     if(messageRec.state == "connected"){
                         if(!this.connected){                            
@@ -63,7 +79,7 @@ export class BackEndService {
                     try{
                         let currentConnectionSettingsString= this.shareService.getDataLocal("custom_irc_connection");
                         if(currentConnectionSettingsString != false){
-                            console.log("Found stored connection setting, using that instead of default values!");
+                            this.consoleWrite("Found stored connection setting, using that instead of default values!");
                             let currentConnectionSettings = JSON.parse(currentConnectionSettingsString);
                             
                             
@@ -76,7 +92,7 @@ export class BackEndService {
                             this.sendMessage({"action" : "connect_irc", "extra" : {"address":"irc.rizon.net", "username": "", "channels": "#horriblesubs,#nibl,#news"}});
                         }
                     } catch(e){
-                        console.log(e);
+                        this.consoleWrite(e);
                         setTimeout(()=>{
                             this.sendMessage({"action" : "disconnect_irc"});
                             this.sendMessage({"action" : "connect_irc", "extra" : {"address":"irc.rizon.net", "username": "", "channels": "#horriblesubs,#nibl,#news"}});
@@ -88,8 +104,13 @@ export class BackEndService {
         })
     }
 
-    //connects to the backend
-    async tryConnecting(address : string){
+   /**
+    * Starts connection with back-end if available, and retries if not (shows message when it can't connect)
+    * 
+    * @param {string} address (address of backend)
+    * @memberof BackEndService
+    */
+   async tryConnecting(address : string){
         this.address = address;
         this.shareService.showLoaderMessage("Waiting for connection to backend!");
         this.websocket = new WebSocket("ws://" + address + ":1515");
@@ -107,7 +128,7 @@ export class BackEndService {
                 this.websocketMessages.next(JSON.parse(evt.data));
             } catch (e){
                 this.websocketMessages.next({"error" : "parsing-messesage: '" + evt.data + "'"});
-                console.log(e);
+                this.consoleWrite(e);
             }
         }
         this.websocket.onclose = (evt : any)=>{
@@ -133,17 +154,21 @@ export class BackEndService {
         }
     }
 
-     //sends a message to the backend
+    /**
+     * Send message to backend
+     * Uses a message que so that it won't hammer the back-end with requests to give the back-end time to respond.
+     * 
+     * @param {*} message (message to send)
+     * @memberof BackEndService
+     */
     sendMessage(message: any) {
-        console.log("pusing message ");
-        console.log(message);
-        console.log( " to the que");
+        this.consoleWrite("pusing message ");
+        this.consoleWrite(message);
+        this.consoleWrite( " to the que");
         
         this.receivedConfirmed = false;
         this.messageQue.push(JSON.stringify(message));
-        try {
-        
-
+        try {      
             setInterval(() => {
                 try {
                     if(this.websocket.readyState === this.websocket.CLOSED && this.websocket.readyState !== this.websocket.CONNECTING && this.websocket.readyState !== this.websocket.CLOSING && this.websocket.readyState !== this.websocket.OPEN){
@@ -158,14 +183,26 @@ export class BackEndService {
                 
 
                 } catch (Ex) {
-                    console.log("Cannot send message, websocket hasn't been opened yet: ");
-                    console.log(Ex);
+                    this.consoleWrite("Cannot send message, websocket hasn't been opened yet: ");
+                    this.consoleWrite(Ex);
 
                 }
 
             }, 250);
         }catch(e){
-            console.log(e);
+            this.consoleWrite(e);
+        }
+    }
+
+    /**
+     * Custom console.log function so that it can be enabled/disabled if there is no need for debugging
+     * 
+     * @param {*} log (gets any type of variable and shows it if enableDebug is true) 
+     * @memberof BackEndService
+     */
+    async consoleWrite(log: any){
+        if(this.enableDebugging){
+            console.log(log);
         }
     }
 

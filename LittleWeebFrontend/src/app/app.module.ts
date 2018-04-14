@@ -16,7 +16,7 @@ import { Search } from './components/views/search.component';
 import { Downloads } from './components/views/downloads.component';
 import { Settings } from './components/views/settings.component';
 import { About } from './components/views/about.component';
-import { PackList } from './components/views/packlist.component';
+import { AnimeInfo} from './components/views/animeinfo.component';
 import { Favorites } from './components/views/favorites.component';
 
 //extra components
@@ -30,10 +30,8 @@ import {ShareService} from './services/share.service'
 import {UtilityService} from './services/utility.service'
 import {BackEndService} from './services/backend.service'
 import {SemanticService} from './services/semanticui.service'
-import {MalService} from './services/mal.service'
 import {VersionService} from './services/versioncheck.service'
 import {DownloadService} from './services/download.service'
-import {AniListService} from './services/anilist.service'
 import {KitsuService} from './services/kitsu.service'
 
 //import pipes
@@ -73,9 +71,9 @@ const appRoutes: Routes = [
     data: { title: 'About' }
   },
   {
-    path: 'packlist',
-    component: PackList,
-    data: { title: 'Pack List' }
+    path: 'animeinfo',
+    component: AnimeInfo,
+    data: { title: 'Anime Info' }
   },
   { path: '',
     redirectTo: 'currentlyairing',
@@ -85,9 +83,9 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports:      [  BrowserModule,  RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, HttpModule, CommonModule, BrowserAnimationsModule, NoopAnimationsModule],
-  declarations: [ AppComponent, CurrentlyAiring, Search, Favorites, Downloads, Settings, About, PackList,  Loader, Modal, FileDialog, Toaster, SafePipe, KeysPipe ],
+  declarations: [ AppComponent, CurrentlyAiring, Search, Favorites, Downloads, Settings, About, AnimeInfo,  Loader, Modal, FileDialog, Toaster, SafePipe, KeysPipe ],
   bootstrap:    [ AppComponent ],
-  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, MalService, VersionService, DownloadService, AniListService, KitsuService]
+  providers: [NiblService, UtilityService, ShareService, BackEndService, SemanticService, VersionService, DownloadService, KitsuService]
 })
 export class AppModule { }
 

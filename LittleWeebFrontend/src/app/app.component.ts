@@ -7,8 +7,12 @@ import {FileDialog} from './components/extras/filedialog.component'
 import {ShareService} from './services/share.service'
 import {VersionService} from './services/versioncheck.service'
 import {BackEndService} from './services/backend.service'
-import {MalService} from './services/mal.service'
-import {AniListService} from './services/anilist.service'
+/**
+ * (MAIN) AppComponent
+ * Adds sidebar menu and a router outlet
+ * @export
+ * @class AppComponent
+ */
 @Component({
   selector: 'my-app',
   template: `
@@ -30,7 +34,7 @@ import {AniListService} from './services/anilist.service'
                 </div>
 
                 <div class="ui visible inverted left vertical custom-fixed sidebar menu deskContent ">
-                    <div class="ui horizontal divider white-text"> LilleWeebie - v0.4.0 </div>
+                    <div class="ui horizontal divider white-text"> LilleWeebie - v{{version}} </div>
                     <div *ngFor="let menuItem of menuItems">
                         <a class="item" routerLink="{{menuItem.view}}" routerLinkActive="active">
                             <i class="{{menuItem.icon}} icon "></i> {{menuItem.title}}
@@ -40,7 +44,7 @@ import {AniListService} from './services/anilist.service'
                 </div>
 
                 <div *ngIf="showMenu" class="ui visible inverted left vertical sidebar menu phoneContent">
-                    <div class="ui horizontal divider white-text"> LilleWeebie - v0.3.2 </div>
+                    <div class="ui horizontal divider white-text"> LilleWeebie - v{{version}}  </div>
                     <div *ngFor="let menuItem of menuItems">
                         <a class="item" routerLink="{{menuItem.view}}" routerLinkActive="active" (click)="openCloseMenu()">
                             <i class="{{menuItem.icon}} icon "></i> {{menuItem.title}}
@@ -50,7 +54,7 @@ import {AniListService} from './services/anilist.service'
 
                 
                 <div class="pusher overflow-y-scrollable pusher-extra max-height-size-depended" (click)="closeMenu()">
-                    <router-outlet></router-outlet>
+                    <router-outlet class="overflow-y-scrollable height-100"></router-outlet>
                     
                     <toaster></toaster>
                     <loader></loader>
@@ -69,7 +73,17 @@ export class AppComponent  {
     menuItemToAdd : menuItemToAdd;
     someFunctionToCall : Function;
     showMenu : boolean;
-    constructor(private aniListService:AniListService, private shareServices: ShareService, private versionService: VersionService, private backEndService: BackEndService, private router: ActivatedRoute, private malService : MalService ){
+    version : string;
+    /**
+     * Creates an instance of AppComponent.
+     * @param {ShareService} shareServices (for sending and receiving information to and from other Components & Services)
+     * @param {VersionService} versionService (for checking the local version to the github version)
+     * @param {BackEndService} backEndService (for sending and receiving messages to the backend)
+     * @param {ActivatedRoute} router (for redirecing and routeroutlet)
+     * @memberof AppComponent
+     */
+    constructor( private shareServices: ShareService, private versionService: VersionService, private backEndService: BackEndService, private router: ActivatedRoute){
+        this.version = versionService.currentVersion;
         this.showMenu = false;
         console.log("Menu Succesfully Loaded!");
         this.menuItems = [];
@@ -94,7 +108,7 @@ export class AppComponent  {
         this.menuItemToAdd = {
             title: 'Choose Anime',
             icon: 'film',
-            view : 'packlist'
+            view : 'animeinfo'
         }
         this.menuItems.push(this.menuItemToAdd);
         this.menuItemToAdd = {
@@ -117,6 +131,14 @@ export class AppComponent  {
         this.menuItems.push(this.menuItemToAdd);
     }
 
+    /**
+     * Gets the ip used by the browser (defaults to 127.0.0.1)
+     * Initiates communication with backend using ip,
+     * Checks version
+     * Gets favorite anime count
+     * 
+     * @memberof AppComponent
+     */
     async ngOnInit(){
         var ip =  window.location.hostname;
 
@@ -126,7 +148,6 @@ export class AppComponent  {
 
 
         this.backEndService.tryConnecting(ip);
-        this.malService.setIp(ip);
         this.versionService.getVersion();
      
         this.shareServices.getFavoritAnimeCount();
@@ -152,46 +173,27 @@ export class AppComponent  {
         });
 
         this.shareServices.updatetitle.subscribe((animetitle) => {
-            console.log("animetitle did execute in menu");
-            if(animetitle !== undefined){
+            if(animetitle !== null){
+                console.log("current anime title:");
+                console.log(animetitle);
                 try{
-
                     this.menuItems[3] =  {
                         title: animetitle,
                         icon: 'film',
-                        view : 'packlist'
+                        view : 'animeinfo'
                     };
                 } catch(e){
                     this.menuItems[3] =  {
                         title: 'Choose Anime',
                         icon: 'film',
-                        view : 'packlist'
+                        view : 'animeinfo'
                     };
                 }
+               
             }
 
         }); 
-
-        this.shareServices.animetitlesub.subscribe((anime) => {
-            console.log("animetitle did execute in menu");
-            if(anime !== undefined){
-                try{
-
-                    this.menuItems[3] =  {
-                        title: anime.attributes.canonicalTitle,
-                        icon: 'film',
-                        view : 'packlist'
-                    };
-                } catch(e){
-                    this.menuItems[3] =  {
-                        title: 'Choose Anime',
-                        icon: 'film',
-                        view : 'packlist'
-                    };
-                }
-            }
-
-        }); 
+        
 
         this.shareServices.searchQuery.subscribe((search) => {
             console.log("animetitle did execute in menu");
@@ -236,12 +238,21 @@ export class AppComponent  {
     }
 
   
-
+    /**
+     * Checks if interface has been closed, if so, send disconnect request to back-end
+     * 
+     * @memberof AppComponent
+     */
     @HostListener('window:beforeunload')
     doSomething() {
         this.backEndService.sendMessage({"action" : "disconnect_irc"});
     }
 
+    /**
+     * In case of mobile, side menu is opened and closed through a button
+     * This toggles side menu.
+     * @memberof AppComponent
+     */
     openCloseMenu(){
         if(this.showMenu){
             this.showMenu = false;
@@ -250,16 +261,31 @@ export class AppComponent  {
         }
     }
 
+    /**
+     * Opens side menu
+     * 
+     * @memberof AppComponent
+     */
     openMenu(){
         this.showMenu = true;
     }
 
+    /**
+     * Closes side menu
+     * 
+     * @memberof AppComponent
+     */
     closeMenu(){
         this.showMenu = false;
     }
 
 }
 
+/**
+ * Menu items.
+ * 
+ * @interface menuItemToAdd
+ */
 interface menuItemToAdd {
     title: string;
     icon : string;

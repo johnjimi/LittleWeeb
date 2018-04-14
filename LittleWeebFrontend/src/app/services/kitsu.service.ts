@@ -4,39 +4,72 @@ import {Subject, BehaviorSubject, Observable} from 'rxjs/Rx';
 import {BackEndService} from './backend.service';
 import {NiblService} from './nibl.service'
 import {ShareService} from './share.service'
+import {UtilityService} from './utility.service'
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
+import { forkJoin } from "rxjs/observable/forkJoin";
+import { concat } from "rxjs/observable/concat"
 
+/**
+ * (SERVICE) KitsuService
+ * Service to communicatie with the API from http://kitsu.io
+ * 
+ * @export
+ * @class KitsuService
+ */
 @Injectable()
 export class KitsuService {
 
     public currentAnimeData: any;
     public animeDataEvents : Subject<any> = new BehaviorSubject<any>(null);
+
     private episodesRetreived : any;
+    private enableDebugging : boolean = true;
 
-
-    constructor(private http: Http, private niblService :NiblService, private shareService : ShareService){
-      
-        console.log("Launching Kitsu API");
+    /**
+     * Creates an instance of KitsuService.
+     * @param {Http} http (used for http requests)
+     * @param {NiblService} niblService (used for communicating with the api from nibl.co.uk)
+     * @param {ShareService} shareService (used to send and receive information to/form other Components & Services)
+     * @param {UtilityService} utilityService (contains methods not specific to any Component)
+     * @memberof KitsuService
+     */
+    constructor(private http: Http, private niblService :NiblService, private shareService : ShareService, private utilityService : UtilityService){      
+        this.consoleWrite("Launching Kitsu API");
         this.currentAnimeData = null;
     }
 
-     //the only thing this service does (for now) is searching 
+    /**
+     * To search anime using the api from kitsu.
+     * 
+     * @param {string} search (search query)
+     * @param {number} amount (amount of results (max) (range: 1-20))
+     * @param {string} [status] (to get only anime with a specific status (airing for example))
+     * @returns {object} (json object with response)
+     * @memberof KitsuService
+     */
     async searchAnime(search : string, amount: number, status?:string){  
         if(status !== undefined || status != null){
-            console.log(status);
+            this.consoleWrite(status);
             const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[text]=' + search + '&page[limit]=' + amount.toString() + '&filter[status]=' + status)).toPromise();  
             return response.json();   
         } else {
             const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[text]=' + search + '&page[limit]=' + amount.toString())).toPromise();     
             return response.json();  
-        }       
-        
-      
-             
+        }      
     }
-
+        
+    /**
+     * To get specific anime information using the api from kitsu.
+     * 
+     * @param {*} id (id of anime)
+     * @param {string} query (custom query (check: https://kitsu.docs.apiary.io/#))
+     * @param {string} offset (used for specifiying starting index for mutliple results)
+     * @param {string} [type] (for specific type (tv, movie etc.))
+     * @returns {object} (json object with response)
+     * @memberof KitsuService
+     */
     async getAnimeInfo(id : any,  offset: string, query: string, type?: string){
         
         this.episodesRetreived = undefined;
@@ -50,86 +83,14 @@ export class KitsuService {
             return json;  
         }
     }
-
-    async getEpisodeTitle(id: any, episode: number){
-        if(episode > 0){
-
-            if(this.episodesRetreived === undefined){
-                console.log("kitsu: no episodes retreived yet");
-                let offset = 0;
-                if(((episode - 1) % 20) == 0){
-                    offset = (episode / 20) * 20 - 1;
-                }
-                const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime/' + id + '/episodes?sort=number&fields[episodes]=canonicalTitle&page[limit]=20&page[offset]=' + offset)).toPromise();
-                this.episodesRetreived = {id: id, offset : offset, response: response.json()};
-                console.log( this.episodesRetreived );
-
-                try{
-                        
-                    return this.episodesRetreived.response.data[episode - offset - 1].attributes.canonicalTitle;
-                } catch (e){
-                    
-                    return false;
-                }
-            }  else {
-                 console.log("i shouldnt come here");
-                if(this.episodesRetreived.id == id){
-                     if((episode - this.episodesRetreived.offset) >= 20){
-                        let offset = 0;
-                        if(((episode - 1) % 20) == 0){
-                            offset = (episode / 20) * 20 - 1;
-                        }
-                        const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime/' + id + '/episodes?sort=number&fields[episodes]=canonicalTitle&page[limit]=20&page[offset]=' + offset)).toPromise();
-                        this.episodesRetreived = {id: id, offset : offset, response: response.json()};
-                        console.log("stuff");
-                        console.log( this.episodesRetreived );
-                        console.log(episode - offset - 1);
-                         try{
-                        
-                            return this.episodesRetreived.response.data[episode - offset - 1].attributes.canonicalTitle;
-                        } catch (e){
-                            
-                            return false;
-                        }
-                    } else {
-                        console.log( this.episodesRetreived );
-                         try{
-                            return this.episodesRetreived.response.data[episode - this.episodesRetreived.offset - 1].attributes.canonicalTitle;
-                        } catch (e){
-                            
-                            return false;
-                        }
-                   
-                    }
-                } else {
-                    console.log("kitsu: no episodes retreived yet");
-                    let offset = 0;
-                    if(((episode - 1) % 20) == 0){
-                        offset = (episode / 20) * 20 - 1;
-                    }
-                    const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime/' + id + '/episodes?sort=number&fields[episodes]=canonicalTitle&page[limit]=20&page[offset]=' + offset)).toPromise();
-                    this.episodesRetreived = {id: id, offset : offset, response: response.json()};
-                    console.log( this.episodesRetreived );
-
-                    try{
-                        
-                        return this.episodesRetreived.response.data[episode - offset - 1].attributes.canonicalTitle;
-                    } catch (e){
-                        
-                        return false;
-                    }
-
-                }
-
-               
-            }
-           
-        } else {
-            return false;
-        }
-       
-    }
-
+    
+    /**
+     * Get all anime information about anime using id of anime using api from kitsu.
+     * 
+     * @param {*} id (id of anime)
+     * @returns {object} (json object with response) 
+     * @memberof KitsuService
+     */
     async getAllInfo(id: any){
         const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime/' + id)).toPromise();        
         var globalInfo = response.json();
@@ -141,44 +102,104 @@ export class KitsuService {
         return newObj;
     }
 
+    /**
+     * Gets currently airing per page (max result = 20 so with > 20 airing animes you need to go through multiple pages)
+     * 
+     * @param {string} limit (max result limit)
+     * @param {string} page (page to request)
+     * @returns {object} (json object with response) 
+     * @memberof KitsuService
+     */
     async getCurrentlyAiringPerPage(limit : string, page: string){
         const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[status]=current&page[limit]=' + limit + '&page[offset]=' + page)).toPromise();
         return response.json();       
     }
 
-   getAllCurrentlyAiring(){
-        let observable=Observable.create(observer => {
-           
+    /**
+     * Get all currently airing anime on kitsu
+     * 
+     * @returns {object} (json object with response) 
+     * @memberof KitsuService
+     */
+    getAllCurrentlyAiring(){
+        let observable=Observable.create(observer => {         
+
             this.niblService.getLatestEpisodes(692).subscribe(async(result)=>{
+                this.consoleWrite("RESULT:");
+                this.consoleWrite(result);
                 var seconds = new Date().getTime() / 1000;
                 var objArray = [];
                 var parsedAnimes = [];
-                for(let animename of result){
-                    
-                    if(animename.length > 5){
-                        var anime = await this.searchAnime(animename, 1, "current");
-                        anime = anime.data[0];
-                        if(parsedAnimes.indexOf(anime.id) == -1){
-                            if(anime.attributes.status == "current" || anime.attributes.showType == "movie"){
-                                objArray.push(anime);                        
-                            }
-                            parsedAnimes.push(anime.id);    
+                var parsedAnimeTitles= [];
+                var getRequests = [];
+                this.consoleWrite(result);
+                const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[status]=current')).toPromise();
+                let results = response.json();
 
-                        } else {
-                            break;
+                let amountofanimeairing = results.meta.count;
+                let amountofrequests = amountofanimeairing / 20 + 1;
+                let reqcount = 0;
+                let reqoffset = 0;
+                getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[status]=current&page[limit]=20&page[offset]=' + (reqcount * 20))).map((res)=> res.json()));
+                for(reqcount = 1 ; reqcount < amountofrequests; reqcount++){
+                    getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[status]=current&page[limit]=20&page[offset]=' + (reqcount * 20 + 1))).map((res)=> res.json()));
+                }
+
+
+                
+                let i = 0;
+                for(i = result.length  - amountofanimeairing; i < result.length; i++){
+                    let strippedepisodename = this.utilityService.stripName(result[i]);
+                    parsedAnimeTitles.push(strippedepisodename);
+                }
+                
+                console.log(parsedAnimeTitles);
+                this.consoleWrite(getRequests);
+                forkJoin(getRequests).subscribe((next : any) =>{
+                    console.log("KITSU RESULT:");
+                    console.log(next);
+                    
+                    for(let animetitle of parsedAnimeTitles){
+                        for(let result of next){
+                            for(let data of result.data){
+                                let strippedslug = this.utilityService.stripName(data.attributes.slug);
+                               // console.log(strippedslug);
+                            //   console.log("comparing:");
+                              //  console.log(animetitle);
+                              //  console.log(strippedslug);
+                                if(this.utilityService.compareNames(animetitle, strippedslug) > 40 && parsedAnimes.indexOf(strippedslug) == -1){
+                                    parsedAnimes.push(strippedslug);
+                                    objArray.push(data);
+                                    break;
+                                }
+                            }
                         }
-                    
-                    
                     }
-                }     
-                console.log("END:");
-                seconds = (new Date().getTime() / 1000) - seconds;
-                console.log(seconds); 
-                observer.next(objArray);
-                observer.complete();
+
+                
+                    
+                    this.consoleWrite("END:");
+                    seconds = (new Date().getTime() / 1000) - seconds;
+                    this.consoleWrite(seconds); 
+                    observer.next(objArray);
+                    observer.complete();
+
+                });
             });
         });
         return observable;
         
-    }  
+    } 
+    
+    /**
+     * Custom console.log function so that it can be enabled/disabled if there is no need for debugging
+     * 
+     * @param {*} log (gets any type of variable and shows it if enableDebug is true) 
+     * @memberof KitsuService
+     */
+    async consoleWrite(log: any){
+        if(this.enableDebugging){
+            console.log(log);
+        }
+    }
 }

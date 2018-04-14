@@ -1,39 +1,39 @@
 <div class="ui basic segment ">
     <div class="row computer tablet only">
         <div class="ui horizontal divider"> DOWNLOAD QUE </div>
-        <table style="border-spacing: 0;" cellspacing="0" class="ui very basic table" style="width: 100%; background-color: white;">
-        <thead>
-            <tr>
-            <th class="width-20">File</th>
-            <th class="width-20">Size</th>
-            <th class="width-20">Status</th>
-            <th class="width-20">Progress</th>
-            <th class="width-20">Speed</th>
-            <th class="width-20">Options</th>
-            </tr>
-        </thead>
-        <tbody id="listWithDownloads">
-            <tr *ngFor="let download of downloads">
-                <td id="filename_{{download.id}}">{{download.filename}}</td>
-                <td id="status_{{download.id}}">{{download.filesize}} Mb</td>
-                <td id="status_{{download.id}}">{{download.status}}</td>
-                <td>
-                    <div style="text-align: center;"> {{download.progress}}% </div><br/>
-                    <progress class="min-width-100 min-height-15" [value]="download.progress" max="100">{{download.progress}}%</progress>
-                </td>
-                <td>                        
-                    <div style="text-align: center;"> {{download.speed}} kB/s </div>
-                </td>
-                <td id="buttons_{{download.id}}">
-                    <p>
-                        <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendPlayRequest(download)" class="ui primary button">Play</button>                            
-                        <button *ngIf="!isLocal" class="min-width-100 margin-bottom-5" (click)="getUrl(download)" class="ui primary button">Get Url</button>
-                        <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendOpenLocationRequest(download)"  class="ui primary button">Open Location</button>
-                        <button class="min-width-100 margin-bottom-5" (click)="sendAbortRequest(download)"  class="ui primary button">Abort</button>
-                    </p>
-                </td>
-            </tr>
-        </tbody>
+        <table style="border-spacing: 0;" cellspacing="0" class="ui very basic unstackable table" style="width: 100%; background-color: white;">
+            <thead>
+                <tr>
+                <th class="width-20">File</th>
+                <th class="width-20">Size</th>
+                <th class="width-20">Status</th>
+                <th class="width-20">Progress</th>
+                <th class="width-20">Speed</th>
+                <th class="width-20">Options</th>
+                </tr>
+            </thead>
+            <tbody id="listWithDownloads">
+                <tr *ngFor="let download of downloads">
+                    <td id="filename_{{download.id}}">{{download.filename}}</td>
+                    <td id="status_{{download.id}}">{{download.filesize}} Mb</td>
+                    <td id="status_{{download.id}}">{{download.status}}</td>
+                    <td>
+                        <div style="text-align: center;"> {{download.progress}}% </div><br/>
+                        <progress class="min-width-100 min-height-15" [value]="download.progress" max="100">{{download.progress}}%</progress>
+                    </td>
+                    <td>                        
+                        <div style="text-align: center;"> {{download.speed}} kB/s </div>
+                    </td>
+                    <td id="buttons_{{download.id}}">
+                        <p>
+                                <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendPlayRequest(download)" class="ui primary button"><i class="play icon"></i></button>                            
+                                <button *ngIf="!isLocal" class="min-width-100 margin-bottom-5" (click)="getUrl(download)" class="ui primary button"><i class="folder open outline icon"></i></button>
+                                <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendOpenLocationRequest(download)"  class="ui primary button"><i class="folder open outline icon"></i></button>
+                                <button class="min-width-100 margin-bottom-5" (click)="sendAbortRequest(download)"  class="ui primary button"><i class="window close outline icon"></i></button>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div> 
     <div class="row computer only" >
@@ -45,7 +45,7 @@
                 {{ dirs.directory}}
             </div>  
             <div class="content"> 
-                <table class="ui very basic table min-width-100 bg-white" >
+                <table class="ui very unstackable basic table min-width-100 bg-white" >
                     <thead>
                         <tr>
                             <th>File</th>
@@ -59,12 +59,12 @@
                             <td id="filename_{{file.id}}">{{file.filesize}} Mb</td>
                             <td id="buttons_{{file.id}}">
                                 <p>
-                                    <button *ngIf="isLocal" class="btn-listwithdownloads margin-top-1" (click)="sendPlayRequest(file)" class="ui primary button">Play</button>
-                                    <button *ngIf="!isLocal" class="btn-listwithdownloads margin-top-1" (click)="getUrl(file)" class="ui primary button">Get Url</button>
-                                    <button *ngIf="isLocal && osVersion !='ANDROID'" class="btn-listwithdownloads margin-top-1" (click)="sendOpenLocationRequest(file)"  class="ui primary button">Open Location</button>
+                                    <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendPlayRequest(file)" class="ui primary button"><i class="play icon"></i></button>                            
+                                    <button *ngIf="!isLocal" class="min-width-100 margin-bottom-5" (click)="getUrl(file)" class="ui primary button"><i class="folder open outline icon"></i></button>
+                                    <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendOpenLocationRequest(file)"  class="ui primary button"><i class="folder open outline icon"></i></button>
                                 </p>
                                 <p>
-                                    <button class="btn-listwithdownloads" (click)="sendDeleteRequest(file)"  class="ui primary button">Delete</button>
+                                    <button class="btn-listwithdownloads" (click)="sendDeleteRequest(file)"  class="ui primary button"><i class="trash alternate outline icon"></i></button>
                                 </p>
                             </td>
                         </tr>

@@ -55,7 +55,6 @@ namespace LilleWeebie
             webView.Settings.AllowFileAccessFromFileURLs = true;
             webView.Settings.AllowUniversalAccessFromFileURLs = true;
 
-
             // Use subclassed WebViewClient to intercept hybrid native calls
             webView.SetWebChromeClient(new WebChromeClient());
             // Load the rendered HTML into the view with a base URL 
