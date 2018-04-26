@@ -571,4 +571,14 @@ export class UtilityService {
         }
 
     }
+
+    createSpaces(str : string){
+        if(str.split('_').length > 0){
+            str = str.split('_').join(' ');
+        }
+        if(str.split('.').length > 1){
+            str = str.split('.').join(' ');         
+        }
+        return str;
+    }
 }

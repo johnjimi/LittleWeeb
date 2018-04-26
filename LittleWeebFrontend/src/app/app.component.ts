@@ -1,5 +1,5 @@
 import { Component, OnInit,  HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Toaster} from './components/extras/toaster.component'
 import {Loader} from './components/extras/loader.component'
 import {Modal} from './components/extras/modal.component'
@@ -82,7 +82,7 @@ export class AppComponent  {
      * @param {ActivatedRoute} router (for redirecing and routeroutlet)
      * @memberof AppComponent
      */
-    constructor( private shareServices: ShareService, private versionService: VersionService, private backEndService: BackEndService, private router: ActivatedRoute){
+    constructor( private routing: Router, private shareServices: ShareService, private versionService: VersionService, private backEndService: BackEndService, private router: ActivatedRoute){
         this.version = versionService.currentVersion;
         this.showMenu = false;
         console.log("Menu Succesfully Loaded!");
@@ -151,7 +151,38 @@ export class AppComponent  {
         this.versionService.getVersion();
      
         this.shareServices.getFavoritAnimeCount();
+
+        this.backEndService.websocketMessages.subscribe(message=>{
+            if(message != null){
+                if(message.type == "free_space"){
+                    let minfreespacestr = this.shareServices.getDataLocal("minfreespace");
+                    let minfreespace = 0;
+                    if(minfreespacestr == false){
+                        this.shareServices.storeDataLocal("minfreespace", "500");
+                        minfreespace = 500;
+                    } else {
+                        minfreespace = Number(minfreespacestr);
+                    }
+                    if(message.freespacembytes < minfreespace){
+                        this.shareServices.showModal("Running out of Storage Space :(.", `It seems that your device is running out of space. 
+                        LittleWeeb can't download when there is not enough space to store an episode. 
+                        To resolve this issue, please remove something (be it a downloaded episode or another file). 
+                        You currently have ` + message.freespacembytes + ` MB left, but you need atleast ` +  minfreespacestr +
+                        `MB for LittleWeeb to be functional.`,
+                         "folder open", 
+                        `<div class="ui red basic cancel inverted button">
+                            Ignore.
+                        </div>
+                        <a href="/downloads" class="ui green ok inverted button">                       
+                            Go to Downloads.
+                        </a>`);
+                    }
+                }
+
+            }
+        })
             
+        
         this.shareServices.downloadamount.subscribe(amount=>{
             if(amount != null){
                 if(amount == 0){                    

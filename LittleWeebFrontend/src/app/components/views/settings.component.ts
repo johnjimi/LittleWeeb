@@ -39,6 +39,8 @@ export class Settings {
     localStorageKeys : string[];
     localStorageData : string;
     localStorageSelected : string;
+    currentDefaultResolution : string;
+    minspacerequired : string;
 
     /**
      * Creates an instance of Settings.
@@ -52,6 +54,14 @@ export class Settings {
         this.localStorageKeys = [];
         this.localStorageData = "";
         this.localStorageSelected = "";
+
+        let defaultresolution = this.shareService.getDataLocal("default_resolution");
+        if(defaultresolution == false){
+            this.shareService.storeDataLocal("default_resolution", "720");            
+            this.currentDefaultResolution = "720"; 
+        } else {
+            this.currentDefaultResolution = defaultresolution;
+        }
     }
 
     /**
@@ -94,10 +104,29 @@ export class Settings {
         for ( var i = 0, len = localStorage.length; i < len; ++i ) {
             this.localStorageKeys.push(localStorage.key( i ));
         }
+
+        let minfreespacestr = this.shareService.getDataLocal("minfreespace");
+        if(minfreespacestr == false){
+            this.shareService.storeDataLocal("minfreespace", "500");
+            this.minspacerequired = "500";
+        } else {
+            this.minspacerequired = minfreespacestr;
+        }
         
         this.semanticui.enableAccordion();
         this.semanticui.enableDropDown();
 
+    }
+
+    setResolution(res : string){
+        this.shareService.storeDataLocal("default_resolution", res);            
+        this.currentDefaultResolution = res; 
+        this.shareService.showMessage("success", "Succesfully set resolution to: " + res);
+    }
+
+    setMinimumRequiredSpace(){        
+        this.shareService.storeDataLocal("minfreespace", this.minspacerequired);
+        this.shareService.showMessage("success", "Succesfully set Minimum Space Required to: " + this.minspacerequired);
     }
 
     /**
@@ -118,6 +147,7 @@ export class Settings {
     setCustomConnection(){
         let newConnection = {address : this.address, channels: this.channels, username: this.username};
         this.shareService.storeDataLocal("custom_irc_connection", JSON.stringify(newConnection));
+        this.shareService.showMessage("success", "Succesfully set Custom Connection." );
         this.connectToIrcServer();
     }
 
@@ -152,6 +182,8 @@ export class Settings {
         this.channels = newConnection.channels;
         this.username = newConnection.username;
         this.shareService.storeDataLocal("custom_irc_connection", JSON.stringify(newConnection));
+        
+        this.shareService.showMessage("success", "Succesfully set Default Connection." );
         this.connectToIrcServer();
     }
 
@@ -186,7 +218,9 @@ export class Settings {
             for ( var i = 0, len = localStorage.length; i < len; ++i ) {
                 this.localStorageKeys.push(localStorage.key( i ));
             }
-        }       
+            this.shareService.showMessage("success", "Succesfully resetted storage: " + this.localStorageSelected);   
+        }    
+        
     }
 
 

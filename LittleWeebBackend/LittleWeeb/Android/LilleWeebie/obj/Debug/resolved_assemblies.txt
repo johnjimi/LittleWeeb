@@ -11,5 +11,7 @@ F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\ob
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\System.Xml.Linq.dll
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\websocket-sharp.dll
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\System.Runtime.Serialization.dll
-F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\Microsoft.CSharp.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\System.Data.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\System.Numerics.dll
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\Mono.Security.dll
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\android\assets\Microsoft.CSharp.dll

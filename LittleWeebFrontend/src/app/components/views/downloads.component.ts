@@ -29,6 +29,10 @@ export class Downloads {
     downloads : any;
     alreadyDownloaded : any;
     isLocal : boolean;
+    modalAnimeTitle : string = "";
+    modalFiles : any;
+    modalId : string = "";
+    showModal : boolean = false;
     /**
      * Creates an instance of Downloads.
      * @param {Router} router (used for rerouting to other places if necesary)
@@ -44,6 +48,7 @@ export class Downloads {
         this.alreadyDownloaded = [];
         this.isLocal = this.shareService.isLocal;
 
+        this.closeModal();
         if(this.backEndService.address.indexOf("local") > -1 || this.backEndService.address.indexOf("127.0.0.1") > -1){
             this.isLocal = true;
         }
@@ -56,11 +61,22 @@ export class Downloads {
 
         this.downloadService.updateAlreadyDownloadedList.subscribe((listwithdownloads)=>{
             if(listwithdownloads != null){                
-                this.alreadyDownloaded = listwithdownloads;                
-                this.semanticService.enableAccordion();       
+                this.alreadyDownloaded = listwithdownloads;    
+                let found = false; 
+                for(let dirs of this.alreadyDownloaded.directories){
+                    if(dirs.animeinfo.animeid == this.modalId){
+                        this.modalFiles = dirs.alreadyDownloaded;
+                        this.modalAnimeTitle = dirs.animeinfo.title;
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    this.closeModal();
+                }
             }
         });
-
+        
         
     }
 
@@ -70,8 +86,53 @@ export class Downloads {
      * @memberof Downloads
      */
     ngOnInit(){
-        this.downloadService.getDownloadList();
-        this.downloadService.getAlreadyDownloaded();
+        this.shareService.showLoaderMessage("Retreiving downloads.");
+        setTimeout(()=>{                
+            this.downloadService.getDownloadList();
+            this.downloadService.getAlreadyDownloaded();
+            this.shareService.hideLoader();
+            this.closeModal();
+        }, 2000);
+    }
+
+    showFilesFor(id : string){
+        console.log(this.downloads);
+        
+        this.closeModal();
+        this.modalAnimeTitle = "";
+        this.modalFiles = "";
+        for(let dirs of this.alreadyDownloaded.directories){
+            console.log("comparing:");
+            console.log(dirs.animeinfo.animeid);
+            console.log(id);
+            if(dirs.animeinfo.animeid == id){
+                this.modalFiles = dirs.alreadyDownloaded;
+                this.modalAnimeTitle = dirs.animeinfo.title;
+                this.modalId = id;
+                break;
+            }
+        }
+        this.showModal = true;
+    }
+
+    closeModal(){        
+        this.showModal = false;
+    }
+
+    goToAnimeInfo(){
+        for(let dirs of this.alreadyDownloaded.directories){
+            console.log("comparing:");
+            console.log(dirs.animeinfo.animeid);
+            console.log(this.modalId);
+            if(dirs.animeinfo.animeid == this.modalId){
+                this.closeModal();
+                let newAnimeObj = {attributes : {canonicalTitle : dirs.animeinfo.title}, id : dirs.animeinfo.animeid};
+                this.shareService.showLoader();
+                this.shareService.animetoshow.next(newAnimeObj);
+                this.router.navigate(['animeinfo']); 
+                break;
+            }
+        }
     }
 
     /**
@@ -107,7 +168,7 @@ export class Downloads {
      * @memberof Downloads
      */
     sendAbortRequest(download : any){
-       this.backEndService.sendMessage({"action" : "abort_download"});
+       this.downloadService.abortDownload(download);
     }
 
     /**

@@ -10,19 +10,54 @@
             <label>Download Location</label>
             <input  class="text-input-setting" id="downloadLocation" type="text" name="downloadLocation" placeholder="{{downloadlocation}}"> 
         </div>
+
+        <div class="field margin-top-1">
+            <label>Actions:</label>
+            <button class="ui primary button" (click)="openFileDialog()">Change</button>
+        </div>
+
+        <div class="ui divider"> </div>
         
-        <div class="ui divider"> </div>  
+        <div class="field margin-top-1">
+            <label>Set Default Resolution, Current: {{currentDefaultResolution}}</label>
+            <div class="field margin-top-1">
+                <div class="ui selection dropdown fixed-width-150" >
+                    <input type="hidden" name="resolutionAnime"  class="fixed-width-150">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">{{currentDefaultResolution}}</div>
+                    <div class="menu min-width-7" >                
+                        <div class="item " (click)="setResolution('all')">All Resolutions</div>
+                        <div class="item" (click)="setResolution('480')" >480p</div>
+                        <div class="item" (click)="setResolution('720')" >720p</div>
+                        <div class="item" (click)="setResolution('1080')" >1080p</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui divider"> </div>
+        <div class="field margin-top-1">
+            <label>Set minimum space required in MegaBytes for "Not Enough Space Left" warning to show.</label>
+            <input  class="text-input-setting" id="minSpaceRequired" type="text" name="minSpaceRequired"   [(ngModel)]="minspacerequired" [value]="minspacerequired"> 
+        </div>
+
+        <div class="field margin-top-1">
+            <label>Actions:</label>
+            <button class="ui primary button" (click)="setMinimumRequiredSpace()">Save</button>
+        </div>
+
+        <div class="ui divider"> </div>
         <div class="field margin-top-1">
             <label>Custom IRC Server - Where the IRC server is connected to</label>
-            <input  class="text-input-setting" id="customServer" type="text" name="customServer" (ngModel)="address" [value]="address"> 
+            <input  class="text-input-setting" id="customServer" type="text" name="customServer"   [(ngModel)]="address" [value]="address"> 
         </div>
         <div class="field margin-top-1">
             <label>Custom Channel(s) - Seperate with ','.</label>
-            <input class="text-input-setting" id="customChannels" type="text" name="customChannels" (ngModel)="channels" [value]="channels"> 
+            <input class="text-input-setting" id="customChannels" type="text" name="customChannels"  [(ngModel)]="channels" [value]="channels"> 
         </div>
         <div class="field margin-top-1">
             <label>Custom Username - Username to use to connect to a IRC server.</label>
-            <input class="text-input-setting" id="customUsername" type="text" name="customUsername" (ngModel)="username" [value]="username" > 
+            <input class="text-input-setting" id="customUsername" type="text" name="customUsername"  [(ngModel)]="username" [value]="username" > 
         </div>
             
         <div class="field margin-top-1">

@@ -71,6 +71,8 @@ export class BackEndService {
                         
                         baseDownloadDirBe = this.shareService.getDataLocal("baseDownloadDir");
                     }
+
+                    this.sendMessage({"action" : "get_free_space"});
                     this.shareService.baseDownloadDirectory = messageRec.downloadlocation;
                     this.shareService.isLocal = messageRec.local;
                     this.osVersion =  messageRec.osVersion;
@@ -98,6 +100,34 @@ export class BackEndService {
                             this.sendMessage({"action" : "connect_irc", "extra" : {"address":"irc.rizon.net", "username": "", "channels": "#horriblesubs,#nibl,#news"}});
                         },1000);
                     }
+                } else if(messageRec.type == "error"){
+                    switch(messageRec.errortype){
+                        case "not_enough_space":
+                            this.shareService.showModal("Running out of Storage Space :(.", `It seems that your device is running out of space. 
+                                LittleWeeb can't download when there is not enough space to store an episode. 
+                                To resolve this issue, please remove something (be it a downloaded episode or another file).`,
+                                "folder open", 
+                                `<div class="ui red basic cancel inverted button">
+                                    <i class="remove icon"></i>
+                                    Ignore.
+                                </div>
+                                <a href="/downloads" class="ui green ok inverted button">                       
+                                    Go to Downloads.
+                                </a>`);
+                        break;
+                        default:
+                            this.shareService.showModal("An error occured: " + messageRec.errortype , `If this messages shows, try to notify the developer and explain what steps you took prior to the error. `, 
+                            "exclamation triangle", 
+                            `<div class="ui red basic cancel inverted button">
+                                <i class="remove icon"></i>
+                                Ignore.
+                            </div>
+                            <a href="/downloads" class="ui green ok inverted button">                       
+                                Go to Downloads.
+                            </a>`);
+                        break;
+                    }
+
                 }
 
              }            
@@ -112,7 +142,7 @@ export class BackEndService {
     */
    async tryConnecting(address : string){
         this.address = address;
-        this.shareService.showLoaderMessage("Waiting for connection to backend!");
+        //this.shareService.showLoaderMessage("Waiting for connection to backend!");
         this.websocket = new WebSocket("ws://" + address + ":1515");
             
         this.websocket.onopen = (evt : any) =>{
@@ -132,7 +162,7 @@ export class BackEndService {
             }
         }
         this.websocket.onclose = (evt : any)=>{
-            this.shareService.showMessage("succes", "Lost connection with backend! Refresh for retry!");   
+          /*  this.shareService.showMessage("succes", "Lost connection with backend! Refresh for retry!");   
             if(!this.shareService.isLocal){
                 this.shareService.hideLoader();
                 this.connected = false;
@@ -149,7 +179,7 @@ export class BackEndService {
                     Notify the developer!
                     </a>
                 ` );                
-            }
+            }*/
            
         }
     }
@@ -188,7 +218,7 @@ export class BackEndService {
 
                 }
 
-            }, 250);
+            }, 1000);
         }catch(e){
             this.consoleWrite(e);
         }

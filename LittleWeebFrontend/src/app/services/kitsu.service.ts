@@ -49,15 +49,104 @@ export class KitsuService {
      * @returns {object} (json object with response)
      * @memberof KitsuService
      */
-    async searchAnime(search : string, amount: number, status?:string){  
-        if(status !== undefined || status != null){
-            this.consoleWrite(status);
-            const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[text]=' + search + '&page[limit]=' + amount.toString() + '&filter[status]=' + status)).toPromise();  
-            return response.json();   
-        } else {
-            const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime?filter[text]=' + search + '&page[limit]=' + amount.toString())).toPromise();     
-            return response.json();  
-        }      
+    searchAnime(search : string, categories: any, genres :any, years :any, seasons :any,statusus: any, types: any, rRated: boolean, amount: number, offset:number ){  
+        let fullquery = "";
+
+        if(search.length > 0){
+            fullquery += "&filter[text]" + search;
+        }
+        let categoriesquery = "";
+        if(categories.length > 0){
+            let categoriesstring = "";
+            for(let category of categories){
+                categoriesstring = category.title + ",";
+            }
+            categoriesstring = categoriesstring.substr(0, categoriesstring.length - 1);
+            categoriesquery = "filter[categories]=" + categoriesstring;
+            fullquery += "&" + categoriesquery ;
+        }
+        
+
+        let genresquery = "";
+        if(genres.length > 0){
+            let genresstring = "";
+            for(let genre of genres){
+                genresstring = genre.name + ",";
+            }
+            genresstring = genresstring.substr(0, genresstring.length - 1);
+            genresquery = "filter[genres]=" + genresstring;
+
+           
+            fullquery += "&" + genresquery;
+
+        }
+
+        let yearsquery = "";
+        if(years.length > 0){
+            let yearsstring = "";
+            for(let year of years){
+                yearsstring = year + ".." + year + ",";
+            }
+            yearsstring = yearsstring.substr(0, yearsstring.length - 1);
+            yearsquery = "filter[year]=" + yearsstring;
+            fullquery += "&" + yearsquery;
+        }
+
+        let statususquery = "";
+        if(statusus.length > 0){
+            let statususstring = "";
+            for(let status of statusus){
+                statususstring = status + ",";
+            }
+            statususstring = statususstring.substr(0, statususstring.length - 1);
+            statususquery = "filter[status]=" + statususstring;
+            fullquery += "&" + statususquery;
+        }
+
+        let typesquery = "";
+        if(types.length > 0){
+            let typesstring = "";
+            for(let type of types){
+                typesstring = type + ",";
+            }
+            typesstring  = typesstring .substr(0, typesstring .length - 1);
+            typesquery = "filter[subtype]=" + typesstring ;
+            fullquery += "&" + typesquery;
+        }
+
+     
+
+        let observable=Observable.create(async observer => { 
+            const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/anime?' + fullquery)).toPromise();
+            let results = response.json();
+
+            let amountofanimeairing = results.meta.count;
+            let amountofrequests = amountofanimeairing / 20 + 1;
+            let reqcount = 0;
+            let reqoffset = 0;
+            var getRequests = [];
+            let objArray = [];
+            getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/anime?' + fullquery + '&page[limit]=20&page[offset]=' + (offset * 20))).map((res)=> res.json()));
+            for(reqcount = offset + 1 ; reqcount < offset + amount; reqcount++){
+                getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/anime?' + fullquery + '&page[limit]=20&page[offset]=' + (reqcount * 20 + 1))).map((res)=> res.json()));
+            }
+
+            forkJoin(getRequests).subscribe((next : any) =>{
+                for(let result of next){
+                    for(let data of result.data){
+                        if(data.attributes.posterImage != null && data.attributes.nsfw == rRated){                            
+                            objArray.push(data);  
+                        }              
+                    }
+                }  
+                observer.next(objArray);
+                observer.complete();
+            });
+          
+        });
+        return observable;
+       
+       
     }
         
     /**
@@ -121,8 +210,8 @@ export class KitsuService {
      * @returns {object} (json object with response) 
      * @memberof KitsuService
      */
-    getAllCurrentlyAiring(){
-        let observable=Observable.create(observer => {         
+     getAllCurrentlyAiring(){
+        let observable=Observable.create(async observer => {         
 
             this.niblService.getLatestEpisodes(692).subscribe(async(result)=>{
                 this.consoleWrite("RESULT:");
@@ -148,7 +237,8 @@ export class KitsuService {
 
                 
                 let i = 0;
-                for(i = result.length  - amountofanimeairing; i < result.length; i++){
+                
+                for(i = 0; i < amountofanimeairing; i++){
                     let strippedepisodename = this.utilityService.stripName(result[i]);
                     parsedAnimeTitles.push(strippedepisodename);
                 }
@@ -175,9 +265,6 @@ export class KitsuService {
                             }
                         }
                     }
-
-                
-                    
                     this.consoleWrite("END:");
                     seconds = (new Date().getTime() / 1000) - seconds;
                     this.consoleWrite(seconds); 
@@ -185,11 +272,76 @@ export class KitsuService {
                     observer.complete();
 
                 });
+                
+                
+                    
+               
             });
         });
         return observable;
         
     } 
+
+    getAllGenres(){
+        //https://kitsu.io/api/edge/genres
+        let observable=Observable.create(async observer => {      
+            const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/genres')).toPromise();
+            let results = response.json();
+
+            let arraywithgenres=[];
+            let amountofanimeairing = results.meta.count;
+            let amountofrequests = amountofanimeairing / 20 + 1;
+            let reqcount = 0;
+            let reqoffset = 0;
+            var getRequests = [];
+            getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/genres?page[limit]=20&page[offset]=' + (reqcount * 20))).map((res)=> res.json()));
+            for(reqcount = 1 ; reqcount < amountofrequests; reqcount++){
+                getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/genres?page[limit]=20&page[offset]=' + (reqcount * 20 + 1))).map((res)=> res.json()));
+            }
+
+            forkJoin(getRequests).subscribe((next : any) =>{
+                for(let result of next){
+                    for(let data of result.data){
+                        arraywithgenres.push(data.attributes);                  
+                    }
+                }
+            });
+                
+            observer.next(arraywithgenres);
+            observer.complete();
+        });
+        return observable;
+    }
+
+     getAllCategories(){
+        let observable=Observable.create(async observer => {      
+            const response = await this.http.get( encodeURI('https://kitsu.io/api/edge/categories')).toPromise();
+            let results = response.json();
+
+            let arraywithcategories=[];
+            let amountofanimeairing = results.meta.count;
+            let amountofrequests = amountofanimeairing / 20 + 1;
+            let reqcount = 0;
+            let reqoffset = 0;
+            var getRequests = [];
+            getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/categories?page[limit]=20&page[offset]=' + (reqcount * 20))).map((res)=> res.json()));
+            for(reqcount = 1 ; reqcount < amountofrequests; reqcount++){
+                getRequests.push(this.http.get( encodeURI('https://kitsu.io/api/edge/categories?page[limit]=20&page[offset]=' + (reqcount * 20 + 1))).map((res)=> res.json()));
+            }
+
+            forkJoin(getRequests).subscribe((next : any) =>{
+                for(let result of next){
+                    for(let data of result.data){
+                        arraywithcategories.push(data.attributes);                  
+                    }
+                }
+            });
+                
+            observer.next(arraywithcategories);
+            observer.complete();
+        });
+        return observable;
+    }    
     
     /**
      * Custom console.log function so that it can be enabled/disabled if there is no need for debugging

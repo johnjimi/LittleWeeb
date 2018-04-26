@@ -1,66 +1,66 @@
-<div class="ui basic segment" *ngIf="doneLoading">  
-    <div class="row deskContent"  *ngIf="this.animeInfo.relations !== undefined">
-            <div class="ui link cards custom-size-info-card-left">
-                <div class="card">
-                    <div class="image">
-                    <img [src]="this.animeInfo.animeInfo.posterImage.large">
+<div class="ui basic segment min-width-100" *ngIf="doneLoading">  
+    <div class="row deskContent min-width-100"  *ngIf="this.animeInfo.relations !== undefined">
+        <div class="ui link cards custom-size-info-card-left min-width-100">
+            <div class="card">
+                <div class="image">
+                <img [src]="this.animeInfo.animeInfo.posterImage.large">
+                </div>
+                <div class="content">
+                <div class="header">{{this.animeInfo.animeInfo.canonicalTitle}}</div>
+                <div class="meta">
+                    <a>Genres</a>
+                </div>
+                <div class="description">                      
+                    <div *ngFor="let genre of this.animeInfo.relations.genres">
+                        <span *ngIf="genre !== undefined">
+                        {{genre.attributes.name}},
+                        </span>
                     </div>
-                    <div class="content">
-                    <div class="header">{{this.animeInfo.animeInfo.canonicalTitle}}</div>
+                    <hr>
+                    <p>
+                        <button class="ui inverted blue button" (click)="addToFavorites(this.animeInfo)"> Add To Favorites </button>
+                    </p>
+                </div>
+                </div>
+                <div class="extra content">
+                    <span class="right floated">
+                    <i class="users icon"></i>
+                        {{this.animeInfo.animeInfo.favoritesCount}} Members 
+                    </span>
+                    <span>
+                        <i class="star icon"></i>
+                        Score {{this.animeInfo.animeInfo.averageRating}} 
+                    </span>
+                </div>
+            </div>
+
+            <div class="card custom-size-info-card-right">
+                <div class="image ">
+                    <iframe  class="youtube-size " [src]="'https://www.youtube.com/embed/'+ this.animeInfo.animeInfo.youtubeVideoId  | safe" frameborder="0">
+                    </iframe>
+                </div>
+                <div class="content " >
+                    <div class="header">Synopsis</div>
                     <div class="meta">
-                        <a>Genres</a>
+                        <span class="date"></span>
                     </div>
-                    <div class="description">                      
-                        <div *ngFor="let genre of this.animeInfo.relations.genres">
-                            <span *ngIf="genre !== undefined">
-                            {{genre.attributes.name}},
-                            </span>
+                    <div class="content ">
+                        <div class="description" [innerHtml]="this.animeInfo.animeInfo.synopsis">
                         </div>
-                        <hr>
-                        <p>
-                            <button class="ui inverted blue button" (click)="addToFavorites(this.animeInfo)"> Add To Favorites </button>
-                        </p>
-                    </div>
                     </div>
                     <div class="extra content">
-                        <span class="right floated">
-                        <i class="users icon"></i>
-                            {{this.animeInfo.animeInfo.favoritesCount}} Members 
+                        <span class="right">
+                            <i class="file video outline icon"></i>
+                            Status: {{this.animeInfo.animeInfo.status}}
                         </span>
                         <span>
-                            <i class="star icon"></i>
-                            Score {{this.animeInfo.animeInfo.averageRating}} 
-                        </span>
+                            <i class="television icon"></i>
+                            Type: {{this.animeInfo.animeInfo.subtype}}
+                        </span>                        
                     </div>
                 </div>
-
-                <div class="card custom-size-info-card-right">
-                    <div class="image ">
-                        <iframe  class="youtube-size " [src]="'https://www.youtube.com/embed/'+ this.animeInfo.animeInfo.youtubeVideoId  | safe" frameborder="0">
-                        </iframe>
-                    </div>
-                    <div class="content " >
-                        <div class="header">Synopsis</div>
-                        <div class="meta">
-                            <span class="date"></span>
-                        </div>
-                        <div class="content ">
-                            <div class="description" [innerHtml]="this.animeInfo.animeInfo.synopsis">
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="right">
-                                <i class="file video outline icon"></i>
-                                Status: {{this.animeInfo.animeInfo.status}}
-                            </span>
-                            <span>
-                                <i class="television icon"></i>
-                                Type: {{this.animeInfo.animeInfo.subtype}}
-                            </span>                        
-                        </div>
-                    </div>
-                </div>
-            </div>            
+            </div>
+        </div>            
         <div class="divider ui"></div> 
     </div>   
     <div class="row phoneContent"  *ngIf="this.animeInfo.relations !== undefined">
@@ -180,14 +180,15 @@
             <div class="ui selection dropdown fixed-width-150" >
                 <input type="hidden" name="resolutionAnime"  class="fixed-width-150">
                 <i class="dropdown icon"></i>
-                <div class="default text">720p</div>
+                <div class="default text">{{dropdownres}}</div>
                 <div class="menu min-width-7" >                
                     <div class="item " (click)="showResolution('all')">All Resolutions</div>
                     <div class="item" (click)="showResolution('480')" >480p</div>
                     <div class="item" (click)="showResolution('720')" >720p</div>
                     <div class="item" (click)="showResolution('1080')" >1080p</div>
                 </div>
-            </div>
+            </div> 
+            
             <button *ngIf="enableAdvanced" class="ui inverted blue button" (click)="showAll()"> Show all </button>
             <button *ngIf="enableAdvanced" class="ui inverted blue button" (click)="closeAll()"> Close all</button>
             
@@ -247,7 +248,7 @@
 
     <div *ngIf="showDownload" class="ui grid">
         <div class="sixteen wide column">
-            <table style="border-spacing: 0;" cellspacing="0" class="ui very basic unstackable table" style="width: 100%; background-color: white;">
+            <table style="border-spacing: 0;" cellspacing="0" class="ui very basic unstackable table bg-white min-width-100">
                 <thead>
                     <tr>
                     <th class="width-20">File</th>
@@ -314,7 +315,7 @@
                                             <ng-container *ngIf="checkIfStringContiains(episode.botId, botname) || showAllBots"> 
                                                 <td> 
                                                     <button class="ui green inverted button" (click)="appendToDownloadsDirectly(episode)"><i class="cloud download icon"></i></button>
-                                                    <button class="ui green inverted button" (click)="playEpisodeAdvanced(episode)"><i class="play icon"></i></button>
+                                                    <button class="ui green inverted button" (click)="playEpisodeAdvanced(episode, episodes[0].episodeNumber)"><i class="play icon"></i></button>
                                                 </td>
                                                 <td>{{episode.botId}}</td>
                                                 <td>{{episode.name}}</td>

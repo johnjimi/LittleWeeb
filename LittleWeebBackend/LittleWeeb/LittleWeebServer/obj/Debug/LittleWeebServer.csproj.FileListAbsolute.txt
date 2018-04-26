@@ -21,11 +21,9 @@ F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\D
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SimpleIRCLib.dll
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SunIRCLibrary.dll
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\websocket-sharp.dll
-F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Newtonsoft.Json.xml
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SimpleIRCLib.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SunIRCLibrary.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.csproj.CoreCompileInputs.cache
-F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.exe.config
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.dll
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.xml

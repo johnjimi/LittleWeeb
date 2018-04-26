@@ -1,7 +1,7 @@
 <div class="ui basic segment ">
     <div class="row computer tablet only">
         <div class="ui horizontal divider"> DOWNLOAD QUE </div>
-        <table style="border-spacing: 0;" cellspacing="0" class="ui very basic unstackable table" style="width: 100%; background-color: white;">
+        <table style="border-spacing: 0;" cellspacing="0" class="ui very basic unstackable table bg-white min-width-100" >
             <thead>
                 <tr>
                 <th class="width-20">File</th>
@@ -36,41 +36,19 @@
             </tbody>
         </table>
     </div> 
-    <div class="row computer only" >
+    <div class="row" >
         <div class="ui horizontal divider"> ALREADY DOWNLOADED </div>
-                
-        <div class="ui styled accordion min-width-100" *ngFor="let dirs of alreadyDownloaded.directories" >
-            <div class="title">
-                <i class="dropdown icon"></i>
-                {{ dirs.directory}}
-            </div>  
-            <div class="content"> 
-                <table class="ui very unstackable basic table min-width-100 bg-white" >
-                    <thead>
-                        <tr>
-                            <th>File</th>
-                            <th>Size</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody id="listWithDownloads">
-                        <tr *ngFor="let file of dirs.alreadyDownloaded">
-                            <td id="filename_{{file.id}}">{{file.filename}}</td>
-                            <td id="filename_{{file.id}}">{{file.filesize}} Mb</td>
-                            <td id="buttons_{{file.id}}">
-                                <p>
-                                    <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendPlayRequest(file)" class="ui primary button"><i class="play icon"></i></button>                            
-                                    <button *ngIf="!isLocal" class="min-width-100 margin-bottom-5" (click)="getUrl(file)" class="ui primary button"><i class="folder open outline icon"></i></button>
-                                    <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendOpenLocationRequest(file)"  class="ui primary button"><i class="folder open outline icon"></i></button>
-                                </p>
-                                <p>
-                                    <button class="btn-listwithdownloads" (click)="sendDeleteRequest(file)"  class="ui primary button"><i class="trash alternate outline icon"></i></button>
-                                </p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>                
+        <div class="ui link cards " >                           
+            <div class="card tooltip card-custom-width-ssml-currentlyairing" *ngFor="let dirs of alreadyDownloaded.directories;" (click)="showFilesFor(dirs.animeinfo.animeid)"    >
+                <span class="tooltiptext">{{dirs.animeinfo.title}}</span>
+                <div class="image" >
+                    <img [src]="dirs.animeinfo.cover_small" class="cover-size-ssml" /> 
+                </div>
+                <div class="content card-content-height-lrg">
+                    <div class="card-content-text">{{dirs.animeinfo.title}}</div>
+                </div>
+            </div>        
+        </div>            
     </div>
 </div>
+

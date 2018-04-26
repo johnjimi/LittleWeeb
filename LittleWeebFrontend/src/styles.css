@@ -42,6 +42,20 @@
     background-color: white !important;
 }
 
+/* custom backgrounds */
+.transparant-grey-bg{
+    background: rgba(0,0,0,0.85);
+}
+
+
+/* displays */
+.display-flex {
+    display: flex !important;
+}
+
+.display-grid{
+    display: grid !important;
+}
 
 /* some image size stuff */
 .cover-size-ssml{
@@ -642,4 +656,20 @@
 }
 .wrapper-centered {
   display: inline-block;
+}
+
+/* absolute to frong */
+
+.tofront{
+    z-index: 9999 !important;
+}
+
+/* float  */
+.fleft{
+    float: left !important;
+}
+
+/* float right */
+.fright{
+    float: right !important;
 }

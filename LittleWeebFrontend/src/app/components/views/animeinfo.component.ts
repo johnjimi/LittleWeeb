@@ -31,7 +31,8 @@ export class AnimeInfo{
     //episode stuff
     botList : any[];
     botname : string;
-    resolution : string = this.shareService.defaultResolution;
+    possibleresolutions : any[];
+    resolution : string = "720";
     showAllBots : boolean;
     showAllResolutions : boolean;
     selectedItems : any[];
@@ -44,6 +45,9 @@ export class AnimeInfo{
     showError : boolean; 
     downloads : any[];
     alreadyDownloadedFiles : any[];
+
+    //dropdown custom
+    dropdownres : string = "All Resolutions";
 
     //filedir
     animeDir : string;
@@ -89,7 +93,7 @@ export class AnimeInfo{
         this.doneLoading = false;
         this.botname = "all";
         this.showAllBots = true;
-        this.showAllResolutions = true;
+        this.showAllResolutions = false;
         this.packsSelected = false;
         this.selectedItems = [];
         this.title = "";
@@ -104,6 +108,8 @@ export class AnimeInfo{
         this.animeDir = "";
         this.enableDebug = true;
 
+        
+
         this.episodeList= new Array();
         this.movieList = new Array();
 
@@ -111,6 +117,8 @@ export class AnimeInfo{
             this.isLocal = true;
         }
 
+
+        
        
         
         this.downloadService.updateDownloadList.subscribe((listwithdownloads)=>{
@@ -118,7 +126,7 @@ export class AnimeInfo{
                 this.downloads = []; 
                 for(let download of listwithdownloads){
                 
-                    if(download.animeId == this.animeInfo.id){
+                    if(download.animeid == this.animeInfo.id){
                         this.downloads.push(download);
                     }
                 }
@@ -137,7 +145,7 @@ export class AnimeInfo{
                     let found = false;
                     for(let dirs of listwithdownloads.directories){
                         for(let file of dirs.alreadyDownloaded){
-                            if(file.animeId == this.animeInfo.id && this.episodeToPlay.toString() == file.episodeNumber){
+                            if(file.animeid == this.animeInfo.id && this.episodeToPlay.toString() == file.episodeNumber){
                                 this.sendPlayRequest(file);
                                 found = true;
                                 this.waitingToPlay = false;
@@ -154,9 +162,9 @@ export class AnimeInfo{
                 for(let dirs of listwithdownloads.directories){
                     for(let file of dirs.alreadyDownloaded){
                         this.consoleWrite("COMPARING FOLLOWING ID:");
-                        this.consoleWrite(file.animeId);
+                        this.consoleWrite(file.animeid);
                         this.consoleWrite(this.animeInfo.id);
-                        if(file.animeId == this.animeInfo.id){
+                        if(file.animeid == this.animeInfo.id){
                             this.alreadyDownloadedFiles = dirs.alreadyDownloaded;
                             this.showAlreadyDownloaded = true;
                             this.consoleWrite("FOUND FILES FOR THIS ANIME");
@@ -189,7 +197,21 @@ export class AnimeInfo{
      */
     async ngOnInit(){
 
-        
+        let possibledefaultresolution = this.shareService.getDataLocal("default_resolution");
+        if(possibledefaultresolution != false){
+            if(possibledefaultresolution == "all"){
+                this.showAllResolutions = true;
+                this.resolution = ".";
+                this.dropdownres = "All Resolutions";
+            } else {
+                this.showAllResolutions = false;
+                this.resolution = possibledefaultresolution;
+                
+                this.dropdownres = possibledefaultresolution;
+            }
+        } else {
+            this.shareService.storeDataLocal("default_resolution", '720');      
+        }
 
         await this.http.get('https://raw.githubusercontent.com/erengy/anime-relations/master/anime-relations.txt').toPromise().then(animerelations => this.animeRelations= animerelations.text());
         await this.http.get('https://raw.githubusercontent.com/EldinZenderink/LittleWeebRules/master/littleweebrules.txt').toPromise().then(littleweebrules => this.littleWeebRules= littleweebrules.text());
@@ -233,8 +255,8 @@ export class AnimeInfo{
         this.shareService.animetoshow.take(1).subscribe(async(anime) => {
             if(anime !== null){
                 
-            this.consoleWrite("got mah anime");
-            this.consoleWrite(anime);
+                this.consoleWrite("got mah anime");
+                this.consoleWrite(anime);
                 this.shareService.showLoaderMessage("Loading anime: " + anime.attributes.canonicalTitle );   
                
                 if(this.animeInfo === undefined){
@@ -274,6 +296,12 @@ export class AnimeInfo{
                 }
             }
         }); 
+
+        
+        setTimeout(()=>{                
+            this.semanticui.enableAccordion();
+            this.semanticui.enableDropDown();
+        }, 100);
     }
 
     /**
@@ -372,16 +400,23 @@ export class AnimeInfo{
                 let hasWrongSeasonNumbers = false;
                 
                 let startEpisodeString = partWithEpisodeIndex.split(':')[1].split('-')[0];
-                let endEpisodeString = partWithEpisodeIndex.split(':')[1].split('-')[1].split(" -> ")[0];
+                let endEpisodeString = "0";
+                if(partWithEpisodeIndex.split(':')[1].split(' ')[0].indexOf('-') != -1){
+                   endEpisodeString = partWithEpisodeIndex.split(':')[1].split('-')[1].split(" -> ")[0];
+                }
+                
+
+                let shouldStartEpisodeString = partWithEpisodeIndex.split(':')[2].split('-')[0];
+                let shouldEndEpisodeString = "0";
+                if(partWithEpisodeIndex.split(':')[2].indexOf('-') != -1){
+                    shouldEndEpisodeString = partWithEpisodeIndex.split(':')[2].split('-')[1];
+                    if(shouldEndEpisodeString.indexOf('!') > -1){
+                        hasWrongSeasonNumbers = true;
+                        shouldEndEpisodeString = shouldEndEpisodeString.split('!')[0];
+                    }
+                }
 
                 
-                let shouldStartEpisodeString = partWithEpisodeIndex.split(':')[2].split('-')[0];
-                let shouldEndEpisodeString = partWithEpisodeIndex.split(':')[2].split('-')[1];
-
-                if(shouldEndEpisodeString.indexOf('!') > -1){
-                    hasWrongSeasonNumbers = true;
-                    shouldEndEpisodeString = shouldEndEpisodeString.split('!')[0];
-                }
 
                 
 
@@ -394,7 +429,9 @@ export class AnimeInfo{
                     leftOrRight : leftOrRight
                 }
 
-                startStopEpisodes.push(newStartStop);
+                if(endEpisodeString != "0" && shouldEndEpisodeString != "0"){                    
+                    startStopEpisodes.push(newStartStop);
+                }
                 break;
             }
         }
@@ -451,7 +488,7 @@ export class AnimeInfo{
             if(seasonIdentifier.seasonNumber > 0){               
                 let found = false;
                 for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
-                   if(anime.animeInfo.canonicalTitle.toLowerCase().indexOf(seasonIdentifierString) != -1){
+                   if(this.utilityService.createSpaces(anime.animeInfo.canonicalTitle.toLowerCase()).indexOf(seasonIdentifierString) != -1){
                         found = true;
                         seasonNumber = seasonIdentifier.seasonNumber;
                         seasonDelimiter = seasonIdentifierString;
@@ -559,8 +596,6 @@ export class AnimeInfo{
                         let firstpart = episodename.split('s' + seasonNumber.toString())[1];
                         if(firstpart.indexOf('.') != -1){
                             let secondpart = firstpart.split('.')[1];
-                            
-                            console.log(secondpart);
                             episodeFile.episodeNumber = Number(secondpart);
                            
                         }
@@ -640,7 +675,7 @@ export class AnimeInfo{
                                 let foundseasonident = false;
                                 if(seasonNumber > 1){
                                     for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
-                                        if(this.utilityService.stripName(episodeFile.name).indexOf(seasonIdentifierString) != -1){                              
+                                        if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){                                    
                                             foundseasonident = true;
                                             break;
                                         }
@@ -665,7 +700,7 @@ export class AnimeInfo{
                                 
                                   if(seasonNumber > 1){
                                         for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
-                                            if(this.utilityService.stripName(episodeFile.name).indexOf(seasonIdentifierString) != -1){                                     
+                                            if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){                                          
                                                 
                                                 if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
                                                                           
@@ -695,7 +730,7 @@ export class AnimeInfo{
                                 let foundseasonident = false;
                                 if(seasonNumber > 1){
                                     for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
-                                        if(this.utilityService.stripName(episodeFile.name).indexOf(seasonIdentifierString) != -1){                              
+                                        if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){                                    
                                             foundseasonident = true;
                                             break;
                                         }
@@ -714,7 +749,7 @@ export class AnimeInfo{
                                 
                                 if(seasonNumber > 1){
                                         for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
-                                            if(this.utilityService.stripName(episodeFile.name).indexOf(seasonIdentifierString) != -1){                                     
+                                            if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){                                     
                                                 
                                                 if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
                                                                           
@@ -769,11 +804,8 @@ export class AnimeInfo{
                     if(seasonNumber > 1){
                         let seasonIdentifier = seasonIdentifiers[seasonNumber];
                         for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
-                            if(this.utilityService.stripName(episodeFile.name).indexOf(seasonIdentifierString) != -1){  
-                                
-                                
-                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
-                                                                          
+                            if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){      
+                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){;                           
                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                     parsedEpisodeFiles.push(episodeFile);
                                 }
@@ -797,7 +829,6 @@ export class AnimeInfo{
                                             }
                                         }
                                         if(found){
-                                            console.log("found season number in file: " + seasonIdent.seasonNumber)
                                             seasonnumber = seasonIdent.seasonNumber;
                                             break;
                                         }
@@ -898,14 +929,9 @@ export class AnimeInfo{
     checkForRule(epname : string , littleweebrule :boolean, mustinclude:any){
         if(littleweebrule){
             let contains = false;
-            console.log("rule should be used!");
             for(let include of mustinclude){
                 let mustcontain = include.toLowerCase();
                 let words = epname.toLowerCase().split(' ');
-                
-                console.log("check if " + epname + " contains " + mustcontain);
-                console.log(words);
-                console.log(words.indexOf(mustcontain));
 
                 if(words.indexOf(mustcontain) != -1){
                     contains = true;
@@ -991,12 +1017,12 @@ export class AnimeInfo{
         let files = this.episodeList[i][0].files;
         this.consoleWrite(files);
         for(let file of files){
-            if(this.prefferedbots.indexOf[file.botId] && file.name.indexOf(this.resolution)){
+            if(this.prefferedbots.indexOf[file.botId] && file.name.indexOf(this.resolution) != -1){
                 this.consoleWrite("Found best file:");
                 this.consoleWrite(file);
                 this.appendToDownloadsDirectly(file);
                 break;
-            } else if(file.name.indexOf(this.resolution)){
+            } else if(file.name.indexOf(this.resolution)  != -1){
                 this.consoleWrite("Found best file:");
                 this.consoleWrite(file);                
                 this.appendToDownloadsDirectly(file);
@@ -1044,9 +1070,11 @@ export class AnimeInfo{
             //every filename has a dot for extension
             this.showAllResolutions = true;
             this.resolution = undefined;
+            this.dropdownres = "All Resolutions";
         } else {
             this.showAllResolutions = false;
             this.resolution = res;
+            this.dropdownres = res;
         }
     }
 
@@ -1059,7 +1087,7 @@ export class AnimeInfo{
     appendToDownloadsDirectly(download: any){
         var genid = this.utilityService.generateId(download.botId, download.number);
 
-        var newDownload = {id :genid, animeId: this.animeInfo.id, episodeNumber: download.episodeNumber, pack : download.number, bot: download.botId, filename: download.name, filesize: download.size, status : "Waiting", progress : "0", speed : "0", dir : this.animeDir};
+        var newDownload = {id :genid, animeInfo: { animeid : this.animeInfo.id, title: this.animeInfo.animeInfo.canonicalTitle, cover_original : this.animeInfo.animeInfo.posterImage.original, cover_small: this.animeInfo.animeInfo.posterImage.small}, episodeNumber: download.episodeNumber, pack : download.number, bot: download.botId, filename: download.name, filesize: download.size, status : "Waiting", progress : "0", speed : "0", dir : this.animeDir};
         this.downloadService.addDownload(newDownload);
         
         this.shareService.showMessage("succes", "Added to Downloads!");
@@ -1134,25 +1162,51 @@ export class AnimeInfo{
      * @memberof AnimeInfo
      */
     playEpisode(epnum: number){
-        this.shareService.showLoaderMessage("Waiting for download to start!");
-        this.selectBestEpisode(epnum);
-        this.waitingToPlay = true;
-        this.episodeToPlay = epnum;
-        let count = 0;
-        let tempint = setInterval(() =>{
-            if(this.waitingToPlay ){                
-                this.downloadService.getAlreadyDownloaded();
-            } else {
-                this.shareService.hideLoader();
-                clearInterval(tempint);
-            }
-            if(count > 4){                
-                this.shareService.showMessage("error", "Could not start playing episode!");
-                this.shareService.hideLoader();
-                clearInterval(tempint);
-            }
-            count++;
-        }, 1000);
+        if(this.isLocal){
+            this.shareService.showLoaderMessage("Waiting for download to start!");
+            this.selectBestEpisode(epnum);
+            this.waitingToPlay = true;
+            this.episodeToPlay = epnum;
+            let count = 0;
+            let tempint = setInterval(() =>{
+                if(this.waitingToPlay ){                
+                    this.downloadService.getAlreadyDownloaded();
+                } else {
+                    this.shareService.hideLoader();
+                    clearInterval(tempint);
+                }
+                if(count > 4){                
+                    this.shareService.showMessage("error", "Could not start playing episode!");
+                    this.shareService.hideLoader();
+                    clearInterval(tempint);
+                }
+                count++;
+            }, 1000);
+        }
+    }
+
+    playEpisodeAdvanced(download: any, epnum: number){
+        if(this.isLocal){
+            this.appendToDownloadsDirectly(download);
+            this.waitingToPlay = true;
+            this.episodeToPlay = epnum;
+            let count = 0;
+            let tempint = setInterval(() =>{
+                if(this.waitingToPlay ){                
+                    this.downloadService.getAlreadyDownloaded();
+                } else {
+                    this.shareService.hideLoader();
+                    clearInterval(tempint);
+                }
+                if(count > 4){                
+                    this.shareService.showMessage("error", "Could not start playing episode!");
+                    this.shareService.hideLoader();
+                    clearInterval(tempint);
+                }
+                count++;
+            }, 1000);
+
+        }
     }
 
      /**

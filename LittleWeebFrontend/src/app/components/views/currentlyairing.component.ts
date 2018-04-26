@@ -68,7 +68,7 @@ export class CurrentlyAiring {
             this.latestAired = airing.airing; 
             this.showCurAir = true;
             this.shareService.hideLoader();
-            if(seconds - airing.currentTime > 30){
+            if(seconds - airing.currentTime > 300){
                 
                 this.shareService.showMessage("succes", "Updating currently airing."); 
            

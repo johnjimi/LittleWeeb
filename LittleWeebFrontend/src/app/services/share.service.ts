@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Rx';
 import {BehaviorSubject} from 'rxjs/Rx';
+import {Router} from '@angular/router';
 
 /**
  * (SERVICE) ShareService
@@ -34,9 +35,19 @@ export class ShareService {
      * Creates an instance of ShareService.
      * @memberof ShareService
      */
-    constructor(){
+    constructor( private router: Router){
         this.isLocal = true;
     }   
+
+    /**
+     * Routes to a view without the need for importing router seperate as long as share service has been imported.
+     * 
+     * @param {string} view (view it has to go to)
+     * @memberof ShareService
+     */
+    routeToView(view:string){
+        this.router.navigate[view];
+    }
 
     /**
      * Updates the amount of downloads value shown in the sidebar (located in app.component.ts).

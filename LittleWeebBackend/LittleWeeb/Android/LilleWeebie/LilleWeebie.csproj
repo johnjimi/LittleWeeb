@@ -108,6 +108,21 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\inline.0075ff53e5c6e5895b32.bundle.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\main.aebbdd059918c2529e94.bundle.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\polyfills.7bd917fb14f237541df2.bundle.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\styles.f8cbc5139d821482bf8d.bundle.css" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidAsset Include="Assets\assets\toaster.css" />
   </ItemGroup>
   <ItemGroup>
@@ -115,21 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\index.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\inline.7ebe6ec4dacf42d87f73.bundle.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\main.e7b7ad600346c0ce481d.bundle.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\polyfills.7bd917fb14f237541df2.bundle.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\styles.439bd6c9ee4ca4b6aaac.bundle.css" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

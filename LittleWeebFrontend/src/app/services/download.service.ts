@@ -129,6 +129,16 @@ export class DownloadService {
         this.getAlreadyDownloaded();
     }
 
+    abortDownload(download: any){
+        this.backendService.sendMessage({"action" : "abort_download"});
+        let obj = this.downloadQue.find(x => x.id == download.id);               
+        let index = this.downloadQue.indexOf(obj);
+        this.downloadQue.splice(index, 1);
+        this.shareService.updateAmountOfDownloads(this.downloadQue.length);
+        this.updateDownloadList.next(this.downloadQue);        
+    }
+
+
     /**
      * Requests all downloaded files from the backend
      * 

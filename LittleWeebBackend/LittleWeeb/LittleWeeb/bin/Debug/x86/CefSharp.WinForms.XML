@@ -247,6 +247,18 @@
             A flag that indicates whether or not <see cref="M:CefSharp.WinForms.ChromiumWebBrowser.InitializeFieldsAndCefIfRequired"/> has been called.
             </summary>
         </member>
+        <member name="F:CefSharp.WinForms.ChromiumWebBrowser.browserCreated">
+            <summary>
+            Has the underlying Cef Browser been created (slightly different to initliazed in that
+            the browser is initialized in an async fashion)
+            </summary>
+        </member>
+        <member name="F:CefSharp.WinForms.ChromiumWebBrowser.requestContext">
+            <summary>
+            The request context (we deliberately use a private variable so we can throw an exception if
+            user attempts to set after browser created)
+            </summary>
+        </member>
         <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#cctor">
             <summary>
             Initializes static members of the <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> class.
@@ -265,11 +277,13 @@
             NOTE: Should only be used by the designer
             </summary>
         </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#ctor(System.String)">
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#ctor(System.String,CefSharp.IRequestContext)">
             <summary>
             Initializes a new instance of the <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> class.
             </summary>
             <param name="address">The address.</param>
+            <param name="requestContext">Request context that will be used for this browser instance,
+            if null the Global Request Context will be used</param>
         </member>
         <member name="M:CefSharp.WinForms.ChromiumWebBrowser.InitializeFieldsAndCefIfRequired">
             <summary>

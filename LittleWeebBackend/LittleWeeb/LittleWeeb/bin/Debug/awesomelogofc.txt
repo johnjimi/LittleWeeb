@@ -1,0 +1,1285 @@
+DEBUG-MAIN: Starting to debug!
+DEBUG-MAIN: Starting websocket server
+DEBUG-IRCHANDLER: STARTING DOWNLOADER LOGIC
+DEBUG-MAIN: INITIALIZED SunIRCLibrary 1.0.6679.25352 :D
+DEBUG-MAIN: CURRENT DIRECTORY IS: F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug
+DEBUG-MAIN: WAITING FOR CONNECTION WITH INTERFACE!
+DEBUG-IRCHANDLER: DOWNLOADER LOGIC STARTED
+CHROMEDEBUG: Im doing stuff here !
+MAIN-DEBUG: CLOSING THIS SHIT
+DEBUG-MAIN: Starting to debug!
+DEBUG-MAIN: Starting websocket server
+DEBUG-IRCHANDLER: STARTING DOWNLOADER LOGIC
+DEBUG-MAIN: INITIALIZED SunIRCLibrary 1.0.6679.25352 :D
+DEBUG-MAIN: CURRENT DIRECTORY IS: F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeeb\bin\Debug
+DEBUG-MAIN: WAITING FOR CONNECTION WITH INTERFACE!
+DEBUG-IRCHANDLER: DOWNLOADER LOGIC STARTED
+CHROMEDEBUG: Im doing stuff here !
+CHROME-CONSOLE: Initiated backend!
+CHROME-CONSOLE: Message received:
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: Menu Succesfully Loaded!
+CHROME-CONSOLE: null
+CHROME-CONSOLE: null
+CHROME-CONSOLE: null
+CHROME-CONSOLE: animetitle did execute in menu
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 1, url: '/')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Angular is running in the development mode. Call enableProdMode() to enable the production mode.
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 1, url: '/', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Nibl Service Initialiazed...
+CHROME-CONSOLE: Launching Kitsu API
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 1, url: '/', urlAfterRedirects: '/currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Loading currently airing!
+CHROME-CONSOLE: There is a new version available!,Your current version is v0.4.0, but version v0.3.1 has arrived!,feed,<div class="ui red basic cancel inverted button">
+                                        <i class="remove icon"></i>
+                                        Not interested.
+                                        </div>
+                                        <a href="https://github.com/EldinZenderink/LittleWeeb/releases" class="ui green ok inverted button">
+                                        <i class="checkmark icon"></i>
+                                        Go to Github.
+                                        </a>
+CHROME-CONSOLE: Waiting for connection to IRC!
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROME-CONSOLE: Message received:
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROME-CONSOLE: RESULT:
+CHROME-CONSOLE: [HorribleSubs] Butlers - Chitose Momotose Monogatari - 02 [720p].mkv,[HorribleSubs] Steins Gate 0 - 02 [720p].mkv,[HorribleSubs] Last Period - Owarinaki Rasen no Monogatari - 02 [720p].mkv,[HorribleSubs] Yu-Gi-Oh! VRAINS - 48 [720p].mkv,[HorribleSubs] Boruto - Naruto Next Generations - 54 [720p].mkv,[HorribleSubs] Tokyo Ghoul re - 03 [720p].mkv,[HorribleSubs] 3D Kanojo Real Girl - 03 [720p].mkv,[HorribleSubs] Lupin III Part V - 03 [720p].mkv,[HorribleSubs] High School DxD Hero - 01 [720p].mkv,[HorribleSubs] Hitori no Shita - The Outcast S2 - 14 [720p].mkv,[HorribleSubs] Tachibanakan To Lie Angle - 03 [720p].mkv,[HorribleSubs] Rokuhoudou Yotsuiro Biyori - 02 [720p].mkv,[HorribleSubs] Legend of the Galactic Heroes - Die Neue These - 03 [720p].mkv,[HorribleSubs] Shounen Ashibe Go! Go! Goma-chan - 67 [720p].mkv,[HorribleSubs] Black Clover - 28 [720p].mkv,[HorribleSubs] Gundam Build Divers - 03 [720p].mkv,[HorribleSubs] Yowamushi Pedal - Glory Line - 15 [720p].mkv,[HorribleSubs] Souten no Ken Re-Genesis - 03 [720p].mkv,[HorribleSubs] Fumikiri Jikan - 02 [720p].mkv,[HorribleSubs] Uchuu Senkan Tiramisu - 03 [720p].mkv,[HorribleSubs] Golden Kamuy - 02 [720p].mkv,[HorribleSubs] Basilisk - Ouka Ninpouchou - 15 [720p].mkv,[HorribleSubs] Kakuriyo no Yadomeshi - 03 [720p].mkv,[HorribleSubs] Mahou Shoujo Ore - 03 [720p].mkv,[HorribleSubs] Puzzle and Dragons Cross - 63 [720p].mkv,[HorribleSubs] Binan Koukou Chikyuu Bouei-bu Love! S3 - 02 [720p].mkv,[HorribleSubs] Chi's Sweet Adventure S2 - 02 [720p].mkv,[HorribleSubs] Shokugeki no Soma S3 - 14 [720p].mkv,[HorribleSubs] Uma Musume - Pretty Derby - 04 [720p].mkv,[HorribleSubs] Caligula - 02 [720p].mkv,[HorribleSubs] Nil Admirari no Tenbin - Teito Genwaku Kitan - 02 [720p].mkv,[HorribleSubs] Cutie Honey Universe - 02 [720p].mkv,[HorribleSubs] One Piece - 832 [720p].mkv,[HorribleSubs] Gegege no Kitarou (2018) - 03 [720p].mkv,[HorribleSubs] Cardcaptor Sakura Clear Card - 14 [720p].mkv,[HorribleSubs] Hozuki no Reitetsu S2 - 15 [720p].mkv,[HorribleSubs] Persona 5 The Animation - 02 [720p].mkv,[HorribleSubs] Sword Art Online Alternative - Gun Gale Online - 02 [720p].mkv,[HorribleSubs] Darling in the FranXX - 14 [720p].mkv,[HorribleSubs] Omae wa Mada Gunma wo Shiranai - 02 [720p].mkv,[HorribleSubs] Devils Line - 02 [720p].mkv,[HorribleSubs] Amanchu! Advance - 02 [720p].mkv,[HorribleSubs] Spiritpact S2 - 08 [720p].mkv,[HorribleSubs] Major 2nd - 02 [720p].mkv,[HorribleSubs] Boku no Hero Academia - 40 [720p].mkv,[HorribleSubs] Bonobono - 104 [720p].mkv,[HorribleSubs] Beatless - 14 [720p].mkv,[HorribleSubs] Hinamatsuri - 02 [720p].mkv,[HorribleSubs] Nobunaga no Shinobi - 54 [720p].mkv,[HorribleSubs] Mahou Shoujo Site - 02 [720p].mkv,[HorribleSubs] Lostorage Conflated WIXOSS - 02 [720p].mkv,[HorribleSubs] Grancrest Senki - 14 [720p].mkv,[HorribleSubs] Full Metal Panic! Invisible Victory - 01 [720p].mkv,[HorribleSubs] Akkun to Kanojo - 02 [720p].mkv,[HorribleSubs] Isekai Izakaya - Koto Aitheria no Izakaya Nobu - 01 [720p].mkv,[HorribleSubs] Gurazeni - 02 [720p].mkv,[HorribleSubs] Hakyuu Houshin Engi - 13 [720p].mkv,[HorribleSubs] Toji no Miko - 14 [720p].mkv,[HorribleSubs] Isekai Izakaya - Koto Aitheria no Izakaya Nobu - 02 [720p].mkv,[HorribleSubs] Wotaku ni Koi wa Muzukashii - 01 [720p].mkv,[HorribleSubs] Saredo Tsumibito wa Ryuu to Odoru - 02 [720p].mkv,[HorribleSubs] Megalo Box - 02 [720p].mkv,[HorribleSubs] Dorei-ku The Animation - 01 [720p].mkv,[HorribleSubs] Comic Girls - 02 [720p].mkv,[HorribleSubs] Tada-kun wa Koi wo Shinai - 02 [720p].mkv,[HorribleSubs] High School DxD Hero - 00 [720p].mkv,[HorribleSubs] Steins Gate 0 - 01 [720p].mkv,[HorribleSubs] Butlers - Chitose Momotose Monogatari - 01 [720p].mkv,[HorribleSubs] Last Period - Owarinaki Rasen no Monogatari - 01 [720p].mkv,[HorribleSubs] Alice or Alice - 02 [720p].mkv,[HorribleSubs] Yu-Gi-Oh! VRAINS - 47 [720p].mkv,[HorribleSubs] Boruto - Naruto Next Generations - 53 [720p].mkv,[HorribleSubs] Tokyo Ghoul re - 02 [720p].mkv
+CHROME-CONSOLE: [HorribleSubs] Butlers - Chitose Momotose Monogatari - 02 [720p].mkv,[HorribleSubs] Steins Gate 0 - 02 [720p].mkv,[HorribleSubs] Last Period - Owarinaki Rasen no Monogatari - 02 [720p].mkv,[HorribleSubs] Yu-Gi-Oh! VRAINS - 48 [720p].mkv,[HorribleSubs] Boruto - Naruto Next Generations - 54 [720p].mkv,[HorribleSubs] Tokyo Ghoul re - 03 [720p].mkv,[HorribleSubs] 3D Kanojo Real Girl - 03 [720p].mkv,[HorribleSubs] Lupin III Part V - 03 [720p].mkv,[HorribleSubs] High School DxD Hero - 01 [720p].mkv,[HorribleSubs] Hitori no Shita - The Outcast S2 - 14 [720p].mkv,[HorribleSubs] Tachibanakan To Lie Angle - 03 [720p].mkv,[HorribleSubs] Rokuhoudou Yotsuiro Biyori - 02 [720p].mkv,[HorribleSubs] Legend of the Galactic Heroes - Die Neue These - 03 [720p].mkv,[HorribleSubs] Shounen Ashibe Go! Go! Goma-chan - 67 [720p].mkv,[HorribleSubs] Black Clover - 28 [720p].mkv,[HorribleSubs] Gundam Build Divers - 03 [720p].mkv,[HorribleSubs] Yowamushi Pedal - Glory Line - 15 [720p].mkv,[HorribleSubs] Souten no Ken Re-Genesis - 03 [720p].mkv,[HorribleSubs] Fumikiri Jikan - 02 [720p].mkv,[HorribleSubs] Uchuu Senkan Tiramisu - 03 [720p].mkv,[HorribleSubs] Golden Kamuy - 02 [720p].mkv,[HorribleSubs] Basilisk - Ouka Ninpouchou - 15 [720p].mkv,[HorribleSubs] Kakuriyo no Yadomeshi - 03 [720p].mkv,[HorribleSubs] Mahou Shoujo Ore - 03 [720p].mkv,[HorribleSubs] Puzzle and Dragons Cross - 63 [720p].mkv,[HorribleSubs] Binan Koukou Chikyuu Bouei-bu Love! S3 - 02 [720p].mkv,[HorribleSubs] Chi's Sweet Adventure S2 - 02 [720p].mkv,[HorribleSubs] Shokugeki no Soma S3 - 14 [720p].mkv,[HorribleSubs] Uma Musume - Pretty Derby - 04 [720p].mkv,[HorribleSubs] Caligula - 02 [720p].mkv,[HorribleSubs] Nil Admirari no Tenbin - Teito Genwaku Kitan - 02 [720p].mkv,[HorribleSubs] Cutie Honey Universe - 02 [720p].mkv,[HorribleSubs] One Piece - 832 [720p].mkv,[HorribleSubs] Gegege no Kitarou (2018) - 03 [720p].mkv,[HorribleSubs] Cardcaptor Sakura Clear Card - 14 [720p].mkv,[HorribleSubs] Hozuki no Reitetsu S2 - 15 [720p].mkv,[HorribleSubs] Persona 5 The Animation - 02 [720p].mkv,[HorribleSubs] Sword Art Online Alternative - Gun Gale Online - 02 [720p].mkv,[HorribleSubs] Darling in the FranXX - 14 [720p].mkv,[HorribleSubs] Omae wa Mada Gunma wo Shiranai - 02 [720p].mkv,[HorribleSubs] Devils Line - 02 [720p].mkv,[HorribleSubs] Amanchu! Advance - 02 [720p].mkv,[HorribleSubs] Spiritpact S2 - 08 [720p].mkv,[HorribleSubs] Major 2nd - 02 [720p].mkv,[HorribleSubs] Boku no Hero Academia - 40 [720p].mkv,[HorribleSubs] Bonobono - 104 [720p].mkv,[HorribleSubs] Beatless - 14 [720p].mkv,[HorribleSubs] Hinamatsuri - 02 [720p].mkv,[HorribleSubs] Nobunaga no Shinobi - 54 [720p].mkv,[HorribleSubs] Mahou Shoujo Site - 02 [720p].mkv,[HorribleSubs] Lostorage Conflated WIXOSS - 02 [720p].mkv,[HorribleSubs] Grancrest Senki - 14 [720p].mkv,[HorribleSubs] Full Metal Panic! Invisible Victory - 01 [720p].mkv,[HorribleSubs] Akkun to Kanojo - 02 [720p].mkv,[HorribleSubs] Isekai Izakaya - Koto Aitheria no Izakaya Nobu - 01 [720p].mkv,[HorribleSubs] Gurazeni - 02 [720p].mkv,[HorribleSubs] Hakyuu Houshin Engi - 13 [720p].mkv,[HorribleSubs] Toji no Miko - 14 [720p].mkv,[HorribleSubs] Isekai Izakaya - Koto Aitheria no Izakaya Nobu - 02 [720p].mkv,[HorribleSubs] Wotaku ni Koi wa Muzukashii - 01 [720p].mkv,[HorribleSubs] Saredo Tsumibito wa Ryuu to Odoru - 02 [720p].mkv,[HorribleSubs] Megalo Box - 02 [720p].mkv,[HorribleSubs] Dorei-ku The Animation - 01 [720p].mkv,[HorribleSubs] Comic Girls - 02 [720p].mkv,[HorribleSubs] Tada-kun wa Koi wo Shinai - 02 [720p].mkv,[HorribleSubs] High School DxD Hero - 00 [720p].mkv,[HorribleSubs] Steins Gate 0 - 01 [720p].mkv,[HorribleSubs] Butlers - Chitose Momotose Monogatari - 01 [720p].mkv,[HorribleSubs] Last Period - Owarinaki Rasen no Monogatari - 01 [720p].mkv,[HorribleSubs] Alice or Alice - 02 [720p].mkv,[HorribleSubs] Yu-Gi-Oh! VRAINS - 47 [720p].mkv,[HorribleSubs] Boruto - Naruto Next Generations - 53 [720p].mkv,[HorribleSubs] Tokyo Ghoul re - 02 [720p].mkv
+CHROME-CONSOLE: ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,butlers chitose momotose monogatari,steins gate,last period owarinaki rasen no monogatari,yu gi oh vrains,boruto naruto next generations,tokyo ghoul re,kanojo real girl,lupin iii part v,high school dxd hero,hitori no shita the outcast s2 14 72,tachibanakan to lie angle,rokuhoudou yotsuiro biyori,legend of the galactic heroes die neue these,shounen ashibe go go goma chan,black clover,gundam build divers,yowamushi pedal glory line,souten no ken re genesis,fumikiri jikan,uchuu senkan tiramisu,golden kamuy,basilisk ouka ninpouchou,kakuriyo no yadomeshi,mahou shoujo ore,puzzle and dragons cross,binan koukou chikyuu bouei bu love s3 72,chi s sweet adventure s2 72,shokugeki no soma s3 14 72,uma musume pretty derby,caligula,nil admirari no tenbin teito genwaku kitan,cutie honey universe,one piece,gegege no kitarou,cardcaptor sakura clear card,hozuki no reitetsu s2 15 72,persona 5 the animation 72,sword art online alternative gun gale online,darling in the franxx,omae wa mada gunma wo shiranai,devils line,amanchu advance,spiritpact s2 72,major 2nd 72,boku no hero academia,bonobono,beatless,hinamatsuri,nobunaga no shinobi,mahou shoujo site,lostorage conflated wixoss,grancrest senki,full metal panic invisible victory,akkun to kanojo,isekai izakaya koto aitheria no izakaya nobu,gurazeni,hakyuu houshin engi,toji no miko,isekai izakaya koto aitheria no izakaya nobu,wotaku ni koi wa muzukashii,saredo tsumibito wa ryuu to odoru,megalo box,dorei ku the animation,comic girls,tada kun wa koi wo shinai,high school dxd hero,steins gate,butlers chitose momotose monogatari,last period owarinaki rasen no monogatari,alice or alice,yu gi oh vrains,boruto naruto next generations,tokyo ghoul re
+CHROME-CONSOLE: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+CHROME-CONSOLE: KITSU RESULT:
+CHROME-CONSOLE: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+CHROME-CONSOLE: END:
+CHROME-CONSOLE: 2.368000030517578
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 2, url: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 2, url: '/search', urlAfterRedirects: '/search', state: Route(url:'', path:'') { Route(url:'search', path:'search') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 2, url: '/search', urlAfterRedirects: '/search')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 3, url: '/downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 3, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 3, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 3, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 3, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 3, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: init download page
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 3, url: '/downloads', urlAfterRedirects: '/downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Retreiving downloads.
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 4, url: '/settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 4, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 4, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 4, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 4, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 4, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 4, url: '/settings', urlAfterRedirects: '/settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 5, url: '/downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 5, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 5, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 5, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 5, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 5, url: '/downloads', urlAfterRedirects: '/downloads', state: Route(url:'', path:'') { Route(url:'downloads', path:'downloads') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: init download page
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 5, url: '/downloads', urlAfterRedirects: '/downloads')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Retreiving downloads.
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 6, url: '/about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 6, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 6, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 6, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 6, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 6, url: '/about', urlAfterRedirects: '/about', state: Route(url:'', path:'') { Route(url:'about', path:'about') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 6, url: '/about', urlAfterRedirects: '/about')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 7, url: '/settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 7, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 7, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 7, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 7, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 7, url: '/settings', urlAfterRedirects: '/settings', state: Route(url:'', path:'') { Route(url:'settings', path:'settings') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 7, url: '/settings', urlAfterRedirects: '/settings')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 8, url: '/currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 8, url: '/currentlyairing', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 8, url: '/currentlyairing', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 8, url: '/currentlyairing', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 8, url: '/currentlyairing', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 8, url: '/currentlyairing', urlAfterRedirects: '/currentlyairing', state: Route(url:'', path:'') { Route(url:'currentlyairing', path:'currentlyairing') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 8, url: '/currentlyairing', urlAfterRedirects: '/currentlyairing')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Loading currently airing!
+CHROME-CONSOLE: succes,Loading Cached CurrentlyAiring - aprox 26 before refresh!
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: Loading
+CHROME-CONSOLE: Router Event: NavigationStart
+CHROME-CONSOLE: NavigationStart(id: 9, url: '/animeinfo')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: RoutesRecognized
+CHROME-CONSOLE: RoutesRecognized(id: 9, url: '/animeinfo', urlAfterRedirects: '/animeinfo', state: Route(url:'', path:'') { Route(url:'animeinfo', path:'animeinfo') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckStart
+CHROME-CONSOLE: GuardsCheckStart(id: 9, url: '/animeinfo', urlAfterRedirects: '/animeinfo', state: Route(url:'', path:'') { Route(url:'animeinfo', path:'animeinfo') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationStart
+CHROME-CONSOLE: ChildActivationStart(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ActivationStart
+CHROME-CONSOLE: ActivationStart(path: 'animeinfo')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: GuardsCheckEnd
+CHROME-CONSOLE: GuardsCheckEnd(id: 9, url: '/animeinfo', urlAfterRedirects: '/animeinfo', state: Route(url:'', path:'') { Route(url:'animeinfo', path:'animeinfo') } , shouldActivate: true)
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveStart
+CHROME-CONSOLE: ResolveStart(id: 9, url: '/animeinfo', urlAfterRedirects: '/animeinfo', state: Route(url:'', path:'') { Route(url:'animeinfo', path:'animeinfo') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ResolveEnd
+CHROME-CONSOLE: ResolveEnd(id: 9, url: '/animeinfo', urlAfterRedirects: '/animeinfo', state: Route(url:'', path:'') { Route(url:'animeinfo', path:'animeinfo') } )
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: current anime title:
+CHROME-CONSOLE: 
+CHROME-CONSOLE: Router Event: ActivationEnd
+CHROME-CONSOLE: ActivationEnd(path: 'animeinfo')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: ChildActivationEnd
+CHROME-CONSOLE: ChildActivationEnd(path: '')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: Router Event: NavigationEnd
+CHROME-CONSOLE: NavigationEnd(id: 9, url: '/animeinfo', urlAfterRedirects: '/animeinfo')
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: console.groupEnd
+CHROME-CONSOLE: got mah anime
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: Loading anime: Steins;Gate 0
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE: current anime title:
+CHROME-CONSOLE: Steins;Gate 0
+CHROME-CONSOLE: SEASON IDENTIFIERS:
+CHROME-CONSOLE: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+CHROME-CONSOLE: Start Stop Episode Numbering: 
+CHROME-CONSOLE: 
+CHROME-CONSOLE: Found rule for this anime.
+CHROME-CONSOLE: all includes
+CHROME-CONSOLE: `0`
+CHROME-CONSOLE: Episode title MUST contain: 
+CHROME-CONSOLE: 0
+CHROME-CONSOLE: Retreiving Synonyms
+CHROME-CONSOLE: en_jp
+CHROME-CONSOLE: ja_jp
+CHROME-CONSOLE: synonyms: 
+CHROME-CONSOLE: Steins;Gate 0,シュタインズ・ゲート ゼロ
+CHROME-CONSOLE: Found season number:
+CHROME-CONSOLE: 1
+CHROME-CONSOLE: 
+CHROME-CONSOLE: Retreiving episodes
+CHROME-CONSOLE: The following episodes were found on nibl:
+CHROME-CONSOLE: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+CHROME-CONSOLE: Following start stop was found within anime-relations:
+CHROME-CONSOLE: 
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [UTW-Mazui]_Steins;Gate_-_01_[720p][2994A18E].mkv contains 0
+CHROME-CONSOLE: [utw-mazui]_steins;gate_-_01_[720p][2994a18e].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 01 [BD 1080p Hi10p Dual Audio FLAC][c5397a2b].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,01,[bd,1080p,hi10p,dual,audio,flac][c5397a2b].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 02 [BD 1080p Hi10p Dual Audio FLAC][683eedec].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,02,[bd,1080p,hi10p,dual,audio,flac][683eedec].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 03 [BD 1080p Hi10p Dual Audio FLAC][7a101cc1].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,03,[bd,1080p,hi10p,dual,audio,flac][7a101cc1].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 04 [BD 1080p Hi10p Dual Audio FLAC][da1e3ae6].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,04,[bd,1080p,hi10p,dual,audio,flac][da1e3ae6].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 05 [BD 1080p Hi10p Dual Audio FLAC][54752a2e].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,05,[bd,1080p,hi10p,dual,audio,flac][54752a2e].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 06 [BD 1080p Hi10p Dual Audio FLAC][9d64e910].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,06,[bd,1080p,hi10p,dual,audio,flac][9d64e910].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 07v2 [BD 1080p Hi10p Dual Audio FLAC][0923bd5b].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,07v2,[bd,1080p,hi10p,dual,audio,flac][0923bd5b].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 08v2 [BD 1080p Hi10p Dual Audio FLAC][42b7c210].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,08v2,[bd,1080p,hi10p,dual,audio,flac][42b7c210].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 09 [BD 1080p Hi10p Dual Audio FLAC][021cf423].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,09,[bd,1080p,hi10p,dual,audio,flac][021cf423].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 10 [BD 1080p Hi10p Dual Audio FLAC][0ecd92c2].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,10,[bd,1080p,hi10p,dual,audio,flac][0ecd92c2].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 11 [BD 1080p Hi10p Dual Audio FLAC][4574007c].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,11,[bd,1080p,hi10p,dual,audio,flac][4574007c].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 12 [BD 1080p Hi10p Dual Audio FLAC][c64685e4].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,12,[bd,1080p,hi10p,dual,audio,flac][c64685e4].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 13 [BD 1080p Hi10p Dual Audio FLAC][611d8f0f].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,13,[bd,1080p,hi10p,dual,audio,flac][611d8f0f].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 14 [BD 1080p Hi10p Dual Audio FLAC][9ea26b1d].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,14,[bd,1080p,hi10p,dual,audio,flac][9ea26b1d].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 15 [BD 1080p Hi10p Dual Audio FLAC][1e7e0f70].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,15,[bd,1080p,hi10p,dual,audio,flac][1e7e0f70].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 16 [BD 1080p Hi10p Dual Audio FLAC][5946041f].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,16,[bd,1080p,hi10p,dual,audio,flac][5946041f].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 17 [BD 1080p Hi10p Dual Audio FLAC][e0ec54e8].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,17,[bd,1080p,hi10p,dual,audio,flac][e0ec54e8].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 18 [BD 1080p Hi10p Dual Audio FLAC][c862992d].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,18,[bd,1080p,hi10p,dual,audio,flac][c862992d].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 19 [BD 1080p Hi10p Dual Audio FLAC][ffb58d83].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,19,[bd,1080p,hi10p,dual,audio,flac][ffb58d83].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 20 [BD 1080p Hi10p Dual Audio FLAC][adeefac8].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,20,[bd,1080p,hi10p,dual,audio,flac][adeefac8].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 21 [BD 1080p Hi10p Dual Audio FLAC][f711bbbf].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,21,[bd,1080p,hi10p,dual,audio,flac][f711bbbf].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 22v2 [BD 1080p Hi10p Dual Audio FLAC][e0f64791].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,22v2,[bd,1080p,hi10p,dual,audio,flac][e0f64791].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 23v3 [BD 1080p Hi10p Dual Audio FLAC][19f26df7].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,23v3,[bd,1080p,hi10p,dual,audio,flac][19f26df7].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 24 [BD 1080p Hi10p Dual Audio FLAC][e3cf9eae].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,24,[bd,1080p,hi10p,dual,audio,flac][e3cf9eae].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [deanzel] Steins;Gate - 25 - OVA [BD 1080p Hi10p Dual Audio FLAC][af82eb80].mkv contains 0
+CHROME-CONSOLE: [deanzel],steins;gate,-,25,-,ova,[bd,1080p,hi10p,dual,audio,flac][af82eb80].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [UCCUSS-WhyNot] Steins;Gate - 23 Î² [BD 1920x1080p AVC FLAC] [655CE1A1].mkv contains 0
+CHROME-CONSOLE: [uccuss-whynot],steins;gate,-,23,î²,[bd,1920x1080p,avc,flac],[655ce1a1].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep01_(F375335C).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep01_(f375335c).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep02_(EDA1EADF).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep02_(eda1eadf).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep03_(A00229C8).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep03_(a00229c8).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep04_(B57E7DBE).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep04_(b57e7dbe).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep05_(07A9DBD2).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep05_(07a9dbd2).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep06_(680A9CF7).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep06_(680a9cf7).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep07_(F531BA5B).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep07_(f531ba5b).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep08_(3A7F9279).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep08_(3a7f9279).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep09_(2B599408).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep09_(2b599408).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep10_(E6AFD965).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep10_(e6afd965).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep11_(86C689DD).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep11_(86c689dd).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep12_(94003D2A).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep12_(94003d2a).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep13_(29E79520).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep13_(29e79520).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep14_(84A5B4B0).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep14_(84a5b4b0).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep15_(3134253C).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep15_(3134253c).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep16_(40868F73).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep16_(40868f73).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep17_(DA7AEAEF).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep17_(da7aeaef).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep18_(75DD3A31).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep18_(75dd3a31).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep19_(F9703BC9).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep19_(f9703bc9).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep20_(A9819E57).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep20_(a9819e57).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep21_(DD73EF8B).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep21_(dd73ef8b).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep22_(3F8DBC56).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep22_(3f8dbc56).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep23_(2DA89C2A).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep23_(2da89c2a).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep24_(780DE74C).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep24_(780de74c).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Exiled-Destiny]_Steins;Gate_Ep25_(EB6C260E).mkv contains 0
+CHROME-CONSOLE: [exiled-destiny]_steins;gate_ep25_(eb6c260e).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [UTW-Mazui]_Steins;Gate_-_01_[720p][2994A18E].mkv contains 0
+CHROME-CONSOLE: [utw-mazui]_steins;gate_-_01_[720p][2994a18e].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [UTW-Mazui]_Steins;Gate_-_01_[SD][040FAC03].mkv contains 0
+CHROME-CONSOLE: [utw-mazui]_steins;gate_-_01_[sd][040fac03].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [UTW-Mazui]_Steins;Gate_-_01_[XviD][A9B0C8ED].avi contains 0
+CHROME-CONSOLE: [utw-mazui]_steins;gate_-_01_[xvid][a9b0c8ed].avi
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [UTW-Mazui]_Steins;Gate_-_01_[720p][2994A18E].mkv contains 0
+CHROME-CONSOLE: [utw-mazui]_steins;gate_-_01_[720p][2994a18e].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E03 (BD 1280x720 x264 Dual AAC PGS) [3D42B8FB].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e03,(bd,1280x720,x264,dual,aac,pgs),[3d42b8fb].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E05 (BD 1280x720 x264 Dual AAC PGS) [FCA29061].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e05,(bd,1280x720,x264,dual,aac,pgs),[fca29061].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E08 (BD 1280x720 x264 Dual AAC PGS) [48CD154A].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e08,(bd,1280x720,x264,dual,aac,pgs),[48cd154a].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E10 (BD 1280x720 x264 Dual AAC PGS) [71A2F763].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e10,(bd,1280x720,x264,dual,aac,pgs),[71a2f763].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E20 (BD 1280x720 x264 Dual AAC PGS) [F0B8F0F1].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e20,(bd,1280x720,x264,dual,aac,pgs),[f0b8f0f1].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,01,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,02,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 03 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,03,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 04 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,04,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 05 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,05,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 06 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,06,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 07 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,07,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 08 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,08,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 09 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,09,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 10 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,10,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 11 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,11,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 12 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,12,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 13 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,13,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 14v2 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,14v2,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 15 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,15,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 16 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,16,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 17 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,17,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 18 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,18,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 19 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,19,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 20 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,20,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 21 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,21,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 22 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,22,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 23 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,23,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 24 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,24,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E03 (BD 1280x720 x264 Dual AAC PGS) [3D42B8FB].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e03,(bd,1280x720,x264,dual,aac,pgs),[3d42b8fb].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E05 (BD 1280x720 x264 Dual AAC PGS) [FCA29061].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e05,(bd,1280x720,x264,dual,aac,pgs),[fca29061].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E08 (BD 1280x720 x264 Dual AAC PGS) [48CD154A].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e08,(bd,1280x720,x264,dual,aac,pgs),[48cd154a].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E10 (BD 1280x720 x264 Dual AAC PGS) [71A2F763].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e10,(bd,1280x720,x264,dual,aac,pgs),[71a2f763].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [tlacatlc6] Steins;Gate S01E20 (BD 1280x720 x264 Dual AAC PGS) [F0B8F0F1].mkv contains 0
+CHROME-CONSOLE: [tlacatlc6],steins;gate,s01e20,(bd,1280x720,x264,dual,aac,pgs),[f0b8f0f1].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,01,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,02,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 03 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,03,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 04 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,04,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 05 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,05,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 06 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,06,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 07 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,07,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 08 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,08,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 09 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,09,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 10 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,10,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 11 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,11,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 12 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,12,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 13 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,13,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 14v2 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,14v2,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 15 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,15,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 16 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,16,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 17 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,17,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 18 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,18,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 19 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,19,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 20 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,20,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 21 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,21,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 22 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,22,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 23 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,23,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins;Gate - 24 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins;gate,-,24,[720p].mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [480p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[480p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_01_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_01_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_02_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_02_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_03_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_03_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_04_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_04_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_05_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_05_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_06_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_06_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_07_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_07_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_08_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_08_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_09_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_09_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_10_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_10_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_11_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_11_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_12_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_12_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_13_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_13_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_14_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_14_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_15_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_15_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_16_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_16_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_17_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_17_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_18_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_18_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_19_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_19_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_20_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_20_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_21_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_21_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_22_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_22_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_23_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_23_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [Cleo]Steins;Gate_-_24_(Dual Audio_10bit_BD1080p_x265).mkv contains 0
+CHROME-CONSOLE: [cleo]steins;gate_-_24_(dual,audio_10bit_bd1080p_x265).mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 01 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,01,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [720p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[720p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if [HorribleSubs] Steins Gate 0 - 02 [1080p].mkv contains 0
+CHROME-CONSOLE: [horriblesubs],steins,gate,0,-,02,[1080p].mkv
+CHROME-CONSOLE: 3
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if Steins;Gate.S01E10.1080p.Blu-Ray.10-Bit.Dual-Audio.TrueHD.x265-iAHD.mkv contains 0
+CHROME-CONSOLE: steins;gate.s01e10.1080p.blu-ray.10-bit.dual-audio.truehd.x265-iahd.mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: rule should be used!
+CHROME-CONSOLE: check if Steins;Gate.S01E20.1080p.Blu-Ray.10-Bit.Dual-Audio.TrueHD.x265-iAHD.mkv contains 0
+CHROME-CONSOLE: steins;gate.s01e20.1080p.blu-ray.10-bit.dual-audio.truehd.x265-iahd.mkv
+CHROME-CONSOLE: -1
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: found season number in file: 0
+CHROME-CONSOLE: Following episodes were parsed:
+CHROME-CONSOLE: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+CHROME-CONSOLE: Following bots were parsed:
+CHROME-CONSOLE: Cerebrate,KareRaisu,CR-FRANCE|NEW,CR-HOLLAND|NEW,yuugiri,CR-HOLLAND-IPv6|NEW,Cerebrate|v6,mdcx|helios,mdcx|remnant,mdcx|furya
+CHROME-CONSOLE: Retreiving episode information
+CHROME-CONSOLE: Following episodes were indexed:
+CHROME-CONSOLE: not defined,[object Object],[object Object]
+CHROME-CONSOLE: HIDELOADER
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+CHROMEDEBUG: Im doing stuff here !
+CHROME-CONSOLE: pusing message 
+CHROME-CONSOLE: [object Object]
+CHROME-CONSOLE:  to the que
+WSDEBUG-WEBSOCKETHANDLER: CLIENT DISCONNECTED!
+MAIN-DEBUG: CLOSING THIS SHIT
