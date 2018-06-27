@@ -1,0 +1,93 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/",
+    "signature": "b20c73b76fb20108e76c9c794683716a74be5641"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/": {
+      "LittleWeebLibrary/1.0.0": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3",
+          "SimpleIRCLib": "2.1.0",
+          "SimpleWebsocketServer": "1.0.1",
+          "Mono.Android": "0.0.0.0"
+        },
+        "runtime": {
+          "LittleWeebLibrary.dll": {}
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.1.0": {},
+      "NETStandard.Library/2.0.3": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "SimpleIRCLib/2.1.0": {
+        "runtime": {
+          "lib/net46/SimpleIRCLib.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
+      "SimpleWebsocketServer/1.0.1": {
+        "runtime": {
+          "lib/net46/SimpleWebsocketServer.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
+          }
+        }
+      },
+      "Mono.Android/0.0.0.0": {
+        "runtime": {
+          "Mono.Android.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LittleWeebLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q+dQ4/d2BIjh2su7JfzPE8/DH8jN0vgiYLoeykCaQYApLdMn6Zx5L/1R1sQ3Ws+usGjI0o+9+u/+LtrAcQ2JSQ==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "SimpleIRCLib/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vdYcEl2LBbG8HT+Us0Qd6CO1hjWQ4cGqOijlW8S3bLq0o4xu8+GeZjqDdi79fDkrZqi+e9LwztCHKwmSkS7rSw==",
+      "path": "simpleirclib/2.1.0",
+      "hashPath": "simpleirclib.2.1.0.nupkg.sha512"
+    },
+    "SimpleWebsocketServer/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZASaxJCI7jATCcTXm/tKr+tVeStDAW/yZyW1xuiX679IviyCd4KP85P2avM5kVh2Blt2XSPO2U7CvgHYBAtK4Q==",
+      "path": "simplewebsocketserver/1.0.1",
+      "hashPath": "simplewebsocketserver.1.0.1.nupkg.sha512"
+    },
+    "Mono.Android/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

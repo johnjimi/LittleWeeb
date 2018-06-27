@@ -1,5 +1,49 @@
-<div class="ui basic segment ">
-    <div class="row computer tablet only">
+<div class="ui basic segment min-height-100 ">  
+    
+    <div class="ui basic episodes min-height-100 min-width-100 tofront transparant-grey-bg display-grid" *ngIf="showModal" style="top:0; right:0; position: absolute; ">
+        <div style="margin: calc(100% - calc(100% - 20%)); ">
+            <div class="ui icon header white-text center">
+                Files for anime: {{modalAnimeTitle}}
+            </div>
+            <div class="content center-text" >
+                <table class="ui very unstackable basic inverted table min-width-100 " >
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Size</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listWithDownloads">
+                        <tr *ngFor="let file of modalFiles">
+                            <td id="filename_{{file.id}}">{{file.filename}}</td>
+                            <td id="filename_{{file.id}}">{{file.filesize}} Mb</td>
+                            <td id="buttons_{{file.id}}">
+                                <p>
+                                    <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendPlayRequest(file)" class="ui blue basic inverted button"><i class="play icon"></i></button>                            
+                                    <button *ngIf="!isLocal" class="min-width-100 margin-bottom-5" (click)="getUrl(file)" class="ui blue basic inverted button"><i class="folder open outline icon"></i></button>
+                                    <button *ngIf="isLocal" class="min-width-100 margin-bottom-5" (click)="sendOpenLocationRequest(file)"  class="ui blue basic inverted button"><i class="folder open outline icon"></i></button>
+                                </p>
+                                <p>
+                                    <button class="btn-listwithdownloads" (click)="sendDeleteRequest(file)"  class="ui red basic inverted button"><i class="trash alternate outline icon"></i></button>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="actions" >
+                <button class="ui green basic inverted button" (click)="goToAnimeInfo()">
+                    Open Anime Info
+                </button>
+                <button class="ui red basic inverted button" (click)="closeModal(modalId)">
+                    <i class="remove icon"></i>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row " >
         <div class="ui horizontal divider"> DOWNLOAD QUE </div>
         <table style="border-spacing: 0;" cellspacing="0" class="ui very basic unstackable table bg-white min-width-100" >
             <thead>

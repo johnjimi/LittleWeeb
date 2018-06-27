@@ -1,0 +1,237 @@
+DCC PARSER | DCCClient: DCC STRING: Cerebrate!~I.@m.A.Servent.Of.The.Hive PRIVMSG MrRare :DCC SEND [HorribleSubs]_Golden_Kamuy_-_01_[720p].mkv 633019064 20005 337315623
+DCC PARSER | DCCClient4: FILENAME PARSED: [HorribleSubs]_Golden_Kamuy_-_01_[720p].mkv
+DCC PARSER | DCCClient4: PARSING FOLLOWING IPBYTES DIRECTLY: 633019064
+DCC PARSER | DCCClient4: IP PARSED: 37.187.26.184
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Downloads\[HorribleSubs]_Golden_Kamuy_-_01_[720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Mahou Shoujo Ore - 01 [720p].mkv" 872372816 48121 315849795
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Mahou Shoujo Ore - 01 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Downloads\[HorribleSubs] Mahou Shoujo Ore - 01 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Cerebrate!~I.@m.A.Servent.Of.The.Hive PRIVMSG MrRare :DCC SEND [HorribleSubs]_Golden_Kamuy_-_01_[720p].mkv 633019064 20000 337315623
+DCC PARSER | DCCClient4: FILENAME PARSED: [HorribleSubs]_Golden_Kamuy_-_01_[720p].mkv
+DCC PARSER | DCCClient4: PARSING FOLLOWING IPBYTES DIRECTLY: 633019064
+DCC PARSER | DCCClient4: IP PARSED: 37.187.26.184
+DCC DOWNLOADER | File already exists, removing from xdcc que!
+
+DCC DOWNLOADER | Something went wrong while downloading the file! Removing from xdcc que to be sure! Error:
+Newtonsoft.Json.JsonReaderException: Additional text encountered after finished reading JSON content: ]. Path '', line 25, position 2.
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at SunIRCLibrary.IrcHandler.readDownloadHistory(String path) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 235
+   at SunIRCLibrary.IrcHandler.RemoveDownloadHistory(String path, String id) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 243
+   at SunIRCLibrary.IrcHandler.OnDccEvent(Object source, DCCEventArgs args) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 343
+   at SimpleIRCLib.DCCClient.UpdateStatus(String statusin) in F:\Github Desktop\SimpleIRCLib\SimpleIRCLib\DCCClient.cs:line 580
+   at SimpleIRCLib.DCCClient.Downloader() in F:\Github Desktop\SimpleIRCLib\SimpleIRCLib\DCCClient.cs:line 548
+DCC PARSER | DCCClient: DCC STRING: Cerebrate!~I.@m.A.Servent.Of.The.Hive PRIVMSG MrRare :DCC SEND [HorribleSubs]_Golden_Kamuy_-_01_[720p].mkv 633019064 20003 337315623
+DCC PARSER | DCCClient4: FILENAME PARSED: [HorribleSubs]_Golden_Kamuy_-_01_[720p].mkv
+DCC PARSER | DCCClient4: PARSING FOLLOWING IPBYTES DIRECTLY: 633019064
+DCC PARSER | DCCClient4: IP PARSED: 37.187.26.184
+DCC DOWNLOADER | File already exists, removing from xdcc que!
+
+DCC DOWNLOADER | Something went wrong while downloading the file! Removing from xdcc que to be sure! Error:
+Newtonsoft.Json.JsonReaderException: Additional text encountered after finished reading JSON content: }. Path '', line 25, position 2.
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at SunIRCLibrary.IrcHandler.readDownloadHistory(String path) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 235
+   at SunIRCLibrary.IrcHandler.RemoveDownloadHistory(String path, String id) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 243
+   at SunIRCLibrary.IrcHandler.OnDccEvent(Object source, DCCEventArgs args) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 343
+   at SimpleIRCLib.DCCClient.UpdateStatus(String statusin) in F:\Github Desktop\SimpleIRCLib\SimpleIRCLib\DCCClient.cs:line 580
+   at SimpleIRCLib.DCCClient.Downloader() in F:\Github Desktop\SimpleIRCLib\SimpleIRCLib\DCCClient.cs:line 548
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Golden Kamuy - 02 [720p].mkv" 872372816 49505 337932179
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Golden Kamuy - 02 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Downloads\[HorribleSubs] Golden Kamuy - 02 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Golden Kamuy - 04 [720p].mkv" 872372816 32851 338362799
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Golden Kamuy - 04 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Downloads\[HorribleSubs] Golden Kamuy - 04 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Caligula - 01 [720p].mkv" 872372816 38839 337053300
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Caligula - 01 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Downloads\[HorribleSubs] Caligula - 01 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Caligula - 02 [720p].mkv" 872372816 53327 338009350
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Caligula - 02 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Caligula_14019\[HorribleSubs] Caligula - 02 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Persona 5 The Animation - 01 [720p].mkv" 872372816 40537 343414260
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Persona 5 The Animation - 01 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File F:/Torrent Downloads/LittleWeeb/Persona_5_the_Animation_13684\[HorribleSubs] Persona 5 The Animation - 01 [720p].mkv will be deleted after aborting.
+DCC DOWNLOADER | Downloader Stopped
+DCC DOWNLOADER | File F:/Torrent Downloads/LittleWeeb/Persona_5_the_Animation_13684\[HorribleSubs] Persona 5 The Animation - 01 [720p].mkv will be deleted due to aborting
+DCC DOWNLOADER | Something went wrong while downloading the file! Removing from xdcc que to be sure! Error:
+Newtonsoft.Json.JsonReaderException: Additional text encountered after finished reading JSON content: }. Path '', line 25, position 2.
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at SunIRCLibrary.IrcHandler.readDownloadHistory(String path) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 235
+   at SunIRCLibrary.IrcHandler.RemoveDownloadHistory(String path, String id) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 243
+   at SunIRCLibrary.IrcHandler.OnDccEvent(Object source, DCCEventArgs args) in F:\Github Desktop\SunIRC Library\SunIRCLibrary\IrcHandler.cs:line 343
+   at SimpleIRCLib.DCCClient.UpdateStatus(String statusin) in F:\Github Desktop\SimpleIRCLib\SimpleIRCLib\DCCClient.cs:line 580
+   at SimpleIRCLib.DCCClient.Downloader() in F:\Github Desktop\SimpleIRCLib\SimpleIRCLib\DCCClient.cs:line 501
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Persona 5 The Animation - 04 [720p].mkv" 872372816 47193 341891394
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Persona 5 The Animation - 04 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Persona_5_the_Animation_13684\[HorribleSubs] Persona 5 The Animation - 04 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Persona 5 The Animation - 03 [720p].mkv" 872372816 60663 343296161
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Persona 5 The Animation - 03 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Persona 5 The Animation - 01 [720p].mkv" 872372816 59612 343414260
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Persona 5 The Animation - 01 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Persona 5 The Animation - 01 [720p].mkv" 872372816 53632 343414260
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Persona 5 The Animation - 01 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Persona_5_the_Animation_13684\[HorribleSubs] Persona 5 The Animation - 01 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Caligula - 02 [720p].mkv" 872372816 58259 338009350
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Caligula - 02 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Caligula_14019\[HorribleSubs] Caligula - 02 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Tachibanakan To Lie Angle - 01 [720p].mkv" 872372816 60084 50371101
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Tachibanakan To Lie Angle - 01 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Tachibanakan_to_Lie_Angle_41016\[HorribleSubs] Tachibanakan To Lie Angle - 01 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Boku no Hero Academia - 40 [720p].mkv" 872372816 52415 337331479
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Boku no Hero Academia - 40 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File F:/Torrent Downloads/LittleWeeb/Boku_no_Hero_Academia_3rd_Season_13881\[HorribleSubs] Boku no Hero Academia - 40 [720p].mkv will be deleted after aborting.
+DCC DOWNLOADER | Downloader Stopped
+DCC DOWNLOADER | File F:/Torrent Downloads/LittleWeeb/Boku_no_Hero_Academia_3rd_Season_13881\[HorribleSubs] Boku no Hero Academia - 40 [720p].mkv will be deleted due to aborting
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Boku_no_Hero_Academia_3rd_Season_13881\[HorribleSubs] Boku no Hero Academia - 40 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[SubDESU] High School DxD Hero - 01 (HDTV 720p x264 10bit AAC)[1D37EE09].mkv" 872372816 47269 368716776
+DCC PARSER | DCCClient3: FILENAME PARSED: [SubDESU] High School DxD Hero - 01 (HDTV 720p x264 10bit AAC)[1D37EE09].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/High_School_DxD_Hero_12677\[SubDESU] High School DxD Hero - 01 (HDTV 720p x264 10bit AAC)[1D37EE09].mkv
+DCC PARSER | DCCClient: DCC STRING: Ginpa2!~Gin@time.for.a.new.lesson PRIVMSG MrRare :DCC SEND "[HorribleSubs] Tokyo Ghoul re - 08 [720p].mkv" 84036312 53108 333518251
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Tokyo Ghoul re - 08 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 84036312
+DCC PARSER | DCCClient3: IP PARSED: 5.2.74.216
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Tokyo_Ghoul_re_\[HorribleSubs] Tokyo Ghoul re - 08 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] High School DxD Hero - 03 [720p].mkv" 872372816 42039 336525776
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] High School DxD Hero - 03 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/High_School_DxD_Hero_12677\[HorribleSubs] High School DxD Hero - 03 [720p].mkv
+DCC PARSER | DCCClient: DCC STRING: Gintoki!~Gin@oshiete.ginpachi.sensei PRIVMSG MrRare :DCC SEND "[HorribleSubs] Sword Art Online Alternative - Gun Gale Online - 01 [720p].mkv" 872372816 52522 337436193
+DCC PARSER | DCCClient3: FILENAME PARSED: [HorribleSubs] Sword Art Online Alternative - Gun Gale Online - 01 [720p].mkv
+DCC PARSER | DCCClient3: PARSING FOLLOWING IPBYTES DIRECTLY: 872372816
+DCC PARSER | DCCClient3: IP PARSED: 51.255.90.80
+DCC DOWNLOADER | File does not exist yet, start connection 
+ 
+DCC DOWNLOADER | Big file, big buffer (1 mb) 
+ 
+DCC DOWNLOADER | File F:/Torrent Downloads/LittleWeeb/Sword_Art_Online__Alternative_Gun_Gale_Online_\[HorribleSubs] Sword Art Online Alternative - Gun Gale Online - 01 [720p].mkv will be deleted after aborting.
+DCC DOWNLOADER | Downloader Stopped
+DCC DOWNLOADER | File F:/Torrent Downloads/LittleWeeb/Sword_Art_Online__Alternative_Gun_Gale_Online_\[HorribleSubs] Sword Art Online Alternative - Gun Gale Online - 01 [720p].mkv will be deleted due to aborting
+DCC DOWNLOADER | File has been downloaded! 
+ File Location:F:/Torrent Downloads/LittleWeeb/Sword_Art_Online__Alternative_Gun_Gale_Online_\[HorribleSubs] Sword Art Online Alternative - Gun Gale Online - 01 [720p].mkv

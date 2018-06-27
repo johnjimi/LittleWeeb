@@ -34,24 +34,21 @@ export class DownloadService {
         this.alreadyDownloaded = {};
         this.backendService.websocketMessages.subscribe((message) => {
             if(message.type == "download_update"){
-                if(message.status.indexOf("FAILED") == -1 && message.filename.indexOf("NO DOWNLOAD") == -1){
-                    let obj = this.downloadQue.find(x => x.id == message.id);               
-                    let index = this.downloadQue.indexOf(obj);
-                    if(index != -1){
+                let obj = this.downloadQue.find(x => x.id == message.id);               
+                var index = this.downloadQue.indexOf(obj);
+                if(index != -1){
 
-                        if(this.downloadQue[index].filename != message.filename){
-                            this.getAlreadyDownloaded();
-                        }
-                        this.downloadQue[index] = message;
-                        this.updateDownloadList.next(this.downloadQue); 
-                        this.shareService.updateAmountOfDownloads(this.downloadQue.length);  
-                    } else {
-                        
-                        this.downloadQue.push( message );
-                        this.updateDownloadList.next(this.downloadQue);   
-                        this.shareService.updateAmountOfDownloads(this.downloadQue.length);
+                    if(this.downloadQue[index].filename != message.filename){
+                        this.getAlreadyDownloaded();
                     }
-                
+                    this.downloadQue[index] = message;
+                    this.updateDownloadList.next(this.downloadQue); 
+                    this.shareService.updateAmountOfDownloads(this.downloadQue.length);  
+                } else {
+                    
+                    this.downloadQue.push( message );
+                    this.updateDownloadList.next(this.downloadQue);   
+                    this.shareService.updateAmountOfDownloads(this.downloadQue.length);
                 }
                
                 if(message.status == "COMPLETED"){

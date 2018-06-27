@@ -62,9 +62,11 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleIRCLib, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Debug\SimpleIRCLib.dll</HintPath>
+    <Reference Include="Plugin.DeviceInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.4.0.0.13\lib\net45\Plugin.DeviceInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleIRCLib, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleIRCLib.2.1.0\lib\net45\SimpleIRCLib.dll</HintPath>
     </Reference>
     <Reference Include="SunIRCLibrary">
       <HintPath>..\..\..\..\SunIRC Library\SunIRCLibrary\bin\Debug\SunIRCLibrary.dll</HintPath>

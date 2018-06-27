@@ -107,6 +107,11 @@ export class AnimeInfo{
         this.showTrailer = false;
         this.animeDir = "";
         this.enableDebug = true;
+        this.possibleresolutions = new Array();
+        
+        this.possibleresolutions.push({value : "720", name : "720p"});
+        this.possibleresolutions.push({value : "480", name : "480p"});
+        this.possibleresolutions.push({value : "1080", name : "1080p"});
 
         
 
@@ -135,6 +140,9 @@ export class AnimeInfo{
                 this.downloads = []; 
                 this.showDownload = false;
             }
+            
+            this.semanticui.enableAccordion();
+            this.semanticui.enableDropDown();
         });
 
         this.downloadService.updateAlreadyDownloadedList.subscribe((listwithdownloads)=>{
@@ -183,6 +191,8 @@ export class AnimeInfo{
                 
             }
             
+            this.semanticui.enableAccordion();
+            this.semanticui.enableDropDown();
 
         });
         this.shareService.updatetitle.next(this.title);      
@@ -249,7 +259,9 @@ export class AnimeInfo{
                 } 
                 
                 
-            } 
+            }
+            this.semanticui.enableAccordion();
+            this.semanticui.enableDropDown(); 
 
         }
         this.shareService.animetoshow.take(1).subscribe(async(anime) => {
@@ -261,7 +273,7 @@ export class AnimeInfo{
                
                 if(this.animeInfo === undefined){
                     this.animeInfo = this.kitsuService.getAllInfo(anime.id);
-                    this.animeDir = this.animeInfo.animeInfo.canonicalTitle.split(' ').join('_') + "_" + this.animeInfo.id;   
+                    this.animeDir = this.animeInfo.animeInfo.canonicalTitle.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_').split(' ').join('_') + "_" + this.animeInfo.id;   
                     this.showList = false;
                     this.showEpisodes = false;   
                     this.title =  this.animeInfo.animeInfo.canonicalTitle;     
@@ -272,7 +284,7 @@ export class AnimeInfo{
                     if(this.animeInfo.id != anime.id){
                         this.animeInfo = await this.kitsuService.getAllInfo(anime.id);
                         this.consoleWrite(this.animeInfo);
-                        this.animeDir = this.animeInfo.animeInfo.canonicalTitle.split(' ').join('_') + "_" + this.animeInfo.id;      
+                        this.animeDir = this.animeInfo.animeInfo.canonicalTitle.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_').split(' ').join('_') + "_";      
                         this.showList = false;
                         this.showEpisodes = false;   
                         this.title =  this.animeInfo.animeInfo.canonicalTitle;  
@@ -292,9 +304,11 @@ export class AnimeInfo{
                     this.shareService.hideLoader();
                     
                     this.downloadService.getAlreadyDownloaded();
-                    this.doneLoading = true;
+                    this.doneLoading = true;   
                 }
             }
+            this.semanticui.enableAccordion();
+            this.semanticui.enableDropDown();
         }); 
 
         

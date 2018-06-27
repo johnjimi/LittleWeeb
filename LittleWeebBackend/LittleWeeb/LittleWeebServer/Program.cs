@@ -53,11 +53,12 @@ namespace LittleWeebServer
                     Console.ReadLine();
                 }
                
-            } 
+            }
 
 
-            
 
+
+            Console.ReadLine();
         }
 
         private static string GetLocalIPAddress()

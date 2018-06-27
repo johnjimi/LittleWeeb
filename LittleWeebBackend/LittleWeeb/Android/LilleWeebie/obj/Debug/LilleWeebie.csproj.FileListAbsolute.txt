@@ -19,7 +19,6 @@ F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bi
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Debug\SimpleIRCLib.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\LilleWeebie.csproj.CopyComplete
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\LilleWeebie.csprojResolveAssemblyReference.cache
-F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Debug\SimpleIRCLib.dll.mdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Debug\Mono.Android.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Debug\mscorlib.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Debug\System.Core.pdb
@@ -54,6 +53,7 @@ F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\ob
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\linksrc\Mono.Security.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\linksrc\Microsoft.CSharp.pdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\linksrc\System.ComponentModel.Composition.pdb
+F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Debug\SimpleIRCLib.dll.mdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\bin\Debug\SunIRCLibrary.dll.mdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\linksrc\LilleWeebie.dll.mdb
 F:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\Android\LilleWeebie\obj\Debug\linksrc\SimpleIRCLib.dll.mdb

@@ -40,8 +40,7 @@ namespace LilleWeebie
             //run sunirc
             sunirc = new SunIRCInit(true, "ANDROID");
 
-
-            Thread.Sleep(2000);
+            
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);

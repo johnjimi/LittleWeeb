@@ -108,13 +108,16 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidAsset Include="Assets\index.html" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\inline.0075ff53e5c6e5895b32.bundle.js" />
+    <AndroidAsset Include="Assets\inline.77fd8694ab8b636a7182.bundle.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\main.aebbdd059918c2529e94.bundle.js" />
+    <AndroidAsset Include="Assets\main.712b3bc2780628dfc291.bundle.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\polyfills.7bd917fb14f237541df2.bundle.js" />
@@ -127,9 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\3rdpartylicenses.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
