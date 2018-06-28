@@ -73,7 +73,7 @@ namespace LittleWeebLibrary.Services
                     Channels = channels,
                     UserName = username
                 };
-
+                
                 IrcClientHandler.StartConnection(ircSettings);
 
                 OnDebugEvent?.Invoke(this, new BaseDebugArgs()

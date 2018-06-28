@@ -47,7 +47,7 @@ namespace LittleWeebLibrary.Handlers
                 string settingsName = "IrcSettings.json";
                 string settingsJson = JsonConvert.SerializeObject(ircSettings);
 #if __ANDROID__
-                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.ExternalStorageDirectory), "LittleWeeb"), "Settings");
+                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "Settings");
                 if (!File.Exists(Path.Combine(DebugPath, "settingsName")))
                 {
                     using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))
@@ -117,7 +117,7 @@ namespace LittleWeebLibrary.Handlers
                 string settingsName = "LittleWeebSettings.json";
                 string settingsJson = JsonConvert.SerializeObject(littleWeebSettings);
 #if __ANDROID__
-                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.ExternalStorageDirectory), "LittleWeeb"), "Settings");
+                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "Settings");
                 if (!File.Exists(Path.Combine(DebugPath, "settingsName")))
                 {
                     using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))

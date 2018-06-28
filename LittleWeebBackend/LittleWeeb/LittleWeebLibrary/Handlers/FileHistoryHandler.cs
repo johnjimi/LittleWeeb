@@ -38,7 +38,7 @@ namespace LittleWeebLibrary.Handlers
             WebSocketHandler = webSocketHandler;
 
 #if __ANDROID__
-            fileHistoryPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.ExternalStorageDirectory), "LittleWeeb"), "FileHistory");
+            fileHistoryPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "FileHistory");
 #else
             fileHistoryPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "FileHistory");
 #endif

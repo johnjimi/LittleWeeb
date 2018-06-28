@@ -23,6 +23,7 @@ namespace LittleWeebLibrary.Handlers
         void StartConnection(IrcSettings settings);
         void StopConnection();
         void StopDownload();
+        void SetDownloadDirectory(string path);
         bool IsDownloading();
         bool IsConnected();
         IrcSettings CurrentSettings();
@@ -60,17 +61,16 @@ namespace LittleWeebLibrary.Handlers
             SettingsHandler = settingsHandler;
 
 
-            IrcSettings = new IrcSettings();
-            LittleWeebSettings = new LittleWeebSettings();
+            IrcSettings = SettingsHandler.GetIrcSettings();
+            LittleWeebSettings = SettingsHandler.GetLittleWeebSettings();
 
             IrcClient = new SimpleIRC();
+            IrcClient.SetCustomDownloadDir(Path.Combine(LittleWeebSettings.BaseDownloadDir, IrcSettings.DownloadDirectory));
             IrcClient.IrcClient.OnUserListReceived += OnUserListUpdate;
             IrcClient.IrcClient.OnMessageReceived += OnMessage;
             IrcClient.IrcClient.OnDebugMessage += OnMessageDebug;
             IrcClient.DccClient.OnDccEvent += OnDownloadUpdate;
-            IrcClient.DccClient.OnDccDebugMessage += OnDownloadUpdateDebug;
-
-            
+            IrcClient.DccClient.OnDccDebugMessage += OnDownloadUpdateDebug;            
 
         }
 
@@ -82,6 +82,13 @@ namespace LittleWeebLibrary.Handlers
         public void SetLittleWeebSettings(LittleWeebSettings settings)
         {
             LittleWeebSettings = settings;
+        }
+
+        public void SetDownloadDirectory(string path)
+        {
+            IrcClient.SetCustomDownloadDir(path);
+            IrcSettings.DownloadDirectory = Path.Combine(LittleWeebSettings.BaseDownloadDir, path);
+            SettingsHandler.WriteIrcSettings(IrcSettings);
         }
 
         public void SendMessage(string message)

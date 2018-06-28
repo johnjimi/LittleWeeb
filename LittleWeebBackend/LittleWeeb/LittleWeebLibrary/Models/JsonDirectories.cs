@@ -10,7 +10,7 @@ namespace LittleWeebLibrary.Models
     {
 
         public string type = "directories";
-        public List<JsonDirectory> directories { get; set; }
+        public List<JsonDirectory> directories { get; set; } = new List<JsonDirectory>();
 
         public string ToJson()
         {

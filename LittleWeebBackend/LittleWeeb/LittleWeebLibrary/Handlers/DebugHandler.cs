@@ -70,16 +70,10 @@ namespace LittleWeebLibrary.Handlers
             {
 
 #if __ANDROID__
-                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.ExternalStorageDirectory), "LittleWeeb"), "DebugLog");
-                if (!File.Exists(Path.Combine(DebugPath, DebugFileName)))
-                {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, DebugFileName), true))
-                    {
-                        streamWriter.WriteLine("Starting Log At: " + DateTime.UtcNow);
-                    }
-                } 
+                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "DebugLog");
 #else
                 DebugPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "DebugLog");
+#endif
                 if (!File.Exists(Path.Combine(DebugPath, DebugFileName)))
                 {
                     using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, DebugFileName), true))
@@ -87,7 +81,6 @@ namespace LittleWeebLibrary.Handlers
                         streamWriter.WriteLine("Starting Log AT: " + DateTime.UtcNow);
                     }
                 }
-#endif
                 if (File.Exists(Path.Combine(DebugPath, DebugFileName)))
                 {
                     using (var streamReader = new StreamReader(Path.Combine(DebugPath, DebugFileName)))
