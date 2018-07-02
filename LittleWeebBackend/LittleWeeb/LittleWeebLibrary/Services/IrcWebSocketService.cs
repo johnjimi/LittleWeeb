@@ -36,7 +36,7 @@ namespace LittleWeebLibrary.Services
 
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
-        public IrcWebSocketService(LittleWeebSettings littleWeebSettings, IrcSettings ircSettings, IWebSocketHandler webSocketHandler, IIrcClientHandler ircClientHandler, ISettingsHandler settingsHandler)
+        public IrcWebSocketService(IWebSocketHandler webSocketHandler, IIrcClientHandler ircClientHandler, ISettingsHandler settingsHandler)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -48,9 +48,12 @@ namespace LittleWeebLibrary.Services
 
             SendMessageToWebSocketClient = false;
             IsIrcConnected = false;
-            LittleWeebSettings = littleWeebSettings;
-            IrcSettings = ircSettings;
             SettingsHandler = settingsHandler;
+            IrcClientHandler = ircClientHandler;
+            WebSocketHandler = webSocketHandler;
+
+            LittleWeebSettings = SettingsHandler.GetLittleWeebSettings();
+            IrcSettings = SettingsHandler.GetIrcSettings();
 
             IrcClientHandler.OnIrcClientMessageEvent += OnIrcClientMessageEvent;
             IrcClientHandler.OnIrcClientConnectionStatusEvent += OnIrcClientConnectionStatusEvent;

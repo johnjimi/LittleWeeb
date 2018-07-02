@@ -1,9 +1,9 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using SunIRCLibrary;
-using System.Reflection;
-using System.IO;
+﻿using LittleWeebLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LittleWeebServer
 {
@@ -11,67 +11,33 @@ namespace LittleWeebServer
     {
         static void Main(string[] args)
         {
-            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            Console.WriteLine("Welcome to littleweeb's server - v" + version.ToString() + " !");
-            Console.WriteLine("=================================");
+            Console.WriteLine("Welcome to LittleWeeb v0.4.0 Alpha :D");
 
-            String index = string.Format(@"GUI/index.html", Assembly.GetEntryAssembly().CodeBase);
-            if (!File.Exists(index))
-            {
-                Console.WriteLine("Could not locate interface :(, go to https://github.com/EldinZenderink/LittleWeeb/issues and report an issue there, please include the log file, which can be found in the directory where littleweeb resides!");
-            } else
-            {
-                try
-                {
-                    Console.WriteLine("You can load the interface on your device which should be connected to the same network as where this server is running, using the following address:");
-                    string ip = GetLocalIPAddress();
-                    if (Assembly.GetEntryAssembly().CodeBase.Contains("Debug"))
-                    {
-                        Console.WriteLine("Startup Directory Path contains Debug - > " + Assembly.GetEntryAssembly().CodeBase + " \r\n, This means you are probably a developer, so the interface url has been set to localhost:4200 (nodejs). If you see this and you are NOT a developer of LittleWeeb, please put the files in a directory that doesn't contain Debug in it's path!");
-                        Console.WriteLine("http://" + ip  + ":4200");
-                    }
-                    else
-                    {
-                        Console.WriteLine("When you use this application, you agree to the Terms of Use, which you can read on the About page. \r\n This application is still in development, so many issues can occur! \r\n Please report them here: https://github.com/EldinZenderink/LittleWeeb/issues");
-                        Console.WriteLine("http://" + ip + ":6010");
-                    }
+            Console.WriteLine();
+            Console.WriteLine("To use this application, you need to run the latest version of LittleWeebs interface by clicking on 'index.html' or by hosting it through a http server.");
+            Console.WriteLine("When launching for the first time, you need to fill in the ip address of LittleWeebs server (where I am running). Then it should launch without issues!");
+            Console.WriteLine("You can lateron change the ip if the ip address of the server changes, or if you relocate the server where it gets a new IP address.");
+            Console.WriteLine();
+            Console.WriteLine("============================= TERMS OF USAGE ====================================");
+            Console.WriteLine("THIS IS A ALPHA VERSION OF LITTLEWEEB DUE TO A COMPLETE REWORK ON THE CODE BASE, EXPECT MANY ISSUES, PROBLEMS, BUGS, PERSONALITY ISSUES, ANGER ISSUES AND EVERTYHING ELSE RELATED TO THE USE OF THIS PROGRAM ");
+            Console.WriteLine("WHEREFOR THE CREATOR AND PROGRAMMER OF THIS LOVELY LITTLE PROGRAM IS NOOOOT RESPONSIBLE FOR. HERE WE GO: By using this application you agree to the terms of usage basically saying that the creator, programmer and maintainer");
+            Console.WriteLine("of LittleWeeb IS NOT responsible for anything that could possibly happenin the future when using this product. If you want to support the anime communicty GTFO of here and buy something anime related, otherwise, enjoy!");
 
-                    Console.WriteLine("Thanks for using LittleWeeb, if issues occur, please notify the developer here:");
-                    Console.WriteLine("https://github.com/EldinZenderink/LittleWeeb/issues");
+            Console.WriteLine();
 
-                    SunIRCInit init = new SunIRCInit(false);
+            Console.WriteLine("Press a key to start the server!");
+            Console.ReadKey();
 
-                    Console.WriteLine("Press a key to exit!");
-                    Console.ReadLine();
+            LittleWeeb weeby = new LittleWeeb();
 
-                    init.Shutdown();
-                } catch (Exception e)
-                {
-                    Console.WriteLine(e.ToString());
-                    Console.WriteLine("Could not start LittleWeeb!");
-                    Console.WriteLine("Press a key to exit!");
-                    Console.ReadLine();
-                }
-               
-            }
+            Console.WriteLine("Press a key to stop the server!");
+            Console.ReadKey();
+
+            weeby.Stop();
 
 
-
-
-            Console.ReadLine();
-        }
-
-        private static string GetLocalIPAddress()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            throw new Exception("No network adapters with an IPv4 address in the system!");
+            Console.WriteLine("Press a key to exit the server!");
+            Console.ReadKey();            
         }
     }
 }

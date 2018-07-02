@@ -6,10 +6,16 @@ namespace LittleWeebLibrary
 {
     public class LittleWeeb
     {
-
+        private readonly StartUp startUp;
         public LittleWeeb()
         {
-            ISubWebSocketController test = new IrcWebSocketController();
+            startUp = new StartUp();
+            startUp.Start();
+        }
+
+        public void Stop()
+        {
+            startUp.Stop();
         }
     }
 }

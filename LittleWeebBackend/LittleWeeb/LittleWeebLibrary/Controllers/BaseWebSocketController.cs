@@ -8,14 +8,17 @@ using LittleWeebLibrary.Handlers;
 
 namespace LittleWeebLibrary.Controllers
 {
+    public interface IBaseWebSocketController
+    {
 
-    public class BaseWebSocketController : IDebugEvent
+    }
+    public class BaseWebSocketController : IBaseWebSocketController,IDebugEvent
     {
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
         private readonly IWebSocketHandler WebSocketHandler;
         private readonly List<ISubWebSocketController> SubControllers;
 
-        public BaseWebSocketController(LittleWeebSettings settings, List<ISubWebSocketController> subControllers, IWebSocketHandler webSocketHandler)
+        public BaseWebSocketController(List<ISubWebSocketController> subControllers, IWebSocketHandler webSocketHandler)
         {
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()

@@ -27,15 +27,25 @@ namespace LittleWeebLibrary.Handlers
         private LittleWeebSettings LittleWeebSettings;
 
 
-        public DebugHandler(LittleWeebSettings settings, List<IDebugEvent> debugEvents)
+        public DebugHandler(ISettingsHandler settingsHandler, List<IDebugEvent> debugEvents)
         {
 
-            LittleWeebSettings = settings;
+            LittleWeebSettings = settingsHandler.GetLittleWeebSettings();
             currentLog = new List<string>();
             foreach (IDebugEvent debugEvent in debugEvents)
             {
-                debugEvent.OnDebugEvent += OnDebugEvent;
+                try
+                {
+
+                    debugEvent.OnDebugEvent += OnDebugEvent;
+                }
+                catch (Exception e)
+                {
+                    DebugFileWriter(e.ToString(), this.GetType().ToString(), 0, 4);
+                }
             }
+
+            WriteTrace("Succesfully initiated debug handler!");
 
         }
 
@@ -49,7 +59,7 @@ namespace LittleWeebLibrary.Handlers
 
         public void SetIrcSettings(IrcSettings settings)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void SetLittleWeebSettings(LittleWeebSettings settings)
@@ -74,6 +84,10 @@ namespace LittleWeebLibrary.Handlers
 #else
                 DebugPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "DebugLog");
 #endif
+                if (!Directory.Exists(DebugPath))
+                {
+                    Directory.CreateDirectory(DebugPath);
+                }
                 if (!File.Exists(Path.Combine(DebugPath, DebugFileName)))
                 {
                     using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, DebugFileName), true))
@@ -152,6 +166,7 @@ namespace LittleWeebLibrary.Handlers
         [Conditional("DEBUG")]
         private void WriteTrace(string toWrite)
         {
+            Debug.WriteLine(toWrite);
             Trace.WriteLine(toWrite);
         }
     }

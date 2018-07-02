@@ -1,0 +1,1 @@
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\netcoreapp2.1\LittleWeebLibrary.csprojAssemblyReference.cache

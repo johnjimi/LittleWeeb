@@ -34,8 +34,6 @@ namespace LittleWeebLibrary.Services
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
         public DownloadWebSocketService(
-            LittleWeebSettings littleWeebSettings, 
-            IrcSettings ircSettings, 
             IWebSocketHandler webSocketHandler, 
             IDirectoryHandler directoryHandler,
             IDownloadHandler downloadHandler,  
@@ -50,14 +48,15 @@ namespace LittleWeebLibrary.Services
                 DebugType = 0
             });
 
-            LittleWeebSettings = littleWeebSettings;
-            IrcSettings = ircSettings;
             WebSocketHandler = webSocketHandler;
             DirectoryHandler = directoryHandler;
             DownloadHandler = downloadHandler;
             FileHistoryHandler = fileHistoryHandler;
             SettingsHandler = settingsHandler;
             LastDownloadedInfo = new JsonDownloadInfo();
+
+            LittleWeebSettings = SettingsHandler.GetLittleWeebSettings();
+            IrcSettings = SettingsHandler.GetIrcSettings();
 
             downloadHandler.OnDownloadUpdateEvent += OnDownloadUpdateEvent;
         }

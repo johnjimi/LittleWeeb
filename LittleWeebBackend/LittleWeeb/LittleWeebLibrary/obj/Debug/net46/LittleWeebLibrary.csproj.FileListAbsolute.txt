@@ -1,0 +1,4 @@
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\net46\LittleWeebLibrary.csprojAssemblyReference.cache
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\net46\LittleWeebLibrary.csproj.CoreCompileInputs.cache
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\net46\LittleWeebLibrary.AssemblyInfoInputs.cache
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\net46\LittleWeebLibrary.AssemblyInfo.cs

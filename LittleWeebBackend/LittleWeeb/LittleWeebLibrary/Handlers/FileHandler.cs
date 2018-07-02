@@ -207,7 +207,6 @@ namespace LittleWeebLibrary.Handlers
 
         public void SetIrcSettings(IrcSettings settings)
         {
-            throw new NotImplementedException();
         }
 
         public void SetLittleWeebSettings(LittleWeebSettings settings)

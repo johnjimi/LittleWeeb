@@ -26,6 +26,7 @@ namespace LittleWeebLibrary.Services
         private readonly IWebSocketHandler WebSocketHandler;
 
         private LittleWeebSettings LittleWeebSettings;
+        private IrcSettings IrcSettings;
 
         public DirectoryWebSocketService(IWebSocketHandler webSocketHandler, IDirectoryHandler directoryHandler)
         {
@@ -193,17 +194,52 @@ namespace LittleWeebLibrary.Services
 
         public void GetFreeSpace()
         {
-            string result = DirectoryHandler.GetFreeSpace(LittleWeebSettings.BaseDownloadDir);
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "GetFreeSpace Called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+            string result = DirectoryHandler.GetFreeSpace(IrcSettings.DownloadDirectory);
             WebSocketHandler.SendMessage(result);
         }
 
         public void SetIrcSettings(IrcSettings settings)
         {
-            throw new NotImplementedException();
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "SetIrcSettings Called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = settings.ToString(),
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+            IrcSettings = settings;
         }
 
         public void SetLittleWeebSettings(LittleWeebSettings settings)
         {
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "SetLittleWeebSettings Called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = settings.ToString(),
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
             LittleWeebSettings = settings;
         }
     }

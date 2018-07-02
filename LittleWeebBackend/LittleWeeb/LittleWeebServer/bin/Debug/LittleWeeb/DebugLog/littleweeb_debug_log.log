@@ -1,0 +1,80 @@
+Starting Log AT: 7/2/2018 9:52:57 PM
+ENTRY|DownloadHandler|METHOD|SetIrcSettings Called.|9:52 PM
+ENTRY|DirectoryWebSocketService|METHOD|SetIrcSettings Called.|9:52 PM
+ENTRY|DirectoryWebSocketService|METHOD|ServerAddress: irc.rizon.net
+Port: 6669
+Secure: True
+Channels: #nibl,#horriblesubs,#news
+UserName: 
+DownloadDirectory: G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\LittleWeeb\Downloads
+|9:52 PM
+ENTRY|IrcWebSocketService|METHOD|SetIrcSettings called.|9:52 PM
+PARAMETERS|FileHandler|METHOD|Port: 1515
+Local: True
+Version: 1.0.0.0
+RandomUserNameLength:: 6
+DebugLevel: 0,1,2,3,4,5,0,1,2,3,4,5,
+MaxDebugLogSize: 10000
+|9:52 PM
+ENTRY|DownloadHandler|METHOD|SetLittleWeebSettings Called.|9:52 PM
+ENTRY|DirectoryWebSocketService|METHOD|SetLittleWeebSettings Called.|9:52 PM
+ENTRY|DirectoryWebSocketService|METHOD|Port: 1515
+Local: True
+Version: 1.0.0.0
+RandomUserNameLength:: 6
+DebugLevel: 0,1,2,3,4,5,0,1,2,3,4,5,
+MaxDebugLogSize: 10000
+|9:52 PM
+ENTRY|IrcWebSocketService|METHOD|SetLittleWeebSettings called.|9:52 PM
+ENTRY|SettingsHandler|METHOD|WriteIrcSettings called.|9:52 PM
+PARAMETERS|SettingsHandler|METHOD|ServerAddress: irc.rizon.net
+Port: 6669
+Secure: True
+Channels: #nibl,#horriblesubs,#news
+UserName: 
+DownloadDirectory: G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\LittleWeeb\Downloads
+|9:52 PM
+ENTRY|WebSocketHandler|METHOD| StartWebSocketServer Called.|9:52 PM
+ERROR|WebSocketHandler|METHOD|System.NullReferenceException: Object reference not set to an instance of an object.
+   at LittleWeebLibrary.Handlers.WebSocketHandler.StartServer()|9:52 PM
+ENTRY|DownloadHandler|METHOD|SetIrcSettings Called.|9:57 PM
+ENTRY|DirectoryWebSocketService|METHOD|SetIrcSettings Called.|9:57 PM
+ENTRY|DirectoryWebSocketService|METHOD|ServerAddress: irc.rizon.net
+Port: 6669
+Secure: True
+Channels: #nibl,#horriblesubs,#news
+UserName: 
+DownloadDirectory: G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\LittleWeeb\Downloads
+|9:57 PM
+ENTRY|IrcWebSocketService|METHOD|SetIrcSettings called.|9:57 PM
+PARAMETERS|FileHandler|METHOD|Port: 1515
+Local: True
+Version: 1.0.0.0
+RandomUserNameLength:: 6
+DebugLevel: 0,1,2,3,4,5,0,1,2,3,4,5,
+MaxDebugLogSize: 10000
+|9:57 PM
+ENTRY|DownloadHandler|METHOD|SetLittleWeebSettings Called.|9:57 PM
+ENTRY|DirectoryWebSocketService|METHOD|SetLittleWeebSettings Called.|9:57 PM
+ENTRY|DirectoryWebSocketService|METHOD|Port: 1515
+Local: True
+Version: 1.0.0.0
+RandomUserNameLength:: 6
+DebugLevel: 0,1,2,3,4,5,0,1,2,3,4,5,
+MaxDebugLogSize: 10000
+|9:57 PM
+ENTRY|IrcWebSocketService|METHOD|SetLittleWeebSettings called.|9:57 PM
+ENTRY|SettingsHandler|METHOD|WriteIrcSettings called.|9:57 PM
+PARAMETERS|SettingsHandler|METHOD|ServerAddress: irc.rizon.net
+Port: 6669
+Secure: True
+Channels: #nibl,#horriblesubs,#news
+UserName: 
+DownloadDirectory: G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\LittleWeeb\Downloads
+|9:57 PM
+ENTRY|WebSocketHandler|METHOD| StartWebSocketServer Called.|9:57 PM
+ENTRY|WebSocketHandler via SimpleWebSocketServer|EVENT|OnWebSocketServerEvent called.|9:57 PM
+INFO|WebSocketHandler via SimpleWebSocketServer|EVENT|Client with id 4bc061aac4fb47aa8732e234eac9054d from / connected!|9:57 PM
+ENTRY|WebSocketHandler|TASK|WebSocketHandler called.|9:57 PM
+PARAMETERS|WebSocketHandler|TASK|{"welcome":"Succesfully made connection with LittleWeeb Back-end!","local":true}|9:57 PM
+INFO|WebSocketHandler|TASK|Succesfully send message to WebSocket Client.|9:57 PM

@@ -15,6 +15,7 @@ namespace LittleWeebLibrary.Handlers
     {
         event EventHandler<WebSocketEventArgs> OnWebSocketEvent;
         Task SendMessage(string message);
+        void StartServer();
         Task StopServer();
     }
 
@@ -29,6 +30,11 @@ namespace LittleWeebLibrary.Handlers
 
         private List<string> ClientIds;
 
+        public WebSocketHandler(ISettingsHandler settingsHandler)
+        {
+            LittleWeebSettings = settingsHandler.GetLittleWeebSettings();
+        }
+
         public void SetLittleWeebSettings(LittleWeebSettings settings)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -39,9 +45,10 @@ namespace LittleWeebLibrary.Handlers
                 DebugType = 1
             });
             LittleWeebSettings = settings;
+
         }
 
-        public void StartWebSocketServer()
+        public void StartServer()
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -274,7 +281,6 @@ namespace LittleWeebLibrary.Handlers
 
         public void SetIrcSettings(IrcSettings settings)
         {
-            throw new NotImplementedException();
         }
 
     }

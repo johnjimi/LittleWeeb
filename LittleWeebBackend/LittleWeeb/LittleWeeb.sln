@@ -5,7 +5,12 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleWeeb", "LittleWeeb\LittleWeeb.csproj", "{8A129020-1853-49FA-9FAC-C060AD6C1F74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleWeebLibrary", "LittleWeebLibrary\LittleWeebLibrary.csproj", "{D1C39150-7B68-436C-96DB-9765B131FF00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LittleWeebLibrary", "LittleWeebLibrary\LittleWeebLibrary.csproj", "{D1C39150-7B68-436C-96DB-9765B131FF00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleWeebServer", "LittleWeebServer\LittleWeebServer.csproj", "{43815445-5BEB-4DB4-BC69-05B5A4179303}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D1C39150-7B68-436C-96DB-9765B131FF00} = {D1C39150-7B68-436C-96DB-9765B131FF00}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +46,18 @@ Global
 		{D1C39150-7B68-436C-96DB-9765B131FF00}.Release|x64.Build.0 = Release|Any CPU
 		{D1C39150-7B68-436C-96DB-9765B131FF00}.Release|x86.ActiveCfg = Release|Any CPU
 		{D1C39150-7B68-436C-96DB-9765B131FF00}.Release|x86.Build.0 = Release|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Debug|x64.Build.0 = Debug|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Debug|x86.Build.0 = Debug|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Release|x64.ActiveCfg = Release|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Release|x64.Build.0 = Release|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Release|x86.ActiveCfg = Release|Any CPU
+		{43815445-5BEB-4DB4-BC69-05B5A4179303}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

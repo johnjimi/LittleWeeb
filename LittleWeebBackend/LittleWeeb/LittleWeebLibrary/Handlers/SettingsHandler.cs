@@ -24,6 +24,37 @@ namespace LittleWeebLibrary.Handlers
 
         private string DebugPath;
 
+        public SettingsHandler()
+        {
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugSource = this.GetType().Name,
+                DebugMessage = "Constructor called.",
+                DebugSourceType = 0,
+                DebugType = 0
+            });
+
+            string littleWeebSettingsName = "LittleWeebSettings.json";
+            string ircSettingsName = "IrcSettings.json";
+#if __ANDROID__
+            DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "Settings");
+#else
+            DebugPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "Settings");
+#endif
+
+            if (!Directory.Exists(DebugPath))
+            {
+                Directory.CreateDirectory(DebugPath);
+            }
+            if (!File.Exists(Path.Combine(DebugPath, littleWeebSettingsName))){
+                WriteLittleWeebSettings(new LittleWeebSettings());
+            }
+            if (!File.Exists(Path.Combine(DebugPath, ircSettingsName)))
+            {
+                WriteIrcSettings(new IrcSettings());
+            }
+        }
+
         public void WriteIrcSettings(IrcSettings ircSettings)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -46,22 +77,7 @@ namespace LittleWeebLibrary.Handlers
             {
                 string settingsName = "IrcSettings.json";
                 string settingsJson = JsonConvert.SerializeObject(ircSettings);
-#if __ANDROID__
-                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "Settings");
-                if (!File.Exists(Path.Combine(DebugPath, "settingsName")))
-                {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))
-                    {
-                        streamWriter.Write(settingsJson);
-                    }
-                } else {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), false))
-                    {
-                        streamWriter.Write(settingsJson);
-                    }
-                }
-#else
-                DebugPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "Settings");
+
                 if (!File.Exists(Path.Combine(DebugPath, settingsName)))
                 {
                     using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))
@@ -76,8 +92,6 @@ namespace LittleWeebLibrary.Handlers
                         streamWriter.Write(settingsJson);
                     }
                 }
-#endif
-
             }
             catch (Exception e)
             {
@@ -116,22 +130,6 @@ namespace LittleWeebLibrary.Handlers
             {
                 string settingsName = "LittleWeebSettings.json";
                 string settingsJson = JsonConvert.SerializeObject(littleWeebSettings);
-#if __ANDROID__
-                DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "Settings");
-                if (!File.Exists(Path.Combine(DebugPath, "settingsName")))
-                {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))
-                    {
-                        streamWriter.Write(settingsJson);
-                    }
-                } else {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), false))
-                    {
-                        streamWriter.Write(settingsJson);
-                    }
-                }
-#else
-                DebugPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "Settings");
                 if (!File.Exists(Path.Combine(DebugPath, settingsName)))
                 {
                     using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))
@@ -146,7 +144,6 @@ namespace LittleWeebLibrary.Handlers
                         streamWriter.Write(settingsJson);
                     }
                 }
-#endif
 
             }
             catch (Exception e)

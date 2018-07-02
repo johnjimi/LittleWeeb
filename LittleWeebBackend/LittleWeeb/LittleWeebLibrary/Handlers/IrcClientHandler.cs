@@ -65,7 +65,7 @@ namespace LittleWeebLibrary.Handlers
             LittleWeebSettings = SettingsHandler.GetLittleWeebSettings();
 
             IrcClient = new SimpleIRC();
-            IrcClient.SetCustomDownloadDir(Path.Combine(LittleWeebSettings.BaseDownloadDir, IrcSettings.DownloadDirectory));
+            IrcClient.SetCustomDownloadDir( IrcSettings.DownloadDirectory);
             IrcClient.IrcClient.OnUserListReceived += OnUserListUpdate;
             IrcClient.IrcClient.OnMessageReceived += OnMessage;
             IrcClient.IrcClient.OnDebugMessage += OnMessageDebug;
@@ -87,7 +87,7 @@ namespace LittleWeebLibrary.Handlers
         public void SetDownloadDirectory(string path)
         {
             IrcClient.SetCustomDownloadDir(path);
-            IrcSettings.DownloadDirectory = Path.Combine(LittleWeebSettings.BaseDownloadDir, path);
+            IrcSettings.DownloadDirectory = path;
         }
 
         public void SendMessage(string message)
@@ -151,7 +151,7 @@ namespace LittleWeebLibrary.Handlers
             try
             {
                 string xdccMessage = "/msg " + download.bot + " xdcc send #" + download.pack;
-                IrcClient.SetCustomDownloadDir(Path.Combine(LittleWeebSettings.BaseDownloadDir, download.downloadDirectory));
+                IrcClient.SetCustomDownloadDir(Path.Combine(IrcSettings.DownloadDirectory, download.downloadDirectory));
                 SendMessage(xdccMessage);
             }
             catch (Exception e)
