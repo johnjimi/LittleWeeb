@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using LittleWeebLibrary.Services;
+using LittleWeebLibrary.Handlers;
+using LittleWeebLibrary.Models;
 
 namespace LittleWeebLibrary.Controllers
 {
@@ -14,8 +16,9 @@ namespace LittleWeebLibrary.Controllers
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
         private readonly IIrcWebSocketService IrcWebSocketService;
+        private readonly IWebSocketHandler WebSocketHandler;
 
-        public IrcWebSocketController(IIrcWebSocketService ircWebSocketService)
+        public IrcWebSocketController(IWebSocketHandler webSocketHandler, IIrcWebSocketService ircWebSocketService)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -26,9 +29,8 @@ namespace LittleWeebLibrary.Controllers
             });
 
             IrcWebSocketService = ircWebSocketService;
-        }
-
-       
+            WebSocketHandler = webSocketHandler;
+        }      
 
         public void OnWebSocketEvent(WebSocketEventArgs args)
         {
@@ -52,30 +54,63 @@ namespace LittleWeebLibrary.Controllers
             try
             {
                 JObject query = JObject.Parse(args.Message);
+                string action = query.Value<string>("action");
 
-                if (query.Value<string>("action") != null)
+                if (action != null)
                 {
-                    string action = query.Value<string>("action");
+                    JObject extra = query.Value<JObject>("extra");
 
-
-                    switch (action)
+                    if (extra != null)
                     {
-                        case "connect_irc":
-                            break;
-                        case "disconnect_irc":
-                            break;
-                        case "enablechat_irc":
-                            break;
-                        case "disablechat_irc":
-                            break;
-                        case "sendmessage_irc":
-                            break;
-                        case "getuserlist_irc":
-                            break;
-                        default:
-                            break;
+                        switch (action)
+                        {
+                            case "connect_irc":
+                                IrcWebSocketService.Connect(extra);
+                                break;
+                            case "sendmessage_irc":
+                                IrcWebSocketService.SendMessage(extra);
+                                break;
+                            default:
+                                JsonError error = new JsonError()
+                                {
+                                    type = "command_error",
+                                    errormessage = "Server could not understand command (With extra specified).",
+                                    errortype = "warning"
+                                };
+                                WebSocketHandler.SendMessage(error.ToJson());
+                                break;
+                        }
                     }
-
+                    else
+                    {
+                        switch (action)
+                        {
+                            case "get_irc_data":
+                                IrcWebSocketService.GetCurrentIrcSettings();
+                                break;
+                            case "connect_irc":
+                                IrcWebSocketService.Connect();
+                                break;
+                            case "disconnect_irc":
+                                IrcWebSocketService.Disconnect();
+                                break;
+                            case "enablechat_irc":
+                                IrcWebSocketService.EnableSendMessage();
+                                break;
+                            case "disablechat_irc":
+                                IrcWebSocketService.DisableSendMessage();
+                                break;
+                            default:
+                                JsonError error = new JsonError()
+                                {
+                                    type = "command_error",
+                                    errormessage = "Server could not understand command (without extra specified).",
+                                    errortype = "warning"
+                                };
+                                WebSocketHandler.SendMessage(error.ToJson());
+                                break;
+                        }
+                    }                 
                 }
             }
             catch (Exception e)
@@ -87,6 +122,14 @@ namespace LittleWeebLibrary.Controllers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+                JsonError error = new JsonError()
+                {
+                    type = "command_error",
+                    errormessage = "Error happend during execution of command.",
+                    errortype = "exception"
+                };
+                WebSocketHandler.SendMessage(error.ToJson());
             }    
         }
     }

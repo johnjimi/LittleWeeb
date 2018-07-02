@@ -12,20 +12,19 @@ namespace LittleWeebLibrary.Handlers
 {
     public interface IFileHistoryHandler
     {
-        void AddFileToFileHistory(JsonAnimeInfo animeInfo, JsonDownloadInfo downloadInfo);
+        void AddFileToFileHistory(JsonDownloadInfo downloadInfo);
         void RemoveFileFromFileHistory(JsonDownloadInfo downloadInfo);
+        void RemoveFileFromFileHistory(string filePath);
         JsonDownloadHistoryList GetCurrentFileHistory();
     }
     public class FileHistoryHandler : IFileHistoryHandler, IDebugEvent
     {
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
-        private readonly IWebSocketHandler WebSocketHandler;
-
         private readonly string fileHistoryPath = "";
         private readonly string fileName = "";
 
-        public FileHistoryHandler(IWebSocketHandler webSocketHandler)
+        public FileHistoryHandler()
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -34,8 +33,6 @@ namespace LittleWeebLibrary.Handlers
                 DebugSourceType = 0,
                 DebugType = 0
             });
-
-            WebSocketHandler = webSocketHandler;
 
 #if __ANDROID__
             fileHistoryPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "FileHistory");
@@ -46,7 +43,7 @@ namespace LittleWeebLibrary.Handlers
 
         }
 
-        public void AddFileToFileHistory(JsonAnimeInfo animeInfo, JsonDownloadInfo downloadInfo)
+        public void AddFileToFileHistory(JsonDownloadInfo downloadInfo)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -54,14 +51,6 @@ namespace LittleWeebLibrary.Handlers
                 DebugSource = this.GetType().Name,
                 DebugSourceType = 1,
                 DebugType = 0
-            });
-
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugMessage = animeInfo.ToString(),
-                DebugSource = this.GetType().Name,
-                DebugSourceType = 1,
-                DebugType = 1
             });
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -77,7 +66,7 @@ namespace LittleWeebLibrary.Handlers
 
                 JsonDownloadHistory downloadHistoryObj = new JsonDownloadHistory()
                 {
-                    animeInfo = animeInfo
+                    animeInfo = downloadInfo.animeInfo
                 };
 
                 downloadHistoryObj.downloadHistory.Add(downloadInfo);
@@ -98,7 +87,7 @@ namespace LittleWeebLibrary.Handlers
                 JsonDownloadHistoryList list = GetCurrentFileHistory();
                 JsonDownloadHistory downloadHistoryObj = new JsonDownloadHistory()
                 {
-                    animeInfo = animeInfo
+                    animeInfo = downloadInfo.animeInfo
                 };
 
                 downloadHistoryObj.downloadHistory.Add(downloadInfo);
@@ -172,6 +161,70 @@ namespace LittleWeebLibrary.Handlers
                     list.downloadHistorylist[indexList].downloadHistory.RemoveAt(indexDownloadInfo);
 
                     if (indexDownloadInfo == 0) {
+                        list.downloadHistorylist.RemoveAt(indexList);
+                    }
+                }
+
+                using (var streamWriter = new StreamWriter(Path.Combine(fileHistoryPath, fileName), false))
+                {
+                    streamWriter.Write(list.ToJson());
+                }
+            }
+        }
+
+        public void RemoveFileFromFileHistory(string filePath)
+        {
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "RemoveFileFromFileHistory called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = filePath,
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 1
+            });
+
+            if (File.Exists(Path.Combine(fileHistoryPath, fileName)))
+            {
+
+
+                JsonDownloadHistoryList list = GetCurrentFileHistory();
+
+                int indexList = -1;
+                int indexDownloadInfo = -1;
+                foreach (JsonDownloadHistory history in list.downloadHistorylist)
+                {
+                    indexDownloadInfo = -1;
+                    foreach (JsonDownloadInfo download in history.downloadHistory)
+                    {
+                        indexDownloadInfo++;
+                        if (Path.Combine(download.downloadDirectory, download.filename) == filePath)
+                        {
+                            break;
+                        }
+                    }
+
+                    indexList++;
+
+                    if (indexDownloadInfo >= 0)
+                    {
+                        break;
+                    }
+
+                }
+
+                if (indexList >= 0)
+                {
+                    list.downloadHistorylist[indexList].downloadHistory.RemoveAt(indexDownloadInfo);
+
+                    if (indexDownloadInfo == 0)
+                    {
                         list.downloadHistorylist.RemoveAt(indexList);
                     }
                 }

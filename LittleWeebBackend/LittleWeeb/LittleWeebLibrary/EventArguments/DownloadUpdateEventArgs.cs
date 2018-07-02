@@ -8,6 +8,9 @@ namespace LittleWeebLibrary.EventArguments
     {
         public string id { get; set; }
         public string animeid { get; set; }
+        public string animeTitle { get; set; }
+        public string animeCoverOriginal { get; set; }
+        public string animeCoverSmall { get; set; }
         public string episodeNumber { get; set; }
         public string bot { get; set; }
         public string pack { get; set; }

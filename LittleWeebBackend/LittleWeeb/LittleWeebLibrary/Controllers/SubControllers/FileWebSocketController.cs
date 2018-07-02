@@ -1,6 +1,9 @@
 ﻿using LittleWeebLibrary.EventArguments;
 using LittleWeebLibrary.GlobalInterfaces;
+using LittleWeebLibrary.Handlers;
+using LittleWeebLibrary.Models;
 using LittleWeebLibrary.Services;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,8 +16,9 @@ namespace LittleWeebLibrary.Controllers
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
         private readonly IFileWebSocketService FileWebSocketService;
+        private readonly IWebSocketHandler WebSocketHandler;
 
-        public FileWebSocketController(IFileWebSocketService fileWebSocketService)
+        public FileWebSocketController(IWebSocketHandler webSocketHandler, IFileWebSocketService fileWebSocketService)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -25,6 +29,7 @@ namespace LittleWeebLibrary.Controllers
             });
 
             FileWebSocketService = fileWebSocketService;
+            WebSocketHandler = webSocketHandler;
         }
 
       
@@ -34,7 +39,7 @@ namespace LittleWeebLibrary.Controllers
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
                 DebugSource = this.GetType().Name,
-                DebugMessage = "Method OnWebSocketEvent called.",
+                DebugMessage = "OnWebSocketEvent called.",
                 DebugSourceType = 1,
                 DebugType = 0
             });
@@ -46,6 +51,60 @@ namespace LittleWeebLibrary.Controllers
                 DebugSourceType = 1,
                 DebugType = 1
             });
+
+
+            try
+            {
+                JObject query = JObject.Parse(args.Message);
+                string action = query.Value<string>("action");
+
+                if (action != null)
+                {
+                    JObject extra = query.Value<JObject>("extra");
+
+                    if (extra != null)
+                    {
+                        switch (action)
+                        {
+                            case "delete_file":
+                                FileWebSocketService.DeleteFile(extra);
+                                break;
+                            case "open_file":
+                                FileWebSocketService.OpenFile(extra);
+                                break;
+                            default:
+                                JsonError error = new JsonError()
+                                {
+                                    type = "command_error",
+                                    errormessage = "Server could not understand command (with extra specified).",
+                                    errortype = "warning"
+                                };
+                                WebSocketHandler.SendMessage(error.ToJson());
+                                break;
+                        }
+                    }
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                {
+                    DebugSource = this.GetType().Name,
+                    DebugMessage = e.ToString(),
+                    DebugSourceType = 1,
+                    DebugType = 4
+                });
+
+                JsonError error = new JsonError()
+                {
+                    type = "command_error",
+                    errormessage = "Error happend during execution of command.",
+                    errortype = "exception"
+                };
+                WebSocketHandler.SendMessage(error.ToJson());
+            }
+
         }
     }
 }

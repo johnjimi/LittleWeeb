@@ -1,8 +1,11 @@
 ﻿using LittleWeebLibrary.EventArguments;
 using LittleWeebLibrary.GlobalInterfaces;
 using LittleWeebLibrary.Models;
+using LittleWeebLibrary.Settings;
+using LittleWeebLibrary.StaticClasses;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,13 +15,14 @@ namespace LittleWeebLibrary.Handlers
     public interface IDownloadHandler
     {
         event EventHandler<DownloadUpdateEventArgs> OnDownloadUpdateEvent;
-        void AddDownload(JsonDownloadInfo download);
-        void RemoveDownload(JsonDownloadInfo download);
-        JsonDownloadInfo GetCurrentlyDownloading();
-        void StopQueue();
+        string AddDownload(JsonDownloadInfo download);
+        string RemoveDownload(JsonDownloadInfo download);
+        string RemoveDownload(string filePath);
+        string GetCurrentlyDownloading();
+        string StopQueue();
     }
 
-    public class DownloadHandler : IDownloadHandler, IDebugEvent
+    public class DownloadHandler : IDownloadHandler, IDebugEvent, ISettingsInterface
     {
         public event EventHandler<DownloadUpdateEventArgs> OnDownloadUpdateEvent;
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
@@ -28,6 +32,7 @@ namespace LittleWeebLibrary.Handlers
         private bool Stop;
         private bool IsDownloading;
         private JsonDownloadInfo CurrentlyDownloading;
+        private IrcSettings IrcSettings;
 
         public DownloadHandler(IIrcClientHandler ircClientHandler)
         {
@@ -70,7 +75,7 @@ namespace LittleWeebLibrary.Handlers
             });
         }
 
-        public void AddDownload(JsonDownloadInfo download)
+        public string AddDownload(JsonDownloadInfo download)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -88,7 +93,37 @@ namespace LittleWeebLibrary.Handlers
             });
             try
             {
-                DownloadQueue.Add(download);
+                if (UtilityMethods.GetFreeSpace(IrcSettings.DownloadDirectory) > (int.Parse(download.filesize) * 1024 * 1024))
+                {
+
+                    DownloadQueue.Add(download);
+
+                    JsonSuccesReport succes = new JsonSuccesReport()
+                    {
+                        message = "Succesfully added download to download que."
+                    };
+
+                    return succes.ToJson();
+                }
+                else
+                {
+                    OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                    {
+                        DebugMessage = "Could not add download with filesize: " + download.filesize + " due to insufficient space required: " + (UtilityMethods.GetFreeSpace(IrcSettings.DownloadDirectory) / 1024 / 1024).ToString(),
+                        DebugSource = this.GetType().Name,
+                        DebugSourceType = 1,
+                        DebugType = 3
+                    });
+
+                    JsonError error = new JsonError()
+                    {
+                        type = "unsufficient_space_error",
+                        errormessage = "Could not add download with filesize: " + download.filesize + " due to insufficient space required: " + (UtilityMethods.GetFreeSpace(IrcSettings.DownloadDirectory) / 1024 / 1024).ToString(),
+                        errortype = "warning"
+                    };
+                    return error.ToJson();
+                }
+
             }
             catch (Exception e)
             {
@@ -99,10 +134,19 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+
+                JsonError error = new JsonError()
+                {
+                    type = "add_download_error",
+                    errormessage = "Could not add download to que.",
+                    errortype = "exception"
+                };
+                return error.ToJson();
             }
         }
 
-        public void RemoveDownload(JsonDownloadInfo download)
+        public string RemoveDownload(JsonDownloadInfo download)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -123,7 +167,14 @@ namespace LittleWeebLibrary.Handlers
                 if (!DownloadQueue.Remove(download))
                 {
                     IrcClientHandler.StopDownload();
-                }
+                } 
+
+                JsonSuccesReport succes = new JsonSuccesReport()
+                {
+                    message = "Succesfully removed download from download que by download json."
+                };
+
+                return succes.ToJson();
             }
             catch (Exception e)
             {
@@ -134,10 +185,72 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+                JsonError error = new JsonError()
+                {
+                    type = "remove_download_error",
+                    errormessage = "Could not remove download from que by download json.",
+                    errortype = "exception"
+                };
+                return error.ToJson();
             }
         }
 
-        public void StopQueue() {
+        public string RemoveDownload(string filePath)
+        {
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "RemoveDownload Called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = filePath,
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 1
+            });
+
+            try
+            {
+                if (IsDownloading)
+                {
+                    if (Path.Combine(CurrentlyDownloading.downloadDirectory, CurrentlyDownloading.filename) == filePath)
+                    {
+                        IrcClientHandler.StopDownload();
+                    }
+                }
+
+                JsonSuccesReport succes = new JsonSuccesReport()
+                {
+                    message = "Succesfully removed download from download que by filepath."
+                };
+
+                return succes.ToJson();
+            }
+            catch (Exception e)
+            {
+                OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                {
+                    DebugSource = this.GetType().Name,
+                    DebugMessage = e.ToString(),
+                    DebugSourceType = 1,
+                    DebugType = 4
+                });
+
+                JsonError error = new JsonError()
+                {
+                    type = "remove_download_error",
+                    errormessage = "Could not remove download from que by download json by filepath.",
+                    errortype = "exception"
+                };
+                return error.ToJson();
+            }
+        }
+
+        public string StopQueue() {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
                 DebugMessage = "StopQueue Called.",
@@ -146,11 +259,18 @@ namespace LittleWeebLibrary.Handlers
                 DebugType = 0
             });
             Stop = true;
+
+            JsonSuccesReport succes = new JsonSuccesReport()
+            {
+                message = "Succesfully told queue to stop running."
+            };
+
+            return succes.ToJson();
         }
 
-        public JsonDownloadInfo GetCurrentlyDownloading()
+        public string GetCurrentlyDownloading()
         {
-            return CurrentlyDownloading;
+            return CurrentlyDownloading.ToJson();
         }
 
         private void OnIrcClientDownloadEvent(object sender, IrcClientDownloadEventArgs args)
@@ -177,7 +297,10 @@ namespace LittleWeebLibrary.Handlers
                 OnDownloadUpdateEvent?.Invoke(this, new DownloadUpdateEventArgs()
                 {
                     id = CurrentlyDownloading.id,
-                    animeid = CurrentlyDownloading.animeid,
+                    animeid = CurrentlyDownloading.animeInfo.animeid,
+                    animeTitle = CurrentlyDownloading.animeInfo.title,
+                    animeCoverSmall = CurrentlyDownloading.animeInfo.cover_small,
+                    animeCoverOriginal = CurrentlyDownloading.animeInfo.cover_original,
                     episodeNumber = CurrentlyDownloading.episodeNumber,
                     bot = CurrentlyDownloading.bot,
                     pack = CurrentlyDownloading.pack,
@@ -290,6 +413,29 @@ namespace LittleWeebLibrary.Handlers
                     }                    
                 }
             }            
+        }
+
+        public void SetIrcSettings(IrcSettings settings)
+        {
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "SetIrcSettings Called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+            IrcSettings = settings;
+        }
+
+        public void SetLittleWeebSettings(LittleWeebSettings settings)
+        {
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "SetLittleWeebSettings Called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
         }
     }
 }

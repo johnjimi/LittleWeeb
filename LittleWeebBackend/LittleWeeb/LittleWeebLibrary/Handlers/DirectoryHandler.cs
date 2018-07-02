@@ -2,6 +2,7 @@
 using LittleWeebLibrary.GlobalInterfaces;
 using LittleWeebLibrary.Models;
 using LittleWeebLibrary.Settings;
+using LittleWeebLibrary.StaticClasses;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,28 +13,20 @@ namespace LittleWeebLibrary.Handlers
 {
     public interface IDirectoryHandler
     {
+        string GetDrives();
+        string GetDirectories(string path);
+        string DeleteDirectory(string path);
+        string CreateDirectory(string path, string name);
+        string OpenDirectory(string directoryPath);
+        string GetFreeSpace(string directoryPath);
 
     }
-    public class DirectoryHandler : IDebugEvent, IDirectoryHandler
+    public class DirectoryHandler :  IDirectoryHandler, IDebugEvent
     {
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
-        private readonly ISettingsHandler SettingsHandler;
-        private readonly IIrcClientHandler IrcClientHandler;
-        private readonly IWebSocketHandler WebSocketHandler;
 
-        public DirectoryHandler()
-        {
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugMessage = "Constructor called.",
-                DebugSource = this.GetType().Name,
-                DebugSourceType = 0,
-                DebugType = 0
-            });
-        }
-        
-        public void GetDrives()
+        public string GetDrives()
         {
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -70,7 +63,7 @@ namespace LittleWeebLibrary.Handlers
                     directories.directories.Add(directorywithpath);
                 }
 #endif
-                WebSocketHandler.SendMessage(directories.ToJson());
+                return directories.ToJson();
             }
             catch (Exception e)
             {
@@ -86,14 +79,15 @@ namespace LittleWeebLibrary.Handlers
                 error.type = "get_drives_error";
                 error.errortype = "exception";
                 error.errormessage = "Could not get drives, see log.";
-            
-                WebSocketHandler.SendMessage(error.ToJson());
+
+                return error.ToJson();
             }
             
         }
 
-        public void GetDirectories(string path)
+        public string GetDirectories(string path)
         {
+
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -124,7 +118,7 @@ namespace LittleWeebLibrary.Handlers
                     directorywithpath.path = directory;
                     tosendover.directories.Add(directorywithpath);
                 }
-                WebSocketHandler.SendMessage(tosendover.ToJson());
+                return tosendover.ToJson();
 
 
             }
@@ -143,11 +137,11 @@ namespace LittleWeebLibrary.Handlers
                 error.errortype = "exception";
                 error.errormessage = "Could not get drives, see log.";
 
-                WebSocketHandler.SendMessage(error.ToJson());
+                return error.ToJson();
             }
         }
 
-        public void DeleteDirectory(string path)
+        public string DeleteDirectory(string path)
         {
             try
             {
@@ -162,7 +156,7 @@ namespace LittleWeebLibrary.Handlers
                         message = "Succesfully deleted folder with path: " + path
                     };
 
-                    WebSocketHandler.SendMessage(report.ToJson());
+                    return report.ToJson();
 
                 }
                 else
@@ -180,7 +174,7 @@ namespace LittleWeebLibrary.Handlers
                     error.errortype = "warning";
                     error.errormessage = "Could not delete directory: " + path + " because there are still files and/or other directories inside!";
 
-                    WebSocketHandler.SendMessage(error.ToJson());
+                    return error.ToJson();
                 }
             }
             catch (Exception e)
@@ -198,11 +192,11 @@ namespace LittleWeebLibrary.Handlers
                 error.errortype = "exception";
                 error.errormessage = "Could not get drives, see log.";
 
-                WebSocketHandler.SendMessage(error.ToJson());
+                return error.ToJson();
             }
         }
 
-        public void CreateDirectory(string path, string name)
+        public string CreateDirectory(string path, string name)
         {
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -235,7 +229,7 @@ namespace LittleWeebLibrary.Handlers
                 {
                     Directory.CreateDirectory(path);
 
-                    GetDirectories(path);
+                    return GetDirectories(path);
                 }
                 else
                 {
@@ -255,7 +249,7 @@ namespace LittleWeebLibrary.Handlers
                     error.errortype = "warning";
                     error.errormessage = "Directory already exist.";
 
-                    WebSocketHandler.SendMessage(error.ToJson());
+                    return error.ToJson();
                 }
             }
             catch (Exception e)
@@ -273,13 +267,13 @@ namespace LittleWeebLibrary.Handlers
                 error.errortype = "exception";
                 error.errormessage = "Could not  create directory, see log.";
 
-                WebSocketHandler.SendMessage(error.ToJson());
+                return error.ToJson();
 
             }
         }
 
         
-        public void OpenDirectory(string directoryPath)
+        public string OpenDirectory(string directoryPath)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -308,24 +302,16 @@ namespace LittleWeebLibrary.Handlers
                 Android.App.Application.Context.StartActivity(Intent.CreateChooser(intent, "Choose File Explorer"));
 #else
                 Process.Start(directoryPath);
-
-
+#endif
                 JsonSuccesReport report = new JsonSuccesReport()
                 {
                     message = "Succesfully opened folder with path: " + directoryPath
                 };
 
-                WebSocketHandler.SendMessage(report.ToJson());
-#endif
+                return report.ToJson();
             }
             catch (Exception e)
             {
-                JsonError err = new JsonError();
-                err.type = "open_directory_failed";
-                err.errormessage = "Could not open directory.";
-                err.errortype = "exception";
-
-                WebSocketHandler.SendMessage(err.ToJson());
 
                 OnDebugEvent?.Invoke(this, new BaseDebugArgs()
                 {
@@ -335,7 +321,33 @@ namespace LittleWeebLibrary.Handlers
                     DebugType = 4
                 });
 
+
+                JsonError err = new JsonError();
+                err.type = "open_directory_failed";
+                err.errormessage = "Could not open directory.";
+                err.errortype = "exception";
+
+                return err.ToJson();
+
             }
+        }
+
+        public string GetFreeSpace(string path)
+        {
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = "GetFreeSpace Called.",
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 0
+            });
+
+            JsonFreeSpace space = new JsonFreeSpace();
+            space.freespacebytes = UtilityMethods.GetFreeSpace(path);
+            space.freespacekbytes = space.freespacebytes / 1024;
+            space.freespacembytes = space.freespacekbytes / 1024;
+
+            return space.ToJson();
         }
     }
 }

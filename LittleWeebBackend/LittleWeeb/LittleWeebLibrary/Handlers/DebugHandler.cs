@@ -22,7 +22,7 @@ namespace LittleWeebLibrary.Handlers
         private bool DebugWriteAble = false;
         private string DebugFileName = "littleweeb_debug_log.log";
         private string DebugPath = "";
-        private string[] DebugTypes = new string[] { "ENTRY/EXIT", "PARAMETERS", "INFO", "WARNING", "ERROR", "SEVERE" };
+        private string[] DebugTypes = new string[] { "ENTRY", "PARAMETERS", "INFO", "WARNING", "ERROR", "SEVERE" };
         private string[] DebugSourceTypes = new string[] { "CONSTRUCTOR", "METHOD", "EVENT", "TASK", "EXTERNAL(LIBRARY)" };
         private LittleWeebSettings LittleWeebSettings;
 
@@ -98,7 +98,7 @@ namespace LittleWeebLibrary.Handlers
             {
                 DebugWriteAble = false;
 #if DEBUG
-                Debug.WriteLine(e.ToString());
+                Trace.WriteLine(e.ToString());
 #endif
             }
         }
@@ -145,9 +145,15 @@ namespace LittleWeebLibrary.Handlers
                         streamWriter.WriteLine(toWriteString);
                     }
                 }
-            }            
+                WriteTrace(toWriteString);
+            }
         }
 
-      
+        [Conditional("DEBUG")]
+        private void WriteTrace(string toWrite)
+        {
+            Trace.WriteLine(toWrite);
+        }
     }
+
 }

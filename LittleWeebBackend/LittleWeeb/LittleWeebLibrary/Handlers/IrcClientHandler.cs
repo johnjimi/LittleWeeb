@@ -88,7 +88,6 @@ namespace LittleWeebLibrary.Handlers
         {
             IrcClient.SetCustomDownloadDir(path);
             IrcSettings.DownloadDirectory = Path.Combine(LittleWeebSettings.BaseDownloadDir, path);
-            SettingsHandler.WriteIrcSettings(IrcSettings);
         }
 
         public void SendMessage(string message)

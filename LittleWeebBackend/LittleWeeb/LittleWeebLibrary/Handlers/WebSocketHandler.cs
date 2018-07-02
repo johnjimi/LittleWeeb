@@ -29,22 +29,6 @@ namespace LittleWeebLibrary.Handlers
 
         private List<string> ClientIds;
 
-        public WebSocketHandler()
-        {
-
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugSource = this.GetType().Name,
-                DebugMessage = "WebSocketHandler called.",
-                DebugSourceType = 0,
-                DebugType = 0
-            });
-
-
-            LittleWeebSettings = new LittleWeebSettings();
-        }
-
-
         public void SetLittleWeebSettings(LittleWeebSettings settings)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()

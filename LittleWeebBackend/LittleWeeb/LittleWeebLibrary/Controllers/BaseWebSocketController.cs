@@ -4,21 +4,18 @@ using LittleWeebLibrary.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using LittleWeebLibrary.Handlers;
 
 namespace LittleWeebLibrary.Controllers
 {
 
     public class BaseWebSocketController : IDebugEvent
     {
-        private readonly IWebSocketHandler WebSocketHandler;
-        private readonly IIrcClientHandler IrcClientHandler;
-        private readonly IDownloadHandler DownloadHandler;
-        private readonly List<ISubWebSocketController> SubControllers;
-        private readonly LittleWeebSettings Settings;
-        
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
+        private readonly IWebSocketHandler WebSocketHandler;
+        private readonly List<ISubWebSocketController> SubControllers;
 
-        public BaseWebSocketController(LittleWeebSettings settings, List<ISubWebSocketController> subControllers, IWebSocketHandler webSocketHandler, IIrcClientHandler ircClientHandler, IDownloadHandler downloadHandler)
+        public BaseWebSocketController(LittleWeebSettings settings, List<ISubWebSocketController> subControllers, IWebSocketHandler webSocketHandler)
         {
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -30,21 +27,11 @@ namespace LittleWeebLibrary.Controllers
             });
 
 
-            WebSocketHandler = webSocketHandler;
-            Settings = settings;
 
             SubControllers = subControllers;
 
-
+            WebSocketHandler = webSocketHandler;
             WebSocketHandler.OnWebSocketEvent += OnWebSocketEvent;
-
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugSource = this.GetType().Name,
-                DebugMessage = "Constructor Call Finished",
-                DebugSourceType = 0,
-                DebugType = 0
-            });
 
 
         }      

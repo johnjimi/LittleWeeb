@@ -9,38 +9,25 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LittleWeebLibrary.Handlers
 {
     public interface IFileHandler
     {
         event EventHandler<FileHandlerDebugEventArgs> OnFileHandlerDebugEvent;
-        void OpenFile(string filePath, string fileName = null);
-        void DeleteFile(string filePath, string fileName = null);
+        Task<string> OpenFile(string filePath, string fileName = null);
+        string DeleteFile(string filePath, string fileName = null);
     }
     public class FileHandler : IFileHandler, IDebugEvent, ISettingsInterface
     {
         public event EventHandler<FileHandlerDebugEventArgs> OnFileHandlerDebugEvent;
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
-        private readonly IWebSocketHandler WebSocketHandler;
 
         private LittleWeebSettings LittleWeebSettings;
 
-        public FileHandler(IWebSocketHandler webSocketHandler)
-        {
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugMessage = "Constructor called.",
-                DebugSource = this.GetType().Name,
-                DebugSourceType = 0,
-                DebugType = 0
-            });
-
-            WebSocketHandler = webSocketHandler;
-        }
-
-        public void OpenFile(string filePath, string fileName = null)
+        public async Task<string> OpenFile(string filePath, string fileName = null)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -76,42 +63,41 @@ namespace LittleWeebLibrary.Handlers
 
             try
             {
-                Thread fileopener = new Thread(new ThreadStart(delegate
+                
+                for (int i = 0; i < 5; i++)
                 {
-                    for (int i = 0; i < 5; i++)
-                    {
 
-                        if (File.Exists(fullFilePath))
-                        {
+                    if (File.Exists(fullFilePath))
+                    {
 #if __ANDROID__
 
-                            Android.Net.Uri uri = Android.Net.Uri.Parse(fullFilePath);
-                            Intent intent = new Intent(Intent.ActionView);
-                            intent.SetDataAndType(uri, "video/*");
-                            intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
-                            Android.App.Application.Context.StartActivity(intent);
-                            break;
+                        Android.Net.Uri uri = Android.Net.Uri.Parse(fullFilePath);
+                        Intent intent = new Intent(Intent.ActionView);
+                        intent.SetDataAndType(uri, "video/*");
+                        intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
+                        Android.App.Application.Context.StartActivity(intent);
 #else
-                            Process.Start(fullFilePath);
-                            break;
+                        Task.Run(() => Process.Start(fullFilePath));
 #endif
-                        }
-                        Thread.Sleep(1000);
-                    }
+                        JsonSuccesReport report = new JsonSuccesReport()
+                        {
+                            message = "Succesfully opened file with path: " + fullFilePath
+                        };
 
-                }));
-                fileopener.Start();
-            }
-            catch (Exception e)
-            {
+                        return report.ToJson();
+                    }
+                    Thread.Sleep(1000);
+                }
 
                 JsonError err = new JsonError();
                 err.type = "open_file_failed";
-                err.errormessage = "Could not open file.";
-                err.errortype = "exception";
+                err.errormessage = "Could not open file but didn't throw exception.";
+                err.errortype = "warning";
+                return err.ToJson();
 
-                WebSocketHandler.SendMessage(err.ToJson());
-
+            }
+            catch (Exception e)
+            {
                 OnDebugEvent?.Invoke(this, new BaseDebugArgs()
                 {
                     DebugMessage = e.ToString(),
@@ -119,11 +105,19 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+
+                JsonError err = new JsonError();
+                err.type = "open_file_failed";
+                err.errormessage = "Could not open file.";
+                err.errortype = "exception";
+
+                return err.ToJson();
             }
         }
        
 
-        public void DeleteFile(string filePath, string fileName = null)
+        public string DeleteFile(string filePath, string fileName = null)
         {
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -167,18 +161,31 @@ namespace LittleWeebLibrary.Handlers
                 if (filePaths.Length == 0)
                 {
                     Directory.Delete(filePath);
+
+                    JsonSuccesReport report = new JsonSuccesReport()
+                    {
+                        message = "Succesfully deleted file with path: " + fullFilePath + " and directory: " + filePath
+                    };
+
+                    return report.ToJson();
                 }
+                else
+                {
+
+                    JsonSuccesReport report = new JsonSuccesReport()
+                    {
+                        message = "Succesfully deleted file with path: " + fullFilePath
+                    };
+
+                    return report.ToJson();
+                }
+
 
             }
             catch (Exception e)
             {
 
-                JsonError err = new JsonError();
-                err.type = "delete_file_failed";
-                err.errormessage = "Could not delete file.";
-                err.errortype = "exception";
 
-                WebSocketHandler.SendMessage(err.ToJson());
 
                 OnDebugEvent?.Invoke(this, new BaseDebugArgs()
                 {
@@ -187,6 +194,14 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+
+                JsonError err = new JsonError();
+                err.type = "delete_file_failed";
+                err.errormessage = "Could not delete file.";
+                err.errortype = "exception";
+
+                return err.ToJson();
             }
         }
 

@@ -5,6 +5,9 @@ using LittleWeebLibrary.GlobalInterfaces;
 using LittleWeebLibrary.EventArguments;
 using LittleWeebLibrary.Settings;
 using LittleWeebLibrary.Services;
+using Newtonsoft.Json.Linq;
+using LittleWeebLibrary.Handlers;
+using LittleWeebLibrary.Models;
 
 namespace LittleWeebLibrary.Controllers
 {
@@ -14,8 +17,10 @@ namespace LittleWeebLibrary.Controllers
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
         private readonly IDownloadWebSocketService DownloadWebSocketService;
+        private readonly IWebSocketHandler WebSocketHandler;
+        private readonly IDirectoryWebSocketService DirectoryWebSocketService;
 
-        public DownloadWebSocketController(IDownloadWebSocketService downloadWebSocketService)
+        public DownloadWebSocketController(IWebSocketHandler webSocketHandler, IDownloadWebSocketService downloadWebSocketService, IDirectoryWebSocketService directoryWebSocketService)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -26,6 +31,8 @@ namespace LittleWeebLibrary.Controllers
             });
 
             DownloadWebSocketService = downloadWebSocketService;
+            WebSocketHandler = webSocketHandler;
+            DirectoryWebSocketService = directoryWebSocketService;
         }
 
       
@@ -34,7 +41,7 @@ namespace LittleWeebLibrary.Controllers
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
                 DebugSource = this.GetType().Name,
-                DebugMessage = "Method OnWebSocketEvent called.",
+                DebugMessage = "OnWebSocketEvent called.",
                 DebugSourceType = 1,
                 DebugType = 0
             });
@@ -46,6 +53,83 @@ namespace LittleWeebLibrary.Controllers
                 DebugSourceType = 1,
                 DebugType = 1
             });
+
+
+            try
+            {
+                JObject query = JObject.Parse(args.Message);
+                string action = query.Value<string>("action");
+
+                if (action != null)
+                {
+                    JObject extra = query.Value<JObject>("extra");
+
+                    if (extra != null)
+                    {
+                        switch (action)
+                        {
+                            case "add_download":
+                                DownloadWebSocketService.AddDownload(extra);
+                                break;
+                            case "abort_download":
+                                DownloadWebSocketService.RemoveDownload(extra);
+                                break;
+                            default:
+                                JsonError error = new JsonError()
+                                {
+                                    type = "command_error",
+                                    errormessage = "Server could not understand command (with extra specified).",
+                                    errortype = "warning"
+                                };
+                                WebSocketHandler.SendMessage(error.ToJson());
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (action)
+                        {
+                            case "get_downloads":
+                                DownloadWebSocketService.GetCurrentFileHistory();
+                                break;
+                            case "get_free_space":
+                                DirectoryWebSocketService.GetFreeSpace();
+                                break;
+                            case "open_download_directory":
+                                DownloadWebSocketService.OpenDownloadDirectory();
+                                break;
+                            default:
+                                JsonError error = new JsonError()
+                                {
+                                    type = "command_error",
+                                    errormessage = "Server could not understand command (without extra specified).",
+                                    errortype = "warning"
+                                };
+                                WebSocketHandler.SendMessage(error.ToJson());
+                                break;
+                        }
+                    }                
+                }
+            }
+            catch (Exception e)
+            {
+                OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                {
+                    DebugSource = this.GetType().Name,
+                    DebugMessage = e.ToString(),
+                    DebugSourceType = 1,
+                    DebugType = 4
+                });
+
+                JsonError error = new JsonError()
+                {
+                    type = "command_error",
+                    errormessage = "Error happend during execution of command.",
+                    errortype = "exception"
+                };
+                WebSocketHandler.SendMessage(error.ToJson());
+            }
+
         }
     }
 }

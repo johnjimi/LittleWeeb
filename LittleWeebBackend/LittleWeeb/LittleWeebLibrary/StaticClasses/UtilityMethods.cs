@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace LittleWeebLibrary.StaticClasses
@@ -30,6 +31,21 @@ namespace LittleWeebLibrary.StaticClasses
             }
 
             return word;
+
+        }
+
+        public static long GetFreeSpace(string path)
+        {
+            DriveInfo[] systemDrives = DriveInfo.GetDrives();
+            foreach (DriveInfo i in systemDrives)
+            {
+                if (path.IndexOf(i.Name) > -1)
+                {
+                    return i.TotalFreeSpace;
+                }
+            }
+
+            return 0;
 
         }
     }

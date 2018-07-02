@@ -9,8 +9,8 @@ namespace LittleWeebLibrary.Models
     public class JsonDownloadInfo
     {
         public string type = "download_update"; //used for identifying json
+        public JsonAnimeInfo animeInfo { get; set; }
         public string id { get; set; }
-        public string animeid { get; set; }
         public string episodeNumber { get; set; }
         public string bot { get; set; }
         public string pack { get; set; }
