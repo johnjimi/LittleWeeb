@@ -6,21 +6,28 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD;NETSTANDARD2_0;__ANDROID__;</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="SimpleIRCLib" Version="2.1.0" />
     <PackageReference Include="SimpleWebsocketServer" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\Interfaces\" />
+    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\Visual Studio\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Handlers\Interfaces\" />
-    <Folder Include="Services\Interfaces\" />
+    <Reference Include="SimpleIRCLib">
+      <HintPath>..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Debug\netcoreapp2.1\SimpleIRCLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

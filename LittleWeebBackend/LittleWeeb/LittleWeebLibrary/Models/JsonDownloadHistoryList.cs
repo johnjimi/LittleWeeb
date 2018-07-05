@@ -9,6 +9,7 @@ namespace LittleWeebLibrary.Models
 {
     public class JsonDownloadHistoryList
     {
+        public string type { get; set; } = "download_history_list";
         public List<JsonDownloadHistory> downloadHistorylist { get; set; } = new List<JsonDownloadHistory>();
         public string ToJson()
         {

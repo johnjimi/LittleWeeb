@@ -20,7 +20,7 @@ namespace LittleWeebLibrary.EventArguments
         public string filename { get; set; }
         public string filesize { get; set; }
         public int downloadIndex { get; set; }
-        public string downloadDirectory { get; set; }
+        public string fullfilepath{ get; set; }
 
         public override string ToString()
         {
@@ -36,7 +36,7 @@ namespace LittleWeebLibrary.EventArguments
             toReturn += "filename: " + filename + Environment.NewLine;
             toReturn += "filesize: " + filesize + Environment.NewLine;
             toReturn += "downloadIndex: " + downloadIndex.ToString() + Environment.NewLine;
-            toReturn += "downloadDirectory: " + downloadDirectory + Environment.NewLine;
+            toReturn += "fullfilepath: " + fullfilepath+ Environment.NewLine;
             return toReturn;
         }
 

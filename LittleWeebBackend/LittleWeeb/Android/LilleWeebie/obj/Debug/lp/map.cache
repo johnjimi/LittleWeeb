@@ -3,3 +3,5 @@ SimpleIRCLib
 SunIRCLibrary
 System.Runtime
 websocket-sharp
+LittleWeebLibrary
+SimpleWebsocketServer

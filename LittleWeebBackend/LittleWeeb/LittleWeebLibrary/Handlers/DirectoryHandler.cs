@@ -39,9 +39,16 @@ namespace LittleWeebLibrary.Handlers
 
             try
             {
-                string test = Android.OS.Environment.RootDirectory.AbsolutePath;
                 JsonDirectories directories = new JsonDirectories();
 #if __ANDROID__
+
+                OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                {
+                    DebugMessage = "Running Android Code!.",
+                    DebugSource = this.GetType().Name,
+                    DebugSourceType = 1,
+                    DebugType = 2
+                });
                 JsonDirectory directory = new JsonDirectory();
                 directory.path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
                 directory.dirname = "External Storage if Present.";
@@ -296,10 +303,10 @@ namespace LittleWeebLibrary.Handlers
 
 #if __ANDROID__
                 Android.Net.Uri uri = Android.Net.Uri.Parse(directoryPath);
-                Intent intent = new Intent(Intent.ActionView);
+                Android.Content.Intent intent = new Android.Content.Intent(Android.Content.Intent.ActionView);
                 intent.SetDataAndType(uri, "file/*");
-                intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
-                Android.App.Application.Context.StartActivity(Intent.CreateChooser(intent, "Choose File Explorer"));
+                intent.SetFlags(Android.Content.ActivityFlags.ClearWhenTaskReset | Android.Content.ActivityFlags.NewTask);
+                Android.App.Application.Context.StartActivity(Android.Content.Intent.CreateChooser(intent, "Choose File Explorer"));
 #else
                 Process.Start(directoryPath);
 #endif

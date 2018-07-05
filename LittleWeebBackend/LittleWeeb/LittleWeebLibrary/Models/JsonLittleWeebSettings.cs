@@ -10,13 +10,13 @@ namespace LittleWeebLibrary.Models
     public class JsonLittleWeebSettings
     {
 
-        public int port { get; set; } = 1515;
-        public bool local { get; set; } = true;
-        public string version { get; set; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        public int randomusernamelength { get; set; } = 6;
-        public int maxdebuglogsize { get; set; } = 10000;
+        public int port { get; set; }
+        public bool local { get; set; } 
+        public string version { get; set; } 
+        public int randomusernamelength { get; set; } 
+        public int maxdebuglogsize { get; set; }
         public string type = "settings";
-        public List<int> debuglevel { get; set; } = new List<int>() { 0, 1, 2, 3, 4, 5 };
+        public List<int> debuglevel { get; set; }
 
 
         public string ToJson()

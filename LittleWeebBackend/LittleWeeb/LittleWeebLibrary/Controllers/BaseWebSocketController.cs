@@ -10,15 +10,15 @@ namespace LittleWeebLibrary.Controllers
 {
     public interface IBaseWebSocketController
     {
-
+        void SetSubControllers(List<ISubWebSocketController> subControllers);
     }
     public class BaseWebSocketController : IBaseWebSocketController,IDebugEvent
     {
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
         private readonly IWebSocketHandler WebSocketHandler;
-        private readonly List<ISubWebSocketController> SubControllers;
+        private List<ISubWebSocketController> SubControllers;
 
-        public BaseWebSocketController(List<ISubWebSocketController> subControllers, IWebSocketHandler webSocketHandler)
+        public BaseWebSocketController(IWebSocketHandler webSocketHandler)
         {
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -29,15 +29,16 @@ namespace LittleWeebLibrary.Controllers
                 DebugType = 0
             });
 
-
-
-            SubControllers = subControllers;
-
             WebSocketHandler = webSocketHandler;
             WebSocketHandler.OnWebSocketEvent += OnWebSocketEvent;
 
 
-        }      
+        }
+
+        public void SetSubControllers(List<ISubWebSocketController> subControllers)
+        {
+            SubControllers = subControllers;
+        }
 
         private void OnWebSocketEvent(object sender, WebSocketEventArgs args)
         {

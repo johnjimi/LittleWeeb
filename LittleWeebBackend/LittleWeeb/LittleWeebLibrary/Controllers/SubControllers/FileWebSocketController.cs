@@ -72,15 +72,6 @@ namespace LittleWeebLibrary.Controllers
                             case "open_file":
                                 FileWebSocketService.OpenFile(extra);
                                 break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (with extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
-                                break;
                         }
                     }
                     

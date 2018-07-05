@@ -7,9 +7,9 @@ namespace LittleWeebLibrary.EventArguments
 {
     public class IrcClientConnectionStatusArgs
     {
-        public bool Connected { get; set; }
-        public Dictionary<string, List<string>> ChannelsAndUsers { get; set; }
-        public IrcSettings CurrentIrcSettings { get; set; }
+        public bool Connected { get; set; } = false;
+        public Dictionary<string, List<string>> ChannelsAndUsers { get; set; } = new Dictionary<string, List<string>>();
+        public IrcSettings CurrentIrcSettings { get; set; } = new IrcSettings();
 
         public override string ToString()
         {

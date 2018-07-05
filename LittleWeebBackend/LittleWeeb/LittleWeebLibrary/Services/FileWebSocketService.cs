@@ -61,7 +61,7 @@ namespace LittleWeebLibrary.Services
 
             try
             {
-                string filePath = fileInfoJson.Value<string>("file_path");
+                string filePath = fileInfoJson.Value<string>("path");
                 DownloadHandler.RemoveDownload(filePath);
                 FileHistoryHandler.RemoveFileFromFileHistory(filePath);
                 string result = FileHandler.DeleteFile(filePath);
@@ -106,9 +106,25 @@ namespace LittleWeebLibrary.Services
 
             try
             {
-                string filePath = fileInfoJson.Value<string>("file_path");
-                string result = await FileHandler.OpenFile(filePath);
-                await WebSocketHandler.SendMessage(result);
+                string filePath = fileInfoJson.Value<string>("path");
+
+                if (filePath != null)
+                {
+                    string result = await FileHandler.OpenFile(filePath);
+                    await WebSocketHandler.SendMessage(result);
+                }
+                else
+                {
+
+                    JsonError error = new JsonError()
+                    {
+                        type = "parse_file_to_open_error",
+                        errormessage = "Request does not contain path parameter to open file.",
+                        errortype = "exception"
+                    };
+
+                    await WebSocketHandler.SendMessage(error.ToJson());
+                }
             }
             catch (Exception e)
             {
@@ -126,6 +142,8 @@ namespace LittleWeebLibrary.Services
                     errormessage = "Could not parse json containing file to open information.",
                     errortype = "exception"
                 };
+
+                await WebSocketHandler.SendMessage(error.ToJson());
             }        
         }
     }

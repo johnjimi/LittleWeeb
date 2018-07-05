@@ -7,12 +7,12 @@ namespace LittleWeebLibrary.Settings
 {
     public class LittleWeebSettings
     {
-        public int Port { get; set; } = 1515;
-        public bool Local { get; set; } = true;
-        public string Version { get; set; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        public int RandomUsernameLength { get; set; } = 6;
-        public List<int> DebugLevel { get; set; } = new List<int>() { 0, 1, 2, 3, 4, 5 };
-        public int MaxDebugLogSize { get; set; } = 10000;
+        public int Port { get; set; }
+        public bool Local { get; set; } 
+        public string Version { get; set; }
+        public int RandomUsernameLength { get; set; }
+        public List<int> DebugLevel { get; set; }
+        public int MaxDebugLogSize { get; set; }
 
         public override string ToString()
         {

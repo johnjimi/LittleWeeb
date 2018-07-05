@@ -1,0 +1,49 @@
+[
+    {
+        "action" : "add_download",
+        "extra" : {
+            "animeInfo" : {
+                "animeid" : "12230",
+                "title" : "Violet Evergarden",
+                "cover_original" : "https://media.kitsu.io/anime/poster_images/12230/original.jpg?1514504093",
+                "cover_small" : "https://media.kitsu.io/anime/poster_images/12230/small.jpg?1514504093"
+            },
+            "id" : "abcd",
+            "episodeNumber" : "1",
+            "pack" : "3233",
+            "bot" : "Ginpachi-Sensei",
+            "dir" : "Violet Evergarden",
+            "filename" : "[HorribleSubs] Violet Evergarden - 01 [720p].mkv",
+            "progress" : "0",
+            "speed" : "0",
+            "status" : "WAITING",
+            "filesize" : "343"
+        }
+    },
+    {
+        "action" : "abort_download",
+        "extra" : {
+            "id" : "abcd"
+        }
+    },
+    {
+        "action" : "abort_download",
+        "extra" : {
+            "path" : "G:\\Github Desktop\\LittleWeeb\\LittleWeebBackend\\LittleWeeb\\LittleWeebServer\\bin\\Debug\\LittleWeeb\\Downloads\\[HorribleSubs] Violet Evergarden - 01 [720p].mkv"
+        }
+    },
+    {
+        "action" : "get_downloads"
+    },
+    {
+        "action" : "get_free_space"
+    },
+    {
+        "action" : "get_downloads"
+    },
+    {
+        "action" : "open_download_directory"
+    }
+
+   
+]

@@ -74,15 +74,6 @@ namespace LittleWeebLibrary.Controllers.SubControllers
                             case "get_directories":
                                 DirectoryWebSocketService.GetDirectories(extra);
                                 break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (With extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
-                                break;
                         }
                     }
                     else
@@ -91,15 +82,6 @@ namespace LittleWeebLibrary.Controllers.SubControllers
                         {
                             case "get_directories":
                                 DirectoryWebSocketService.GetDrives();
-                                break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (without extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
                                 break;
                         }
                     }

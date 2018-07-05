@@ -23,7 +23,7 @@ namespace LittleWeebLibrary.Handlers
         void StartConnection(IrcSettings settings);
         void StopConnection();
         void StopDownload();
-        void SetDownloadDirectory(string path);
+        void Setfullfilepath(string path);
         bool IsDownloading();
         bool IsConnected();
         IrcSettings CurrentSettings();
@@ -46,6 +46,8 @@ namespace LittleWeebLibrary.Handlers
         private IrcSettings IrcSettings;
         private LittleWeebSettings LittleWeebSettings;
 
+        private bool IsConnectedBool = false;
+
         public IrcClientHandler(ISettingsHandler settingsHandler)
         {
 
@@ -65,7 +67,7 @@ namespace LittleWeebLibrary.Handlers
             LittleWeebSettings = SettingsHandler.GetLittleWeebSettings();
 
             IrcClient = new SimpleIRC();
-            IrcClient.SetCustomDownloadDir( IrcSettings.DownloadDirectory);
+            IrcClient.SetCustomDownloadDir( IrcSettings.fullfilepath);
             IrcClient.IrcClient.OnUserListReceived += OnUserListUpdate;
             IrcClient.IrcClient.OnMessageReceived += OnMessage;
             IrcClient.IrcClient.OnDebugMessage += OnMessageDebug;
@@ -84,10 +86,10 @@ namespace LittleWeebLibrary.Handlers
             LittleWeebSettings = settings;
         }
 
-        public void SetDownloadDirectory(string path)
+        public void Setfullfilepath(string path)
         {
             IrcClient.SetCustomDownloadDir(path);
-            IrcSettings.DownloadDirectory = path;
+            IrcSettings.fullfilepath= path;
         }
 
         public void SendMessage(string message)
@@ -151,7 +153,7 @@ namespace LittleWeebLibrary.Handlers
             try
             {
                 string xdccMessage = "/msg " + download.bot + " xdcc send #" + download.pack;
-                IrcClient.SetCustomDownloadDir(Path.Combine(IrcSettings.DownloadDirectory, download.downloadDirectory));
+                IrcClient.SetCustomDownloadDir(Path.Combine(IrcSettings.fullfilepath, download.fullfilepath));
                 SendMessage(xdccMessage);
             }
             catch (Exception e)
@@ -183,6 +185,7 @@ namespace LittleWeebLibrary.Handlers
                 DebugSourceType = 1,
                 DebugType = 1
             });
+
 
             try
             {
@@ -235,21 +238,37 @@ namespace LittleWeebLibrary.Handlers
 
             try
             {
-                if (IrcClient.StopClient())
+                if (IrcClient.IsClientRunning())
                 {
-                    OnIrcClientConnectionStatusEvent?.Invoke(this, new IrcClientConnectionStatusArgs()
+                    if (IrcClient.StopClient())
                     {
-                        Connected = false,
-                        ChannelsAndUsers = null
-                    });
+                        if (IrcClient.StopXDCCDownload())
+                        {
 
-                    OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-                    {
-                        DebugSource = this.GetType().Name,
-                        DebugMessage = "Succesfully stopped IRC Client.",
-                        DebugSourceType = 1,
-                        DebugType = 2
-                    });
+
+                            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                            {
+                                DebugSource = this.GetType().Name,
+                                DebugMessage = "Succesfully stopped download before stopping IRC Client.",
+                                DebugSourceType = 1,
+                                DebugType = 2
+                            });
+                        }
+
+                        OnIrcClientConnectionStatusEvent?.Invoke(this, new IrcClientConnectionStatusArgs()
+                        {
+                            Connected = false,
+                            CurrentIrcSettings = IrcSettings
+                        });
+
+                        OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                        {
+                            DebugSource = this.GetType().Name,
+                            DebugMessage = "Succesfully stopped IRC Client.",
+                            DebugSourceType = 1,
+                            DebugType = 2
+                        });
+                    }
                 }
                 else
                 {
@@ -332,7 +351,16 @@ namespace LittleWeebLibrary.Handlers
 
             try
             {
-                return IrcClient.IsClientRunning();
+                if (IrcClient.IsClientRunning())
+                {
+                    IsConnectedBool = true;
+                    return true;
+                }
+                else
+                {
+                    IsConnectedBool = false;
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -343,6 +371,8 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+                IsConnectedBool = false;
                 return false;
             }
         }
@@ -424,7 +454,8 @@ namespace LittleWeebLibrary.Handlers
                     IrcClientConnectionStatusArgs eventArgs = new IrcClientConnectionStatusArgs()
                     {
                         ChannelsAndUsers = args.UsersPerChannel,
-                        Connected = true
+                        Connected = true,
+                        CurrentIrcSettings = IrcSettings
                     };
 
                     OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -435,7 +466,11 @@ namespace LittleWeebLibrary.Handlers
                         DebugType = 1
                     });
 
-                    OnIrcClientConnectionStatusEvent?.Invoke(this, eventArgs);
+                    if (!IsConnectedBool)
+                    {
+                        OnIrcClientConnectionStatusEvent?.Invoke(this, eventArgs);
+                    }
+                    IsConnectedBool = true;
                 }
             }
             catch (Exception e)

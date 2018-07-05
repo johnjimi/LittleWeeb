@@ -43,93 +43,44 @@ export class BackEndService {
         this.receivedConfirmed = false;
         this.messageQue = [];
         this.connected = false;
-        let baseDownloadDirBe = this.shareService.getDataLocal("baseDownloadDir");
         this.websocketMessages.subscribe((messageRec) => {
              if(messageRec !== null){
                 this.consoleWrite("Message received:");
                 this.consoleWrite(messageRec);
-                if(messageRec.type == "irc_data"){
-                    if(messageRec.state == "connected"){
-                        if(!this.connected){                            
+                if(messageRec.type == "irc_data")
+                {
+                    if(messageRec.connected)
+                    {
+                        if(!this.connected)
+                        {                            
                             this.shareService.showMessage("succes", "Connected!");
                             this.shareService.hideLoader();
+
                             this.connected = true;
-                        } else {
+                        } 
+                        else
+                        {
                             this.connected = false;
                         }
-                    } else {
-                        
-                        this.connected = false;
-                        
+                    } 
+                    else 
+                    {                        
+                        this.connected = false;                        
                     }
 
-                    if(!baseDownloadDirBe){
-                        this.sendMessage({"action" : "set_download_directory", "extra" : { "path" :"\\"}});
-                        
-                        this.shareService.storeDataLocal("baseDownloadDir", "\\");
-                    } else {
-                        
-                        baseDownloadDirBe = this.shareService.getDataLocal("baseDownloadDir");
-                    }
-
-                    this.sendMessage({"action" : "get_free_space"});
                     this.shareService.baseDownloadDirectory = messageRec.downloadlocation;
                     this.shareService.isLocal = messageRec.local;
                     this.osVersion =  messageRec.osVersion;
                     this.connectingState = messageRec.state;
-                } else if(messageRec.type == "welcome"){
-                    try{
-                        let currentConnectionSettingsString= this.shareService.getDataLocal("custom_irc_connection");
-                        if(currentConnectionSettingsString != false){
-                            this.consoleWrite("Found stored connection setting, using that instead of default values!");
-                            let currentConnectionSettings = JSON.parse(currentConnectionSettingsString);
-                            
-                            
-                            this.sendMessage({"action" : "disconnect_irc"});
-                            this.sendMessage({"action" : "connect_irc", "extra" : currentConnectionSettings});
-
-
-                        } else {
-                            this.sendMessage({"action" : "disconnect_irc"});
-                            this.sendMessage({"action" : "connect_irc", "extra" : {"address":"irc.rizon.net", "username": "", "channels": "#horriblesubs,#nibl,#news"}});
-                        }
-                    } catch(e){
-                        this.consoleWrite(e);
-                        setTimeout(()=>{
-                            this.sendMessage({"action" : "disconnect_irc"});
-                            this.sendMessage({"action" : "connect_irc", "extra" : {"address":"irc.rizon.net", "username": "", "channels": "#horriblesubs,#nibl,#news"}});
-                        },1000);
-                    }
-                } else if(messageRec.type == "error"){
-                    switch(messageRec.errortype){
-                        case "not_enough_space":
-                            this.shareService.showModal("Running out of Storage Space :(.", `It seems that your device is running out of space. 
-                                LittleWeeb can't download when there is not enough space to store an episode. 
-                                To resolve this issue, please remove something (be it a downloaded episode or another file).`,
-                                "folder open", 
-                                `<div class="ui red basic cancel inverted button">
-                                    <i class="remove icon"></i>
-                                    Ignore.
-                                </div>
-                                <a href="/downloads" class="ui green ok inverted button">                       
-                                    Go to Downloads.
-                                </a>`);
-                        break;
-                        default:
-                            this.shareService.showModal("An error occured: " + messageRec.errortype , `If this messages shows, try to notify the developer and explain what steps you took prior to the error. `, 
-                            "exclamation triangle", 
-                            `<div class="ui red basic cancel inverted button">
-                                <i class="remove icon"></i>
-                                Ignore.
-                            </div>
-                            <a href="/downloads" class="ui green ok inverted button">                       
-                                Go to Downloads.
-                            </a>`);
-                        break;
-                    }
-
+                } 
+                else if(messageRec.type == "welcome")
+                {
+                    this.sendMessage({"action":"connect_irc"});
+                } 
+                else if(messageRec.errortype != null)
+                {
+                    this.shareService.showMessage('error', messageRec.errormessage);
                 }
-
              }            
         })
     }
@@ -148,8 +99,6 @@ export class BackEndService {
         this.websocket.onopen = (evt : any) =>{
             this.websocketConnected.next(evt);            
             this.shareService.showLoaderMessage("Waiting for connection to IRC!");
-            this.sendMessage({"action": "get_irc_data"});
-            
             this.messageQue = [];
             clearInterval(this.interval);
         };

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LittleWeebLibrary.Models
 {
-    class JsonDownloadDirectory
+    class Jsonfullfilepath
     {
         public string type = "downloaded_files"; //used for identifying json
         public string directory = "/";

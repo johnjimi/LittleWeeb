@@ -60,13 +60,14 @@ export class Downloads {
         });
 
         this.downloadService.updateAlreadyDownloadedList.subscribe((listwithdownloads)=>{
-            if(listwithdownloads != null){                
+            if(listwithdownloads != null){     
+                console.log(listwithdownloads);           
                 this.alreadyDownloaded = listwithdownloads;    
                 let found = false; 
-                for(let dirs of this.alreadyDownloaded.directories){
-                    if(dirs.animeinfo.animeid == this.modalId){
-                        this.modalFiles = dirs.alreadyDownloaded;
-                        this.modalAnimeTitle = dirs.animeinfo.title;
+                for(let anime of this.alreadyDownloaded){
+                    if(anime.animeInfo.animeid == this.modalId){
+                        this.modalFiles = anime.downloadHistory;
+                        this.modalAnimeTitle = anime.animeInfo.title;
                         found = true;
                         break;
                     }
@@ -101,13 +102,13 @@ export class Downloads {
         this.closeModal();
         this.modalAnimeTitle = "";
         this.modalFiles = "";
-        for(let dirs of this.alreadyDownloaded.directories){
+        for(let anime of this.alreadyDownloaded){
             console.log("comparing:");
-            console.log(dirs.animeinfo.animeid);
+            console.log(anime.animeInfo.animeid);
             console.log(id);
-            if(dirs.animeinfo.animeid == id){
-                this.modalFiles = dirs.alreadyDownloaded;
-                this.modalAnimeTitle = dirs.animeinfo.title;
+            if(anime.animeInfo.animeid == id){
+                this.modalFiles = anime.downloadHistory;
+                this.modalAnimeTitle = anime.animeInfo.title;
                 this.modalId = id;
                 break;
             }
@@ -119,20 +120,12 @@ export class Downloads {
         this.showModal = false;
     }
 
-    goToAnimeInfo(){
-        for(let dirs of this.alreadyDownloaded.directories){
-            console.log("comparing:");
-            console.log(dirs.animeinfo.animeid);
-            console.log(this.modalId);
-            if(dirs.animeinfo.animeid == this.modalId){
-                this.closeModal();
-                let newAnimeObj = {attributes : {canonicalTitle : dirs.animeinfo.title}, id : dirs.animeinfo.animeid};
-                this.shareService.showLoader();
-                this.shareService.animetoshow.next(newAnimeObj);
-                this.router.navigate(['animeinfo']); 
-                break;
-            }
-        }
+    goToAnimeInfo(animeInfo : any){
+        this.closeModal();
+        let newAnimeObj = {attributes : {canonicalTitle : animeInfo.title}, id : animeInfo.animeid};
+        this.shareService.showLoader();
+        this.shareService.animetoshow.next(newAnimeObj);
+        this.router.navigate(['animeinfo']); 
     }
 
     /**
@@ -145,7 +138,7 @@ export class Downloads {
         console.log("play: ");
         console.log(download);
         if(this.isLocal){
-            setTimeout(() => {this.backEndService.sendMessage({"action" : "open_file", "extra" : download});}, 1000);
+            setTimeout(() => {this.backEndService.sendMessage({"action" : "open_file", "extra" : {"path" : download.fullfilepath}});}, 1000);
         }        
     }
 

@@ -15,7 +15,7 @@ namespace LittleWeebLibrary.Services
     {
         void AddDownload(JObject downloadJson);
         void RemoveDownload(JObject downloadJson);
-        void OpenDownloadDirectory();
+        void Openfullfilepath();
         void GetCurrentFileHistory();
     }
     public class DownloadWebSocketService : IDownloadWebSocketService, IDebugEvent, ISettingsInterface
@@ -25,6 +25,7 @@ namespace LittleWeebLibrary.Services
         private readonly IDirectoryHandler DirectoryHandler;
         private readonly IDownloadHandler DownloadHandler;
         private readonly IFileHistoryHandler FileHistoryHandler;
+        private readonly IFileHandler FileHandler;
         private readonly ISettingsHandler SettingsHandler;
         private LittleWeebSettings LittleWeebSettings;
         private IrcSettings IrcSettings;
@@ -34,9 +35,10 @@ namespace LittleWeebLibrary.Services
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
         public DownloadWebSocketService(
-            IWebSocketHandler webSocketHandler, 
+            IWebSocketHandler webSocketHandler,
             IDirectoryHandler directoryHandler,
-            IDownloadHandler downloadHandler,  
+            IDownloadHandler downloadHandler,
+            IFileHandler fileHandler,
             IFileHistoryHandler fileHistoryHandler,
             ISettingsHandler settingsHandler)
         {
@@ -51,12 +53,14 @@ namespace LittleWeebLibrary.Services
             WebSocketHandler = webSocketHandler;
             DirectoryHandler = directoryHandler;
             DownloadHandler = downloadHandler;
+            FileHandler = fileHandler;
             FileHistoryHandler = fileHistoryHandler;
             SettingsHandler = settingsHandler;
             LastDownloadedInfo = new JsonDownloadInfo();
 
             LittleWeebSettings = SettingsHandler.GetLittleWeebSettings();
             IrcSettings = SettingsHandler.GetIrcSettings();
+
 
             downloadHandler.OnDownloadUpdateEvent += OnDownloadUpdateEvent;
         }
@@ -96,11 +100,12 @@ namespace LittleWeebLibrary.Services
                     episodeNumber = downloadJson.Value<string>("episodeNumber"),
                     pack = downloadJson.Value<string>("pack"),
                     bot = downloadJson.Value<string>("bot"),
-                    downloadDirectory = downloadJson.Value<string>("dir"),
+                    fullfilepath= downloadJson.Value<string>("dir"),
                     filename = downloadJson.Value<string>("filename"),
                     progress = downloadJson.Value<string>("progress"),
                     speed = downloadJson.Value<string>("speed"),
-                    status = downloadJson.Value<string>("status")
+                    status = downloadJson.Value<string>("status"),
+                    filesize = downloadJson.Value<string>("filesize")
                 };
 
                 LastDownloadedInfo = downloadInfo;
@@ -151,29 +156,42 @@ namespace LittleWeebLibrary.Services
 
             try
             {
-                JsonDownloadInfo downloadInfo = new JsonDownloadInfo()
+                string id = downloadJson.Value<string>("id");
+                string filePath = downloadJson.Value<string>("path");
+                string result = "";
+                if (id != null)
                 {
-                    animeInfo = new JsonAnimeInfo()
+
+                    result = DownloadHandler.RemoveDownload(id, null);
+
+                    string toRemove = FileHistoryHandler.RemoveFileFromFileHistory(id, null);
+
+                    string resultRemove = FileHandler.DeleteFile(toRemove);
+
+                    WebSocketHandler.SendMessage(resultRemove);
+                }
+                else if (filePath != null)
+                {
+                    result = DownloadHandler.RemoveDownload(null, filePath);
+
+                    string toRemove = FileHistoryHandler.RemoveFileFromFileHistory(null, filePath);
+
+                    string resultRemove = FileHandler.DeleteFile(toRemove);
+
+                    WebSocketHandler.SendMessage(resultRemove);
+                }
+                else
+                {
+                    JsonError error = new JsonError()
                     {
-                        animeid = downloadJson.Value<JObject>("animeInfo").Value<string>("animeid"),
-                        title = downloadJson.Value<JObject>("animeInfo").Value<string>("title"),
-                        cover_original = downloadJson.Value<JObject>("animeInfo").Value<string>("cover_original"),
-                        cover_small = downloadJson.Value<JObject>("animeInfo").Value<string>("cover_small")
-                    },
-                    id = downloadJson.Value<string>("id"),
-                    episodeNumber = downloadJson.Value<string>("episodeNumber"),
-                    pack = downloadJson.Value<string>("pack"),
-                    bot = downloadJson.Value<string>("bot"),
-                    downloadDirectory = downloadJson.Value<string>("dir"),
-                    filename = downloadJson.Value<string>("filename"),
-                    progress = downloadJson.Value<string>("progress"),
-                    speed = downloadJson.Value<string>("speed"),
-                    status = downloadJson.Value<string>("status")
-                };
+                        type = "parse_download_to_remove_error",
+                        errormessage = "Neither id or file path have been defined!",
+                        errortype = "warning"
+                    };
+                    WebSocketHandler.SendMessage(error.ToJson());
+                }
 
-                FileHistoryHandler.RemoveFileFromFileHistory(downloadInfo);
 
-                string result = DownloadHandler.RemoveDownload(downloadInfo);
             }
             catch (Exception e)
             {
@@ -212,16 +230,16 @@ namespace LittleWeebLibrary.Services
             WebSocketHandler.SendMessage(FileHistoryHandler.GetCurrentFileHistory().ToJson());
         }
 
-        public void OpenDownloadDirectory()
+        public void Openfullfilepath()
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
-                DebugMessage = "OpenDownloadDirectory called.",
+                DebugMessage = "Openfullfilepathcalled.",
                 DebugSource = this.GetType().Name,
                 DebugSourceType = 1,
                 DebugType = 0
             });
-            string result = DirectoryHandler.OpenDirectory(IrcSettings.DownloadDirectory);
+            string result = DirectoryHandler.OpenDirectory(IrcSettings.fullfilepath);
             WebSocketHandler.SendMessage(result);
         }
 
@@ -250,8 +268,8 @@ namespace LittleWeebLibrary.Services
                     id = args.id,
                     animeInfo = new JsonAnimeInfo()
                     {
-                        animeid = args.animeid,
                         cover_original = args.animeCoverOriginal,
+                        animeid = args.animeid,
                         cover_small = args.animeCoverSmall,
                         title = args.animeTitle
                     },
@@ -264,12 +282,19 @@ namespace LittleWeebLibrary.Services
                     filename = args.filename,
                     filesize = args.filesize,
                     downloadIndex = args.downloadIndex,
-                    downloadDirectory = args.downloadDirectory
+                    fullfilepath= args.fullfilepath
                 };
 
                 WebSocketHandler.SendMessage(update.ToJson());
+                if (update.filename != null && update.fullfilepath!= null)
+                {
+                    FileHistoryHandler.AddFileToFileHistory(update);
+                }
 
-                FileHistoryHandler.AddFileToFileHistory(update);
+                if (update.status == "FAILED" || update.status == "ABORTED")
+                {
+                    FileHistoryHandler.RemoveFileFromFileHistory(update.id);
+                }
             }
             catch (Exception e)
             {

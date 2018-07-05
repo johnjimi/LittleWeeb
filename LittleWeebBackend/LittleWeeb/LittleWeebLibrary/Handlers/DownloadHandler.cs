@@ -16,8 +16,7 @@ namespace LittleWeebLibrary.Handlers
     {
         event EventHandler<DownloadUpdateEventArgs> OnDownloadUpdateEvent;
         string AddDownload(JsonDownloadInfo download);
-        string RemoveDownload(JsonDownloadInfo download);
-        string RemoveDownload(string filePath);
+        string RemoveDownload(string id = null, string filePath = null);
         string GetCurrentlyDownloading();
         string StopQueue();
     }
@@ -64,15 +63,8 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 0,
                     DebugType = 4
                 });
-            }           
+            }
 
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugMessage = "Constructor exited.",
-                DebugSource = this.GetType().Name,
-                DebugSourceType = 0,
-                DebugType = 0
-            });
         }
 
         public string AddDownload(JsonDownloadInfo download)
@@ -93,9 +85,10 @@ namespace LittleWeebLibrary.Handlers
             });
             try
             {
-                if (UtilityMethods.GetFreeSpace(IrcSettings.DownloadDirectory) > (int.Parse(download.filesize) * 1024 * 1024))
+                if (UtilityMethods.GetFreeSpace(IrcSettings.fullfilepath) > (int.Parse(download.filesize) * 1024 * 1024))
                 {
 
+                    download.downloadIndex = DownloadQueue.Count - 1;
                     DownloadQueue.Add(download);
 
                     JsonSuccesReport succes = new JsonSuccesReport()
@@ -109,7 +102,7 @@ namespace LittleWeebLibrary.Handlers
                 {
                     OnDebugEvent?.Invoke(this, new BaseDebugArgs()
                     {
-                        DebugMessage = "Could not add download with filesize: " + download.filesize + " due to insufficient space required: " + (UtilityMethods.GetFreeSpace(IrcSettings.DownloadDirectory) / 1024 / 1024).ToString(),
+                        DebugMessage = "Could not add download with filesize: " + download.filesize + " due to insufficient space required: " + (UtilityMethods.GetFreeSpace(IrcSettings.fullfilepath) / 1024 / 1024).ToString(),
                         DebugSource = this.GetType().Name,
                         DebugSourceType = 1,
                         DebugType = 3
@@ -118,7 +111,7 @@ namespace LittleWeebLibrary.Handlers
                     JsonError error = new JsonError()
                     {
                         type = "unsufficient_space_error",
-                        errormessage = "Could not add download with filesize: " + download.filesize + " due to insufficient space required: " + (UtilityMethods.GetFreeSpace(IrcSettings.DownloadDirectory) / 1024 / 1024).ToString(),
+                        errormessage = "Could not add download with filesize: " + download.filesize + " due to insufficient space required: " + (UtilityMethods.GetFreeSpace(IrcSettings.fullfilepath) / 1024 / 1024).ToString(),
                         errortype = "warning"
                     };
                     return error.ToJson();
@@ -146,7 +139,7 @@ namespace LittleWeebLibrary.Handlers
             }
         }
 
-        public string RemoveDownload(JsonDownloadInfo download)
+        public string RemoveDownload(string id = null, string filepath = null)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
@@ -157,18 +150,51 @@ namespace LittleWeebLibrary.Handlers
             });
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
-                DebugMessage = download.ToString(),
+                DebugMessage = id,
                 DebugSource = this.GetType().Name,
                 DebugSourceType = 1,
                 DebugType = 1
             });
 
             try{
-                if (!DownloadQueue.Remove(download))
+
+                int index = -1;
+
+                foreach (JsonDownloadInfo queuedDownload in DownloadQueue)
+                {
+                    if (id != null)
+                    {
+                        if (queuedDownload.id == id)
+                        {
+                            DownloadQueue.RemoveAt(index);
+                            break;
+                        }
+                    }
+                    else if (filepath != null)
+                    {
+                        if (Path.Combine(queuedDownload.fullfilepath, queuedDownload.filename) == filepath)
+                        {
+                            DownloadQueue.RemoveAt(index);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        JsonError error = new JsonError()
+                        {
+                            type = "remove_download_error",
+                            errormessage = "Could not remove download from que, neither id or filepath is defined.",
+                            errortype = "warning"
+                        };
+                        return error.ToJson();
+                    }
+                    index++;
+                }
+
+                if (IrcClientHandler.IsDownloading())
                 {
                     IrcClientHandler.StopDownload();
-                } 
-
+                }
                 JsonSuccesReport succes = new JsonSuccesReport()
                 {
                     message = "Succesfully removed download from download que by download json."
@@ -196,59 +222,6 @@ namespace LittleWeebLibrary.Handlers
             }
         }
 
-        public string RemoveDownload(string filePath)
-        {
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugMessage = "RemoveDownload Called.",
-                DebugSource = this.GetType().Name,
-                DebugSourceType = 1,
-                DebugType = 0
-            });
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugMessage = filePath,
-                DebugSource = this.GetType().Name,
-                DebugSourceType = 1,
-                DebugType = 1
-            });
-
-            try
-            {
-                if (IsDownloading)
-                {
-                    if (Path.Combine(CurrentlyDownloading.downloadDirectory, CurrentlyDownloading.filename) == filePath)
-                    {
-                        IrcClientHandler.StopDownload();
-                    }
-                }
-
-                JsonSuccesReport succes = new JsonSuccesReport()
-                {
-                    message = "Succesfully removed download from download que by filepath."
-                };
-
-                return succes.ToJson();
-            }
-            catch (Exception e)
-            {
-                OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-                {
-                    DebugSource = this.GetType().Name,
-                    DebugMessage = e.ToString(),
-                    DebugSourceType = 1,
-                    DebugType = 4
-                });
-
-                JsonError error = new JsonError()
-                {
-                    type = "remove_download_error",
-                    errormessage = "Could not remove download from que by download json by filepath.",
-                    errortype = "exception"
-                };
-                return error.ToJson();
-            }
-        }
 
         public string StopQueue() {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -294,24 +267,52 @@ namespace LittleWeebLibrary.Handlers
 
             if (CurrentlyDownloading != null)
             {
-                OnDownloadUpdateEvent?.Invoke(this, new DownloadUpdateEventArgs()
+
+                if (args.DownloadStatus == "PARSING" || args.DownloadStatus == "WAITING")
                 {
-                    id = CurrentlyDownloading.id,
-                    animeid = CurrentlyDownloading.animeInfo.animeid,
-                    animeTitle = CurrentlyDownloading.animeInfo.title,
-                    animeCoverSmall = CurrentlyDownloading.animeInfo.cover_small,
-                    animeCoverOriginal = CurrentlyDownloading.animeInfo.cover_original,
-                    episodeNumber = CurrentlyDownloading.episodeNumber,
-                    bot = CurrentlyDownloading.bot,
-                    pack = CurrentlyDownloading.pack,
-                    progress = args.DownloadProgress.ToString(),
-                    speed = args.DownloadSpeed.ToString(),
-                    status = args.DownloadStatus,
-                    filename = args.FileName,
-                    filesize = args.FileSize.ToString(),
-                    downloadDirectory = args.FileLocation,
-                    downloadIndex = CurrentlyDownloading.downloadIndex
-                });
+                    OnDownloadUpdateEvent?.Invoke(this, new DownloadUpdateEventArgs()
+                    {
+                        id = CurrentlyDownloading.id,
+                        animeid = CurrentlyDownloading.animeInfo.animeid,
+                        animeTitle = CurrentlyDownloading.animeInfo.title,
+                        animeCoverSmall = CurrentlyDownloading.animeInfo.cover_small,
+                        animeCoverOriginal = CurrentlyDownloading.animeInfo.cover_original,
+                        episodeNumber = CurrentlyDownloading.episodeNumber,
+                        bot = CurrentlyDownloading.bot,
+                        pack = CurrentlyDownloading.pack,
+                        progress = args.DownloadProgress.ToString(),
+                        speed = args.DownloadSpeed.ToString(),
+                        status = args.DownloadStatus,
+                        filename = CurrentlyDownloading.filename,
+                        filesize = CurrentlyDownloading.filesize,
+                        fullfilepath= CurrentlyDownloading.fullfilepath,
+                        downloadIndex = CurrentlyDownloading.downloadIndex
+                    });
+                }
+                else
+                {
+                    OnDownloadUpdateEvent?.Invoke(this, new DownloadUpdateEventArgs()
+                    {
+                        id = CurrentlyDownloading.id,
+                        animeid = CurrentlyDownloading.animeInfo.animeid,
+                        animeTitle = CurrentlyDownloading.animeInfo.title,
+                        animeCoverSmall = CurrentlyDownloading.animeInfo.cover_small,
+                        animeCoverOriginal = CurrentlyDownloading.animeInfo.cover_original,
+                        episodeNumber = CurrentlyDownloading.episodeNumber,
+                        bot = CurrentlyDownloading.bot,
+                        pack = CurrentlyDownloading.pack,
+                        progress = args.DownloadProgress.ToString(),
+                        speed = args.DownloadSpeed.ToString(),
+                        status = args.DownloadStatus,
+                        filename = args.FileName,
+                        filesize = args.FileSize.ToString(),
+                        fullfilepath= args.FileLocation,
+                        downloadIndex = CurrentlyDownloading.downloadIndex
+                    });
+
+                }
+
+                
             }
             else
             {
@@ -345,12 +346,13 @@ namespace LittleWeebLibrary.Handlers
             int retries = 0;
             while (!Stop) {
 
+                Thread.Sleep(500);
                 if (DownloadQueue.Count > 0)
                 {
                     JsonDownloadInfo toDownload = DownloadQueue[0];
                     if (retries > 2)
                     {
-                        CurrentlyDownloading = null;
+                        CurrentlyDownloading = new JsonDownloadInfo();
                         IsDownloading = false;
                         DownloadQueue.RemoveAt(0);
                         retries = 0;
@@ -361,6 +363,25 @@ namespace LittleWeebLibrary.Handlers
                             DebugSourceType = 3,
                             DebugType = 3
                         });
+
+                        OnDownloadUpdateEvent?.Invoke(this, new DownloadUpdateEventArgs()
+                        {
+                            id = CurrentlyDownloading.id,
+                            animeid = CurrentlyDownloading.animeInfo.animeid,
+                            animeTitle = CurrentlyDownloading.animeInfo.title,
+                            animeCoverSmall = CurrentlyDownloading.animeInfo.cover_small,
+                            animeCoverOriginal = CurrentlyDownloading.animeInfo.cover_original,
+                            episodeNumber = CurrentlyDownloading.episodeNumber,
+                            bot = CurrentlyDownloading.bot,
+                            pack = CurrentlyDownloading.pack,
+                            progress = "0",
+                            speed = "0",
+                            status = "FAILED",
+                            filename = CurrentlyDownloading.filename,
+                            filesize = CurrentlyDownloading.filesize,
+                            fullfilepath= CurrentlyDownloading.fullfilepath,
+                            downloadIndex = CurrentlyDownloading.downloadIndex
+                        });
                     }
                     else
                     {
@@ -368,6 +389,8 @@ namespace LittleWeebLibrary.Handlers
                         {
                             IsDownloading = false;
                             Thread.Sleep(500);
+
+                            CurrentlyDownloading = toDownload;
                             IrcClientHandler.StartDownload(toDownload);
                             int timeOutCount = 0;
                             bool timedOut = true;
@@ -393,13 +416,13 @@ namespace LittleWeebLibrary.Handlers
                                     DebugType = 2
                                 });
 
-                                CurrentlyDownloading = toDownload;
                                 IsDownloading = true;
                                 DownloadQueue.RemoveAt(0);
                             }
                             else
                             {
 
+                                CurrentlyDownloading = new JsonDownloadInfo();
                                 OnDebugEvent?.Invoke(this, new BaseDebugArgs()
                                 {
                                     DebugMessage = "Could not start download :(, retrying.  ",

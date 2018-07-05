@@ -69,13 +69,6 @@ namespace LittleWeebLibrary.Services
                 DebugType = 0
             });
 
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugSource = this.GetType().Name,
-                DebugMessage = ircJson.ToString(),
-                DebugSourceType = 1,
-                DebugType = 1
-            });
 
             try
             {
@@ -91,6 +84,15 @@ namespace LittleWeebLibrary.Services
                 }
                 else
                 {
+
+                    OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                    {
+                        DebugSource = this.GetType().Name,
+                        DebugMessage = ircJson.ToString(),
+                        DebugSourceType = 1,
+                        DebugType = 1
+                    });
+
                     string username = ircJson.Value<string>("username");
 
                     if (username == "")
@@ -156,7 +158,7 @@ namespace LittleWeebLibrary.Services
                 channel = IrcSettings.Channels,
                 server = IrcSettings.ServerAddress,
                 user = IrcSettings.UserName,
-                downloadlocation = IrcSettings.DownloadDirectory
+                fullfilepath= IrcSettings.fullfilepath
             };
 
             WebSocketHandler.SendMessage(ircInfo.ToJson());
@@ -346,7 +348,7 @@ namespace LittleWeebLibrary.Services
                     channel = args.CurrentIrcSettings.Channels,
                     server = args.CurrentIrcSettings.ServerAddress,
                     user = args.CurrentIrcSettings.UserName,
-                    downloadlocation = args.CurrentIrcSettings.DownloadDirectory
+                    fullfilepath= args.CurrentIrcSettings.fullfilepath
                 };
 
                 WebSocketHandler.SendMessage(update.ToJson());

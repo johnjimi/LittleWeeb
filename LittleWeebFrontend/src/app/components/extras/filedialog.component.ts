@@ -73,6 +73,7 @@ export class FileDialog {
      * @memberof FileDialog
      */
     selectDir(){
+        this.currentDirectoryPathSelected.replace(/\\/g, '/');
         this.backEndService.sendMessage({"action" : "set_download_directory", "extra" : { "path" : this.currentDirectoryPathSelected}});
         this.shareService.storeDataLocal("baseDownloadDir",this.currentDirectoryPathSelected);
     }

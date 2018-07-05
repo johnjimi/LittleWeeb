@@ -1,0 +1,28 @@
+[
+    {
+        "action" : "connect_irc"
+    },
+    {
+        "action" : "connect_irc",
+        "extra" : {
+            "address" : "irc.rizon.net",
+            "channels" : "#nibl,#horriblesubs,#littleweeb",
+            "username" : "MyCustomUsername"
+        }
+    },
+    {
+        "action" : "disconnect_irc"
+    },
+    {
+        "action" : "enablechat_irc"
+    },
+    {
+        "action" : "disablechat_irc"
+    },
+    {
+        "action" : "sendmessage_irc",
+        "extra" : {
+            "message" : "This is a test."
+        }
+    }
+]

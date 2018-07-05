@@ -47,34 +47,52 @@ namespace LittleWeebLibrary
             WebSocketHandler =      new WebSocketHandler(SettingsHandler);
             IrcClientHandler =      new IrcClientHandler(SettingsHandler);
             DownloadHandler =       new DownloadHandler(IrcClientHandler);
-            
+            DebugHandler =          new DebugHandler(SettingsHandler);
+
             //Services
             DirectoryWebSocketService = new DirectoryWebSocketService(WebSocketHandler, DirectoryHandler);
-            DownloadWebSocketService =  new DownloadWebSocketService(WebSocketHandler, DirectoryHandler, DownloadHandler, FileHistoryHandler, SettingsHandler);
+            DownloadWebSocketService =  new DownloadWebSocketService(WebSocketHandler, DirectoryHandler, DownloadHandler, FileHandler, FileHistoryHandler, SettingsHandler);
             FileWebSocketService =      new FileWebSocketService(WebSocketHandler, FileHandler, FileHistoryHandler, DownloadHandler);
             IrcWebSocketService =       new IrcWebSocketService(WebSocketHandler, IrcClientHandler, SettingsHandler);
+            SettingsWebSocketService =  new SettingsWebSocketService(WebSocketHandler, DirectoryHandler);
 
 
             //Controllers
-            DirectoryWebSocketController = new DirectoryWebSocketController(WebSocketHandler, DirectoryWebSocketService);
-            DownloadWebSocketController = new DownloadWebSocketController(WebSocketHandler, DownloadWebSocketService, DirectoryWebSocketService);
-            FileWebSocketController = new FileWebSocketController(WebSocketHandler, FileWebSocketService);
-            IrcWebSocketController = new IrcWebSocketController(WebSocketHandler, IrcWebSocketService);
-            SettingsWebSocketController = new SettingsWebSocketController(WebSocketHandler, SettingsWebSocketService);
+            DirectoryWebSocketController =  new DirectoryWebSocketController(WebSocketHandler, DirectoryWebSocketService);
+            DownloadWebSocketController =   new DownloadWebSocketController(WebSocketHandler, DownloadWebSocketService, DirectoryWebSocketService);
+            FileWebSocketController =       new FileWebSocketController(WebSocketHandler, FileWebSocketService);
+            IrcWebSocketController =        new IrcWebSocketController(WebSocketHandler, IrcWebSocketService);
+            SettingsWebSocketController =   new SettingsWebSocketController(WebSocketHandler, SettingsWebSocketService);
 
-            IBaseWebSocketController baseWebSocketController = new BaseWebSocketController(new List<ISubWebSocketController>()
+            IBaseWebSocketController baseWebSocketController = new BaseWebSocketController(WebSocketHandler);
+
+
+
+           
+
+            //start debugh handler registering all the handlers, services and controllers as IDebugEvent interface.
+
+            SettingsWebSocketService.SetSettingsClasses(
+                WebSocketHandler,
+                SettingsHandler,
+                IrcClientHandler,
+                DebugHandler,
+                FileHandler,
+                DownloadHandler,
+                DirectoryWebSocketService,
+                IrcWebSocketService
+            );
+
+            baseWebSocketController.SetSubControllers(new List<ISubWebSocketController>()
             {
                 DirectoryWebSocketController,
                 DownloadWebSocketController,
                 FileWebSocketController,
                 IrcWebSocketController,
                 SettingsWebSocketController
-            }, WebSocketHandler);
+            });
 
-           
-
-            //start debugh handler registering all the handlers, services and controllers as IDebugEvent interface.
-            DebugHandler = new DebugHandler(SettingsHandler, new List<IDebugEvent>()
+            DebugHandler.SetDebugEvents(new List<IDebugEvent>()
             {
                 SettingsHandler as IDebugEvent,
                 WebSocketHandler as IDebugEvent,
@@ -97,18 +115,6 @@ namespace LittleWeebLibrary
 
             });
 
-            //special service for settings (needs to be initialized after all other handlers, services and controllers are intialized (except for the debug handler...? TODO: Possibly request feedback on how to do this differently.)
-            SettingsWebSocketService = new SettingsWebSocketService(
-                WebSocketHandler,
-                SettingsHandler,
-                IrcClientHandler,
-                DebugHandler,
-                FileHandler,
-                DirectoryHandler,
-                DownloadHandler,
-                DirectoryWebSocketService,
-                IrcWebSocketService
-            );
         }
 
         public void Start()

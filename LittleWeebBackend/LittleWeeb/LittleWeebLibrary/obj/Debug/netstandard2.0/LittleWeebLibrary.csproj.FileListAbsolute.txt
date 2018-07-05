@@ -10,3 +10,5 @@ G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\netstandard2.0\LittleWeebLibrary.dll
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Debug\netstandard2.0\LittleWeebLibrary.pdb
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\netstandard2.0\LittleWeebLibrary.pdb
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\netstandard2.0\SimpleIRCLib.dll
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\netstandard2.0\SimpleIRCLib.pdb

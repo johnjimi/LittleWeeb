@@ -9,7 +9,7 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <application android:label="LilleWeebie" android:icon="@drawable/icon" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
-    <activity android:configChanges="orientation|screenSize" android:label="LilleWeebie" android:name="md564b1d206bed4377639769c28946fed12.MainActivity">
+    <activity android:configChanges="orientation|screenSize" android:label="LilleWeebie" android:name="md5eb69c3cdcd25054ac9e2ee0c18e5096a.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

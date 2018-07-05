@@ -6,13 +6,13 @@ using Android.Views;
 using Android.Webkit;
 using Android.Widget;
 using Android.OS;
-using SunIRCLibrary;
 using LilleWeebie.Views;
 using LilleWeebie.Models;
 using Android;
 using Android.Content.PM;
 using System.IO;
 using System.Threading;
+using LittleWeebLibrary;
 
 namespace LilleWeebie
 {
@@ -20,7 +20,7 @@ namespace LilleWeebie
 
     public class MainActivity : Activity
     {
-        private SunIRCInit sunirc = null;
+        private LittleWeeb LittleWeeb = null;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -38,7 +38,7 @@ namespace LilleWeebie
             }
             Java.IO.File[] externalFilesDirs = Android.App.Application.Context.GetExternalFilesDirs(null);
             //run sunirc
-            sunirc = new SunIRCInit(true, "ANDROID");
+            LittleWeeb = new LittleWeeb();
 
             
 
@@ -60,6 +60,13 @@ namespace LilleWeebie
             // that points to the root of the bundled Assets folder
             webView.LoadUrl("file:///android_asset/index.html");
 
+        }
+
+        protected override void OnStop()
+        {
+
+            LittleWeeb.Stop();
+            base.OnStop();
         }
 
 

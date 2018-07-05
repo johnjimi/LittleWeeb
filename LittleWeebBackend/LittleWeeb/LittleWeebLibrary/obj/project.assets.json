@@ -35,15 +35,6 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "SimpleIRCLib/2.1.0": {
-        "type": "package",
-        "compile": {
-          "lib/net46/SimpleIRCLib.dll": {}
-        },
-        "runtime": {
-          "lib/net46/SimpleIRCLib.dll": {}
-        }
-      },
       "SimpleWebsocketServer/1.0.1": {
         "type": "package",
         "compile": {
@@ -224,20 +215,6 @@
         "newtonsoft.json.nuspec"
       ]
     },
-    "SimpleIRCLib/2.1.0": {
-      "sha512": "vdYcEl2LBbG8HT+Us0Qd6CO1hjWQ4cGqOijlW8S3bLq0o4xu8+GeZjqDdi79fDkrZqi+e9LwztCHKwmSkS7rSw==",
-      "type": "package",
-      "path": "simpleirclib/2.1.0",
-      "files": [
-        "lib/net45/SimpleIRCLib.dll",
-        "lib/net46/SimpleIRCLib.dll",
-        "lib/net47/SimpleIRCLib.dll",
-        "lib/netcoreapp2.0/SimpleIRCLib.dll",
-        "lib/netcoreapp2.1/SimpleIRCLib.dll",
-        "simpleirclib.2.1.0.nupkg.sha512",
-        "simpleirclib.nuspec"
-      ]
-    },
     "SimpleWebsocketServer/1.0.1": {
       "sha512": "ZASaxJCI7jATCcTXm/tKr+tVeStDAW/yZyW1xuiX679IviyCd4KP85P2avM5kVh2Blt2XSPO2U7CvgHYBAtK4Q==",
       "type": "package",
@@ -258,7 +235,6 @@
     ".NETStandard,Version=v2.0": [
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 11.0.2",
-      "SimpleIRCLib >= 2.1.0",
       "SimpleWebsocketServer >= 1.0.1"
     ]
   },
@@ -314,10 +290,6 @@
             "target": "Package",
             "version": "[11.0.2, )"
           },
-          "SimpleIRCLib": {
-            "target": "Package",
-            "version": "[2.1.0, )"
-          },
           "SimpleWebsocketServer": {
             "target": "Package",
             "version": "[1.0.1, )"
@@ -332,16 +304,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'SimpleIRCLib 2.1.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "SimpleIRCLib",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

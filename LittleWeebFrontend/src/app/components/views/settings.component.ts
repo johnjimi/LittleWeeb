@@ -78,10 +78,10 @@ export class Settings {
             if(message !== null){
                 if(message.type == "irc_data"){
                     if(!baseDownloadDirBe){
-                        this.shareService.storeDataLocal("baseDownloadDir", message.downloadlocation);
+                        this.shareService.storeDataLocal("baseDownloadDir", message.fullfilepath);
                     } 
                     
-                    this.downloadlocation = message.downloadlocation;
+                    this.downloadlocation = message.fullfilepath;
 
                     if(message.connected){
                         this.connectionStatus = "Connected.";

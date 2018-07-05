@@ -16,40 +16,42 @@ namespace LittleWeebLibrary.Services
         void GetCurrentLittleWeebSettings();
         void SetIrcSettings(JObject jsonIrcSettings);
         void SetLittleWeebSettings(JObject jsonLittleWeebSettings);
-        void SetDownloadDirectory(JObject downloadDirectoryJson);
+        void Setfullfilepath(JObject fullfilepathJson);
+        void SetSettingsClasses(
+            IWebSocketHandler webSocketHandler,
+            ISettingsHandler settingsHandler,
+            IIrcClientHandler ircClientHandler,
+            IDebugHandler debugHandler,
+            IFileHandler fileHandler,
+            IDownloadHandler downloadHandler,
+            IDirectoryWebSocketService directoryWebSocketService,
+            IIrcWebSocketService ircWebSocketService
+            );
     }
     public class SettingsWebSocketService : ISettingsWebSocketService, IDebugEvent
     {
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
-        private readonly IWebSocketHandler WebSocketHandler;
-        private readonly IIrcClientHandler IrcClientHandler;
-        private readonly ISettingsHandler SettingsHandler;
-        private readonly IDirectoryHandler DirectoryHandler;
-        private readonly IDownloadHandler DownloadHandler;
-        private readonly IDirectoryWebSocketService DirectoryWebSocketService;
-        private readonly IIrcWebSocketService IrcWebSocketService;
-        private readonly ISettingsInterface WebSocketHandlerSettings;
-        private readonly ISettingsInterface IrcClientHandlerSettings;
-        private readonly ISettingsInterface DebugHandlerSettings;
-        private readonly ISettingsInterface FileHandlerSettings;
-        private readonly ISettingsInterface DownloadHandlerSettings;
-        private readonly ISettingsInterface DirectoryWebSocketServiceSettings;
-        private readonly ISettingsInterface IrcWebSocketServiceSettings;
+        private IWebSocketHandler WebSocketHandler;
+        private IIrcClientHandler IrcClientHandler;
+        private ISettingsHandler SettingsHandler;
+        private IDirectoryHandler DirectoryHandler;
+        private IDownloadHandler DownloadHandler;
+        private IDirectoryWebSocketService DirectoryWebSocketService;
+        private IIrcWebSocketService IrcWebSocketService;
+        private ISettingsInterface WebSocketHandlerSettings;
+        private ISettingsInterface IrcClientHandlerSettings;
+        private ISettingsInterface DebugHandlerSettings;
+        private ISettingsInterface FileHandlerSettings;
+        private ISettingsInterface DownloadHandlerSettings;
+        private ISettingsInterface DirectoryWebSocketServiceSettings;
+        private ISettingsInterface IrcWebSocketServiceSettings;
+        private ISettingsInterface DirectoryHandlerSettings;
         private LittleWeebSettings LittleWeebSettings;
         private IrcSettings IrcSettings;
 
-        public SettingsWebSocketService(
-            IWebSocketHandler webSocketHandler,
-            ISettingsHandler settingsHandler,
-            IIrcClientHandler ircClientHandler,
-            IDebugHandler debugHandler,
-            IFileHandler fileHandler, 
-            IDirectoryHandler directoryHandler,
-            IDownloadHandler downloadHandler,
-            IDirectoryWebSocketService directoryWebSocketService,
-            IIrcWebSocketService ircWebSocketService
-            )
+        public SettingsWebSocketService(IWebSocketHandler webSocketHandler,
+            IDirectoryHandler directoryHandler)
         {
 
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
@@ -60,8 +62,25 @@ namespace LittleWeebLibrary.Services
                 DebugType = 0
             });
 
+
             WebSocketHandler = webSocketHandler;
-            SettingsHandler= settingsHandler;
+            DirectoryHandler = directoryHandler;
+
+
+        }
+
+        public void SetSettingsClasses(
+            IWebSocketHandler webSocketHandler,
+            ISettingsHandler settingsHandler,
+            IIrcClientHandler ircClientHandler,
+            IDebugHandler debugHandler,
+            IFileHandler fileHandler,
+            IDownloadHandler downloadHandler,
+            IDirectoryWebSocketService directoryWebSocketService,
+            IIrcWebSocketService ircWebSocketService
+            )
+        {
+            SettingsHandler = settingsHandler;
             IrcClientHandler = ircClientHandler;
             DownloadHandler = downloadHandler;
             DirectoryWebSocketService = directoryWebSocketService;
@@ -73,7 +92,7 @@ namespace LittleWeebLibrary.Services
             DebugHandlerSettings = debugHandler as ISettingsInterface;
             FileHandlerSettings = fileHandler as ISettingsInterface;
             DownloadHandlerSettings = downloadHandler as ISettingsInterface;
-            DirectoryWebSocketServiceSettings = directoryWebSocketService as ISettingsInterface; 
+            DirectoryWebSocketServiceSettings = directoryWebSocketService as ISettingsInterface;
             IrcWebSocketServiceSettings = ircWebSocketService as ISettingsInterface;
 
             LittleWeebSettings = settingsHandler.GetLittleWeebSettings();
@@ -81,8 +100,6 @@ namespace LittleWeebLibrary.Services
 
             SetAllIrcSettings(IrcSettings);
             SetAllLittleWeebSettings(LittleWeebSettings);
-            SettingsHandler.WriteIrcSettings(IrcSettings);
-
         }
 
         public void GetCurrentIrcSettings()
@@ -100,7 +117,7 @@ namespace LittleWeebLibrary.Services
                 channel = IrcSettings.Channels,
                 server = IrcSettings.ServerAddress,
                 user = IrcSettings.UserName,
-                downloadlocation = IrcSettings.DownloadDirectory
+                fullfilepath= IrcSettings.fullfilepath
             };
 
             WebSocketHandler.SendMessage(info.ToJson());
@@ -154,7 +171,9 @@ namespace LittleWeebLibrary.Services
                 IrcSettings.ServerAddress = jsonIrcSettings.Value<string>("address");
                 IrcSettings.Channels = jsonIrcSettings.Value<string>("channels");
                 IrcSettings.UserName = jsonIrcSettings.Value<string>("username");
-                IrcSettings.DownloadDirectory = jsonIrcSettings.Value<string>("downloadDirectory");
+                IrcSettings.fullfilepath= jsonIrcSettings.Value<string>("fullfilepath");
+                IrcSettings.Port = jsonIrcSettings.Value<int>("port");
+                IrcSettings.Secure = jsonIrcSettings.Value<bool>("secure");
 
                 SetAllIrcSettings(IrcSettings);
                 SettingsHandler.WriteIrcSettings(IrcSettings);
@@ -201,7 +220,7 @@ namespace LittleWeebLibrary.Services
                 LittleWeebSettings = SettingsHandler.GetLittleWeebSettings();
 
                 LittleWeebSettings.RandomUsernameLength = jsonLittleWeebSettings.Value<int>("randomusernamelength");
-                LittleWeebSettings.DebugLevel = jsonLittleWeebSettings.Value<List<int>>("debuglevel");
+                LittleWeebSettings.DebugLevel = jsonLittleWeebSettings.Value<JArray>("debuglevel").ToObject<List<int>>();
                 LittleWeebSettings.MaxDebugLogSize = jsonLittleWeebSettings.Value<int>("maxdebuglogsize");
                 SetAllLittleWeebSettings(LittleWeebSettings);
 
@@ -229,29 +248,30 @@ namespace LittleWeebLibrary.Services
             }
         }
 
-        public void SetDownloadDirectory(JObject downloadDirectoryJson)
+        public void Setfullfilepath(JObject fullfilepathJson)
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
-                DebugMessage = "SetDownloadDirectory called.",
+                DebugMessage = "Setfullfilepathcalled.",
                 DebugSource = this.GetType().Name,
                 DebugSourceType = 1,
                 DebugType = 0
             });
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
-                DebugMessage = downloadDirectoryJson.ToString(),
+                DebugMessage = fullfilepathJson.ToString(),
                 DebugSource = this.GetType().Name,
                 DebugSourceType = 1,
                 DebugType = 1
             });
             try
             {
-                string path = downloadDirectoryJson.Value<string>("path");
+                string path = fullfilepathJson.Value<string>("path");
                 DirectoryHandler.CreateDirectory(path, "");
-                IrcSettings.DownloadDirectory = path;
+                IrcSettings.fullfilepath= path;
                 SetAllIrcSettings(IrcSettings);
                 SettingsHandler.WriteIrcSettings(IrcSettings);
+                GetCurrentIrcSettings();
             }
             catch (Exception e)
             {

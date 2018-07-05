@@ -73,9 +73,9 @@ export class DownloadService {
 
             }
 
-            if(message.type == "downloaded_directories"){
+            if(message.type == "download_history_list"){
                 this.consoleWrite(message);
-                this.updateAlreadyDownloadedList.next(message);
+                this.updateAlreadyDownloadedList.next(message.downloadHistorylist);
                 this.alreadyDownloaded = message;
             }
         });
@@ -97,10 +97,10 @@ export class DownloadService {
             this.shareService.storeDataLocal("CustomDirectoryPerAnime", "enabled");
         } else {
             if(customDirPerAnime == "enabled"){
-                
+                download.filesize = download.filesize.substr(0, download.filesize.length - 1);
                 this.backendService.sendMessage({"action": "add_download", "extra" : download});
             } else {
-
+                download.filesize = download.filesize.substr(0, download.filesize.length - 1);
                 download.dir = "NoSeperateDirectories";                
                 this.backendService.sendMessage({"action": "add_download", "extra" : download});
             }
@@ -117,7 +117,7 @@ export class DownloadService {
      * @memberof DownloadService
      */
     removeDownload(download: any){
-        this.backendService.sendMessage({"action" : "delete_file", "extra" : download});
+        this.backendService.sendMessage({"action" : "remove_download", "extra" : {"id" : download.id}});
         let obj = this.downloadQue.find(x => x.id == download.id);               
         let index = this.downloadQue.indexOf(obj);
         this.downloadQue.splice(index, 1);

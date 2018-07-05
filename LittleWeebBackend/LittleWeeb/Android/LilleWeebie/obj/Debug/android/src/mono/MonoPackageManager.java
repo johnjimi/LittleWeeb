@@ -107,10 +107,10 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "LilleWeebie.dll" comes first in this list. */
 		"LilleWeebie.dll",
+		"LittleWeebLibrary.dll",
 		"Newtonsoft.Json.dll",
 		"SimpleIRCLib.dll",
-		"SunIRCLibrary.dll",
-		"websocket-sharp.dll",
+		"SimpleWebsocketServer.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

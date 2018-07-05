@@ -1,0 +1,24 @@
+[
+    {
+        "action" : "get_directories"
+    },
+    {
+        "action" : "get_directories",
+        "extra" : {
+            "path" : "G:\\Github Desktop\\LittleWeeb"
+        }
+    },
+    {
+        "action" : "create_directory",
+        "extra" : {
+            "path" : "G:\\Github Desktop\\LittleWeeb\\Test"
+        }
+    },
+    {
+        "action" : "delete_directory",
+        "extra" : {
+            "path" : "G:\\Github Desktop\\LittleWeeb\\Test"
+        }
+    }
+   
+]

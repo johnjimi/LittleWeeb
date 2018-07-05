@@ -72,16 +72,7 @@ namespace LittleWeebLibrary.Controllers.SubControllers
                                 SettingsWebSocketService.SetIrcSettings(extra);
                                 break;
                             case "set_download_directory":
-                                SettingsWebSocketService.SetDownloadDirectory(extra);
-                                break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (With extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
+                                SettingsWebSocketService.Setfullfilepath(extra);
                                 break;
                         }
                     }
@@ -95,15 +86,6 @@ namespace LittleWeebLibrary.Controllers.SubControllers
                                 break;
                             case "get_irc_settings":
                                 SettingsWebSocketService.GetCurrentIrcSettings();
-                                break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (without extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
                                 break;
                         }
                     }

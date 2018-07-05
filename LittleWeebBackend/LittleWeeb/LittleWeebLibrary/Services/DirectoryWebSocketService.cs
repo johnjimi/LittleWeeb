@@ -201,7 +201,7 @@ namespace LittleWeebLibrary.Services
                 DebugSourceType = 1,
                 DebugType = 0
             });
-            string result = DirectoryHandler.GetFreeSpace(IrcSettings.DownloadDirectory);
+            string result = DirectoryHandler.GetFreeSpace(IrcSettings.fullfilepath);
             WebSocketHandler.SendMessage(result);
         }
 

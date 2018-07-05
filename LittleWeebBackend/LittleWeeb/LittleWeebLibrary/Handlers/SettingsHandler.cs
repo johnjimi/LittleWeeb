@@ -22,7 +22,7 @@ namespace LittleWeebLibrary.Handlers
     {
         public event EventHandler<BaseDebugArgs> OnDebugEvent;
 
-        private string DebugPath;
+        private string SettingsPath;
 
         public SettingsHandler()
         {
@@ -37,19 +37,27 @@ namespace LittleWeebLibrary.Handlers
             string littleWeebSettingsName = "LittleWeebSettings.json";
             string ircSettingsName = "IrcSettings.json";
 #if __ANDROID__
-            DebugPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath), "LittleWeeb"), "Settings");
+            SettingsPath = Path.Combine(Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "LittleWeeb"), "Settings");
 #else
-            DebugPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "Settings");
+            SettingsPath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LittleWeeb"), "Settings");
 #endif
 
-            if (!Directory.Exists(DebugPath))
+            if (!Directory.Exists(SettingsPath))
             {
-                Directory.CreateDirectory(DebugPath);
+                Directory.CreateDirectory(SettingsPath);
             }
-            if (!File.Exists(Path.Combine(DebugPath, littleWeebSettingsName))){
-                WriteLittleWeebSettings(new LittleWeebSettings());
+            if (!File.Exists(Path.Combine(SettingsPath, littleWeebSettingsName))){
+                WriteLittleWeebSettings(new LittleWeebSettings()
+                {
+                    Local = true,
+                    Port = 1515,
+                    DebugLevel = new List<int>() { 0, 1, 2, 3, 4, 5 },
+                    RandomUsernameLength = 6,
+                    MaxDebugLogSize = 20000,
+                    Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                });
             }
-            if (!File.Exists(Path.Combine(DebugPath, ircSettingsName)))
+            if (!File.Exists(Path.Combine(SettingsPath, ircSettingsName)))
             {
                 WriteIrcSettings(new IrcSettings());
             }
@@ -78,18 +86,24 @@ namespace LittleWeebLibrary.Handlers
                 string settingsName = "IrcSettings.json";
                 string settingsJson = JsonConvert.SerializeObject(ircSettings);
 
-                if (!File.Exists(Path.Combine(DebugPath, settingsName)))
+                if (!File.Exists(Path.Combine(SettingsPath, settingsName)))
                 {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))
+                    using (var fileStream = File.Open(Path.Combine(SettingsPath, settingsName), FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
                     {
-                        streamWriter.Write(settingsJson);
+                        using (var streamWriter = new StreamWriter(fileStream))
+                        {
+                            streamWriter.Write(settingsJson);
+                        }
                     }
                 }
                 else
                 {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), false))
+                    using (var fileStream = File.Open(Path.Combine(SettingsPath, settingsName), FileMode.Truncate, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
-                        streamWriter.Write(settingsJson);
+                        using (var streamWriter = new StreamWriter(fileStream))
+                        {
+                            streamWriter.Write(settingsJson);
+                        }
                     }
                 }
             }
@@ -130,18 +144,24 @@ namespace LittleWeebLibrary.Handlers
             {
                 string settingsName = "LittleWeebSettings.json";
                 string settingsJson = JsonConvert.SerializeObject(littleWeebSettings);
-                if (!File.Exists(Path.Combine(DebugPath, settingsName)))
+                if (!File.Exists(Path.Combine(SettingsPath, settingsName)))
                 {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), true))
+                    using (var fileStream = File.Open(Path.Combine(SettingsPath, settingsName), FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
                     {
-                        streamWriter.Write(settingsJson);
+                        using (var streamWriter = new StreamWriter(fileStream))
+                        {
+                            streamWriter.Write(settingsJson);
+                        }
                     }
                 }
                 else
                 {
-                    using (var streamWriter = new StreamWriter(Path.Combine(DebugPath, settingsName), false))
+                    using (var fileStream = File.Open(Path.Combine(SettingsPath, settingsName), FileMode.Truncate, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
-                        streamWriter.Write(settingsJson);
+                        using (var streamWriter = new StreamWriter(fileStream))
+                        {
+                            streamWriter.Write(settingsJson);
+                        }
                     }
                 }
 
@@ -160,24 +180,51 @@ namespace LittleWeebLibrary.Handlers
 
         public LittleWeebSettings GetLittleWeebSettings()
         {
-            LittleWeebSettings toReturn = new LittleWeebSettings();
-
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugSource = this.GetType().Name,
+                DebugMessage = "GetLittleWeebSettings called.",
+                DebugSourceType = 1,
+                DebugType = 0
+            });
             try
             {
                 string settingsName = "LittleWeebSettings.json";
-                if (File.Exists(Path.Combine(DebugPath, settingsName)))
+                if (File.Exists(Path.Combine(SettingsPath, settingsName)))
                 {
                     string settingsJson = "";
-                    using (var streamReader = new StreamReader(Path.Combine(DebugPath, settingsName)))
+                    using (var fileStream = File.Open(Path.Combine(SettingsPath, settingsName), FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
-                        string readLine = "";
-                        while ((readLine = streamReader.ReadLine()) != null)
+                        using (var streamReader = new StreamReader(fileStream))
                         {
-                            settingsJson += readLine;
+                            string readLine = "";
+                            while ((readLine = streamReader.ReadLine()) != null)
+                            {
+                                settingsJson += readLine;
+                            }
                         }
+
                     }
 
-                    toReturn = JsonConvert.DeserializeObject<LittleWeebSettings>(settingsJson);
+                    OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                    {
+                        DebugSource = this.GetType().Name,
+                        DebugMessage = "Returning read littleweebsettings: " + settingsJson,
+                        DebugSourceType = 1,
+                        DebugType = 2
+                    });
+                    return JsonConvert.DeserializeObject<LittleWeebSettings>(settingsJson);
+                }
+                else
+                {
+                    OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                    {
+                        DebugSource = this.GetType().Name,
+                        DebugMessage = "Returning new littleweebsettings.",
+                        DebugSourceType = 1,
+                        DebugType = 2
+                    });
+                    return new LittleWeebSettings();
                 }
             }
             catch (Exception e)
@@ -189,9 +236,10 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+                return new LittleWeebSettings();
             }
 
-            return toReturn;
         }
 
         public IrcSettings GetIrcSettings()
@@ -201,15 +249,18 @@ namespace LittleWeebLibrary.Handlers
             try
             {
                 string settingsName = "IrcSettings.json";
-                if (File.Exists(Path.Combine(DebugPath, settingsName)))
+                if (File.Exists(Path.Combine(SettingsPath, settingsName)))
                 {
                     string settingsJson = "";
-                    using (var streamReader = new StreamReader(Path.Combine(DebugPath, settingsName)))
+                    using (var fileStream = File.Open(Path.Combine(SettingsPath, settingsName), FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
-                        string readLine = "";
-                        while ((readLine = streamReader.ReadLine()) != null)
+                        using (var streamReader = new StreamReader(fileStream))
                         {
-                            settingsJson += readLine;
+                            string readLine = "";
+                            while ((readLine = streamReader.ReadLine()) != null)
+                            {
+                                settingsJson += readLine;
+                            }
                         }
                     }
 

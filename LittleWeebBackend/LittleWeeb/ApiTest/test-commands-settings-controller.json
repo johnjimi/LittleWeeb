@@ -1,0 +1,34 @@
+[
+    {
+        "action" : "get_littleweeb_settings"
+    },
+    {
+        "action" : "get_irc_settings"
+    },
+    {
+        "action" : "set_littleweeb_settings",
+        "extra" : {
+            "randomusernamelength" : 8,
+            "debuglevel" : [3,4,5],
+            "maxdebuglogsize" : 20000
+        }
+    },
+    {
+        "action" : "set_irc_settings",
+        "extra" : {
+            "address" : "irc.rizon.net",
+            "channels" : "#nibl,#horriblesubs,#news,#littleweeb",
+            "username" : "CustomUserName",
+            "DownloadDirectory" : "G:\\LittleWeebDownloads",
+            "port"  : 6667,
+            "secure" : false
+        }
+    },
+    {
+        "action" : "set_download_directory",
+        "extra" : {
+            "path" : "G:\\Github Desktop\\LittleWeeb\\LittleWeebBackend\\LittleWeeb\\LittleWeebServer\\bin\\Debug\\LittleWeeb\\Downloads"
+        }
+    }
+   
+]

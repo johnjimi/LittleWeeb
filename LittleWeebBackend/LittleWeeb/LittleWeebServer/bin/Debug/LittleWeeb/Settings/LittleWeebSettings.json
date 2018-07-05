@@ -1,1 +1,1 @@
-{"Port":1515,"Local":true,"Version":"1.0.0.0","RandomUsernameLength":6,"DebugLevel":[0,1,2,3,4,5],"MaxDebugLogSize":10000}
+{"Port":1515,"Local":true,"Version":"1.0.0.0","RandomUsernameLength":8,"DebugLevel":[0,1,2,3,4,5],"MaxDebugLogSize":2000}

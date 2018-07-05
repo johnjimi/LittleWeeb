@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "ac29aa0dce190664b01646638e6275ae48720701"
+    "signature": "664b40f9a9230b126ada77d2b03b801c485d7826"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,9 +11,9 @@
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "11.0.2",
-          "SimpleIRCLib": "2.1.0",
           "SimpleWebsocketServer": "1.0.1",
-          "Mono.Android": "0.0.0.0"
+          "Mono.Android": "0.0.0.0",
+          "SimpleIRCLib": "2.1.0.0"
         },
         "runtime": {
           "LittleWeebLibrary.dll": {}
@@ -33,14 +33,6 @@
           }
         }
       },
-      "SimpleIRCLib/2.1.0": {
-        "runtime": {
-          "lib/net46/SimpleIRCLib.dll": {
-            "assemblyVersion": "2.1.0.0",
-            "fileVersion": "2.1.0.0"
-          }
-        }
-      },
       "SimpleWebsocketServer/1.0.1": {
         "runtime": {
           "lib/net46/SimpleWebsocketServer.dll": {
@@ -54,6 +46,14 @@
           "Mono.Android.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "SimpleIRCLib/2.1.0.0": {
+        "runtime": {
+          "SimpleIRCLib.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       }
@@ -86,13 +86,6 @@
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
     },
-    "SimpleIRCLib/2.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-vdYcEl2LBbG8HT+Us0Qd6CO1hjWQ4cGqOijlW8S3bLq0o4xu8+GeZjqDdi79fDkrZqi+e9LwztCHKwmSkS7rSw==",
-      "path": "simpleirclib/2.1.0",
-      "hashPath": "simpleirclib.2.1.0.nupkg.sha512"
-    },
     "SimpleWebsocketServer/1.0.1": {
       "type": "package",
       "serviceable": true,
@@ -101,6 +94,11 @@
       "hashPath": "simplewebsocketserver.1.0.1.nupkg.sha512"
     },
     "Mono.Android/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SimpleIRCLib/2.1.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

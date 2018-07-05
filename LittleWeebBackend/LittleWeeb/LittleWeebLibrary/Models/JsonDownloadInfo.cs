@@ -20,7 +20,7 @@ namespace LittleWeebLibrary.Models
         public string filename { get; set; }
         public string filesize { get; set; }
         public int downloadIndex { get; set; }
-        public string downloadDirectory { get; set; }
+        public string fullfilepath{ get; set; }
 
         public string ToJson()
         {

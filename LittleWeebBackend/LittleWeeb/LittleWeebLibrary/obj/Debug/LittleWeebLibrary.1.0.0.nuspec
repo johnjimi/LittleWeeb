@@ -10,7 +10,6 @@
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
-        <dependency id="SimpleIRCLib" version="2.1.0" exclude="Build,Analyzers" />
         <dependency id="SimpleWebsocketServer" version="1.0.1" exclude="Build,Analyzers" />
       </group>
     </dependencies>

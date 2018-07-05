@@ -98,10 +98,7 @@ G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\D
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\System.Xml.XPath.dll
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\System.Xml.XPath.XDocument.dll
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\LittleWeebLibrary.dll
-G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.dll
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\LittleWeebLibrary.pdb
-G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.pdb
-G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Mono.Android.xml
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.csprojAssemblyReference.cache
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.exe.config
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\obj\Debug\LittleWeebServer.csproj.CoreCompileInputs.cache

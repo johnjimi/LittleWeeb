@@ -8,6 +8,7 @@ namespace LittleWeebLibrary.Models
 {
     class JsonWelcome
     {
+        public string type { get; set; } = "welcome";
         public string welcome { get; set; } = "Succesfully made connection with LittleWeeb Back-end!";
         public bool local { get; set; } = true;
         public string ToJson()

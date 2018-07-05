@@ -74,14 +74,8 @@ namespace LittleWeebLibrary.Controllers
                             case "abort_download":
                                 DownloadWebSocketService.RemoveDownload(extra);
                                 break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (with extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
+                            case "remove_download":
+                                DownloadWebSocketService.RemoveDownload(extra);
                                 break;
                         }
                     }
@@ -96,16 +90,7 @@ namespace LittleWeebLibrary.Controllers
                                 DirectoryWebSocketService.GetFreeSpace();
                                 break;
                             case "open_download_directory":
-                                DownloadWebSocketService.OpenDownloadDirectory();
-                                break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (without extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
+                                DownloadWebSocketService.Openfullfilepath();
                                 break;
                         }
                     }                

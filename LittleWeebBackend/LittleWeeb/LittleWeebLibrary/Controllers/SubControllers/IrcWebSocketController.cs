@@ -70,15 +70,6 @@ namespace LittleWeebLibrary.Controllers
                             case "sendmessage_irc":
                                 IrcWebSocketService.SendMessage(extra);
                                 break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (With extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
-                                break;
                         }
                     }
                     else
@@ -99,15 +90,6 @@ namespace LittleWeebLibrary.Controllers
                                 break;
                             case "disablechat_irc":
                                 IrcWebSocketService.DisableSendMessage();
-                                break;
-                            default:
-                                JsonError error = new JsonError()
-                                {
-                                    type = "command_error",
-                                    errormessage = "Server could not understand command (without extra specified).",
-                                    errortype = "warning"
-                                };
-                                WebSocketHandler.SendMessage(error.ToJson());
                                 break;
                         }
                     }                 

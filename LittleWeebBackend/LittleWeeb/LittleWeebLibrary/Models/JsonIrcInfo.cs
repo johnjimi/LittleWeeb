@@ -13,7 +13,7 @@ namespace LittleWeebLibrary.Models
         public string channel { get; set; }
         public string server { get; set; }
         public string user { get; set; }
-        public string downloadlocation { get; set; }
+        public string fullfilepath{ get; set; }
 
         public string ToJson()
         {

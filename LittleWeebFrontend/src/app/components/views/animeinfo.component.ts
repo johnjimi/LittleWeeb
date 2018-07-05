@@ -113,8 +113,6 @@ export class AnimeInfo{
         this.possibleresolutions.push({value : "480", name : "480p"});
         this.possibleresolutions.push({value : "1080", name : "1080p"});
 
-        
-
         this.episodeList= new Array();
         this.movieList = new Array();
 
@@ -122,10 +120,6 @@ export class AnimeInfo{
             this.isLocal = true;
         }
 
-
-        
-       
-        
         this.downloadService.updateDownloadList.subscribe((listwithdownloads)=>{
             if(listwithdownloads != null){                
                 this.downloads = []; 
@@ -151,9 +145,9 @@ export class AnimeInfo{
                 if(this.waitingToPlay){
                     
                     let found = false;
-                    for(let dirs of listwithdownloads.directories){
-                        for(let file of dirs.alreadyDownloaded){
-                            if(file.animeid == this.animeInfo.id && this.episodeToPlay.toString() == file.episodeNumber){
+                    for(let anime of listwithdownloads){
+                        for(let file of anime.downloadHistory){
+                            if(anime.animeInfo.animeid == this.animeInfo.id && this.episodeToPlay.toString() == file.episodeNumber){
                                 this.sendPlayRequest(file);
                                 found = true;
                                 this.waitingToPlay = false;
@@ -167,13 +161,13 @@ export class AnimeInfo{
                 }  
                 
                 let found = false;
-                for(let dirs of listwithdownloads.directories){
-                    for(let file of dirs.alreadyDownloaded){
+                for(let anime of listwithdownloads){
+                    for(let file of anime.downloadHistory){
                         this.consoleWrite("COMPARING FOLLOWING ID:");
-                        this.consoleWrite(file.animeid);
+                        this.consoleWrite(anime.animeInfo.animeid);
                         this.consoleWrite(this.animeInfo.id);
-                        if(file.animeid == this.animeInfo.id){
-                            this.alreadyDownloadedFiles = dirs.alreadyDownloaded;
+                        if(file.animeInfo.animeid == this.animeInfo.id){
+                            this.alreadyDownloadedFiles = anime.downloadHistory;
                             this.showAlreadyDownloaded = true;
                             this.consoleWrite("FOUND FILES FOR THIS ANIME");
                             found = true;
@@ -273,7 +267,7 @@ export class AnimeInfo{
                
                 if(this.animeInfo === undefined){
                     this.animeInfo = this.kitsuService.getAllInfo(anime.id);
-                    this.animeDir = this.animeInfo.animeInfo.canonicalTitle.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_').split(' ').join('_') + "_" + this.animeInfo.id;   
+                    this.animeDir = this.animeInfo.animeInfo.canonicalTitle.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_');   
                     this.showList = false;
                     this.showEpisodes = false;   
                     this.title =  this.animeInfo.animeInfo.canonicalTitle;     
@@ -284,7 +278,7 @@ export class AnimeInfo{
                     if(this.animeInfo.id != anime.id){
                         this.animeInfo = await this.kitsuService.getAllInfo(anime.id);
                         this.consoleWrite(this.animeInfo);
-                        this.animeDir = this.animeInfo.animeInfo.canonicalTitle.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_').split(' ').join('_') + "_";      
+                        this.animeDir = this.animeInfo.animeInfo.canonicalTitle.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_');      
                         this.showList = false;
                         this.showEpisodes = false;   
                         this.title =  this.animeInfo.animeInfo.canonicalTitle;  
@@ -1231,9 +1225,8 @@ export class AnimeInfo{
      */
     sendPlayRequest(download : any){
         if(this.isLocal){
-            setTimeout(this.backEndService.sendMessage({"action" : "open_file", "extra" : download}), 1000);
+            setTimeout(this.backEndService.sendMessage({"action" : "open_file", "extra" : {"path": download.fullfilepath}}), 1000);
         }
-        
     }
 
     /**

@@ -48,28 +48,28 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LittleWeebLibrary">
+      <HintPath>..\..\LittleWeebLibrary\bin\Debug\netstandard2.0\LittleWeebLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\LittleWeebServer\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleIRCLib, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SimpleIRCLib, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Debug\SimpleIRCLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Release\net45\SimpleIRCLib.dll</HintPath>
     </Reference>
-    <Reference Include="SunIRCLibrary">
-      <HintPath>..\..\..\..\..\SunIRC Library\SunIRCLibrary\bin\Debug\SunIRCLibrary.dll</HintPath>
+    <Reference Include="SimpleWebsocketServer, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\SimpleWebSocketServer\SimpleWebsocketServer\bin\Release\net45\SimpleWebsocketServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="websocket-sharp, Version=1.0.2.24269, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\LittleWeebServer\bin\Debug\websocket-sharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -114,10 +114,10 @@
     <AndroidAsset Include="Assets\index.html" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\inline.77fd8694ab8b636a7182.bundle.js" />
+    <AndroidAsset Include="Assets\inline.32290f64330031007f06.bundle.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\main.712b3bc2780628dfc291.bundle.js" />
+    <AndroidAsset Include="Assets\main.bbf9fde01e508e72ea18.bundle.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\polyfills.7bd917fb14f237541df2.bundle.js" />

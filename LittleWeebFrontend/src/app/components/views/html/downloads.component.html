@@ -33,7 +33,7 @@
                 </table>
             </div>
             <div class="actions" >
-                <button class="ui green basic inverted button" (click)="goToAnimeInfo()">
+                <button class="ui green basic inverted button" (click)="goToAnimeInfo(modalFiles[0].animeInfo)">
                     Open Anime Info
                 </button>
                 <button class="ui red basic inverted button" (click)="closeModal(modalId)">
@@ -83,13 +83,13 @@
     <div class="row" >
         <div class="ui horizontal divider"> ALREADY DOWNLOADED </div>
         <div class="ui link cards " >                           
-            <div class="card tooltip card-custom-width-ssml-currentlyairing" *ngFor="let dirs of alreadyDownloaded.directories;" (click)="showFilesFor(dirs.animeinfo.animeid)"    >
-                <span class="tooltiptext">{{dirs.animeinfo.title}}</span>
+            <div class="card tooltip card-custom-width-ssml-currentlyairing" *ngFor="let anime of alreadyDownloaded;" (click)="showFilesFor(anime.animeInfo.animeid)"    >
+                <span class="tooltiptext">{{anime.animeInfo.title}}</span>
                 <div class="image" >
-                    <img [src]="dirs.animeinfo.cover_small" class="cover-size-ssml" /> 
+                    <img [src]="anime.animeInfo.cover_small" class="cover-size-ssml" /> 
                 </div>
                 <div class="content card-content-height-lrg">
-                    <div class="card-content-text">{{dirs.animeinfo.title}}</div>
+                    <div class="card-content-text">{{anime.animeInfo.title}}</div>
                 </div>
             </div>        
         </div>            
