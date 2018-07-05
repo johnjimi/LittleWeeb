@@ -34,15 +34,6 @@
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
-      },
-      "SimpleWebsocketServer/1.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/net46/SimpleWebsocketServer.dll": {}
-        },
-        "runtime": {
-          "lib/net46/SimpleWebsocketServer.dll": {}
-        }
       }
     }
   },
@@ -214,28 +205,12 @@
         "newtonsoft.json.11.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec"
       ]
-    },
-    "SimpleWebsocketServer/1.0.1": {
-      "sha512": "ZASaxJCI7jATCcTXm/tKr+tVeStDAW/yZyW1xuiX679IviyCd4KP85P2avM5kVh2Blt2XSPO2U7CvgHYBAtK4Q==",
-      "type": "package",
-      "path": "simplewebsocketserver/1.0.1",
-      "files": [
-        "lib/net45/SimpleWebsocketServer.dll",
-        "lib/net46/SimpleWebsocketServer.dll",
-        "lib/net47/SimpleWebsocketServer.dll",
-        "lib/netcoreapp2.0/SimpleWebsocketServer.dll",
-        "lib/netcoreapp2.0/SimpleWebsocketServer.xml",
-        "lib/netcoreapp2.1/SimpleWebsocketServer.dll",
-        "simplewebsocketserver.1.0.1.nupkg.sha512",
-        "simplewebsocketserver.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "NETStandard.Library >= 2.0.3",
-      "Newtonsoft.Json >= 11.0.2",
-      "SimpleWebsocketServer >= 1.0.1"
+      "Newtonsoft.Json >= 11.0.2"
     ]
   },
   "packageFolders": {
@@ -289,10 +264,6 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[11.0.2, )"
-          },
-          "SimpleWebsocketServer": {
-            "target": "Package",
-            "version": "[1.0.1, )"
           }
         },
         "imports": [
@@ -302,17 +273,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'SimpleWebsocketServer 1.0.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "SimpleWebsocketServer",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }

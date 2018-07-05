@@ -252,7 +252,7 @@ namespace LittleWeebLibrary.Services
         {
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
-                DebugMessage = "Setfullfilepathcalled.",
+                DebugMessage = "Setfullfilepath called.",
                 DebugSource = this.GetType().Name,
                 DebugSourceType = 1,
                 DebugType = 0

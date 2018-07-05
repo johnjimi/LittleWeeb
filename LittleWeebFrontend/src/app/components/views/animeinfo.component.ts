@@ -125,7 +125,7 @@ export class AnimeInfo{
                 this.downloads = []; 
                 for(let download of listwithdownloads){
                 
-                    if(download.animeid == this.animeInfo.id){
+                    if(download.animeInfo.animeid == this.animeInfo.id){
                         this.downloads.push(download);
                     }
                 }

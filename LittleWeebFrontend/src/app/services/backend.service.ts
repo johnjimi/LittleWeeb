@@ -64,7 +64,8 @@ export class BackEndService {
                         }
                     } 
                     else 
-                    {                        
+                    {          
+                        this.sendMessage({"action":"connect_irc"});              
                         this.connected = false;                        
                     }
 
@@ -75,7 +76,7 @@ export class BackEndService {
                 } 
                 else if(messageRec.type == "welcome")
                 {
-                    this.sendMessage({"action":"connect_irc"});
+                    this.sendMessage({"action":"get_irc_data"});
                 } 
                 else if(messageRec.errortype != null)
                 {

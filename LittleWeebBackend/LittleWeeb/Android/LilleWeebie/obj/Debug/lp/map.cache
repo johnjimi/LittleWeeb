@@ -1,7 +1,5 @@
+LittleWeebLibrary
 Newtonsoft.Json
 SimpleIRCLib
-SunIRCLibrary
-System.Runtime
-websocket-sharp
-LittleWeebLibrary
 SimpleWebsocketServer
+System.Runtime

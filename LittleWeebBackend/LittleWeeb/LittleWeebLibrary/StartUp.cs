@@ -65,11 +65,6 @@ namespace LittleWeebLibrary
             SettingsWebSocketController =   new SettingsWebSocketController(WebSocketHandler, SettingsWebSocketService);
 
             IBaseWebSocketController baseWebSocketController = new BaseWebSocketController(WebSocketHandler);
-
-
-
-           
-
             //start debugh handler registering all the handlers, services and controllers as IDebugEvent interface.
 
             SettingsWebSocketService.SetSettingsClasses(
@@ -119,11 +114,13 @@ namespace LittleWeebLibrary
 
         public void Start()
         {
+            Console.WriteLine("IM DESPERATE, STARTIN WEBSOCKET SERVER!");
             WebSocketHandler.StartServer();
         }
 
         public void Stop()
         {
+            Console.WriteLine("IM DESPERATE, STOPPING EVERYTHING!");
             WebSocketHandler.StopServer();
             IrcClientHandler.StopConnection();
             DownloadHandler.StopQueue();           

@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>LittleWeebServer</RootNamespace>
     <AssemblyName>LittleWeebServer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,7 +43,8 @@
       <HintPath>..\packages\SimpleIRCLib.2.1.0\lib\net46\SimpleIRCLib.dll</HintPath>
     </Reference>
     <Reference Include="SimpleWebsocketServer, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleWebsocketServer.1.0.1\lib\net46\SimpleWebsocketServer.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\SimpleWebSocketServer\SimpleWebsocketServer\bin\Release\net47\SimpleWebsocketServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

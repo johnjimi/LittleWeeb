@@ -269,15 +269,6 @@ export class AppComponent  {
     }
 
   
-    /**
-     * Checks if interface has been closed, if so, send disconnect request to back-end
-     * 
-     * @memberof AppComponent
-     */
-    @HostListener('window:beforeunload')
-    doSomething() {
-        this.backEndService.sendMessage({"action" : "disconnect_irc"});
-    }
 
     /**
      * In case of mobile, side menu is opened and closed through a button

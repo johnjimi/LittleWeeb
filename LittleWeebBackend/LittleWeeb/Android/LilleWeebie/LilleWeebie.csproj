@@ -48,8 +48,9 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LittleWeebLibrary">
-      <HintPath>..\..\LittleWeebLibrary\bin\Debug\netstandard2.0\LittleWeebLibrary.dll</HintPath>
+    <Reference Include="LittleWeebLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LittleWeebLibrary\bin\Debug Android_\netstandard2.0\LittleWeebLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
@@ -59,11 +60,11 @@
     </Reference>
     <Reference Include="SimpleIRCLib, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Release\net45\SimpleIRCLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Release\net47\SimpleIRCLib.dll</HintPath>
     </Reference>
     <Reference Include="SimpleWebsocketServer, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SimpleWebSocketServer\SimpleWebsocketServer\bin\Release\net45\SimpleWebsocketServer.dll</HintPath>
+      <HintPath>..\..\..\..\..\SimpleWebSocketServer\SimpleWebsocketServer\bin\Release\net47\SimpleWebsocketServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -108,28 +109,28 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\3rdpartylicenses.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidAsset Include="Assets\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\index.html" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\inline.32290f64330031007f06.bundle.js" />
+    <AndroidAsset Include="Assets\inline.b24fe349f57914e378e5.bundle.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\main.bbf9fde01e508e72ea18.bundle.js" />
+    <AndroidAsset Include="Assets\main.5d980732ac5615c81190.bundle.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\polyfills.7bd917fb14f237541df2.bundle.js" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\styles.f8cbc5139d821482bf8d.bundle.css" />
+    <AndroidAsset Include="Assets\styles.6697d02f18f536d652c4.bundle.css" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\assets\toaster.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\3rdpartylicenses.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

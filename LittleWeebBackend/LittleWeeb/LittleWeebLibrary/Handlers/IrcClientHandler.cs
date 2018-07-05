@@ -33,8 +33,6 @@ namespace LittleWeebLibrary.Handlers
     {
 
 
-        public event EventHandler<BaseDebugArgs> OnIrcClientMessageDebugEvent;
-
         public event EventHandler<IrcClientMessageEventArgs> OnIrcClientMessageEvent;
         public event EventHandler<IrcClientDownloadEventArgs> OnIrcClientDownloadEvent;
         public event EventHandler<IrcClientConnectionStatusArgs> OnIrcClientConnectionStatusEvent;

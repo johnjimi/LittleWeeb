@@ -9,6 +9,7 @@ namespace LittleWeebLibrary
         private readonly StartUp startUp;
         public LittleWeeb()
         {
+            Console.WriteLine("IM DESPERATE, STARTIN STARTUP!");
             startUp = new StartUp();
             startUp.Start();
         }

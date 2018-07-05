@@ -40,7 +40,12 @@ namespace LittleWeebLibrary.Handlers
             try
             {
                 JsonDirectories directories = new JsonDirectories();
+
 #if __ANDROID__
+
+#if DEBUG
+#warning Compiling android code! 
+#endif
 
                 OnDebugEvent?.Invoke(this, new BaseDebugArgs()
                 {
@@ -49,6 +54,13 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 2
                 });
+
+                /*
+                if (Android.OS.Environment.ExternalStorageState == Android.OS.Environment.MediaMounted)
+                {
+                    Android.OS.Environment.InvokeIsExternalStorageRemovable(Android.OS.Environment.ExternalStorageDirectory);
+                    // sdcard found
+                }
                 JsonDirectory directory = new JsonDirectory();
                 directory.path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
                 directory.dirname = "External Storage if Present.";
@@ -59,7 +71,9 @@ namespace LittleWeebLibrary.Handlers
                 directory.path = Android.OS.Environment.RootDirectory.AbsolutePath;
                 directory.dirname = "Internal Root Directory";
 
-                directories.directories.Add(directory);
+                directories.directories.Add(directory); */
+
+                GetDirectories("/storage");
 #else
                 DriveInfo[] allDrives = DriveInfo.GetDrives();
                 foreach (DriveInfo drive in allDrives)

@@ -109,3 +109,4 @@ G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\D
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SimpleIRCLib.dll
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SimpleWebsocketServer.dll
 G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\Newtonsoft.Json.xml
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebServer\bin\Debug\SimpleWebsocketServer.pdb

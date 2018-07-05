@@ -36,11 +36,10 @@ namespace LilleWeebie
                     RequestPermissions(permissions, 1);
                 }
             }
-            Java.IO.File[] externalFilesDirs = Android.App.Application.Context.GetExternalFilesDirs(null);
             //run sunirc
             LittleWeeb = new LittleWeeb();
 
-            
+
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
@@ -61,13 +60,7 @@ namespace LilleWeebie
             webView.LoadUrl("file:///android_asset/index.html");
 
         }
-
-        protected override void OnStop()
-        {
-
-            LittleWeeb.Stop();
-            base.OnStop();
-        }
+        
 
 
 

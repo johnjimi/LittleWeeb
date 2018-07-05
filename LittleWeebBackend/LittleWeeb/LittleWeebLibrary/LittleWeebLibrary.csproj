@@ -4,16 +4,25 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Configurations>Debug;Release;Release Android;Debug Android_</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;NETSTANDARD;NETSTANDARD2_0;__ANDROID__;</DefineConstants>
-    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Android_|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;__ANDROID__;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD;NETSTANDARD2_0;DEBUG ANDROID_;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Android|AnyCPU'">
+    <DefineConstants>TRACE;RELEASE ANDROID;NETSTANDARD;NETSTANDARD2_0;RELEASE ANDROID;NETSTANDARD;NETSTANDARD2_0;RELEASE ANDROID;NETSTANDARD;NETSTANDARD2_0;__ANDROID__;</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="SimpleWebsocketServer" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +36,9 @@
     </Reference>
     <Reference Include="SimpleIRCLib">
       <HintPath>..\..\..\..\SimpleIRCLib\SimpleIRCLib\bin\Debug\netcoreapp2.1\SimpleIRCLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleWebsocketServer">
+      <HintPath>..\..\..\..\SimpleWebSocketServer\SimpleWebsocketServer\bin\Release\net47\SimpleWebsocketServer.dll</HintPath>
     </Reference>
   </ItemGroup>
 
