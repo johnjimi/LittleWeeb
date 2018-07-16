@@ -110,7 +110,8 @@ namespace LittleWeebLibrary.Controllers
                 {
                     type = "command_error",
                     errormessage = "Error happend during execution of command.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
                 WebSocketHandler.SendMessage(error.ToJson());
             }

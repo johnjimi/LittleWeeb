@@ -89,14 +89,47 @@ namespace LittleWeebLibrary.Handlers
                 {
 
                     download.downloadIndex = DownloadQueue.Count - 1;
-                    DownloadQueue.Add(download);
 
-                    JsonSuccesReport succes = new JsonSuccesReport()
+                    if (!DownloadQueue.Contains(download) || CurrentlyDownloading != download)
                     {
-                        message = "Succesfully added download to download que."
-                    };
 
-                    return succes.ToJson();
+
+                        DownloadQueue.Add(download);
+                        OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                        {
+                            DebugMessage = "Added download to queue: " + download.ToString(),
+                            DebugSource = this.GetType().Name,
+                            DebugSourceType = 1,
+                            DebugType = 3
+                        });
+
+                        JsonSuccesReport succes = new JsonSuccesReport()
+                        {
+                            message = "Succesfully added download to download que."
+                        };
+
+                        return succes.ToJson();
+                    }
+                    else
+                    {
+
+                        OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                        {
+                            DebugMessage = "Could not add download: " + download.ToString() + ", already exist in queue or is already being downloaded ",
+                            DebugSource = this.GetType().Name,
+                            DebugSourceType = 1,
+                            DebugType = 3
+                        });
+                        JsonError error = new JsonError()
+                        {
+                            type = "unsufficient_space_error",
+                            errormessage = "Could not add download: " + download.ToString() + ", already exist in queue or is already being downloaded ",
+                            errortype = "warning",
+                            exception = "none"
+                        };
+                        return error.ToJson();
+                    }
+
                 }
                 else
                 {
@@ -133,7 +166,8 @@ namespace LittleWeebLibrary.Handlers
                 {
                     type = "add_download_error",
                     errormessage = "Could not add download to que.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
                 return error.ToJson();
             }
@@ -156,7 +190,7 @@ namespace LittleWeebLibrary.Handlers
                 DebugType = 1
             });
 
-            try{
+            try {
 
                 int index = -1;
 
@@ -285,7 +319,7 @@ namespace LittleWeebLibrary.Handlers
                         status = args.DownloadStatus,
                         filename = CurrentlyDownloading.filename,
                         filesize = CurrentlyDownloading.filesize,
-                        fullfilepath= CurrentlyDownloading.fullfilepath,
+                        fullfilepath = CurrentlyDownloading.fullfilepath,
                         downloadIndex = CurrentlyDownloading.downloadIndex
                     });
                 }
@@ -306,13 +340,13 @@ namespace LittleWeebLibrary.Handlers
                         status = args.DownloadStatus,
                         filename = args.FileName,
                         filesize = args.FileSize.ToString(),
-                        fullfilepath= args.FileLocation,
+                        fullfilepath = args.FileLocation,
                         downloadIndex = CurrentlyDownloading.downloadIndex
                     });
 
                 }
 
-                
+
             }
             else
             {
@@ -325,12 +359,17 @@ namespace LittleWeebLibrary.Handlers
                 });
             }
 
-            if (args.DownloadStatus == "COMPLETED")
+            if (args.DownloadStatus == "COMPLETED" || args.DownloadStatus == "FAILED" || args.DownloadStatus == "ABORTED")
             {
+                IsDownloading = false;
                 CurrentlyDownloading = new JsonDownloadInfo();
             }
+            else
+            {
+                IsDownloading = true;
+            }
 
-            
+
         }
 
         private async Task DownloadQueueHandler()
@@ -352,7 +391,6 @@ namespace LittleWeebLibrary.Handlers
                     JsonDownloadInfo toDownload = DownloadQueue[0];
                     if (retries > 2)
                     {
-                        CurrentlyDownloading = new JsonDownloadInfo();
                         IsDownloading = false;
                         DownloadQueue.RemoveAt(0);
                         retries = 0;
@@ -382,6 +420,8 @@ namespace LittleWeebLibrary.Handlers
                             fullfilepath= CurrentlyDownloading.fullfilepath,
                             downloadIndex = CurrentlyDownloading.downloadIndex
                         });
+
+                        CurrentlyDownloading = new JsonDownloadInfo();
                     }
                     else
                     {
@@ -390,12 +430,21 @@ namespace LittleWeebLibrary.Handlers
                             IsDownloading = false;
                             Thread.Sleep(500);
 
+
+                            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+                            {
+                                DebugMessage = "Send following download to irc server: " + toDownload.ToString(),
+                                DebugSource = this.GetType().Name,
+                                DebugSourceType = 1,
+                                DebugType = 3
+                            });
+
                             CurrentlyDownloading = toDownload;
                             IrcClientHandler.StartDownload(toDownload);
                             int timeOutCount = 0;
                             bool timedOut = true;
 
-                            while (timeOutCount < 3000)
+                            while (timeOutCount < 5)
                             {
                                 if (IrcClientHandler.IsDownloading())
                                 {
@@ -403,6 +452,7 @@ namespace LittleWeebLibrary.Handlers
                                     break;
                                 }
                                 Thread.Sleep(1000);
+                                timeOutCount++;
                             }
 
                             if (!timedOut)

@@ -1,0 +1,16 @@
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\LittleWeebLibrary.deps.json
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\LittleWeebLibrary.dll
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\LittleWeebLibrary.pdb
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\Mono.Android.dll
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\SimpleIRCLib.dll
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\SimpleWebsocketServer.dll
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\Mono.Android.pdb
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\Mono.Android.xml
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\SimpleIRCLib.pdb
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Release Android\netstandard2.0\SimpleWebsocketServer.pdb
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Release Android\netstandard2.0\LittleWeebLibrary.csproj.CoreCompileInputs.cache
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Release Android\netstandard2.0\LittleWeebLibrary.AssemblyInfoInputs.cache
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Release Android\netstandard2.0\LittleWeebLibrary.AssemblyInfo.cs
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Release Android\netstandard2.0\LittleWeebLibrary.csproj.CopyComplete
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Release Android\netstandard2.0\LittleWeebLibrary.dll
+G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\obj\Release Android\netstandard2.0\LittleWeebLibrary.pdb

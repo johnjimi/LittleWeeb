@@ -62,6 +62,17 @@ namespace LittleWeebLibrary.Services
             try
             {
                 string filePath = fileInfoJson.Value<string>("path");
+
+                if (filePath.Contains("//"))
+                {
+                    filePath.Replace("//", "/");
+                }
+
+                if (filePath.Contains("\\\\"))
+                {
+                    filePath.Replace("\\\\", "\\");
+                }
+
                 DownloadHandler.RemoveDownload(filePath);
                 FileHistoryHandler.RemoveFileFromFileHistory(filePath);
                 string result = FileHandler.DeleteFile(filePath);
@@ -81,7 +92,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "parse_file_to_delete_error",
                     errormessage = "Could not parse json containing file to delete information.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
             }
         }
@@ -108,6 +120,16 @@ namespace LittleWeebLibrary.Services
             {
                 string filePath = fileInfoJson.Value<string>("path");
 
+                if (filePath.Contains("//"))
+                {
+                    filePath.Replace("//", "/");
+                }
+
+                if (filePath.Contains("\\\\"))
+                {
+                    filePath.Replace("\\\\", "\\");
+                }
+
                 if (filePath != null)
                 {
                     string result = await FileHandler.OpenFile(filePath);
@@ -120,7 +142,8 @@ namespace LittleWeebLibrary.Services
                     {
                         type = "parse_file_to_open_error",
                         errormessage = "Request does not contain path parameter to open file.",
-                        errortype = "exception"
+                        errortype = "warning",
+                        exception = "none"
                     };
 
                     await WebSocketHandler.SendMessage(error.ToJson());
@@ -140,7 +163,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "parse_file_to_open_error",
                     errormessage = "Could not parse json containing file to open information.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
                 await WebSocketHandler.SendMessage(error.ToJson());

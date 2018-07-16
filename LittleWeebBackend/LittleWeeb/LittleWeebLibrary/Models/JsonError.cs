@@ -9,8 +9,9 @@ namespace LittleWeebLibrary.Models
     public class JsonError
     {
         public string type = "error";
-        public string errortype { get; set; }
-        public string errormessage { get; set; }
+        public string errortype { get; set; } = string.Empty;
+        public string errormessage { get; set; } = string.Empty;
+        public string exception { get; set; } = string.Empty;
 
         public string ToJson()
         {

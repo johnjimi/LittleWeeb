@@ -311,15 +311,18 @@
                                 </thead>
                                 <tbody id="listWithFiles">
                                     <tr *ngFor="let episode of episodes[0].files; let b=index">
-                                        <ng-container *ngIf="checkIfStringContiains(episode.name, resolution) || showAllResolutions">
-                                            <ng-container *ngIf="checkIfStringContiains(episode.botId, botname) || showAllBots"> 
-                                                <td> 
-                                                    <button class="ui green inverted button" (click)="appendToDownloadsDirectly(episode)"><i class="cloud download icon"></i></button>
-                                                    <button class="ui green inverted button" (click)="playEpisodeAdvanced(episode, episodes[0].episodeNumber)"><i class="play icon"></i></button>
-                                                </td>
-                                                <td>{{episode.botId}}</td>
-                                                <td>{{episode.name}}</td>
-                                                <td>{{episode.size}}</td>                  
+                                        <ng-container *ngIf="episode.botId != false"> 
+                                            <ng-container *ngIf="checkIfStringContiains(episode.name, resolution) || showAllResolutions">
+                                                <ng-container *ngIf="checkIfStringContiains(episode.botId, botname) || showAllBots"> 
+                                                    <td> 
+                                                        <button class="ui green inverted button" (click)="appendToDownloadsDirectly(episode)"><i class="cloud download icon"></i></button>
+                                                        <button class="ui green inverted button" (click)="playEpisodeAdvanced(episode, episodes[0].episodeNumber)"><i class="play icon"></i></button>
+                                                    </td>
+                                                    <td>{{episode.botId}}</td>
+                                                    <td>{{episode.name}}</td>
+                                                    <td>{{episode.size}}</td>   
+                                                                
+                                                </ng-container>
                                             </ng-container>
                                         </ng-container>
                                     </tr>                 
@@ -331,43 +334,50 @@
                 </div>     
             </div>
             <hr>
-            <div *ngIf="movieList[0] != 'not defined'">
+            <div *ngIf="movieList.length > 1">
                 <div class="ui styled accordion episodeList min-width-100 " id="movies">                 
-                    <div class="title"  >
-                        <i *ngIf="enableAdvanced" class="dropdown icon"></i>
-                        <div class="ui checkbox">
-                            <button class="ui green inverted button" *ngIf="!enableAdvanced" (click)="selectBestMovie()" ><i class="cloud download icon"></i></button>
-                            <button class="ui green inverted button" *ngIf="!enableAdvanced" (click)="playMovie()" ><i class="play icon"></i></button>
-                            <label>Movies, OVA's, ONA's etc</label>
-                        </div>
-                    </div>               
-                    <div class="content" *ngIf="enableAdvanced">                   
-
-                        <table class="ui very basic unstackable table bg-white min-width-100">
-                            <thead>
-                                <tr>
-                                <th class="width-20">Download</th>
-                                <th class="width-20">Bot</th>
-                                <th class="width-20">Filename</th>
-                                <th class="width-20">FileSize</th>
-                                </tr>
-                            </thead>
-                            <tbody id="listWithFiles">
-                                <tr *ngFor="let movie of movieList; let b=index">
-                                    <ng-container *ngIf="checkIfStringContiains(movie.name, resolution) || showAllResolutions">
-                                        <ng-container *ngIf="checkIfStringContiains(movie.botId, botname) || showAllBots"> 
-                                            <td> 
-                                                <button class="ui green inverted button" (click)="appendToDownloadsDirectly(movie)"> <i class="cloud download icon"></i></button>
-                                                <button class="ui green inverted button" (click)="playMovieAdvanced(movie)"><i class="play icon"></i></button>
-                                            </td>
-                                            <td>{{movie.botId}}</td>
-                                            <td>{{movie.name}}</td>
-                                            <td>{{movie.size}}</td>                  
-                                        </ng-container>
-                                    </ng-container>
-                                </tr>                 
-                            </tbody>
-                        </table>                    
+                    <div *ngFor="let movies of movieList; let i=index; "  >
+                        <div *ngIf="movies != 'not defined'">
+    
+                            <div class="title" id="{{movies[0].episodeNumber}}" *ngIf="movies != 'not defined'" >
+                                <i  *ngIf="enableAdvanced" class="dropdown icon"></i>
+                                <button class="ui green inverted button" *ngIf="!enableAdvanced" (click)="selectBestEpisode(movies[0].episodeNumber)" ><i class="cloud download icon"></i></button>
+                                <button class="ui green inverted button" *ngIf="!enableAdvanced" (click)="playEpisode(movies[0].episodeNumber)" ><i class="play icon"></i></button>
+                                <label>Episode {{i}}</label>
+                            </div>               
+                            <div class="content" *ngIf="movies != 'not defined' && enableAdvanced" >
+                                
+                                <table class="ui very basic unstackable table bg-white min-width-100">
+                                    <thead>
+                                        <tr>
+                                        <th class="width-20">Download</th>
+                                        <th class="width-20">Bot</th>
+                                        <th class="width-20">Filename</th>
+                                        <th class="width-20">FileSize</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listWithFiles">
+                                        <tr *ngFor="let movie of movies; let b=index">
+                                            <ng-container *ngIf="movie.botId != false"> 
+                                                <ng-container *ngIf="checkIfStringContiains(movie.name, resolution) || showAllResolutions">
+                                                    <ng-container *ngIf="checkIfStringContiains(movie.botId, botname) || showAllBots"> 
+                                                        <td> 
+                                                            <button class="ui green inverted button" (click)="appendToDownloadsDirectly(movie)"><i class="cloud download icon"></i></button>
+                                                            <button class="ui green inverted button" (click)="playEpisodeAdvanced(movie, movie.episodeNumber)"><i class="play icon"></i></button>
+                                                        </td>
+                                                        <td>{{movie.botId}}</td>
+                                                        <td>{{movie.name}}</td>
+                                                        <td>{{movie.size}}</td>   
+                                                                    
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+                                        </tr>                 
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                        </div>      
                     </div>     
                 </div>
             </div>

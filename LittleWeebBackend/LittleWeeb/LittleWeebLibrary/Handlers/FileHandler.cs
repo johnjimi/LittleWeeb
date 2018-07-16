@@ -37,13 +37,7 @@ namespace LittleWeebLibrary.Handlers
                 DebugType = 0
             });
 
-            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
-            {
-                DebugMessage = filePath,
-                DebugSource = this.GetType().Name,
-                DebugSourceType = 1,
-                DebugType = 1
-            });
+         
 
             string fullFilePath = filePath;
 
@@ -61,10 +55,18 @@ namespace LittleWeebLibrary.Handlers
                 fullFilePath = Path.Combine(filePath, fileName);
             }
 
+            OnDebugEvent?.Invoke(this, new BaseDebugArgs()
+            {
+                DebugMessage = filePath,
+                DebugSource = this.GetType().Name,
+                DebugSourceType = 1,
+                DebugType = 1
+            });
+
             try
             {
                 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 20; i++)
                 {
 
                     if (File.Exists(fullFilePath))
@@ -77,7 +79,12 @@ namespace LittleWeebLibrary.Handlers
                         intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
                         Android.App.Application.Context.StartActivity(intent);
 #else
-                        Task.Run(() => Process.Start(fullFilePath));
+                        var p = new Process();
+                        p.StartInfo = new ProcessStartInfo(fullFilePath)
+                        {
+                            UseShellExecute = true
+                        };
+                        p.Start();
 #endif
                         JsonSuccesReport report = new JsonSuccesReport()
                         {
@@ -86,13 +93,14 @@ namespace LittleWeebLibrary.Handlers
 
                         return report.ToJson();
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(200);
                 }
 
                 JsonError err = new JsonError();
                 err.type = "open_file_failed";
                 err.errormessage = "Could not open file but didn't throw exception.";
                 err.errortype = "warning";
+                err.exception = "none";
                 return err.ToJson();
 
             }
@@ -111,7 +119,7 @@ namespace LittleWeebLibrary.Handlers
                 err.type = "open_file_failed";
                 err.errormessage = "Could not open file.";
                 err.errortype = "exception";
-
+                err.exception = e.ToString();
                 return err.ToJson();
             }
         }
@@ -154,32 +162,42 @@ namespace LittleWeebLibrary.Handlers
 
             try
             {
-                // Trace.WriteLine("Trace-WEBSOCKETHANDLER: YOU MORON... no actually, THIS SHOULD ONLY HAPPEN... well.. when you actually want to delete stuff x)");
-                File.Delete(fullFilePath);
-
-                string[] filePaths = Directory.GetFiles(Path.GetDirectoryName(filePath));
-                if (filePaths.Length == 0)
+                if (File.Exists(fullFilePath))
                 {
-                    Directory.Delete(filePath);
+                    File.Delete(fullFilePath);
 
-                    JsonSuccesReport report = new JsonSuccesReport()
+                    string[] filePaths = Directory.GetFiles(Path.GetDirectoryName(filePath));
+                    if (filePaths.Length == 0)
                     {
-                        message = "Succesfully deleted file with path: " + fullFilePath + " and directory: " + filePath
-                    };
+                        Directory.Delete(filePath);
 
-                    return report.ToJson();
+                        JsonSuccesReport report = new JsonSuccesReport()
+                        {
+                            message = "Succesfully deleted file with path: " + fullFilePath + " and directory: " + filePath
+                        };
+
+                        return report.ToJson();
+                    }
+                    else
+                    {
+
+                        JsonSuccesReport report = new JsonSuccesReport()
+                        {
+                            message = "Succesfully deleted file with path: " + fullFilePath
+                        };
+
+                        return report.ToJson();
+                    }
                 }
                 else
                 {
-
                     JsonSuccesReport report = new JsonSuccesReport()
                     {
-                        message = "Succesfully deleted file with path: " + fullFilePath
+                        message = "File with filepath: " + fullFilePath + " already removed."
                     };
 
                     return report.ToJson();
                 }
-
 
             }
             catch (Exception e)
@@ -200,6 +218,7 @@ namespace LittleWeebLibrary.Handlers
                 err.type = "delete_file_failed";
                 err.errormessage = "Could not delete file.";
                 err.errortype = "exception";
+                err.exception = e.ToString();
 
                 return err.ToJson();
             }

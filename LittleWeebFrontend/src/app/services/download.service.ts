@@ -95,6 +95,8 @@ export class DownloadService {
         this.consoleWrite(customDirPerAnime);
         if(!customDirPerAnime){
             this.shareService.storeDataLocal("CustomDirectoryPerAnime", "enabled");
+            download.filesize = download.filesize.substr(0, download.filesize.length - 1);
+            this.backendService.sendMessage({"action": "add_download", "extra" : download});
         } else {
             if(customDirPerAnime == "enabled"){
                 download.filesize = download.filesize.substr(0, download.filesize.length - 1);
@@ -127,7 +129,7 @@ export class DownloadService {
     }
 
     abortDownload(download: any){
-        this.backendService.sendMessage({"action" : "abort_download"});
+        this.backendService.sendMessage({"action" : "abort_download", "extra" : {"id" : download.id}});
         let obj = this.downloadQue.find(x => x.id == download.id);               
         let index = this.downloadQue.indexOf(obj);
         this.downloadQue.splice(index, 1);

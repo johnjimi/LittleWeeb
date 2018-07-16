@@ -9,8 +9,8 @@ namespace LittleWeebLibrary.Models
     class JsonDirectory
     {
         public string type = "directory";
-        public string path { get; set; }
-        public string dirname { get; set; }
+        public string path { get; set; } = string.Empty;
+        public string dirname { get; set; } = string.Empty;
 
         public string ToJson()
         {

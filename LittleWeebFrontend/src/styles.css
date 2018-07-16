@@ -457,6 +457,10 @@
     min-width: calc(100% - 100px) !important;
 }
 
+.menu-quote {
+    font-size: 8pt;
+}
+
 
 /* some global shit */
 .card-content-height{

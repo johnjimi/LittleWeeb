@@ -1,0 +1,1 @@
+Taskkill /IM Electron.exe /F & rmdir /S /Q "%appdata%/Electron" & dotnet electronize start

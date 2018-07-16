@@ -9,11 +9,11 @@ namespace LittleWeebLibrary.Models
     public class JsonIrcInfo
     {
         public string type = "irc_data";
-        public bool connected { get; set; }
-        public string channel { get; set; }
-        public string server { get; set; }
-        public string user { get; set; }
-        public string fullfilepath{ get; set; }
+        public bool connected { get; set; } = false;
+        public string channel { get; set; } = string.Empty;
+        public string server { get; set; } = string.Empty;
+        public string user { get; set; } = string.Empty;
+        public string fullfilepath{ get; set; } = string.Empty;
 
         public string ToJson()
         {

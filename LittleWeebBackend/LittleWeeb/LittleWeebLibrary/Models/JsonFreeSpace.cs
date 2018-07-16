@@ -9,9 +9,9 @@ namespace LittleWeebLibrary.Models
     class JsonFreeSpace
     {
         public string type = "free_space";
-        public long freespacebytes { get; set; }
-        public long freespacekbytes { get; set; }
-        public long freespacembytes { get; set; }
+        public long freespacebytes { get; set; } = -1;
+        public long freespacekbytes { get; set; } = -1;
+        public long freespacembytes { get; set; } = -1;
 
         public string ToJson()
         {

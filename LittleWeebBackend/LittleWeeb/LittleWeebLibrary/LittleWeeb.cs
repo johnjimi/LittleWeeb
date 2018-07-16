@@ -1,6 +1,7 @@
 ﻿using LittleWeebLibrary.Controllers;
 using LittleWeebLibrary.GlobalInterfaces;
 using System;
+using System.Diagnostics;
 
 namespace LittleWeebLibrary
 {
@@ -9,8 +10,8 @@ namespace LittleWeebLibrary
         private readonly StartUp startUp;
         public LittleWeeb()
         {
-            Console.WriteLine("IM DESPERATE, STARTIN STARTUP!");
             startUp = new StartUp();
+            Debug.WriteLine("Starting littleweeb");
             startUp.Start();
         }
 

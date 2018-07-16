@@ -133,7 +133,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "irc_connect_error",
                     errormessage = "Could not start connection to irc server.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
 
@@ -253,7 +254,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "irc_connect_error",
                     errormessage = "Could not send message to irc server.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
                 WebSocketHandler.SendMessage(error.ToJson());
@@ -310,7 +312,8 @@ namespace LittleWeebLibrary.Services
                     {
                         type = "irc_status_error",
                         errormessage = "Error on sending irc message to client.",
-                        errortype = "exception"
+                        errortype = "exception",
+                        exception = e.ToString()
                     };
 
 
@@ -367,7 +370,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "irc_status_error",
                     errormessage = "Error on sending irc status update to client.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
 

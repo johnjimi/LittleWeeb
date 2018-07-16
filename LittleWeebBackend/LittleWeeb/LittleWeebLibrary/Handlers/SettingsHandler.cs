@@ -52,9 +52,10 @@ namespace LittleWeebLibrary.Handlers
                     Local = true,
                     Port = 1515,
                     DebugLevel = new List<int>() { 0, 1, 2, 3, 4, 5 },
+                    DebugType = new List<int>() { 0, 1, 2, 3, 4},
                     RandomUsernameLength = 6,
-                    MaxDebugLogSize = 20000,
-                    Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                    MaxDebugLogSize = 2000,
+                    Version = "v0.4.0"
                 });
             }
             if (!File.Exists(Path.Combine(SettingsPath, ircSettingsName)))

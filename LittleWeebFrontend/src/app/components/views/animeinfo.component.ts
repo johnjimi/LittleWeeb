@@ -45,6 +45,7 @@ export class AnimeInfo{
     showError : boolean; 
     downloads : any[];
     alreadyDownloadedFiles : any[];
+    fileExtensions : any[] = [".mkv", ".mp4", ".avi"];
 
     //dropdown custom
     dropdownres : string = "All Resolutions";
@@ -449,6 +450,7 @@ export class AnimeInfo{
 
         let littleweebrule = false;
         let mustinclude = new Array();
+        let mustexclude = new Array();
         if(this.littleWeebRules.indexOf(anime.id) != -1){
             this.consoleWrite("Found rule for this anime.");
 
@@ -457,15 +459,25 @@ export class AnimeInfo{
             for(let line of alllines){
 
                 if(line.indexOf(anime.id) != -1){
-                    
-                    this.consoleWrite("all includes");
-                    let allincludes = alllines[i + 1].split('+ ')[1].split(',');
-                    
-                    this.consoleWrite(allincludes);
-                    for(let include of allincludes){
-                        mustinclude.push(include.replace(/`/g, ''));
+                    if(line.split('*')[1].trim() == anime.id){
+
+                        this.consoleWrite("all includes");
+                        let allincludes = alllines[i + 1].split('+ ')[1].split(',');
+                        
+                        for(let include of allincludes){
+                            mustinclude.push(include.replace(/`/g, ''));
+                        }
+                        this.consoleWrite(mustinclude);
+                        this.consoleWrite("all excludes");
+                        let allexcludes = alllines[i + 3].split('$ ')[1].split(',');
+                        
+                        for(let exclude of allexcludes){
+                            mustexclude.push(exclude.replace(/`/g, ''));
+                        }
+                        this.consoleWrite(mustexclude);
+                        littleweebrule = true;
+                        break;
                     }
-                    break;
                 }
                 i++;
             }
@@ -473,7 +485,6 @@ export class AnimeInfo{
             this.consoleWrite("Episode title MUST contain: ");
             this.consoleWrite(mustinclude);
 
-            littleweebrule = true;
         }
 
 
@@ -571,19 +582,20 @@ export class AnimeInfo{
                 botsWithId[bot.id] = bot.name;
             }
 
-            this.consoleWrite("The following episodes were found on nibl:")
+            this.consoleWrite("The following episodes were found on nibl:");
             this.consoleWrite(result);
             for(let file of result){
                 if(allEpisodes.indexOf(file) == -1){ 
-                    for(let searchQuery of searchQueries){
-                        if(this.utilityService.compareNames(searchQuery, this.utilityService.stripName(file.name)) > 20){   
-                            let found = false; 
-                            for(let filealreadyadded of allEpisodes){
-                                if(filealreadyadded.botId == file.botId && filealreadyadded.number == file.number){
-                                    found = true;
-                                }
+                    for(let searchQuery of searchQueries){ 
+                        let found = false; 
+                        for(let filealreadyadded of allEpisodes){
+                            if(filealreadyadded.botId == file.botId && filealreadyadded.number == file.number){
+                                found = true;
                             }
-                            if(!found){   
+                        }
+                        if(!found){   
+                            if(this.utilityService.compareNames(this.utilityService.stripName(file.name), this.utilityService.stripName(this.animeInfo.animeInfo.canonicalTitle)) > 10){
+                                file.season = seasonNumber;
                                 allEpisodes.push(file);
                             }
                         }
@@ -591,6 +603,7 @@ export class AnimeInfo{
                 }
             }
 
+            this.consoleWrite(allEpisodes);
 
             this.consoleWrite("Following start stop was found within anime-relations:");
             this.consoleWrite(startStopEpisodes);
@@ -641,10 +654,8 @@ export class AnimeInfo{
                 }
 
                 if(startStopEpisodes.length > 0){
+
                     let epNum = episodeFile.episodeNumber;
-
-                   
-
 
                     let start = 0;
                     let stop = 0;
@@ -655,7 +666,7 @@ export class AnimeInfo{
                         if(seasonNumber > 1){
                             if(epNum >= start && epNum <= stop){  
 
-                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
+                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
                                                                           
                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                     parsedEpisodeFiles.push(episodeFile);
@@ -663,8 +674,8 @@ export class AnimeInfo{
                             } 
                         } else {
                             if(epNum <= startStopEpisodes[0].startEpisode){         
-                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
-                                                                          
+                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
+                                                                         
                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                     parsedEpisodeFiles.push(episodeFile);
                                 }
@@ -692,14 +703,8 @@ export class AnimeInfo{
                                 if(!foundseasonident){
                                     episodeFile.episodeNumber = episodeFile.episodeNumber - start + 1;
                                 }             
-                                
-                                if(littleweebrule){
-
-                                } else {
-
-                                }
-
-                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
+                                 
+                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
                                                                           
                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                     parsedEpisodeFiles.push(episodeFile);
@@ -710,7 +715,7 @@ export class AnimeInfo{
                                         for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
                                             if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){                                          
                                                 
-                                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
+                                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
                                                                           
                                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                                     parsedEpisodeFiles.push(episodeFile);
@@ -720,9 +725,11 @@ export class AnimeInfo{
                                         }
                                    
                                 }  else {
+                                    
+                                   
                                     for(let synonym of synonyms){
                                         if(this.utilityService.compareNames(this.utilityService.stripName(episodeFile.name), this.utilityService.stripName(synonym)) > 50){
-                                            if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
+                                            if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
                                                                           
                                                 episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                                 parsedEpisodeFiles.push(episodeFile);
@@ -748,7 +755,7 @@ export class AnimeInfo{
                                     episodeFile.episodeNumber = episodeFile.episodeNumber - start + 1;
                                 }             
                                 
-                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
+                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
                                                                           
                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                     parsedEpisodeFiles.push(episodeFile);
@@ -759,7 +766,7 @@ export class AnimeInfo{
                                         for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
                                             if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){                                     
                                                 
-                                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
+                                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
                                                                           
                                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                                     parsedEpisodeFiles.push(episodeFile);
@@ -769,6 +776,7 @@ export class AnimeInfo{
                                         }
                                    
                                 }  else {
+                                    
                                     for(let synonym of synonyms){
                                         if(this.utilityService.compareNames(this.utilityService.stripName(episodeFile.name), this.utilityService.stripName(synonym)) > 30){
 
@@ -794,7 +802,8 @@ export class AnimeInfo{
                                             }
 
                                             if(!found || seasonnumber == seasonNumber){
-                                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
+                                                
+                                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){
                                                                           
                                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
                                                     parsedEpisodeFiles.push(episodeFile);
@@ -808,93 +817,96 @@ export class AnimeInfo{
                         }                      
                     }                
                 } else { 
-                                   
+                    
                     if(seasonNumber > 1){
+                        
                         let seasonIdentifier = seasonIdentifiers[seasonNumber];
                         for(let seasonIdentifierString of seasonIdentifier.seasonDelimiter){
                             if(this.utilityService.createSpaces(episodeFile.name.toLowerCase()).indexOf(seasonIdentifierString) != -1){      
-                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){;                           
+                              
+                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){;                           
                                     episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
+
                                     parsedEpisodeFiles.push(episodeFile);
+                                    break;
                                 }
-                                break;
                             }
                         }
                     } else {         
-                        let found = false;                       
+                                        
    
                         for(let synonym of synonyms){
-                            if(this.utilityService.compareNames(this.utilityService.stripName(episodeFile.name), this.utilityService.stripName(synonym)) > 60){
-                                let found = false;
-                                let seasonnumber = 0;
-                                let wordsoftitle = this.utilityService.stripName(episodeFile.name).split(' ');
-                                for(let word of wordsoftitle){
-                                    for(let seasonIdent of seasonIdentifiers){
-                                        for(let ident of seasonIdent.seasonDelimiter){
-
-                                            if(ident == word){
-                                                found = true;
-                                            }
-                                        }
-                                        if(found){
-                                            seasonnumber = seasonIdent.seasonNumber;
-                                            break;
-                                        }
-                                    }
-                                    if(found){
-                                        break;
-                                    }
-                                }
-
-                                if(!found || seasonnumber == seasonNumber){
-                                    if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude)){
-                                                                          
-                                        episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
-                                        parsedEpisodeFiles.push(episodeFile);
-                                        
-                                    }
-                                }                                  
-                                break;
+                            if(littleweebrule){
+                                
+                                if(this.checkForRule(episodeFile.name, littleweebrule, mustinclude, mustexclude)){                                                            
+                                    episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId); 
+                                    parsedEpisodeFiles.push(episodeFile);
+                                    break;                             
+                                } 
+                            }
+                            else {        
+                                                                                                 
+                                episodeFile.botId =  this.addBotToBotList(episodeFile.botId, botsWithId);  
+                                parsedEpisodeFiles.push(episodeFile);   
+                                break;       
                             }
                         }
                     }
                 }
             }
-            this.consoleWrite("Following episodes were parsed:");   
+            this.consoleWrite("Following files were parsed:");   
             this.consoleWrite(parsedEpisodeFiles);
             this.consoleWrite("Following bots were parsed:");
             this.consoleWrite(this.botList);
             //index by episode
 
 
-            this.shareService.showLoaderMessage("Retreiving episode information"); 
 
             this.episodeList = new Array();
+            
+            this.movieList = new Array();
             let tempEpListBe =  new Array();
+
             for(let parsedFile of parsedEpisodeFiles){
                 let epNum = parsedFile.episodeNumber;
-                if(this.animeInfo.animeInfo.subtype == "TV"){
-                    if(this.episodeList[epNum] === undefined){
-                        this.episodeList[epNum] = new Array();
-                        this.episodeList[epNum].push({episodeNumber: epNum, episodeTitle: "Episode " + epNum, files: []}); 
+                
+                if(epNum != this.utilityService.getEpisodeNumber(parsedFile.name) && epNum != -1 && parsedFile.season == 1){
+                    epNum = this.utilityService.getEpisodeNumber(parsedFile.name);
+                }
+                if(epNum && parsedFile.botId != false){
+                    if(this.animeInfo.animeInfo.subtype == "TV"){
                         
-                        tempEpListBe[epNum] = new Array();
-                        tempEpListBe[epNum].push(parsedFile);
+                        if(this.episodeList === null){
+                            this.episodeList = new Array();
+                        }
+                        if(this.episodeList[epNum] === undefined){
+                            this.episodeList[epNum] = new Array();
+                            this.episodeList[epNum].push({episodeNumber: epNum, episodeTitle: "Episode " + epNum, files: [parsedFile]}); 
+                            
+                            tempEpListBe[epNum] = new Array();
+                            tempEpListBe[epNum].push(parsedFile);
+                        } else {
+                            tempEpListBe[epNum].push(parsedFile);
+                            var obj = this.episodeList[epNum][0];
+                            obj.files=tempEpListBe[epNum];
+                            this.episodeList[epNum][0] = obj;
+                        }
                     } else {
-                        tempEpListBe[epNum].push(parsedFile);
-                        var obj = this.episodeList[epNum][0];
-                        obj.files=tempEpListBe[epNum];
-                        this.episodeList[epNum][0] = obj;
-                    }
-                } else {
-                    if(this.movieList[epNum] === undefined){
-                        this.movieList[epNum] = new Array();
-                        this.movieList[epNum].push(parsedFile);
-                    } else {
-                        this.movieList[epNum].push(parsedFile);
+                        if(epNum == -1){
+                            epNum = 1;
+                            if(this.movieList === null){
+                                this.movieList = new Array();
+                            }
+                            if(this.movieList[epNum] === undefined){
+                                this.movieList[epNum] = new Array();
+                                this.movieList[epNum].push(parsedFile);
+                            } else {
+                                this.movieList[epNum].push(parsedFile);
+                            }
+                        }
+                        
                     }
                 }
-            
             }
 
             if(this.episodeList[0] === undefined){
@@ -903,10 +915,28 @@ export class AnimeInfo{
             if(this.movieList[0] === undefined){
                 this.movieList[0] = "not defined";
             }
+
+            for(let i = 0; i < this.episodeList.length; i++){
+                if(this.episodeList[i] === undefined){
+                    this.episodeList.splice(i, this.episodeList.length - i);
+                    break;
+                }
+            }
+
+            for(let i = 0; i < this.movieList.length; i++){
+                if(this.movieList[i] === undefined || this.movieList[i] === null){
+                    this.movieList.splice(i, this.movieList.length - i);
+                    break;
+                }
+            }
+
         
             this.consoleWrite("Following episodes were indexed:");
             this.consoleWrite(this.episodeList);
             
+            this.consoleWrite("Following movies were indexed:");
+            this.consoleWrite(this.movieList);
+
             this.showEpisodes = true;
             this.showList = true;
             this.shareService.hideLoader();
@@ -934,23 +964,44 @@ export class AnimeInfo{
      * @returns (boolean, true when rule applies, true when no rule found, false if rule doesn't apply)
      * @memberof AnimeInfo
      */
-    checkForRule(epname : string , littleweebrule :boolean, mustinclude:any){
+    checkForRule(epname : string , littleweebrule :boolean, mustinclude:any, mustexclude:any){
         if(littleweebrule){
-            let contains = false;
-            for(let include of mustinclude){
-                let mustcontain = include.toLowerCase();
-                let words = epname.toLowerCase().split(' ');
+            let includes = false;
+            let excludes = true;
 
-                if(words.indexOf(mustcontain) != -1){
-                    contains = true;
-                    break;
+            if(mustinclude.length >= 1){
+                for(let include of mustinclude){
+                    let mustcontain = include.toLowerCase();
+                    let words = epname.toLowerCase();
+    
+                    if(words.indexOf(mustcontain) != -1){
+                        includes = true;
+                        break;
+                    }
                 }
+            } else {
+                includes = true;
             }
+           
+            if(mustexclude.length >= 1){
+                for(let exclude of mustexclude){
+                    let mustcontain = exclude.toLowerCase();
+                    let words = epname.toLowerCase();
+    
+                    if(words.indexOf(mustcontain) != -1){
+                        excludes = false;
+                        break;
+                    }
+                }
+            } else {
+                excludes = false;
+            }
+
             
-            if(contains){                                        
-                return true;
+            if(includes && !excludes){                                        
+                return false;
             } 
-            return false;
+            return true;
         } else {                                      
             return true;
         }
@@ -967,7 +1018,7 @@ export class AnimeInfo{
     addBotToBotList(id : number, botsWithId : any){
         let botname = botsWithId[id];                
         if(botname === undefined){
-            botname = "Unknown - these files cannot be downloaded!";
+           return false;
         }
         if(this.botList.indexOf(botname) == -1){                                                                        
             this.botList.push(botname);                                                                                 
@@ -1176,6 +1227,7 @@ export class AnimeInfo{
             this.waitingToPlay = true;
             this.episodeToPlay = epnum;
             let count = 0;
+            
             let tempint = setInterval(() =>{
                 if(this.waitingToPlay ){                
                     this.downloadService.getAlreadyDownloaded();
@@ -1183,7 +1235,7 @@ export class AnimeInfo{
                     this.shareService.hideLoader();
                     clearInterval(tempint);
                 }
-                if(count > 4){                
+                if(count > 20){                
                     this.shareService.showMessage("error", "Could not start playing episode!");
                     this.shareService.hideLoader();
                     clearInterval(tempint);
@@ -1206,7 +1258,7 @@ export class AnimeInfo{
                     this.shareService.hideLoader();
                     clearInterval(tempint);
                 }
-                if(count > 4){                
+                if(count > 20){                
                     this.shareService.showMessage("error", "Could not start playing episode!");
                     this.shareService.hideLoader();
                     clearInterval(tempint);
@@ -1248,7 +1300,7 @@ export class AnimeInfo{
      * @memberof Downloads
      */
     sendAbortRequest(download : any){
-       this.backEndService.sendMessage({"action" : "abort_download"});
+       this.downloadService.abortDownload(download);       
     }
 
     /**

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>LittleWeebLibrary</id>
+    <version>0.4.0</version>
+    <authors>LittleWeebLibrary</authors>
+    <owners>LittleWeebLibrary</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/EldinZenderink/LittleWeeb/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/EldinZenderink/LittleWeeb</projectUrl>
+    <description>Library containing crossplatform code for the back-end used by LittleWeeb Android &amp; Desktop</description>
+    <releaseNotes>First release version of the library and v0.4.0, includes a shitton of new features, completely new code base and more shizzles like that.</releaseNotes>
+    <copyright>MIT</copyright>
+    <tags>littleweeb anime irc xdcc download viewer streamer adfree free freeware</tags>
+    <repository type="GitHub" url="https://github.com/EldinZenderink/LittleWeeb" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="11.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="G:\Github Desktop\LittleWeeb\LittleWeebBackend\LittleWeeb\LittleWeebLibrary\bin\Debug\netstandard2.0\LittleWeebLibrary.dll" target="lib\netstandard2.0\LittleWeebLibrary.dll" />
+  </files>
+</package>

@@ -1,0 +1,1 @@
+<resources><string name="app_name">LittleWeeb</string><string name="action_settings">Settings</string><string name="no_storage_permission"> We need permission to access your storage!</string><string name="has_storage_permission"> Succesfully got permission to access storage.</string><string name="ok">Ok</string></resources>

@@ -9,8 +9,8 @@ namespace LittleWeebLibrary.Models
     class JsonDownloadDirectories
     {
         public string type = "downloaded_directories"; //used for identifying json
-        public JsonFreeSpace freeSpace { get; set; }
-        public List<Jsonfullfilepath> directories { get; set; }
+        public JsonFreeSpace freeSpace { get; set; } = new JsonFreeSpace();
+        public List<Jsonfullfilepath> directories { get; set; } = new List<Jsonfullfilepath>();
 
         public string ToJson()
         {

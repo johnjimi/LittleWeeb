@@ -129,7 +129,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "parse_download_to_add_error",
                     errormessage = "Could not parse json containing download to add information.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
 
@@ -186,7 +187,8 @@ namespace LittleWeebLibrary.Services
                     {
                         type = "parse_download_to_remove_error",
                         errormessage = "Neither id or file path have been defined!",
-                        errortype = "warning"
+                        errortype = "warning",
+                        exception = "none"
                     };
                     WebSocketHandler.SendMessage(error.ToJson());
                 }
@@ -208,7 +210,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "parse_download_to_remove_error",
                     errormessage = "Could not parse json containing download to remove information.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
 

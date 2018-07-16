@@ -35,6 +35,13 @@ namespace LittleWeebLibrary.Handlers
         {
 
             LittleWeebSettings = settingsHandler.GetLittleWeebSettings();
+
+
+            foreach (int level in LittleWeebSettings.DebugLevel)
+            {
+                WriteTrace("DEBUG LEVEL: " + level);
+            }
+
             currentLog = "";
            
 
@@ -98,16 +105,20 @@ namespace LittleWeebLibrary.Handlers
                 }
                 if (!File.Exists(Path.Combine(DebugPath, DebugFileName)))
                 {
+                    WriteTrace("Debug file does not exist, creating file.");
                     using (var fileStream = File.Open(Path.Combine(DebugPath, DebugFileName), FileMode.CreateNew, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
                         using (var streamWriter = new StreamWriter(fileStream))
                         {
-                            await streamWriter.WriteLineAsync("Starting Log AT: " + DateTime.UtcNow);
+                            await streamWriter.WriteLineAsync("Starting Log AT: " + DateTime.UtcNow + Environment.NewLine);
                         }
                     }
+
+                    WriteTrace("Debug file has been created.");
                 }
-                if (File.Exists(Path.Combine(DebugPath, DebugFileName)))
+                else
                 {
+                    WriteTrace("Debug file exists, reading content.");
                     using (var fileStream = File.Open(Path.Combine(DebugPath, DebugFileName), FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
                         using (var streamReader = new StreamReader(fileStream))
@@ -119,15 +130,15 @@ namespace LittleWeebLibrary.Handlers
                             }
                         }
                     }
+
+                    WriteTrace("Read debug log with : " + currentLog.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Count().ToString());
                     DebugWriteAble = true;
                 }
             }
             catch (Exception e)
             {
                 DebugWriteAble = false;
-#if DEBUG
-                Trace.WriteLine(e.ToString());
-#endif
+                WriteTrace(e.ToString());
             }
         }
 
@@ -136,7 +147,8 @@ namespace LittleWeebLibrary.Handlers
            
             try
             {
-                if (DebugWriteAble && LittleWeebSettings.DebugLevel.Contains(debugType))
+
+                if (DebugWriteAble && LittleWeebSettings.DebugLevel.Contains(debugType) && LittleWeebSettings.DebugType.Contains(sourceType))
                 {
                     string debugSourceType = "";
 
@@ -150,9 +162,8 @@ namespace LittleWeebLibrary.Handlers
                     }
 
                     string toWriteString = DebugTypes[debugType] + "|" + source + "|" + debugSourceType + "|" + toWrite + "|" + DateTime.UtcNow.ToShortTimeString();
-                    if (currentLog.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Length > LittleWeebSettings.MaxDebugLogSize)
+                    if (currentLog.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Length >= LittleWeebSettings.MaxDebugLogSize)
                     {
-                        WriteTrace("current log exceeds maximum amount of lines, removing first and appending");
 
                         string[] currentLogArray = currentLog.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).Skip((LittleWeebSettings.MaxDebugLogSize / 2)).ToArray();
 
@@ -185,12 +196,10 @@ namespace LittleWeebLibrary.Handlers
                             }
                         }
                     }
-                    WriteTrace(toWriteString);
                 }
             }
             catch (Exception e)
             {
-
                 WriteTrace(e.ToString());
             }
            

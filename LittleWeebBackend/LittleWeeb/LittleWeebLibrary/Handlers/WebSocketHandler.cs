@@ -5,6 +5,7 @@ using LittleWeebLibrary.Settings;
 using SimpleWebSocketServerLibrary;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,6 +68,8 @@ namespace LittleWeebLibrary.Handlers
                 });
                 Server.WebsocketServerEvent += OnWebSocketServerEvent;
                 Server.StartServer();
+
+                Debug.WriteLine("WebSocket server started.");
             }
             catch (Exception e)
             {
@@ -77,6 +80,8 @@ namespace LittleWeebLibrary.Handlers
                     DebugSourceType = 1,
                     DebugType = 4
                 });
+
+                Debug.WriteLine(e.ToString());
             }
         }
 
@@ -85,7 +90,7 @@ namespace LittleWeebLibrary.Handlers
             OnDebugEvent?.Invoke(this, new BaseDebugArgs()
             {
                 DebugSource = this.GetType().Name,
-                DebugMessage = "WebSocketHandler called.",
+                DebugMessage = "SendMessage called.",
                 DebugSourceType = 3,
                 DebugType = 0
             });
@@ -229,7 +234,7 @@ namespace LittleWeebLibrary.Handlers
                 if (args.data != null && args.isText)
                 {
 
-                    string received = Encoding.UTF8.GetString(args.data);
+                    string received = Encoding.ASCII.GetString(args.data);
                     OnDebugEvent?.Invoke(this, new BaseDebugArgs()
                     {
                         DebugSource = this.GetType().Name + " via " + sender.GetType().Name,
@@ -239,6 +244,11 @@ namespace LittleWeebLibrary.Handlers
                     });
 
                     OnWebSocketEvent?.Invoke(this, new WebSocketEventArgs() { Message = received });
+
+                    await SendMessage(new JsonReceivedResponse()
+                    {
+                        received = received
+                    }.ToJson());
                 }
 
                 if (args.isPing)

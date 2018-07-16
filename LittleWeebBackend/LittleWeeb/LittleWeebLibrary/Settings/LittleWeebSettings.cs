@@ -12,6 +12,7 @@ namespace LittleWeebLibrary.Settings
         public string Version { get; set; }
         public int RandomUsernameLength { get; set; }
         public List<int> DebugLevel { get; set; }
+        public List<int> DebugType { get; set; }
         public int MaxDebugLogSize { get; set; }
 
         public override string ToString()
@@ -24,6 +25,11 @@ namespace LittleWeebLibrary.Settings
             toReturn += "DebugLevel: ";
             foreach (int debugLevel in DebugLevel) {
                 toReturn += debugLevel.ToString() + ",";
+            }
+            toReturn += "DebugLevel: ";
+            foreach (int debugType in DebugType)
+            {
+                toReturn += debugType.ToString() + ",";
             }
             toReturn += Environment.NewLine;
             toReturn += "MaxDebugLogSize: " + MaxDebugLogSize.ToString() + Environment.NewLine;

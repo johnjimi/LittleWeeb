@@ -63,8 +63,17 @@ namespace LittleWeebLibrary.Services
             try
             {
 
-                string path = directoryJson.Value<string>("path");
-                string result = DirectoryHandler.CreateDirectory(path, "");
+                string filePath = directoryJson.Value<string>("path");
+                if (filePath.Contains("//"))
+                {
+                    filePath.Replace("//", "/");
+                }
+
+                if (filePath.Contains("\\\\"))
+                {
+                    filePath.Replace("\\\\", "\\");
+                }
+                string result = DirectoryHandler.CreateDirectory(filePath, "");
                 WebSocketHandler.SendMessage(result);
             }
             catch (Exception e)
@@ -81,7 +90,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "create_directory_error",
                     errormessage = "Could not create directory.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
                 WebSocketHandler.SendMessage(error.ToJson());
@@ -108,8 +118,17 @@ namespace LittleWeebLibrary.Services
 
             try
             {
-                string path = directoryJson.Value<string>("path");
-                string result = DirectoryHandler.DeleteDirectory(path);
+                string filePath = directoryJson.Value<string>("path");
+                if (filePath.Contains("//"))
+                {
+                    filePath.Replace("//", "/");
+                }
+
+                if (filePath.Contains("\\\\"))
+                {
+                    filePath.Replace("\\\\", "\\");
+                }
+                string result = DirectoryHandler.DeleteDirectory(filePath);
                 WebSocketHandler.SendMessage(result);
             } 
             catch (Exception e)
@@ -126,7 +145,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "create_directory_error",
                     errormessage = "Could not create directory.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString()
                 };
 
                 WebSocketHandler.SendMessage(error.ToJson());
@@ -167,8 +187,17 @@ namespace LittleWeebLibrary.Services
 
             try{
 
-                string path = directoryJson.Value<string>("path");
-                string result = DirectoryHandler.GetDirectories(path);
+                string filePath = directoryJson.Value<string>("path");
+                if (filePath.Contains("//"))
+                {
+                    filePath.Replace("//", "/");
+                }
+
+                if (filePath.Contains("\\\\"))
+                {
+                    filePath.Replace("\\\\", "\\");
+                }
+                string result = DirectoryHandler.GetDirectories(filePath);
                 WebSocketHandler.SendMessage(result);
             }
             catch (Exception e)
@@ -185,7 +214,8 @@ namespace LittleWeebLibrary.Services
                 {
                     type = "create_directory_error",
                     errormessage = "Could not create directory.",
-                    errortype = "exception"
+                    errortype = "exception",
+                    exception = e.ToString(),
                 };
 
                 WebSocketHandler.SendMessage(error.ToJson());

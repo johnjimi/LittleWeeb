@@ -5,6 +5,7 @@ using LittleWeebLibrary.Handlers;
 using LittleWeebLibrary.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace LittleWeebLibrary
@@ -110,20 +111,23 @@ namespace LittleWeebLibrary
 
             });
 
+
+            Debug.WriteLine("Finished initiating.");
+
         }
 
         public void Start()
         {
-            Console.WriteLine("IM DESPERATE, STARTIN WEBSOCKET SERVER!");
+            Debug.WriteLine("Starting websocket server.");
             WebSocketHandler.StartServer();
         }
 
         public void Stop()
         {
-            Console.WriteLine("IM DESPERATE, STOPPING EVERYTHING!");
-            WebSocketHandler.StopServer();
+            IrcClientHandler.StopDownload();
             IrcClientHandler.StopConnection();
-            DownloadHandler.StopQueue();           
+            DownloadHandler.StopQueue();
+            WebSocketHandler.StopServer();
         }
     }
 }

@@ -55,14 +55,23 @@ namespace LittleWeebLibrary.Handlers
                     DebugType = 2
                 });
 
-                /*
-                if (Android.OS.Environment.ExternalStorageState == Android.OS.Environment.MediaMounted)
-                {
-                    Android.OS.Environment.InvokeIsExternalStorageRemovable(Android.OS.Environment.ExternalStorageDirectory);
-                    // sdcard found
+                string onlyAvailablePath = "/storage/";
+                if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M) {
+                    string[] dirs = Directory.GetDirectories("/storage/");
+
+                    foreach (string dir in dirs)
+                    {
+                        if (dir.Contains("-"))
+                        {
+                            onlyAvailablePath = Path.Combine(dir, "/Android/data/LittleWeeb.LittleWeeb/files");
+                            break;
+                        }
+                    }
                 }
+              
+
                 JsonDirectory directory = new JsonDirectory();
-                directory.path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+                directory.path = onlyAvailablePath;
                 directory.dirname = "External Storage if Present.";
 
                 directories.directories.Add(directory);            
@@ -71,9 +80,10 @@ namespace LittleWeebLibrary.Handlers
                 directory.path = Android.OS.Environment.RootDirectory.AbsolutePath;
                 directory.dirname = "Internal Root Directory";
 
-                directories.directories.Add(directory); */
+                directories.directories.Add(directory); 
 
-                GetDirectories("/storage");
+
+                return directories.ToJson();
 #else
                 DriveInfo[] allDrives = DriveInfo.GetDrives();
                 foreach (DriveInfo drive in allDrives)
@@ -83,8 +93,8 @@ namespace LittleWeebLibrary.Handlers
                     directorywithpath.path = drive.Name;
                     directories.directories.Add(directorywithpath);
                 }
-#endif
                 return directories.ToJson();
+#endif
             }
             catch (Exception e)
             {
@@ -100,6 +110,7 @@ namespace LittleWeebLibrary.Handlers
                 error.type = "get_drives_error";
                 error.errortype = "exception";
                 error.errormessage = "Could not get drives, see log.";
+                error.exception = e.ToString();
 
                 return error.ToJson();
             }
@@ -157,6 +168,7 @@ namespace LittleWeebLibrary.Handlers
                 error.type = "get_drives_error";
                 error.errortype = "exception";
                 error.errormessage = "Could not get drives, see log.";
+                error.exception = e.ToString();
 
                 return error.ToJson();
             }
@@ -170,15 +182,30 @@ namespace LittleWeebLibrary.Handlers
                 int amountOfFiles = info.GetFiles().Length;
                 if (amountOfFiles == 0)
                 {
-                    Directory.Delete(path);
-
-                    JsonSuccesReport report = new JsonSuccesReport()
+                    if (Directory.Exists(path))
                     {
-                        message = "Succesfully deleted folder with path: " + path
-                    };
 
-                    return report.ToJson();
+                        Directory.Delete(path);
 
+                        JsonSuccesReport report = new JsonSuccesReport()
+                        {
+                            message = "Succesfully deleted folder with path: " + path
+                        };
+
+                        return report.ToJson();
+
+                    }
+                    else
+                    {
+
+                        JsonSuccesReport report = new JsonSuccesReport()
+                        {
+                            message = "Directory with path : " + path + " already removed."
+                        };
+
+                        return report.ToJson();
+
+                    }
                 }
                 else
                 {
@@ -322,7 +349,7 @@ namespace LittleWeebLibrary.Handlers
                 intent.SetFlags(Android.Content.ActivityFlags.ClearWhenTaskReset | Android.Content.ActivityFlags.NewTask);
                 Android.App.Application.Context.StartActivity(Android.Content.Intent.CreateChooser(intent, "Choose File Explorer"));
 #else
-                Process.Start(directoryPath);
+                Process.Start("explorer.exe", directoryPath);
 #endif
                 JsonSuccesReport report = new JsonSuccesReport()
                 {

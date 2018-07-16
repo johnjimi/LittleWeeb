@@ -24,8 +24,9 @@ import {BackEndService} from './services/backend.service'
                         <a class="ui item" (click)="openCloseMenu()">
                            <i class="sidebar icon ">  </i> Menu
                         </a> 
+                        
                         <a class="ui item" routerLink="currentlyairing" routerLinkActive="active" >
-                         <h4>LittleWeeb - Alpha </h4>
+                         <h4>LittleWeeb v0.4.0 </h4>
                         </a>
                          <a class="ui item" routerLink="about" routerLinkActive="active">
                            <i class="info icon ">  </i> About
@@ -34,7 +35,8 @@ import {BackEndService} from './services/backend.service'
                 </div>
 
                 <div class="ui visible inverted left vertical custom-fixed sidebar menu deskContent ">
-                    <div class="ui horizontal divider white-text"> LilleWeebie - v{{version}} </div>
+                    <div class="ui white-text center-text margin-top-2 menu-quote"> It Takes an Idiot to do something Cool </div>
+                    <div class="ui horizontal divider white-text"> LittleWeeb- v{{version}} </div>
                     <div *ngFor="let menuItem of menuItems">
                         <a class="item" routerLink="{{menuItem.view}}" routerLinkActive="active">
                             <i class="{{menuItem.icon}} icon "></i> {{menuItem.title}}
@@ -44,7 +46,9 @@ import {BackEndService} from './services/backend.service'
                 </div>
 
                 <div *ngIf="showMenu" class="ui visible inverted left vertical sidebar menu phoneContent">
-                    <div class="ui horizontal divider white-text"> LilleWeebie - v{{version}}  </div>
+                
+                    <div class="ui white-text center-text margin-top-2 menu-quote"> It Takes an Idiot to do something Cool </div>
+                    <div class="ui horizontal divider white-text"> LittleWeeb - v{{version}}  </div>
                     <div *ngFor="let menuItem of menuItems">
                         <a class="item" routerLink="{{menuItem.view}}" routerLinkActive="active" (click)="openCloseMenu()">
                             <i class="{{menuItem.icon}} icon "></i> {{menuItem.title}}

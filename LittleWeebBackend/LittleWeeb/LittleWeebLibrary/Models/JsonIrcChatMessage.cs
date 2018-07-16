@@ -9,9 +9,9 @@ namespace LittleWeebLibrary.Models
     class JsonIrcChatMessage
     {
         public string type = "chat_message"; //used for identifying json
-        public string channel { get; set; }
-        public string user { get; set; }
-        public string message { get; set; }
+        public string channel { get; set; } = string.Empty;
+        public string user { get; set; } = string.Empty;
+        public string message { get; set; } = string.Empty;
 
         public string ToJson()
         {

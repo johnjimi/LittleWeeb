@@ -32,15 +32,38 @@ export class Settings {
 
     downloadlocation : string;
 
-    address: string = "irc.rizon.net";
-    channels: string = "#nibl,#horriblesubs,#news";
-    username : string = "";
+    //status
     connectionStatus : string = "Disconnected.";
+    littleWeebSettings : any;
+    ircSettings : any;
+
+    //local storage
     localStorageKeys : string[];
     localStorageData : string;
     localStorageSelected : string;
+
+    //settings
+    address: string = "irc.rizon.net";
+    channels: string = "#nibl,#horriblesubs,#news";
+    username : string = "";
     currentDefaultResolution : string;
     minspacerequired : string;
+
+    //debug settings
+    entryDebugLevel : boolean = false;
+    parameterDebugLevel : boolean = false;
+    infoDebugLevel : boolean = false;
+    warningDebugLevel : boolean = false;
+    errorDebugLevel : boolean = false;
+    severeDebugLevel : boolean = false;
+
+    constructorsDebugMessage : boolean = false;
+    methodsDebugMessage : boolean = false;
+    eventsDebugMessage : boolean = false;
+    tasksDebugMessage : boolean = false;
+    externalDebugMessage : boolean = false;
+    undefinedDebugMessage : boolean = false;
+
 
     /**
      * Creates an instance of Settings.
@@ -88,10 +111,60 @@ export class Settings {
                     } else {
                         this.connectionStatus = "Disconnected.";
                     }
+
+                    this.ircSettings = message;
+                }
+
+                if(message.type == "littleweeb_settings"){
+                    this.littleWeebSettings = message;
+
+                    if(this.littleWeebSettings.debuglevel.indexOf(0) != -1){
+                        this.entryDebugLevel = true;
+                    }
+                    if(this.littleWeebSettings.debuglevel.indexOf(1) != -1){
+                        this.parameterDebugLevel = true;
+                    }
+                    if(this.littleWeebSettings.debuglevel.indexOf(2) != -1){
+                        this.infoDebugLevel = true;
+                    }
+                    if(this.littleWeebSettings.debuglevel.indexOf(3) != -1){
+                        this.warningDebugLevel = true;
+                    }
+                    if(this.littleWeebSettings.debuglevel.indexOf(4) != -1){
+                        this.errorDebugLevel = true;
+                    }
+                    if(this.littleWeebSettings.debuglevel.indexOf(5) != -1){
+                        this.severeDebugLevel = true;
+                    }
+
+                    if(this.littleWeebSettings.debugtype.indexOf(0) != -1){
+                        this.constructorsDebugMessage = true;
+                    }
+                    if(this.littleWeebSettings.debugtype.indexOf(1) != -1){
+                        this.methodsDebugMessage = true;
+                    }
+                    if(this.littleWeebSettings.debugtype.indexOf(2) != -1){
+                        this.eventsDebugMessage = true;
+                    }
+                    if(this.littleWeebSettings.debugtype.indexOf(3) != -1){
+                        this.tasksDebugMessage = true;
+                    }
+                    if(this.littleWeebSettings.debugtype.indexOf(4) != -1){
+                        this.externalDebugMessage = true;
+                    }
+                    if(this.littleWeebSettings.debugtype.indexOf(99) != -1){
+                        this.undefinedDebugMessage = true;
+                    }
+                    
+                    this.shareService.showMessage("success", "Succesfully retreived settings. ");
                 }
             }
         });
+        this.backEndService.sendMessage({"action" : "get_littleweeb_settings"});
         this.backEndService.sendMessage({"action" : "get_irc_data"});
+
+
+
         let currentConnectionSettingsString= this.shareService.getDataLocal("custom_irc_connection");
         if(currentConnectionSettingsString != false){
 
@@ -221,6 +294,71 @@ export class Settings {
             this.shareService.showMessage("success", "Succesfully resetted storage: " + this.localStorageSelected);   
         }    
         
+    }
+
+    /**
+     * Sets the debug level to be logged
+     * 
+     * @memberof Settings
+     */
+    setDebugLevel(){
+        let debugLevelArray = [];
+        
+        if(this.entryDebugLevel){
+            debugLevelArray.push(0);
+        } 
+        if(this.parameterDebugLevel){
+            debugLevelArray.push(1);
+        }
+        if(this.infoDebugLevel){
+            debugLevelArray.push(2);
+        }
+        if(this.warningDebugLevel){
+            debugLevelArray.push(3);
+        }
+        if(this.errorDebugLevel){
+            debugLevelArray.push(4);
+        }
+        if(this.severeDebugLevel){
+            debugLevelArray.push(5);
+        }
+
+        this.littleWeebSettings.debuglevel = debugLevelArray;
+        this.backEndService.sendMessage({"action" : "set_littleweeb_settings", "extra" : this.littleWeebSettings});
+
+
+    }
+
+    /**
+     * Sets the debug message types to be logged
+     * 
+     * @memberof Settings
+     */
+    setDebugType(){
+        
+        let debugTypeArray = [];
+        if(this.constructorsDebugMessage){
+            debugTypeArray.push(0);
+        }
+        if(this.methodsDebugMessage){
+            debugTypeArray.push(1);
+        }
+        if(this.eventsDebugMessage){
+            debugTypeArray.push(2);
+        }
+        if(this.tasksDebugMessage){
+            debugTypeArray.push(3);
+        }
+        if(this.externalDebugMessage){
+            debugTypeArray.push(4);
+        }
+        if(this.undefinedDebugMessage){
+            debugTypeArray.push(99);
+        }
+
+        console.log(debugTypeArray);
+        this.littleWeebSettings.debugtype = debugTypeArray;
+        this.backEndService.sendMessage({"action" : "set_littleweeb_settings", "extra" : this.littleWeebSettings});
     }
 
 

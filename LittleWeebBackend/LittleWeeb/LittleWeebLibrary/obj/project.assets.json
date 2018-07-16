@@ -218,7 +218,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "0.4.0",
     "restore": {
       "projectUniqueName": "G:\\Github Desktop\\LittleWeeb\\LittleWeebBackend\\LittleWeeb\\LittleWeebLibrary\\LittleWeebLibrary.csproj",
       "projectName": "LittleWeebLibrary",
@@ -238,8 +238,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://arcadyit.pkgs.visualstudio.com/_packaging/Parcady.Feed/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {

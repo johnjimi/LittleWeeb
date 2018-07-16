@@ -142,6 +142,7 @@ namespace LittleWeebLibrary.Services
                 version = LittleWeebSettings.Version,
                 randomusernamelength = LittleWeebSettings.RandomUsernameLength,
                 debuglevel = LittleWeebSettings.DebugLevel,
+                debugtype = LittleWeebSettings.DebugType,
                 maxdebuglogsize = LittleWeebSettings.MaxDebugLogSize
             };
             WebSocketHandler.SendMessage(settings.ToJson());
@@ -193,6 +194,7 @@ namespace LittleWeebLibrary.Services
                 error.type = "set_irc_settings_error";
                 error.errortype = "Exception";
                 error.errormessage = "Failed to set irc settings.";
+                error.exception = e.ToString();
 
                 WebSocketHandler.SendMessage(error.ToJson());
             }
@@ -221,6 +223,7 @@ namespace LittleWeebLibrary.Services
 
                 LittleWeebSettings.RandomUsernameLength = jsonLittleWeebSettings.Value<int>("randomusernamelength");
                 LittleWeebSettings.DebugLevel = jsonLittleWeebSettings.Value<JArray>("debuglevel").ToObject<List<int>>();
+                LittleWeebSettings.DebugType = jsonLittleWeebSettings.Value<JArray>("debugtype").ToObject<List<int>>();
                 LittleWeebSettings.MaxDebugLogSize = jsonLittleWeebSettings.Value<int>("maxdebuglogsize");
                 SetAllLittleWeebSettings(LittleWeebSettings);
 
@@ -243,6 +246,7 @@ namespace LittleWeebLibrary.Services
                 error.type = "set_littleweeb_settings_error";
                 error.errortype = "Exception";
                 error.errormessage = "Failed to set littleweeb settings.";
+                error.exception = e.ToString();
 
                 WebSocketHandler.SendMessage(error.ToJson());
             }
@@ -287,6 +291,7 @@ namespace LittleWeebLibrary.Services
                 error.type = "set_download_directory_error";
                 error.errortype = "Exception";
                 error.errormessage = "Failed to set custom download directory.";
+                error.exception = e.ToString();
 
                 WebSocketHandler.SendMessage(error.ToJson());
             }

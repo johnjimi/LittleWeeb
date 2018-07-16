@@ -14,6 +14,17 @@ export class UtilityService {
         
     }
 
+    checkIfObjectExists(obj : any, list : any){
+        var x;
+        for (x of list) {
+            if (list.hasOwnProperty(x) && list[x] === obj) {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+
     /**
      * Compares two strings
      * 
@@ -258,39 +269,79 @@ export class UtilityService {
             if(input.indexOf('.') > -1){
                 input = input.split('.')[0];
             }
+                
+            if(Number(input) !== NaN){
+                try{
+                
+                    input = input.replace( /^\D+/g, '');
+                    return parseInt(input);
+                }catch(e){}
+            }
         } catch(e){
-
+            
         }
+
+        
+        try{
+            if(input.indexOf('-') != -1){
+                input = input.split('-')[1];
+                if(input.indexOf('-') != -1){                    
+                    input = input.split('-')[0];
+                }
+            }
+            
+            if(Number(input) !== NaN){
+                try{
+                
+                    input = input.replace( /^\D+/g, '');
+                    return parseInt(input);
+                }catch(e){}
+            }
+        } catch (e){}
         
         try{
             while(input.indexOf('[') > -1){ 
-            if (input.indexOf('[') > -1)
-            {
-                if (input.indexOf(']') > -1)
+                if (input.indexOf('[') > -1)
                 {
-                    input = input.split('[')[0] + input.split(']')[1];
-                } else {
-                    input = input.split('[')[0] + input.split('[')[1]; 
+                    if (input.indexOf(']') > -1)
+                    {
+                        input = input.split('[')[0] + input.split(']')[1];
+                    } else {
+                        input = input.split('[')[0] + input.split('[')[1]; 
+                    }
                 }
             }
+            
+            if(Number(input) !== NaN){
+                try{
+                
+                    input = input.replace( /^\D+/g, '');
+                    return parseInt(input);
+                }catch(e){}
             }
         } catch(e){
 
         }
         try{
             while(input.indexOf('(') > -1){
-            if (input.indexOf('(') > -1)
-            {
-                if (input.indexOf(')') > -1)
+                if (input.indexOf('(') > -1)
                 {
-                    input = input.split('(')[0] + input.split(')')[1];
-                } else {
-                    input = input.split('(')[0] + input.split('(')[1];
+                    if (input.indexOf(')') > -1)
+                    {
+                        input = input.split('(')[0] + input.split(')')[1];
+                    } else {
+                        input = input.split('(')[0] + input.split('(')[1];
+                    }
                 }
             }
+            if(Number(input) !== NaN){
+                try{
+                
+                    input = input.replace( /^\D+/g, '');
+                    return parseInt(input);
+                }catch(e){}
             }
         } catch (e){}
-
         
         try{
             if (input.indexOf("S") > -1)
@@ -307,89 +358,18 @@ export class UtilityService {
                input = input.split("S")[0] + input.split("S")[1].substring(counter, input.split("S")[1].length);
               
             }
-        } catch (e){}
-        try{
-            input = input.replace( /^\D+/g, '');
-        }catch(e){}
-        
-        try{
-            if (input.indexOf("1080") > -1)
-            {
-                input = input.split("1080")[0] + input.split("1080")[1].substring(1);
-            }
-        } catch (e){}
-        try{
-            if (input.indexOf("720") > -1)
-            {
-                input = input.split("720")[0] + input.split("720")[1].substring(1);
-            }
-        } catch (e){}
-        try{
-            if (input.indexOf("480") > -1)
-            {
-                input = input.split("480")[0] + input.split("480")[1].substring(1);
-            }
-        } catch (e){}
-        try{
-            if (input.indexOf("x264") > -1)
-            {
-                input = input.split("x264")[0] + input.split("x264")[1].substring(1);
-            }
-        } catch (e){}
-          try{
-            if (input.indexOf("x265") > -1)
-            {
-                input = input.split("x265")[0] + input.split("x265")[1].substring(1);
-            }
-        } catch (e){}
-        try{
-            if (input.indexOf("h264") > -1)
-            {
-                input = input.split("h264")[0] + input.split("h264")[1].substring(1);
-            }
-        } catch (e){}
-          try{
-            if (input.indexOf("h265") > -1)
-            {
-                input = input.split("h265")[0] + input.split("h265")[1].substring(1);
+            
+            if(Number(input) !== NaN){
+                try{
+                
+                    input = input.replace( /^\D+/g, '');
+                    return parseInt(input);
+                }catch(e){}
             }
         } catch (e){}
         
-        try{
-            if (input.indexOf("Ep") > -1)
-            {
-                input = input.split("Ep")[0] + input.split("Ep")[1];
-            }
-        } catch (e){}
-        try{
-            if (input.indexOf("2nd") > -1)
-            {
-                input = input.split("2nd")[0] + input.split("2nd")[1];
-            }
-        } catch (e){}
-        try{
-            if (input.indexOf("3D") > -1)
-            {
-                input = input.split("3D")[0] + input.split("3D")[1];
-            }
-        } catch (e){}
-        try{
-            if (input.indexOf("BD") > -1)
-            {
-                input = input.split("BD")[0] + input.split("BD")[1];
-            }
-        } catch (e){}
-        try{
-            input = input.replace( /^\D+/g, '');
-        }catch(e){}
-
-
-        try{
-            if (input.indexOf("v") > -1)
-            {
-                input = input.split("v")[0];
-            }
-        }catch(e){}
+        return NaN;
+      
         /*
         try{
         
@@ -398,7 +378,8 @@ export class UtilityService {
             input = input.split('_').join(' ').trim();
             input = input.replace(/ +(?= )/g,'');
         } catch (e){} */
-        return input.toLowerCase();;
+
+        
     }
 
     /**

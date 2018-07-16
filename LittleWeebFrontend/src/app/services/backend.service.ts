@@ -28,8 +28,8 @@ export class BackEndService {
     private websocket : any;
     private interval: any;
     private messageQue: string[];
-    private receivedConfirmed: boolean;
     private enableDebugging : boolean = true;
+    private webSocketConnected : boolean = false;
 
     /**
      * Creates an instance of BackEndService.
@@ -40,7 +40,6 @@ export class BackEndService {
      */
     constructor(private shareService:ShareService){
         this.consoleWrite("Initiated backend!");
-        this.receivedConfirmed = false;
         this.messageQue = [];
         this.connected = false;
         this.websocketMessages.subscribe((messageRec) => {
@@ -100,8 +99,14 @@ export class BackEndService {
         this.websocket.onopen = (evt : any) =>{
             this.websocketConnected.next(evt);            
             this.shareService.showLoaderMessage("Waiting for connection to IRC!");
-            this.messageQue = [];
-            clearInterval(this.interval);
+            this.webSocketConnected = true;
+
+            this.interval = setInterval(()=>{
+                if(this.messageQue.length >= 1){
+                    this.websocket.send(this.messageQue[0]);
+                    this.messageQue.splice(0, 1);
+                }
+            }, 100);
         };
         this.websocket.onmessage = (evt : any) => {
             try{                        
@@ -130,7 +135,8 @@ export class BackEndService {
                     </a>
                 ` );                
             }*/
-           
+            clearInterval(this.interval);
+            this.webSocketConnected = false;
         }
     }
 
@@ -142,36 +148,10 @@ export class BackEndService {
      * @memberof BackEndService
      */
     sendMessage(message: any) {
-        this.consoleWrite("pusing message ");
-        this.consoleWrite(message);
-        this.consoleWrite( " to the que");
-        
-        this.receivedConfirmed = false;
+
         this.messageQue.push(JSON.stringify(message));
-        try {      
-            setInterval(() => {
-                try {
-                    if(this.websocket.readyState === this.websocket.CLOSED && this.websocket.readyState !== this.websocket.CONNECTING && this.websocket.readyState !== this.websocket.CLOSING && this.websocket.readyState !== this.websocket.OPEN){
-                        this.tryConnecting(this.address);
-                    } else if (this.messageQue.length > 0) {
-                        this.websocket.send(this.messageQue[0]);
-
-                        this.messageQue.splice(0, 1);
-                        this.receivedConfirmed = false;
-                    }
-
-                
-
-                } catch (Ex) {
-                    this.consoleWrite("Cannot send message, websocket hasn't been opened yet: ");
-                    this.consoleWrite(Ex);
-
-                }
-
-            }, 1000);
-        }catch(e){
-            this.consoleWrite(e);
-        }
+        this.consoleWrite("pusshed the following message:");
+        this.consoleWrite(JSON.stringify(message));
     }
 
     /**

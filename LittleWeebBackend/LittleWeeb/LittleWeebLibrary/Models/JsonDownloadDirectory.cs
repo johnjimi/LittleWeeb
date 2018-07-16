@@ -9,10 +9,10 @@ namespace LittleWeebLibrary.Models
     class Jsonfullfilepath
     {
         public string type = "downloaded_files"; //used for identifying json
-        public string directory = "/";
+        public string directory { get; set; } = "/";
 
-        public JsonAnimeInfo animeinfo { get; set; }
-        public List<JsonDownloadInfo> alreadyDownloaded { get; set; }
+        public JsonAnimeInfo animeinfo { get; set; } = new JsonAnimeInfo();
+        public List<JsonDownloadInfo> alreadyDownloaded { get; set; } = new List<JsonDownloadInfo>();
 
         public string ToJson()
         {
